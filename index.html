@@ -17,12 +17,16 @@
 
 <body>
 
+    <!-- Skip-Link, um direkt zum Inhalt zu springen -->
+    <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+    <a href="#footer" class="skip-link">Zum Seitenende springen</a>
+
     <!-- Hauptnavigation im Header -->
     <header>
-        <nav>
+        <nav aria-label="Hauptnavigation">
             <ul>
                 <li>
-                    <a href="index.html">Startseite</a>
+                    <a href="index.html" aria-current="page">Startseite</a>
                 </li>
                 <li>
                     <a href="ueber.html">Über mich</a>
@@ -42,24 +46,27 @@
 
 
     <!-- Main mit dem Inhalt -->
-    <main>
+    <main id="main">
 
         <!-- Sektion mit Hero Einleitung -->
-        <section>
-            <h1>Nora Mikus</h1>
-            <img src="" alt="Testfoto">
+        <section aria-labelledby="hero-heading">
+            <h1 id="hero-heading">Nora Mikus</h1>
+
+            <img src="" alt="Portrait von Nora Mikus">
         </section>
 
         <!-- Sektion mit Teaser "Über mich" -->
-         <section>
-            <h2>Über mich</h2>
+         <section aria-labelledby="ueber-heading">
+            <h2 id="ueber-heading">Über mich</h2>
+
             <p>Lorem ipsum dolor sit amet</p>
             <a href="ueber.html">Mehr erfahren</a>
          </section>
 
          <!-- Sektion mit Teaser "Fotografie" -->
-         <section>
-            <h2>Fotografie</h2>
+         <section aria-labelledby="fotografie-heading">
+            <h2 id="fotografie-heading">Fotografie</h2>
+
             <p>Lorem ipsum dolor sit amet</p>
             <img src="" alt="Testfoto 1">
             <img src="" alt="Testfoto 2">
@@ -67,16 +74,17 @@
          </section>
 
          <!-- Sektion mit Teaser "Projekte" -->
-         <section>
-            <h2>Projekte</h2>
+         <section aria-labelledby="projekt-heading">
+            <h2 id="projekt-heading">Projekte</h2>
+
             <p>Lorem ipsum dolor sit amet</p>
             <img src="" alt="Testfoto">
             <a href="projekte.html">Mehr erfahren</a>
          </section>
 
          <!-- Sektion mit Teaser "Prozess" -->
-         <section>
-            <h2>Prozess</h2>
+         <section aria-labelledby="prozess-heading">
+            <h2 id="prozess-heading">Prozess</h2>
 
             <!-- 01. Recherche und Analyse -->
             <details>
@@ -115,8 +123,8 @@
 
 
     <!-- Footer mit Navigation -->
-    <footer>
-        <nav>
+    <footer id="footer">
+        <nav aria-label="Navigation am Seitenende">
             <ul>
                 <li>
                     <a href="impressum.html">Impressum</a>
