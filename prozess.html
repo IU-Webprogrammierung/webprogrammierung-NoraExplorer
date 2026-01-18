@@ -5,6 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Prozess - Nora Mikus">
+
 
     <title>Prozess</title>
 </head>
@@ -12,9 +14,13 @@
 
 <body>
 
+    <!-- Skip-Link, um direkt zum Inhalt oder Footer zu springen -->
+    <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+    <a href="#footer" class="skip-link">Zum Seitenende springen</a>
+
     <!-- Hauptnavigation im Header -->
     <header>
-        <nav>
+        <nav aria-label="Hauptnavigation">
             <ul>
                 <li>
                     <a href="index.html">Startseite</a>
@@ -29,18 +35,18 @@
                     <a href="projekte.html">Projekte</a>
                 </li>
                 <li>
-                    <a href="prozess.html">Prozess</a>
+                    <a href="prozess.html" aria-current="page">Prozess</a>
                 </li>
             </ul>
         </nav>
     </header>
 
     <!-- Main mit dem Inhalt -->
-    <main>
+    <main id="main">
 
         <!-- Sektion mit Hero Einleitung -->
-        <section>
-            <h1>Prozess</h1>
+        <section aria-labelledby="prozess-heading">
+            <h1 id="prozess-heading">Prozess</h1>
             <p>
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
                 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
@@ -50,16 +56,16 @@
         </section>
 
         <!-- Sektion mit den Prozess-Schritten -->
-        <section>
-            <h2>Prozessschritte</h2>
+        <section aria-labelledby="schritte-heading">
+            <h2 id="schritte-heading">Prozessschritte</h2>
 
             <!-- Geordnete Liste mit Prozessschritt 1 bis 5 -->
             <ol>
 
                 <!-- Schritt 1: Recherche und Analyse-->
                 <li>
-                    <article>
-                        <h3>Recherche und Analyse</h3>
+                    <article aria-labelledby="schritt-1-heading">
+                        <h3 id="schritt-1-heading">Recherche und Analyse</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
                             sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
@@ -71,8 +77,8 @@
 
                 <!-- Schritt 2: Konzeption -->
                 <li>
-                    <article>
-                        <h3>Konzeption</h3>
+                    <article aria-labelledby="schritt-2-heading">
+                        <h3 id="chritt-2-heading">Konzeption</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
                             sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
@@ -84,8 +90,8 @@
 
                 <!-- Schritt 3: Design -->
                 <li>
-                    <article>
-                        <h3>Design</h3>
+                    <article aria-labelledby="schritt-3-heading">
+                        <h3 id="schritt-3-heading">Design</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
                             sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
@@ -97,8 +103,8 @@
 
                 <!-- Schritt 4: Umsetzung -->
                 <li>
-                    <article>
-                        <h3>Umsetzung</h3>
+                    <article aria-labelledby="schritt-4-heading">
+                        <h3 id="schritt-4-heading">Umsetzung</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
                             sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
@@ -110,8 +116,8 @@
 
                 <!-- Schritt 5: Evaluation -->
                 <li>
-                    <article>
-                        <h3>Evaluation</h3>
+                    <article aria-labelledby="schritt-5-heading">
+                        <h3 id="schritt-5-heading">Evaluation</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
                             sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
@@ -128,8 +134,8 @@
     </main>
 
     <!-- Footer mit Navigation -->
-    <footer>
-        <nav>
+    <footer id="footer">
+        <nav aria-label="Navigation am Seitenende">
             <ul>
                 <li>
                     <a href="impressum.html">Impressum</a>
