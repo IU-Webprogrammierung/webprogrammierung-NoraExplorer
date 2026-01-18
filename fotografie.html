@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fotografie - Nora Mikus">
     
     <title>Fotografie</title>
 </head>
@@ -12,9 +13,13 @@
 
 <body>
 
+    <!-- Skip-Link, um direkt zum Inhalt oder Footer zu springen -->
+    <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+    <a href="#footer" class="skip-link">Zum Seitenende springen</a>
+
     <!-- Hauptnavigation im Header -->
     <header>
-        <nav>
+        <nav aria-label="Hauptnavigation">
             <ul>
                 <li>
                     <a href="index.html">Startseite</a>
@@ -23,7 +28,7 @@
                     <a href="ueber.html">Über mich</a>
                 </li>
                 <li>
-                    <a href="fotografie.html">Fotografie</a>
+                    <a href="fotografie.html" aria-current="page">Fotografie</a>
                 </li>
                 <li>
                     <a href="projekte.html">Projekte</a>
@@ -36,11 +41,11 @@
     </header>
 
     <!-- Main mit dem Inhalt -->
-    <main>
+    <main id="main">
 
         <!-- Sektion mit Hero Einleitung -->
-        <section>
-            <h1>Fotografie</h1>
+        <section aria-labelledby="fotografie-heading">
+            <h1 id="fotografie-heading">Fotografie</h1>
             <p>
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
                 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
@@ -50,8 +55,8 @@
         </section>
 
         <!-- Sektion mit der Foto-Galerie -->
-        <section>
-            <h2>Galerie</h2>
+        <section aria-labelledby="galerie-heading">
+            <h2 id="galerie-heading">Galerie</h2>
 
             <img src="" alt="Testfoto 1">
             <img src="" alt="Testfoto 2">
@@ -70,8 +75,8 @@
     </main>
 
     <!-- Footer mit Navigation -->
-    <footer>
-        <nav>
+    <footer id="footer">
+        <nav aria-label="Navigation am Seitenende">
             <ul>
                 <li>
                     <a href="impressum.html">Impressum</a>
