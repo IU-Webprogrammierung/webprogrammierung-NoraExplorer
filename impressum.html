@@ -5,15 +5,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Impressum - Nora Mikus">
     
     <title>Impressum</title>
 </head>
 
 
 <body>
+
+    <!-- Skip-Link, um direkt zum Inhalt oder Footer zu springen -->
+    <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+    <a href="#footer" class="skip-link">Zum Seitenende springen</a>
+
     <!-- Hauptnavigation im Header -->
     <header>
-        <nav>
+        <nav aria-label="Hauptnavigation">
             <ul>
                 <li>
                     <a href="index.html">Startseite</a>
@@ -35,7 +41,7 @@
     </header>
 
     <!-- Main mit dem Inhalt -->
-    <main>
+    <main id="main">
         <h1>Impressum</h1>
 
 
@@ -53,8 +59,8 @@
         -->
        
         <!-- Sektion: verantwortliche Person -->
-        <section>
-            <h2>Verantwortliche Person</h2>
+        <section aria-labelledby="verantwortliche-heading">
+            <h2 id="verantwortliche-heading">Verantwortliche Person</h2>
             
             <dl>
                 <dt>Name</dt>
@@ -79,8 +85,8 @@
         </section>
 
         <!-- Sektion: Urheber- und Bildrechte -->
-        <section>
-            <h2>Urheber- und Bildrechte</h2>
+        <section aria-labelledby="urheber-heading">
+            <h2 id="urheber-heading">Urheber- und Bildrechte</h2>
             <p>
                 Sämtliche Inhalte, Texte, Gestaltungen und Bilder auf dieser Website unterliegen dem Urheberrecht. 
                 Die Bildrechte liegen (sofern nicht anders gekennzeichnet) bei der Betreiberin der Website. 
@@ -89,8 +95,8 @@
         </section>
 
         <!-- Sektion: Kontext -->
-        <section>
-            <h2>Kontext</h2>
+        <section aria-labelledby="kontext-heading">
+            <h2 id="kontext-heading">Kontext</h2>
             <p>
                 Die Website wurde im Rahmen des Projekts “Web-Programmierung” (DLBUXPWP01) 
                 an der IU Internationale Hochschule konzipiert und umgesetzt.
@@ -100,11 +106,11 @@
     </main>
 
     <!-- Footer mit Navigation -->
-    <footer>
-        <nav>
+    <footer id="footer">
+        <nav aria-label="Navigation am Seitenende">
             <ul>
                 <li>
-                    <a href="impressum.html">Impressum</a>
+                    <a href="impressum.html" aria-current="page">Impressum</a>
                 </li>
                 <li>
                     <a href="einstellungen.html">Einstellungen</a>
