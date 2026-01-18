@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Über mich - Nora Mikus">
 
     <title>Über mich</title>
 </head>
@@ -12,15 +13,19 @@
 
 <body>
 
+    <!-- Skip-Link, um direkt zum Inhalt zu springen -->
+    <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+    <a href="#footer" class="skip-link">Zum Seitenende springen</a>
+
     <!-- Hauptnavigation im Header -->
     <header>
-        <nav>
+        <nav aria-label="Hauptnavigation">
             <ul>
                 <li>
                     <a href="index.html">Startseite</a>
                 </li>
                 <li>
-                    <a href="ueber.html">Über mich</a>
+                    <a href="ueber.html" aria-current="page">Über mich</a>
                 </li>
                 <li>
                     <a href="fotografie.html">Fotografie</a>
@@ -37,59 +42,59 @@
 
 
     <!-- Main mit dem Inhalt -->
-    <main>
+    <main id="main">
 
         <!-- Sektion mit Hero Einleitung -->
-        <section>
-            <h1>Über mich</h1>
+        <section aria-labelledby="ueber-heading">
+            <h1 id="ueber-heading">Über mich</h1>
             <p>
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
                 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
                 sed diam voluptua.
             </p>
-            <img src="" alt="Testfoto">
+            <img src="" alt="Portrait von Nora Mikus">
         </section>
 
 
         <!-- Sektion mit meinen Interessen -->
-        <section>
-            <h2>Interessen</h2>
+        <section aria-labelledby="interessen-heading">
+            <h2 id="interessen-heading">Interessen</h2>
 
             <!-- Interessen Abschnitt Musik -->
-            <article>
-                <h3>Musik</h3>
+            <article aria-label="musik-heading">
+                <h3 id="musik-heading">Musik</h3>
                 <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
                 <img src="" alt="Testfoto">
             </article>
 
             <!-- Interessen Abschnitt Sport -->
-            <article>
-                <h3>Sport</h3>
+            <article aria-labelledby="sport-heading">
+                <h3 id="sport-heading">Sport</h3>
                 <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
                 <img src="" alt="Testfoto">
             </article>
 
             <!-- Interessen Abschnitt Lesen -->
-            <article>
-                <h3>Lesen</h3>
+            <article aria-labelledby="lesen-heading">
+                <h3 id="lesen-heading">Lesen</h3>
                 <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
                 <img src="" alt="Testfoto">
             </article>
 
             <!-- Interessen Abschnitt Kunst -->
-            <article>
-                <h3>Kunst</h3>
+            <article aria-labelledby="kunst-heading">
+                <h3 id="kunst-heading">Kunst</h3>
                 <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
                 <img src="" alt="Testfoto">
             </article>
 
         </section>
-        
+
     </main>
 
     <!-- Footer mit Navigation -->
-    <footer>
-        <nav>
+    <footer id="footer">
+        <nav aria-label="Navigation am Seitenende">
             <ul>
                 <li>
                     <a href="impressum.html">Impressum</a>
