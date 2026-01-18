@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projekte - Nora Mikus">
 
     <title>Projekte</title>
 </head>
@@ -12,9 +13,13 @@
 
 <body>
 
+    <!-- Skip-Link, um direkt zum Inhalt zu springen -->
+    <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+    <a href="#footer" class="skip-link">Zum Seitenende springen</a>
+
     <!-- Hauptnavigation im Header -->
     <header>
-        <nav>
+        <nav aria-label="Hauptnavigation">
             <ul>
                 <li>
                     <a href="index.html">Startseite</a>
@@ -26,7 +31,7 @@
                     <a href="fotografie.html">Fotografie</a>
                 </li>
                 <li>
-                    <a href="projekte.html">Projekte</a>
+                    <a href="projekte.html" aria-current="page">Projekte</a>
                 </li>
                 <li>
                     <a href="prozess.html">Prozess</a>
@@ -36,11 +41,11 @@
     </header>
 
     <!-- Main mit dem Inhalt -->
-    <main>
+    <main id="main">
 
         <!-- Sektion mit Hero Einleitung -->
-        <section>
-            <h1>Projekte</h1>
+        <section aria-labelledby="projekte-heading">
+            <h1 id="projekte-heading">Projekte</h1>
             <p>
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
                 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
@@ -50,12 +55,12 @@
         </section>
 
         <!-- Sektion mit meinen Projekten -->
-        <section>
-            <h2>Projektübersicht</h2>
+        <section aria-labelledby="projektuebersicht-heading">
+            <h2 id="projektuebersicht-heading">Projektübersicht</h2>
 
             <!-- Projekt Fotodesign Thaddy -->
-            <article>
-                <h3>Fotodesign Thaddy</h3>
+            <article aria-labelledby="projekt-thaddy-heading">
+                <h3 id="projekt-thaddy-heading">Fotodesign Thaddy</h3>
                 <p>1 Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
                 <figure>
                     <img src="" alt="Testfoto 1">
@@ -69,8 +74,8 @@
             </article>
 
             <!-- Projekt Brutzel -->
-            <article>
-                <h3>Brutzel</h3>
+            <article aria-labelledby="projekt-brutzel-heading">
+                <h3 id="projekt-brutzel-heading">Brutzel</h3>
                 <p>1 Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
                 <figure>
                     <img src="" alt="Testfoto 2">
@@ -84,8 +89,8 @@
             </article>
 
             <!-- Projekt Ananas Matheinsel -->
-            <article>
-                <h3>Brutzel</h3>
+            <article aria-labelledby="projekt-ananas-heading">
+                <h3 id="projekt-ananas-heading">Ananas Matheinsel</h3>
                 <p>1 Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
                 <figure>
                     <img src="" alt="Testfoto 2">
@@ -104,8 +109,8 @@
 
 
     <!-- Footer mit Navigation -->
-    <footer>
-        <nav>
+    <footer id="footer">
+        <nav aria-label="Navigation am Seitenende">
             <ul>
                 <li>
                     <a href="impressum.html">Impressum</a>
