@@ -1,3 +1,10 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
 /** Variablen und Breakpoints **/
 :root {
     --columns: 4;
@@ -30,6 +37,7 @@
         --margin-top-bottom: 0px;
     }
 }
+
 
 /** Basis **/
 body {
