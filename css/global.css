@@ -8,6 +8,9 @@
     --header-height: 5.5rem;
     --nav-inset: 2.5rem;
     --nav-panel-width: 18rem;
+
+    --footer-height: 5.5rem;
+
 }
 
 @media (min-width: 768px) {

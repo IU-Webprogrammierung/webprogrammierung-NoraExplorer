@@ -1,0 +1,33 @@
+footer {
+    width: 100%;
+    height: var(--footer-height);
+
+    padding: 0 var(--nav-inset);
+
+    background-color: #FFFFFF;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    align-items: center;
+}
+
+@media (min-width: 1024px) {
+    footer nav ul {
+        flex-direction: row;
+        gap: 1.5rem;
+        align-items: center;
+        justify-content: center;
+    }
+}
