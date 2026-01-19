@@ -35,3 +35,34 @@ body {
     color: black;
     background-color: #F9F6F7;
 }
+
+
+
+
+
+
+
+/** Hilfen für Barrierefreiheit **/
+
+/** Skip-Link (nur bei FOkus sichtbar) **/
+.skip-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    transform: translateY(-200%);
+    padding: 0.75rem 1rem;
+
+    background-color: inherit;
+    color: inherit;
+
+    text-decoration: underline;
+
+    z-index: 2000;
+}
+
+.skip-link:focus, 
+.skip-link:focus-visible {
+    transform: translateY(0);
+}
