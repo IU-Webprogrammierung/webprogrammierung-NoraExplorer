@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="css/header.css">
 
     <title>Projekte</title>
 </head>
@@ -23,7 +24,14 @@
 
     <!-- Hauptnavigation im Header -->
     <header>
-        <nav aria-label="Hauptnavigation">
+
+        <!-- input und label soll in Projektphase 2 oder 3 durch ein button element und js ersetzt werden-->
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle__button">
+            Menü
+        </label>
+        
+        <nav id="main-nav" aria-label="Hauptnavigation">
             <ul>
                 <li>
                     <a href="index.html">Startseite</a>

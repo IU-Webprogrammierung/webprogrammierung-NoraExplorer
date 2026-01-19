@@ -4,6 +4,10 @@
     --gap: 16px;
     --margin-sides: 48px;
     --margin-top-bottom: 0px;
+
+    --header-height: 5.5rem;
+    --nav-inset: 2.5rem;
+    --nav-panel-width: 18rem;
 }
 
 @media (min-width: 768px) {
@@ -48,7 +52,7 @@ body {
 .skip-link {
     position: absolute;
     top: 0;
-    bottom: 0;
+    /**bottom: 0;**/
     left: 0;
 
     transform: translateY(-200%);
