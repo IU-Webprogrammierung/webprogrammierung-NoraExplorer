@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Projekte - Nora Mikus">
 
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/details.css">
+
     <title>Projekte</title>
 </head>
 
@@ -41,17 +45,19 @@
     </header>
 
     <!-- Main mit dem Inhalt -->
-    <main id="main">
+    <main id="main" class="grid detailseite">
 
         <!-- Sektion mit Hero Einleitung -->
-        <section aria-labelledby="projekte-heading">
-            <h1 id="projekte-heading">Projekte</h1>
-            <p>
+        <section class="hero" aria-labelledby="projekte-heading">
+            <h1 id="projekte-heading" class="hero__heading">Projekte</h1>
+            <p class="hero__text">
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
                 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
                 sed diam voluptua.
             </p>
-            <img src="" alt="Testfoto">
+            <div class="hero__media">
+                <img src="images/content/testfoto.JPG" alt="Testfoto">
+            </div>
         </section>
 
         <!-- Sektion mit meinen Projekten -->
