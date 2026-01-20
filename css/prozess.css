@@ -1,0 +1,94 @@
+.detailseite.seite-prozess .content {
+    grid-template-columns: 1fr;
+}
+
+.detailseite.seite-prozess .prozess {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 6rem;
+
+    counter-reset: schritt;
+}
+
+.detailseite.seite-prozess .prozessschritt {
+    display: grid;
+    gap: 1rem;
+
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "number"
+    "heading"
+    "text"
+    "media";
+    align-items: start;
+}
+
+.detailseite.seite-prozess .prozessschritt::before {
+    grid-area: number;
+    
+    counter-increment: schritt;
+    content: counter(schritt, decimal-leading-zero);
+
+    display: block;
+    min-width: 0;
+}
+
+
+.detailseite.seite-prozess .prozessschritt__heading {
+    grid-area: heading;
+}
+
+.detailseite.seite-prozess .prozessschritt__text {
+    grid-area: text;
+}
+
+.detailseite.seite-prozess .prozessschritt__media {
+    grid-area: media;
+    margin: 0;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+}
+
+.detailseite.seite-prozess .prozessschritt__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.detailseite.seite-prozess .prozessschritt > * {
+    margin: 0;
+    min-width: 0;
+}
+
+@media (min-width: 768px) {
+    .detailseite.seite-prozess .prozess {
+        gap: 12rem;
+    }
+
+    .detailseite.seite-prozess .prozessschritt {
+        gap: 1.5rem;
+
+        grid-template-columns: 1fr 5fr 2fr;
+        grid-template-areas: 
+        "number heading media"
+        ". text media";
+    }
+}
+
+@media (min-width: 1280px) {
+    .detailseite.seite-prozess .prozess {
+        gap: 12rem;
+    }
+
+    .detailseite.seite-prozess .prozessschritt {
+        gap: 2rem;
+
+        grid-template-columns: 2fr 8fr 2fr;
+        grid-template-areas: 
+        "number heading media"
+        ". text media";
+    }
+}
