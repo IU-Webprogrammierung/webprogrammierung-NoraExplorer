@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/details.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/fotografie.css">
 
     <title>Fotografie</title>
 </head>
@@ -55,7 +56,7 @@
     </header>
 
     <!-- Main mit dem Inhalt -->
-    <main id="main" class="grid detailseite">
+    <main id="main" class="grid detailseite seite-fotografie">
 
         <!-- Sektion mit Hero Einleitung -->
         <section class="hero" aria-labelledby="fotografie-heading">
@@ -65,27 +66,70 @@
                 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
                 sed diam voluptua.
             </p>
-            <div class="hero__media">
+            <figure class="hero__media">
                 <img src="images/content/testfoto.JPG" alt="Testfoto">
-            </div>
+            </figure>
         </section>
 
         <!-- Sektion mit der Foto-Galerie -->
-        <section aria-labelledby="galerie-heading">
-            <h2 id="galerie-heading">Galerie</h2>
+        <section class="content" aria-labelledby="galerie-heading">
+            <h2 id="galerie-heading" class="content__heading">Galerie</h2>
 
-            <img src="" alt="Testfoto 1">
-            <img src="" alt="Testfoto 2">
-            <img src="" alt="Testfoto 3">
-            <img src="" alt="Testfoto 4">
-            <img src="" alt="Testfoto 5">
-            <img src="" alt="Testfoto 6">
-            <img src="" alt="Testfoto 7">
-            <img src="" alt="Testfoto 8">
-            <img src="" alt="Testfoto 9">
-            <img src="" alt="Testfoto 10">
-            <img src="" alt="Testfoto 11">
-            <img src="" alt="Testfoto 12">
+            <ul class="galerie" aria-label="Fotogalerie">
+                <li class="galerie__item galerie__item--portrait">
+                    <figure class="foto">
+                        <img src="images/content/testfoto.JPG" alt="Testfoto 1">
+                    </figure>
+                </li>
+
+                <li class="galerie__item galerie__item--portrait">
+                    <figure class="foto">
+                        <img src="images/content/testfoto.JPG" alt="Testfoto 2">
+                    </figure>
+                </li>
+
+                <li class="galerie__item galerie__item--landscape">
+                    <figure class="foto">
+                        <img src="images/content/testfoto.JPG" alt="Testfoto 3">
+                    </figure>
+                </li>
+
+                <li class="galerie__item galerie__item--landscape">
+                    <figure class="foto">
+                        <img src="images/content/testfoto.JPG" alt="Testfoto 4">
+                    </figure>
+                </li>
+
+                <li class="galerie__item galerie__item--portrait">
+                    <figure class="foto">
+                        <img src="images/content/testfoto.JPG" alt="Testfoto 5">
+                    </figure>
+                </li>
+
+                <li class="galerie__item galerie__item--portrait">
+                    <figure class="foto">
+                        <img src="images/content/testfoto.JPG" alt="Testfoto 6">
+                    </figure>
+                </li>
+
+                <li class="galerie__item galerie__item--portrait">
+                    <figure class="foto">
+                        <img src="images/content/testfoto.JPG" alt="Testfoto 7">
+                    </figure>
+                </li>
+
+                <li class="galerie__item galerie__item--portrait">
+                    <figure class="foto">
+                        <img src="images/content/testfoto.JPG" alt="Testfoto 8">
+                    </figure>
+                </li>
+
+                <li class="galerie__item galerie__item--landscape">
+                    <figure class="foto">
+                        <img src="images/content/testfoto.JPG" alt="Testfoto 9">
+                    </figure>
+                </li>
+            </ul>
         </section>
 
     </main>

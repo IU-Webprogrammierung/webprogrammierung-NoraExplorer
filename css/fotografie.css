@@ -1,0 +1,63 @@
+.detailseite.seite-fotografie .content {
+    grid-template-columns: 1fr;
+}
+
+.detailseite.seite-fotografie .galerie {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: grid;
+    gap: 1rem;
+
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    /**grid-auto-flow: dense;**/
+}
+
+.detailseite.seite-fotografie .foto {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    /**aspect-ratio: 4 / 5;**/
+}
+
+
+
+.detailseite.seite-fotografie .galerie__item--portrait .foto {
+    aspect-ratio: 3 / 4;
+}
+
+.detailseite.seite-fotografie .galerie__item--landscape .foto {
+    aspect-ratio: 4 / 3;
+}
+
+
+
+.detailseite.seite-fotografie .foto img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .detailseite.seite-fotografie .galerie {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .detailseite.seite-fotografie .galerie__item--landscape {
+        grid-column: span 2;
+    }
+}
+
+@media (min-width: 1280px) {
+    .detailseite.seite-fotografie .galerie {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .detailseite.seite-fotografie .galerie__item--landscape {
+        grid-column: span 2;
+    }
+}
