@@ -1,0 +1,90 @@
+.detailseite.seite-projekte .content {
+    grid-template-columns: 1fr;
+}
+
+
+.detailseite.seite-projekte .content >article.projekt {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 6rem;
+
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "heading"
+    "text1"
+    "mockup1"
+    "."
+    "text2"
+    "mockup2";
+}
+
+.detailseite.seite-projekte .projekt__heading {
+    grid-area: heading;
+}
+
+.detailseite.seite-projekte .projekt__text {
+    grid-area: text1;
+}
+
+.detailseite.seite-projekte .projekt__text--detail {
+    grid-area: text2;
+}
+
+.detailseite.seite-projekte .projekt__mockup {
+    overflow: hidden;
+}
+
+.detailseite.seite-projekte .projekt__mockup--big {
+    grid-area: mockup1;
+    aspect-ratio: 4 / 3;
+}  
+
+.detailseite.seite-projekte .projekt__mockup--small {
+    grid-area: mockup2;
+    aspect-ratio: 4 / 3;
+}
+
+.detailseite.seite-projekte .content > article.projekt > * {
+    margin: 0;
+    min-width: 0;
+}
+
+@media (min-width: 768px) {
+    .detailseite.seite-projekte .content {
+        grid-template-columns: 1fr;
+    }
+
+    .detailseite.seite-projekte .content >article.projekt {
+        gap: 1.5rem;
+        margin-bottom: 12rem;
+
+        grid-template-columns: 2fr 3fr 3fr;
+        grid-template-areas: 
+        "heading heading mockup1"
+        "text1 text1 mockup1"
+        ". . ."
+        "mockup2 text2 text2";
+        align-items: start;
+    }
+}
+
+@media (min-width: 1280px) {
+    .detailseite.seite-projekte .content {
+        grid-template-columns: 1fr;
+    }
+
+    .detailseite.seite-projekte .content >article.projekt {
+        gap: 2rem;
+        margin-bottom: 12rem;
+
+        grid-template-columns: 2fr 3fr 3fr;
+        grid-template-areas: 
+        "heading heading mockup1"
+        "text1 text1 mockup1"
+        ". . ."
+        "mockup2 text2 text2";
+        align-items: start;
+    }
+}
+
+
