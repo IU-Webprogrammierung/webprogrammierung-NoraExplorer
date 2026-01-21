@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/impressum.css">
     
     <title>Impressum</title>
 </head>
@@ -53,8 +55,8 @@
     </header>
 
     <!-- Main mit dem Inhalt -->
-    <main id="main" class="grid">
-        <h1>Impressum</h1>
+    <main id="main" class="grid impressum">
+        <h1 class="impressum__heading">Impressum</h1>
 
 
         <!-- WICHTIGE FRAGE FÜR DAS NÄCHTE LIVE TUTORIUM: ist hier der HTML-Tag <address> sinnvoller oder folgende description list ????  -->
@@ -71,7 +73,7 @@
         -->
        
         <!-- Sektion: verantwortliche Person -->
-        <section aria-labelledby="verantwortliche-heading">
+        <section class="impressum-content" aria-labelledby="verantwortliche-heading">
             <h2 id="verantwortliche-heading">Verantwortliche Person</h2>
             
             <dl>
@@ -80,7 +82,7 @@
 
                 <dt>Adresse</dt>
                 <dd>
-                    Musterstraße 1
+                    Musterstraße 1 <br>
                     11111 Musterstadt
                 </dd>
 
@@ -91,13 +93,13 @@
 
                 <dt>Telefon</dt>
                 <dd>
-                    <a href="tel:+49 000 00000000">+49 000 00000000</a>
+                    <a href="tel:+4900000000000">+49 000 00000000</a>
                 </dd>
             </dl>
         </section>
 
         <!-- Sektion: Urheber- und Bildrechte -->
-        <section aria-labelledby="urheber-heading">
+        <section class="impressum-content" aria-labelledby="urheber-heading">
             <h2 id="urheber-heading">Urheber- und Bildrechte</h2>
             <p>
                 Sämtliche Inhalte, Texte, Gestaltungen und Bilder auf dieser Website unterliegen dem Urheberrecht. 
@@ -107,7 +109,7 @@
         </section>
 
         <!-- Sektion: Kontext -->
-        <section aria-labelledby="kontext-heading">
+        <section class="impressum-content" aria-labelledby="kontext-heading">
             <h2 id="kontext-heading">Kontext</h2>
             <p>
                 Die Website wurde im Rahmen des Projekts “Web-Programmierung” (DLBUXPWP01) 

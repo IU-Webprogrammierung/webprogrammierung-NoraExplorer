@@ -1,0 +1,7 @@
+.impressum .impressum__heading {
+    grid-column: 1 / -1;
+}
+
+.impressum .impressum-content {
+    grid-column: 1 / -1;
+}
