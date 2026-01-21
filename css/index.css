@@ -1,0 +1,452 @@
+.startseite {
+    row-gap: 2rem;
+    padding-bottom: 6rem;
+}
+
+
+.startseite .hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+
+    width: 100vw;
+    max-width: 100vw;
+
+    position: relative;
+    overflow: hidden;
+
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+
+
+.startseite .hero__media {
+    grid-column: 1 / -1;
+    grid-row: 1;
+
+    margin: 0;
+    
+    aspect-ratio: 2 / 1;
+    overflow: hidden;
+}
+
+.startseite .hero__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.startseite .hero__heading {
+    grid-column: 1 / -1;
+    grid-row: 1;
+
+    z-index: 1;
+
+    align-self: center;
+    justify-self: center;
+}
+
+@media (min-width: 768px) {
+    .startseite .hero__media {
+        aspect-ratio: 2 /1;
+    }
+}
+
+@media (min-width: 1280px) {
+    .startseite .hero__media {
+        aspect-ratio: 3 /1;
+    }
+}
+
+
+
+
+
+/** Teaser: Grundstruktur **/
+.startseite .teaser {
+    grid-column: 1 / -1;
+
+    display: grid;
+    gap: 1rem;
+
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "heading"
+    "text"
+    "media"
+    "link";
+
+    margin: 0;
+}
+
+.startseite .teaser__heading {
+    grid-area: heading;
+    margin: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+
+    /** Design erst später
+    align-self: center;
+    justify-self: center;
+    **/
+}
+
+.startseite .teaser__text {
+    grid-area: text;
+    margin: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+
+    /** Design erst später
+    align-self: center;
+    justify-self: center;
+    **/
+}
+
+.startseite .teaser__link {
+    grid-area: link;
+    margin: 0;
+    min-width: 0;
+    width: fit-content;
+
+    /** Design erst später
+    align-self: center;
+    justify-self: center;
+    **/
+}
+
+.startseite .teaser__media {
+    grid-area: media;
+    margin: 0;
+    overflow: hidden;
+}
+
+.startseite .teaser__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+
+/** Teaser: Über mich **/
+.startseite .teaser--ueber {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "heading" 
+    "text"
+    "link";
+}
+
+@media (min-width: 768px) {
+    .startseite .teaser--ueber {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "heading"
+        "text"
+        "link";
+    }
+}
+
+@media (min-width: 1280px) {
+    .startseite .teaser--ueber {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "heading"
+        "text"
+        "link";
+    }
+}
+
+
+
+
+
+
+
+
+
+/** Teaser: Fotografie **/
+.startseite .teaser--fotografie {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    "heading heading"
+    "text text"
+    "media media"
+    "link link";
+    align-items: start;
+}
+
+.startseite .teaser__galerie {
+    grid-area: media;
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: grid;
+    gap: 1rem;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+    .startseite .teaser--fotografie {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        "heading heading"
+        "text text"
+        "media media"
+        "link link";
+        align-items: start;
+        gap: 2rem;
+    }
+
+    .startseite .teaser--fotografie .teaser__galerie {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+    }
+}
+
+@media (min-width: 1280px) {
+    .startseite .teaser--fotografie {
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-areas: 
+        "heading heading heading"
+        "text text text"
+        "media media media"
+        "link link link";
+        align-items: start;
+    }
+
+    .startseite .teaser--fotografie .teaser__galerie {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+    }
+}
+
+.startseite .teaser__galerie .teaser__media {
+    margin: 0;
+    overflow: hidden;
+}
+
+.startseite .teaser__item--portrait .teaser__media {
+    aspect-ratio: 3 / 4;
+}
+
+
+
+
+
+
+
+
+/** Teaser: Projekte **/
+.startseite .teaser--projekte {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        "heading heading"
+        "text text"
+        "media media"
+        "link link";
+}
+
+.startseite .teaser--projekte .teaser__media {
+    aspect-ratio: 3 / 4;
+    grid-area: auto;
+    margin: 0;
+}
+
+
+@media (min-width: 768px) {
+    .startseite .teaser--projekte {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        "heading heading"
+        "text text"
+        "media media"
+        "link link";
+    }
+}
+
+@media (min-width: 1280px) {
+    .startseite .teaser--projekte {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        "heading heading"
+        "text text"
+        "media media"
+        "link link";
+    }
+}
+
+.startseite .teaser--projekte .projekt-preview {
+    grid-area: media;
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: grid;
+    gap: 1rem;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    min-width: 0;
+}
+
+@media (min-width: 768px) {
+    .startseite .teaser--projekt .projekt-preview {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: start; 
+    }
+}
+
+@media (min-width: 1280px) {
+    .startseite .teaser--projekt .projekt-preview {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: start; 
+    }
+}
+
+
+
+
+
+
+
+
+
+/** Teaser: Prozess **/
+.startseite .teaser--prozess {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "heading"
+    "preview"
+    "link";
+}
+
+@media (min-width: 768px) {
+    .startseite .teaser--prozess {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "heading"
+        "preview"
+        "link";
+    }
+}
+
+@media (min-width: 1280px) {
+    .startseite .teaser--prozess {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "heading"
+        "preview"
+        "link";
+    }
+}
+
+
+
+.startseite .teaser--prozess .prozess-preview::before {
+    grid-area: number;
+    
+    counter-increment: schritt;
+    content: counter(schritt, decimal-leading-zero);
+
+    display: block;
+    min-width: 0;
+}
+
+.startseite .teaser--prozess .prozess-preview {
+    display: grid;
+    gap: 0.5rem;
+    /**margin-bottom: 1rem;**/
+
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: 
+    "number summary summary"
+    "number text text";
+}
+
+@media (min-width: 768px) {
+    .startseite .teaser--prozess .prozess-preview {
+        /**margin-bottom: 2rem;**/
+
+        grid-template-columns: 1fr 6fr 1fr;
+        grid-template-areas: 
+        "number summary summary"
+        "number text text";
+    }
+}
+
+@media (min-width: 1280px) {
+    .startseite .teaser--prozess .prozess-preview {
+        /**margin-bottom: 3rem;**/
+
+        grid-template-columns: 1fr 10fr 1fr;
+        grid-template-areas: 
+        "number summary summary"
+        "number text text";
+    }
+}
+
+.startseite .teaser--prozess .prozess-preview__summary {
+    grid-area: summary;
+    margin: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.startseite .teaser--prozess .prozess-preview__text {
+    grid-area: text;
+    margin: 0;
+    min-width: 0;
+}
+
+.startseite .teaser--prozess .list-prozess-preview {
+    grid-area: preview;
+    min-width: 0;
+
+    counter-reset: schritt;
+}
+
+.startseite .prozess-preview__summary {
+    cursor: pointer;
+}
+
+
+
+.startseite .prozess-preview {
+    border: 1px solid black;
+    padding: 1rem;
+}
+
+
+
+
+
+
+
+
+
+
+.startseite .prozess-preview__summary {
+    cursor: pointer;
+}
+
+/* Sicherstellen, dass lange Inhalte in Grids nicht “sprengen” */
+.startseite .teaser--ueber,
+.startseite .teaser--fotografie,
+.startseite .teaser--projekte,
+.startseite .teaser--prozess {
+    min-width: 0;
+}
+
+.startseite .teaser--prozess .prozess-preview {
+    min-width: 0;
+}

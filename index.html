@@ -12,9 +12,9 @@
 
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/index.css">
 
     <title>Willkommen auf meiner Website</title>
 
@@ -59,77 +59,144 @@
 
 
     <!-- Main mit dem Inhalt -->
-    <main id="main" class="grid">
+    <main id="main" class="grid startseite">
 
         <!-- Sektion mit Hero Einleitung -->
         <section class="hero" aria-labelledby="hero-heading">
-            <h1 id="hero-heading">Nora Mikus</h1>
+            <h1 id="hero-heading" class="hero__heading">Nora Mikus</h1>
 
-            <img src="" alt="Portrait von Nora Mikus">
+            <figure class="hero__media">
+                <img src="images/content/testfoto.JPG" alt="Portrait von Nora Mikus">
+            </figure>
         </section>
 
-        <!-- Sektion mit Teaser "Über mich" -->
-         <section aria-labelledby="ueber-heading">
-            <h2 id="ueber-heading">Über mich</h2>
 
-            <p>Lorem ipsum dolor sit amet</p>
-            <a href="ueber.html">Mehr erfahren</a>
+        <!-- Sektion mit Teaser "Über mich" -->
+         <section class="teaser teaser--ueber" aria-labelledby="ueber-heading">
+            <h2 id="ueber-heading" class="teaser__heading">Über mich</h2>
+
+            <p class="teaser__text">Lorem ipsum dolor sit amet</p>
+
+            <a class="teaser__link" href="ueber.html">Mehr erfahren</a>
          </section>
+
 
          <!-- Sektion mit Teaser "Fotografie" -->
-         <section aria-labelledby="fotografie-heading">
-            <h2 id="fotografie-heading">Fotografie</h2>
+         <section class="teaser teaser--fotografie" aria-labelledby="fotografie-heading">
+            <h2 id="fotografie-heading" class="teaser__heading">Fotografie</h2>
 
-            <p>Lorem ipsum dolor sit amet</p>
-            <img src="" alt="Testfoto 1">
-            <img src="" alt="Testfoto 2">
-            <a href="fotografie.html">Mehr erfahren</a>
+            <p class="teaser__text">Lorem ipsum dolor sit amet</p>
+
+            <ul class="teaser__galerie" aria-label="Beispielfotos aus der Galerie">
+                <li class="teaser__item teaser__item--portrait">
+                    <figure class="teaser__media">
+                        <img src="images/content/testfoto.JPG" alt="Testfoto 1">
+                    </figure>
+                </li>
+
+                <li class="teaser__item teaser__item--portrait">
+                    <figure class="teaser__media">
+                        <img src="images/content/testfoto.JPG" alt="Testfoto 2">
+                    </figure>
+                </li>
+            </ul>
+
+            <a class="teaser__link" href="fotografie.html">Mehr erfahren</a>
          </section>
+
 
          <!-- Sektion mit Teaser "Projekte" -->
-         <section aria-labelledby="projekt-heading">
-            <h2 id="projekt-heading">Projekte</h2>
+         <section class="teaser teaser--projekte" aria-labelledby="projekt-heading">
+            <h2 id="projekt-heading" class="teaser__heading">Projekte</h2>
 
-            <p>Lorem ipsum dolor sit amet</p>
-            <img src="" alt="Testfoto">
-            <a href="projekte.html">Mehr erfahren</a>
+            <p class="teaser__text">Lorem ipsum dolor sit amet</p>
+
+            <ul class="projekt-preview" aria-label="Beispielfotos von Projekten">
+                <li class="projekt-preview__item">
+                    <figure class="teaser__media">
+                        <img src="images/content/testfoto.JPG" alt="Testfoto1">
+                    </figure>
+                </li>
+
+                <li class="projekt-preview__item">
+                    <figure class="teaser__media">
+                        <img src="images/content/testfoto.JPG" alt="Testfoto2">
+                    </figure>
+                </li>
+
+                <li class="projekt-preview__item">
+                    <figure class="teaser__media">
+                        <img src="images/content/testfoto.JPG" alt="Testfoto2">
+                    </figure>
+                </li>
+            </ul>
+
+            <a class="teaser__link" href="projekte.html">Mehr erfahren</a>
          </section>
 
+
          <!-- Sektion mit Teaser "Prozess" -->
-         <section aria-labelledby="prozess-heading">
-            <h2 id="prozess-heading">Prozess</h2>
+         <section class="teaser teaser--prozess" aria-labelledby="prozess-heading">
+            <h2 id="prozess-heading" class="teaser__heading">Prozess</h2>
 
-            <!-- 01. Recherche und Analyse -->
-            <details>
-                <summary>Recherche und Analyse</summary>
-                <p>Lorem ipsum dolor sit amet</p>
-            </details>
+            <div class="list-prozess-preview">
+                <!-- 01. Recherche und Analyse -->
+                <details class="prozess-preview">
+                    <summary class="prozess-preview__summary">
+                        Recherche und Analyse
+                    </summary>
 
-            <!-- 02. Konzeption -->
-            <details>
-                <summary>Konzeption</summary>
-                <p>Lorem ipsum dolor sit amet</p>
-            </details>
+                    <p class="prozess-preview__text">
+                        Lorem ipsum dolor sit amet
+                    </p>
+                </details>
 
-            <!-- 03. Design -->
-            <details>
-                <summary>Design</summary>
-                <p>Lorem ipsum dolor sit amet</p>
-            </details>
+                <!-- 02. Konzeption -->
+                <details class="prozess-preview">
+                    <summary class="prozess-preview__summary">
+                        Konzeption
+                    </summary>
+                    
+                    <p class="prozess-preview__text">
+                        Lorem ipsum dolor sit amet
+                    </p>
+                </details>
 
-            <!-- 04. Umsetzung -->
-            <details>
-                <summary>Umsetzung</summary>
-                <p>Lorem ipsum dolor sit amet</p>
-            </details>
+                <!-- 03. Design -->
+                <details class="prozess-preview">
+                    <summary class="prozess-preview__summary">
+                        Design
+                    </summary>
+                    
+                    <p class="prozess-preview__text">
+                        Lorem ipsum dolor sit amet
+                    </p>
+                </details>
 
-            <!-- 05. Evaluation -->
-            <details>
-                <summary>Evaluation</summary>
-                <p>Lorem ipsum dolor sit amet</p>
-            </details>
+                <!-- 04. Umsetzung -->
+                <details class="prozess-preview">
+                    <summary class="prozess-preview__summary">
+                        Umsetzung
+                    </summary>
 
-            <a href="prozess.html">Mehr erfahren</a>
+                    <p class="prozess-preview__text">
+                        Lorem ipsum dolor sit amet
+                    </p>
+                </details>
+
+                <!-- 05. Evaluation -->
+                <details class="prozess-preview">
+                    <summary class="prozess-preview__summary">
+                        Evaluation
+                    </summary>
+
+                    <p class="prozess-preview__text">
+                        Lorem ipsum dolor sit amet
+                    </p>
+                </details>
+            </div>
+
+            <a class="teaser__link" href="prozess.html">Mehr erfahren</a>
          </section>
 
     </main>
