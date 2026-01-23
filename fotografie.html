@@ -1,77 +1,72 @@
 <!DOCTYPE html>
-
 <html lang="de">
 
 <head>
+    <!-- Basis Metadaten -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Seitenspezifische Metadaten -->
+    <title>Fotografie</title>
     <meta name="description" content="Fotografie - Nora Mikus">
     
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/details.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/fotografie.css">
-
-    <title>Fotografie</title>
 </head>
 
 
 <body>
-
     <!-- Skip-Link, um direkt zum Inhalt oder Footer zu springen -->
     <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
     <a href="#footer" class="skip-link">Zum Seitenende springen</a>
 
-    <!-- Hauptnavigation im Header -->
+
+    <!-- Header: enthält die Hauptnavigation -->
     <header>
-
-
-        <!-- input und label soll in Projektphase 2 oder 3 durch ein button element und js ersetzt werden-->
+        <!-- TODO: input und label soll in Projektphase 2 oder 3 durch ein button element und js ersetzt werden-->
         <input type="checkbox" id="nav-toggle" class="nav-toggle">
-        <label for="nav-toggle" class="nav-toggle__button">
+        <label for="nav-toggle" class="nav-toggle__button" role="button" aria-controls="main-nav">
             Menü
         </label>
         
+        <!-- Hauptnavigation, aktueller Menüpunkt mit aria-current="page" -->
         <nav id="main-nav" aria-label="Hauptnavigation">
             <ul>
-                <li>
-                    <a href="index.html">Startseite</a>
-                </li>
-                <li>
-                    <a href="ueber.html">Über mich</a>
-                </li>
-                <li>
-                    <a href="fotografie.html" aria-current="page">Fotografie</a>
-                </li>
-                <li>
-                    <a href="projekte.html">Projekte</a>
-                </li>
-                <li>
-                    <a href="prozess.html">Prozess</a>
-                </li>
+                <li><a href="index.html">Startseite</a></li>
+                <li><a href="ueber.html">Über mich</a></li>
+                <li><a href="fotografie.html" aria-current="page">Fotografie</a></li>
+                <li><a href="projekte.html">Projekte</a></li>
+                <li><a href="prozess.html">Prozess</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Main mit dem Inhalt -->
+
+    <!-- Main: Hauptinhalt der Seite -->
     <main id="main" class="grid detailseite seite-fotografie">
 
-        <!-- Sektion mit Hero Einleitung -->
+       <!-- Hero: Seitenüberschrift + Einleitung + Bild -->
         <section class="hero" aria-labelledby="fotografie-heading">
             <h1 id="fotografie-heading" class="hero__heading">Fotografie</h1>
+
             <p class="hero__text">
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
                 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
                 sed diam voluptua.
             </p>
+
             <figure class="hero__media">
                 <img src="images/content/testfoto.JPG" alt="Testfoto">
             </figure>
         </section>
 
-        <!-- Sektion mit der Foto-Galerie -->
+
+        <!-- Foto-Galerie: Liste von Bildern -->
         <section class="content" aria-labelledby="galerie-heading">
             <h2 id="galerie-heading" class="content__heading">Galerie</h2>
 
@@ -131,10 +126,10 @@
                 </li>
             </ul>
         </section>
-
     </main>
 
-    <!-- Footer mit Navigation -->
+
+    <!-- Footer: sekundäre Navigation -->
     <footer id="footer">
         <nav aria-label="Navigation am Seitenende">
             <ul>
@@ -149,6 +144,4 @@
     </footer>
 
 </body>
-
-
 </html>

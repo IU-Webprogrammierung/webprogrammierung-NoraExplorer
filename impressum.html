@@ -1,67 +1,59 @@
 <!DOCTYPE html>
-
 <html lang="de">
 
 <head>
+    <!-- Basis Metadaten -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Seitenspezifische Metadaten -->
+    <title>Impressum</title>
     <meta name="description" content="Impressum - Nora Mikus">
 
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/impressum.css">
-    
-    <title>Impressum</title>
 </head>
 
 
 <body>
-
     <!-- Skip-Link, um direkt zum Inhalt oder Footer zu springen -->
     <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
     <a href="#footer" class="skip-link">Zum Seitenende springen</a>
 
-    <!-- Hauptnavigation im Header -->
-    <header>
 
-        <!-- input und label soll in Projektphase 2 oder 3 durch ein button element und js ersetzt werden-->
+    <!-- Header: enthält die Hauptnavigation -->
+    <header>
+        <!-- TODO: input und label soll in Projektphase 2 oder 3 durch ein button element und js ersetzt werden-->
         <input type="checkbox" id="nav-toggle" class="nav-toggle">
-        <label for="nav-toggle" class="nav-toggle__button">
+        <label for="nav-toggle" class="nav-toggle__button" role="button" aria-controls="main-nav">
             Menü
         </label>
         
+        <!-- Hauptnavigation, aktueller Menüpunkt mit aria-current="page" -->
         <nav id="main-nav" aria-label="Hauptnavigation">
             <ul>
-                <li>
-                    <a href="index.html">Startseite</a>
-                </li>
-                <li>
-                    <a href="ueber.html">Über mich</a>
-                </li>
-                <li>
-                    <a href="fotografie.html">Fotografie</a>
-                </li>
-                <li>
-                    <a href="projekte.html">Projekte</a>
-                </li>
-                <li>
-                    <a href="prozess.html">Prozess</a>
-                </li>
+                <li><a href="index.html">Startseite</a></li>
+                <li><a href="ueber.html">Über mich</a></li>
+                <li><a href="fotografie.html">Fotografie</a></li>
+                <li><a href="projekte.html">Projekte</a></li>
+                <li><a href="prozess.html">Prozess</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Main mit dem Inhalt -->
+
+    <!-- Main: Hauptinhalt der Seite -->
     <main id="main" class="grid impressum">
         <h1 class="impressum__heading">Impressum</h1>
 
-
-        <!-- WICHTIGE FRAGE FÜR DAS NÄCHTE LIVE TUTORIUM: ist hier der HTML-Tag <address> sinnvoller oder folgende description list ????  -->
-        <!-- wenn <address> im direkt im body steht ist es laut den HTML Konventionen für das gesamte Dokument gültig, 
-             ansonsten ist es nur für  den nächsten article oder body element gültig -->
+        <!-- WICHTIGE FRAGE FÜR DAS NÄCHTE LIVE TUTORIUM: ist hier der HTML-Tag <address> sinnvoller oder folgende description list ? -->
+        <!-- wenn <address> direkt im body steht ist es laut den HTML Konventionen für das gesamte Dokument gültig, 
+             ansonsten ist es nur für den nächsten article oder das body element gültig -->
         <!--
             <address>
                 Nora Mikus <br>
@@ -72,7 +64,7 @@
             </address>
         -->
        
-        <!-- Sektion: verantwortliche Person -->
+        <!-- Verantwortliche Person -->
         <section class="impressum-content" aria-labelledby="verantwortliche-heading">
             <h2 id="verantwortliche-heading">Verantwortliche Person</h2>
             
@@ -98,7 +90,8 @@
             </dl>
         </section>
 
-        <!-- Sektion: Urheber- und Bildrechte -->
+
+        <!-- Urheber- und Bildrechte -->
         <section class="impressum-content" aria-labelledby="urheber-heading">
             <h2 id="urheber-heading">Urheber- und Bildrechte</h2>
             <p>
@@ -108,7 +101,8 @@
             </p>
         </section>
 
-        <!-- Sektion: Kontext -->
+
+        <!-- Kontext -->
         <section class="impressum-content" aria-labelledby="kontext-heading">
             <h2 id="kontext-heading">Kontext</h2>
             <p>
@@ -116,10 +110,10 @@
                 an der IU Internationale Hochschule konzipiert und umgesetzt.
             </p>
         </section>
-
     </main>
 
-    <!-- Footer mit Navigation -->
+
+    <!-- Footer: sekundäre Navigation -->
     <footer id="footer">
         <nav aria-label="Navigation am Seitenende">
             <ul>
@@ -134,6 +128,4 @@
     </footer>
 
 </body>
-
-
 </html>

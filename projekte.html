@@ -1,80 +1,76 @@
 <!DOCTYPE html>
-
 <html lang="de">
 
 <head>
+    <!-- Basis Metadaten -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Seitenspezifische Metadaten -->
+    <title>Projekte</title>
     <meta name="description" content="Projekte - Nora Mikus">
 
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/details.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/projekte.css">
-
-    <title>Projekte</title>
 </head>
 
 
 <body>
-
     <!-- Skip-Link, um direkt zum Inhalt oder Footer zu springen -->
     <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
     <a href="#footer" class="skip-link">Zum Seitenende springen</a>
 
-    <!-- Hauptnavigation im Header -->
-    <header>
 
-        <!-- input und label soll in Projektphase 2 oder 3 durch ein button element und js ersetzt werden-->
+    <!-- Header: enthält die Hauptnavigation -->
+    <header>
+        <!-- TODO: input und label soll in Projektphase 2 oder 3 durch ein button element und js ersetzt werden-->
         <input type="checkbox" id="nav-toggle" class="nav-toggle">
-        <label for="nav-toggle" class="nav-toggle__button">
+        <label for="nav-toggle" class="nav-toggle__button" role="button" aria-controls="main-nav">
             Menü
         </label>
         
+        <!-- Hauptnavigation, aktueller Menüpunkt mit aria-current="page" -->
         <nav id="main-nav" aria-label="Hauptnavigation">
             <ul>
-                <li>
-                    <a href="index.html">Startseite</a>
-                </li>
-                <li>
-                    <a href="ueber.html">Über mich</a>
-                </li>
-                <li>
-                    <a href="fotografie.html">Fotografie</a>
-                </li>
-                <li>
-                    <a href="projekte.html" aria-current="page">Projekte</a>
-                </li>
-                <li>
-                    <a href="prozess.html">Prozess</a>
-                </li>
+                <li><a href="index.html">Startseite</a></li>
+                <li><a href="ueber.html">Über mich</a></li>
+                <li><a href="fotografie.html">Fotografie</a>
+                </li><a href="projekte.html" aria-current="page">Projekte</a></li>
+                <li><a href="prozess.html">Prozess</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Main mit dem Inhalt -->
+
+    <!-- Main: Hauptinhalt der Seite -->
     <main id="main" class="grid detailseite seite-projekte">
 
-        <!-- Sektion mit Hero Einleitung -->
+        <!-- Hero: Seitenüberschrift + Einleitung + Bild -->
         <section class="hero" aria-labelledby="projekte-heading">
             <h1 id="projekte-heading" class="hero__heading">Projekte</h1>
+
             <p class="hero__text">
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
                 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
                 sed diam voluptua.
             </p>
+
             <figure class="hero__media">
                 <img src="images/content/testfoto.JPG" alt="Testfoto">
             </figure>
         </section>
 
-        <!-- Sektion mit meinen Projekten -->
+
+        <!-- Content: Projektübersicht als Sammlung einzelner Projekte -->
         <section class="content" aria-labelledby="projektuebersicht-heading">
             <h2 id="projektuebersicht-heading" class="content__heading">Projektübersicht</h2>
 
-            <!-- Projekt Fotodesign Thaddy -->
+            <!-- Projekt 1: Fotodesign Thaddy -->
             <article class="projekt" aria-labelledby="projekt-thaddy-heading">
                 <h3 id="projekt-thaddy-heading" class="projekt__heading">Fotodesign Thaddy</h3>
 
@@ -93,7 +89,7 @@
                 </figure>
             </article>
 
-            <!-- Projekt Brutzel -->
+            <!-- Projekt 2: Brutzel -->
             <article class="projekt" aria-labelledby="projekt-brutzel-heading">
                 <h3 id="projekt-brutzel-heading" class="projekt__heading">Brutzel</h3>
 
@@ -112,7 +108,7 @@
                 </figure>
             </article>
 
-            <!-- Projekt Ananas Matheinsel -->
+            <!-- Projekt 3: Ananas Matheinsel -->
             <article class="projekt" aria-labelledby="projekt-ananas-heading">
                 <h3 id="projekt-ananas-heading" class="projekt__heading">Ananas Matheinsel</h3>
                 
@@ -130,13 +126,11 @@
                     <figcaption>Mockup der Detailseite</figcaption>
                 </figure>
             </article>
-
         </section>
-
     </main>
 
 
-    <!-- Footer mit Navigation -->
+    <!-- Footer: sekundäre Navigation -->
     <footer id="footer">
         <nav aria-label="Navigation am Seitenende">
             <ul>
@@ -151,6 +145,4 @@
     </footer>
 
 </body>
-
-
 </html>

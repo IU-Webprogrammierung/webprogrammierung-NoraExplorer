@@ -1,76 +1,72 @@
 <!DOCTYPE html>
-
 <html lang="de">
 
 <head>
+    <!-- Basis Metadaten -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Seitenspezifische Metadaten -->
+    <title>Prozess</title>
     <meta name="description" content="Prozess - Nora Mikus">
 
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/details.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/prozess.css">
-
-    <title>Prozess</title>
 </head>
 
 
 <body>
-
     <!-- Skip-Link, um direkt zum Inhalt oder Footer zu springen -->
     <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
     <a href="#footer" class="skip-link">Zum Seitenende springen</a>
 
-    <!-- Hauptnavigation im Header -->
-    <header>
 
-        <!-- input und label soll in Projektphase 2 oder 3 durch ein button element und js ersetzt werden-->
+    <!-- Header: enthält die Hauptnavigation -->
+    <header>
+        <!-- TODO: input und label soll in Projektphase 2 oder 3 durch ein button element und js ersetzt werden-->
         <input type="checkbox" id="nav-toggle" class="nav-toggle">
-        <label for="nav-toggle" class="nav-toggle__button">
+        <label for="nav-toggle" class="nav-toggle__button" role="button" aria-controls="main-nav">
             Menü
         </label>
         
+        <!-- Hauptnavigation, aktueller Menüpunkt mit aria-current="page" -->
         <nav id="main-nav" aria-label="Hauptnavigation">
             <ul>
-                <li>
-                    <a href="index.html">Startseite</a>
-                </li>
-                <li>
-                    <a href="ueber.html">Über mich</a>
-                </li>
-                <li>
-                    <a href="fotografie.html">Fotografie</a>
-                </li>
-                <li>
-                    <a href="projekte.html">Projekte</a>
-                </li>
-                <li>
-                    <a href="prozess.html" aria-current="page">Prozess</a>
-                </li>
+                <li><a href="index.html">Startseite</a></li>
+                <li><a href="ueber.html">Über mich</a></li>
+                <li><a href="fotografie.html">Fotografie</a></li>
+                <li><a href="projekte.html">Projekte</a></li>
+                <li><a href="prozess.html" aria-current="page">Prozess</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Main mit dem Inhalt -->
-    <main id="main" class="grid detailseite seite-prozess">
 
-        <!-- Sektion mit Hero Einleitung -->
+    <!-- Main: Hauptinhalt der Seite -->
+    <main id="main" class="grid detailseite seite-prozess">
+        
+        <!-- Hero: Seitenüberschrift + Einleitung + Bild -->
         <section class="hero" aria-labelledby="prozess-heading">
             <h1 id="prozess-heading" class="hero__heading">Prozess</h1>
+
             <p class="hero__text">
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
                 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
                 sed diam voluptua.
             </p>
+
             <figure class="hero__media">
                 <img src="images/content/testfoto.JPG" alt="Testfoto">
             </figure>
         </section>
 
-        <!-- Sektion mit den Prozess-Schritten -->
+
+        <!-- Content: geordnete Prozessschritte -->
         <section class="content" aria-labelledby="schritte-heading">
             <h2 id="schritte-heading" class="content__heading">Prozessschritte</h2>
 
@@ -95,7 +91,7 @@
                 </li>
 
                 <!-- Schritt 2: Konzeption -->
-                <li>
+                <li class="prozess__item">
                     <article class="prozessschritt" aria-labelledby="schritt-2-heading">
                         <h3 id="schritt-2-heading" class="prozessschritt__heading">Konzeption</h3>
 
@@ -112,7 +108,7 @@
                 </li>
 
                 <!-- Schritt 3: Design -->
-                <li>
+                <li class="prozess__item">
                     <article class="prozessschritt" aria-labelledby="schritt-3-heading">
                         <h3 id="schritt-3-heading" class="prozessschritt__heading">Design</h3>
                         
@@ -129,7 +125,7 @@
                 </li>
 
                 <!-- Schritt 4: Umsetzung -->
-                <li>
+                <li class="prozess__item">
                     <article class="prozessschritt" aria-labelledby="schritt-4-heading">
                         <h3 id="schritt-4-heading" class="prozessschritt__heading">Umsetzung</h3>
                         
@@ -146,7 +142,7 @@
                 </li>
 
                 <!-- Schritt 5: Evaluation -->
-                <li>
+                <li class="prozess__item">
                     <article class="prozessschritt" aria-labelledby="schritt-5-heading">
                         <h3 id="schritt-5-heading" class="prozessschritt__heading">Evaluation</h3>
                         
@@ -161,14 +157,12 @@
                         </figure>
                     </article>
                 </li>
-
-            </ol>
-           
+            </ol>  
         </section>
-
     </main>
 
-    <!-- Footer mit Navigation -->
+
+    <!-- Footer: sekundäre Navigation -->
     <footer id="footer">
         <nav aria-label="Navigation am Seitenende">
             <ul>
@@ -183,6 +177,4 @@
     </footer>
 
 </body>
-
-
 </html>
