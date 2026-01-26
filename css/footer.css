@@ -1,6 +1,9 @@
+/* --------------------------- Footer --------------------------- */
+
+/* Footer */
 footer {
     width: 100%;
-    height: var(--footer-height);
+    min-height: var(--footer-height);
 
     padding: 0 var(--nav-inset);
 
@@ -11,6 +14,7 @@ footer {
     justify-content: center;
 }
 
+/* --------------------------- Footer Navigation --------------------------- */
 footer nav ul {
     list-style: none;
     margin: 0;
@@ -23,11 +27,12 @@ footer nav ul {
     align-items: center;
 }
 
+/* --------- Breakpoints: Footer --------- */
+/* Breakpoint ab 1024px */
 @media (min-width: 1024px) {
     footer nav ul {
         flex-direction: row;
         gap: 1.5rem;
-        align-items: center;
         justify-content: center;
     }
 }

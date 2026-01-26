@@ -1,24 +1,28 @@
-.detailseite.seite-ueber .content {
-    grid-template-columns: 1fr;
-}
+/* --------------------------- Detailseite "Über mich" --------------------------- */
 
-.detailseite.seite-ueber .content > article.interesse + article.interesse {
-  margin-block-start: 6rem;
-}
 
-.detailseite.seite-ueber .content > article.interesse {
+
+/* --------- Content-Bereich: Interessen Artikel (mobile first) --------- */
+.detailseite.seite-ueber .content > .interesse {
     display: grid;
     gap: 1rem;
     margin: 0;
 
-    grid-template-columns: 1fr;
     grid-template-areas: 
-    "heading"
-    "text"
-    "media";
+        "heading"
+        "text"
+        "media";
+
     align-items: start;
 }
 
+/* --------- Spacing zwischen Interessen-Artikeln --------- */
+.detailseite.seite-ueber .content > .interesse + .interesse {
+  margin-block-start: 4rem;
+}
+
+
+/* Inhalte: Zuordnung zu Grid-Areas */
 .detailseite.seite-ueber .interesse__heading {
     grid-area: heading;
 }
@@ -29,48 +33,65 @@
 
 .detailseite.seite-ueber .interesse__media {
     grid-area: media;
+
+    align-self: center;
+
     margin: 0;
     overflow: hidden;
     aspect-ratio: 4 / 3;
 }
 
 .detailseite.seite-ueber .interesse__media img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.detailseite.seite-ueber .content > article.interesse > * {
+
+/* Robustheit: verhindert Overflow in Grid-Zellen und entfernt Default margins */
+.detailseite.seite-ueber .content > .interesse > * {
     margin: 0;
     min-width: 0;
 }
 
+
+
+/* --------- Breakpoints: Content --------- */
+/* Breakpoint ab 768px */
 @media (min-width: 768px) {
-    .detailseite.seite-ueber .content > article.interesse {
+    .detailseite.seite-ueber .content > .interesse {
         gap: 1.5rem;
-        
+
         grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto 1fr; 
         grid-template-areas: 
-        "heading media"
-        "text media";
+            "heading    media"
+            "text       media";
+
+        align-items: start;
     }
 
-    .detailseite.seite-ueber .content > article.interesse + article.interesse {
-        margin-block-start: 12rem;
+    .detailseite.seite-ueber .content > .interesse + .interesse {
+        margin-block-start: 6rem;
     }
 }
 
+/* Breakpoint ab 1280px */
 @media (min-width: 1280px) {
-    .detailseite.seite-ueber .content > article.interesse {
+    .detailseite.seite-ueber .content > .interesse {
         gap: 2rem;
         
         grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto 1fr; 
         grid-template-areas: 
-        "heading media"
-        "text media";
+            "heading    media"
+            "text       media";
+
+        align-items: start;
     }
 
-    .detailseite.seite-ueber .content > article.interesse + article.interesse {
+    .detailseite.seite-ueber .content > .interesse + .interesse {
         margin-block-start: 12rem;
     }
 }

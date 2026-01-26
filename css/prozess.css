@@ -1,30 +1,37 @@
-.detailseite.seite-prozess .content {
-    grid-template-columns: 1fr;
-}
+/* --------------------------- Detailseite "Prozess" --------------------------- */
 
+
+
+/* --------- Prozess-Liste: Reset, vertikales Spacing & Counter-Setup (mobilefirst) --------- */
 .detailseite.seite-prozess .prozess {
+    display: grid;
+    gap: 4rem;
     margin: 0;
     padding: 0;
-    list-style: none;
-    display: grid;
-    gap: 6rem;
 
-    counter-reset: schritt;
+    list-style: none;
+
+    /* Startet den Counter für die Pseudo-Nummer in .prozessschritt::before */
+    counter-reset: schritt; 
 }
 
+
+
+/* --------- Prozessschritt (mobilefirst) --------- */
 .detailseite.seite-prozess .prozessschritt {
     display: grid;
     gap: 1rem;
 
-    grid-template-columns: 1fr;
     grid-template-areas: 
-    "number"
-    "heading"
-    "text"
-    "media";
+        "number"
+        "heading"
+        "text"
+        "media";
+
     align-items: start;
 }
 
+/* Nummerierung: CSS Counter als Pseudo-Element */
 .detailseite.seite-prozess .prozessschritt::before {
     grid-area: number;
     
@@ -36,6 +43,7 @@
 }
 
 
+/* Inhalte: Zuordnung zu Grid-Areas */
 .detailseite.seite-prozess .prozessschritt__heading {
     grid-area: heading;
 }
@@ -46,49 +54,58 @@
 
 .detailseite.seite-prozess .prozessschritt__media {
     grid-area: media;
+
+    align-self: center;
+
     margin: 0;
     overflow: hidden;
     aspect-ratio: 4 / 3;
 }
 
 .detailseite.seite-prozess .prozessschritt__media img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
 }
 
+/* Robustheit: verhindert Overflow in Grid-Zellen und entfernt Default margins */
 .detailseite.seite-prozess .prozessschritt > * {
     margin: 0;
-    min-width: 0;
+    min-width: 0;   
 }
 
+
+
+/* --------- Breakpoints: Content Prozess --------- */
+/* Breakpoint ab 768px */
 @media (min-width: 768px) {
     .detailseite.seite-prozess .prozess {
-        gap: 12rem;
+        gap: 6rem;
     }
-
+        
     .detailseite.seite-prozess .prozessschritt {
         gap: 1.5rem;
 
-        grid-template-columns: 1fr 5fr 2fr;
+        grid-template-columns: 1fr 4fr 2fr;
         grid-template-areas: 
-        "number heading media"
-        ". text media";
+            "number heading media"
+            ".      text    media"; 
     }
 }
 
+/* Breakpoint ab 1280px */
 @media (min-width: 1280px) {
     .detailseite.seite-prozess .prozess {
         gap: 12rem;
     }
-
+        
     .detailseite.seite-prozess .prozessschritt {
         gap: 2rem;
 
-        grid-template-columns: 2fr 8fr 2fr;
+        grid-template-columns: 1fr 4fr 2fr;
         grid-template-areas: 
-        "number heading media"
-        ". text media";
+            "number heading media"
+            ".      text    media";
     }
 }

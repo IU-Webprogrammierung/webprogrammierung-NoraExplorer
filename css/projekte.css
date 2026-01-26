@@ -1,23 +1,41 @@
-.detailseite.seite-projekte .content {
-    grid-template-columns: 1fr;
+/* --------------------------- Detailseite "Projekte" --------------------------- */
+
+
+
+/* --------- Content-Bereich: Projekte (mobile first) --------- */
+.detailseite.seite-projekte .content > .projekt {
+    display: grid;
+    gap: 1rem; /* Abstand zwischen projekt__block1 und projekt__block2 */
+    margin: 0;
 }
 
-
-.detailseite.seite-projekte .content >article.projekt {
+/* Block 1: Heading, Text, Mockup */
+.detailseite.seite-projekte .projekt__block1 {
     display: grid;
     gap: 1rem;
-    margin-bottom: 6rem;
 
-    grid-template-columns: 1fr;
     grid-template-areas: 
     "heading"
     "text1"
-    "mockup1"
-    "."
-    "text2"
-    "mockup2";
+    "mockup1";
+
+    align-items: start;
 }
 
+/* Block 2: Text, Mockup */
+.detailseite.seite-projekte .projekt__block2 {
+    display: grid;
+    gap: 1rem;
+
+    grid-template-areas: 
+    "text2"
+    "mockup2";
+
+    align-items: start;
+}
+
+
+/* Inhalte: Zuordnung zu Grid-Areas */
 .detailseite.seite-projekte .projekt__heading {
     grid-area: heading;
 }
@@ -30,7 +48,9 @@
     grid-area: text2;
 }
 
+/* Mockups: */
 .detailseite.seite-projekte .projekt__mockup {
+    margin: 0;
     overflow: hidden;
 }
 
@@ -44,47 +64,99 @@
     aspect-ratio: 4 / 3;
 }
 
-.detailseite.seite-projekte .content > article.projekt > * {
+.detailseite.seite-projekte .projekt__mockup img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+/* Robustheit: verhindert Overflow in Grid-Zellen und entfernt Default margins */
+.detailseite.seite-projekte .content > .projekt >  .projekt__block1 > *,
+.detailseite.seite-projekte .content > .projekt > .projekt__block2 > * {
     margin: 0;
     min-width: 0;
 }
 
-@media (min-width: 768px) {
-    .detailseite.seite-projekte .content {
-        grid-template-columns: 1fr;
-    }
 
-    .detailseite.seite-projekte .content >article.projekt {
-        gap: 1.5rem;
-        margin-bottom: 12rem;
-
-        grid-template-columns: 2fr 3fr 3fr;
-        grid-template-areas: 
-        "heading heading mockup1"
-        "text1 text1 mockup1"
-        ". . ."
-        "mockup2 text2 text2";
-        align-items: start;
-    }
+/* Spacing zwischen den Projekten */
+.detailseite.seite-projekte .content > .projekt + .projekt {
+    margin-block-start: 4rem;
 }
 
-@media (min-width: 1280px) {
-    .detailseite.seite-projekte .content {
-        grid-template-columns: 1fr;
+
+
+/* --------- Breakpoints: Content --------- */
+/* Breakpoint ab 768px */
+@media (min-width: 768px) {
+    .detailseite.seite-projekte .content > .projekt {
+        gap: 2rem;
     }
 
-    .detailseite.seite-projekte .content >article.projekt {
-        gap: 2rem;
-        margin-bottom: 12rem;
+    .detailseite.seite-projekte .projekt__block1 {
+        gap: 1.5rem;
 
         grid-template-columns: 2fr 3fr 3fr;
+        grid-template-rows: auto 1fr;
         grid-template-areas: 
-        "heading heading mockup1"
-        "text1 text1 mockup1"
-        ". . ."
-        "mockup2 text2 text2";
+            "heading heading mockup1"
+            "text1 text1 mockup1";
+
         align-items: start;
     }
+
+    .detailseite.seite-projekte .projekt__block2 {
+        gap: 1.5rem;
+
+        grid-template-columns: 2fr 3fr 3fr;
+        grid-template-rows: auto;
+        grid-template-areas: 
+            "mockup2 text2 text2";
+
+        align-items: start;
+    }
+
+    .detailseite.seite-projekte .content > .projekt + .projekt {
+        margin-block-start: 6rem;
+    }
+
+}
+
+/* Breakpoint ab 1280px */
+@media (min-width: 1280px) {
+    .detailseite.seite-projekte .content > .projekt {
+        gap: 4rem;
+    }
+
+    .detailseite.seite-projekte .projekt__block1 {
+        gap: 2rem;
+
+        grid-template-columns: 2fr 3fr 3fr;
+        grid-template-rows: auto 1fr;
+        grid-template-areas: 
+        "heading heading mockup1"
+        "text1 text1 mockup1";
+
+        align-items: start;
+    }
+
+    .detailseite.seite-projekte .projekt__block2 {
+        gap: 2rem;
+
+        grid-template-columns: 2fr 3fr 3fr;
+        grid-template-rows: auto;
+        grid-template-areas: 
+        "mockup2 text2 text2";
+
+        align-items: start;
+    }
+
+    .detailseite.seite-projekte .content > .projekt + .projekt {
+        margin-block-start: 12rem;
+    }
+
 }
 
 

@@ -1,24 +1,38 @@
+/* --------------------------- Basislayout für Detailseiten (Hero & Content) --------------------------- */
+
+
+
+/* --------- Detailseite: Grundabstände --------- */
 .detailseite {
     row-gap: 2rem;
-    padding-bottom: 6rem;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
 }
 
 
 
+/* --------- Hero-Bereich: Headline, Text & Bild (mobile first) --------- */
 .detailseite .hero {
     grid-column: 1 / -1;
 
     display: grid;
     gap: 1rem;
-    margin-bottom: 6rem;
 
-    grid-template-columns: 1fr;
+    margin-top: 1rem;
+    margin-bottom: 4rem;
+
+    /*grid-template-columns: 1fr;*/
     grid-template-areas: 
         "heading"
         "text"
         "media";
 }
 
+/* 
+    Robustheit im Grid: 
+    min-width: 0 verhindert, dass Inhalte die Grid-Spalten sprengen.
+    overflow-wrap sorgt für einen passenden Umbruch bei langen Wörtern/URLs
+*/
 .detailseite .hero__heading,
 .detailseite .hero__text,
 .detailseite .hero__media {
@@ -41,8 +55,10 @@
 .detailseite .hero__media {
     grid-area: media;
     margin: 0;
-    min-width: 0;
-    aspect-ratio: 3 / 4;
+
+    align-self: center;
+    
+    /*aspect-ratio: 3 / 4;*/
     overflow: hidden;
 }
 
@@ -53,44 +69,57 @@
     object-fit: cover;
 }
 
+/* --------- Breakpoints: Hero --------- */
+/* Breakpoint ab 768px */
 @media (min-width: 768px) {
     .detailseite .hero {
-        margin-bottom: 12rem;
+        grid-column: 1 / -1;
+        gap: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 6rem;
 
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 4fr 3fr;
+        grid-template-rows: auto 1fr; 
         grid-template-areas: 
-            "heading media"
-            "text media";
+            "heading    media"
+            "text       media";
+
+        align-items: start;
     }
 }
 
+/* Breakpoint ab 1280px */
 @media (min-width: 1280px) {
     .detailseite .hero {
-        margin-bottom: 12rem;
+        grid-column: 2 / -2;
+        gap: 2rem;
+        margin-top: 6rem;
+        margin-bottom: 8rem;
 
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 4fr 3fr;
+        grid-template-rows: auto 1fr; 
         grid-template-areas: 
-            "heading media"
-            "text media";
+            "heading    media"
+            "text       media";
+
+        align-items: start;
     }
 }
 
 
 
-
-
-
+/* --------- Content-Bereich (mobile first) --------- */
 .detailseite .content {
     grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr;
     gap: 1rem;
+    margin-bottom: 4rem;
 }
 
 .detailseite .content__heading {
     grid-column: 1 / -1;
 }
 
+/* Robustheit für alle direkten Kinder */
 .detailseite .content > * {
     min-width: 0;
 }
@@ -105,17 +134,22 @@
     height: auto;
 }
 
+/* --------- Breakpoints: Content --------- */
+/* Breakpoint ab 768px */
 @media (min-width: 768px) {
     .detailseite .content {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-column: 1 / -1;
+        gap: 1.5rem;
+        margin-bottom: 6rem;
     }
 }
 
+/* Breakpoint ab 1280px */
 @media (min-width: 1280px) {
     .detailseite .content {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-column: 2 / -2;
+        gap: 2rem;
+        margin-top: 6rem;
+        margin-bottom: 8rem;
     }
 }
-
-
-

@@ -1,29 +1,27 @@
-.detailseite.seite-fotografie .content {
-    grid-template-columns: 1fr;
-}
+/* --------------------------- Detailseite "Fotografie" --------------------------- */
 
+
+
+/* Galerie-Liste: Reset & Grid */
 .detailseite.seite-fotografie .galerie {
+    display: grid;
+    gap: 1rem;
+
     margin: 0;
     padding: 0;
     list-style: none;
 
-    display: grid;
-    gap: 1rem;
-
     grid-template-columns: 1fr;
-    grid-auto-rows: auto;
-    /**grid-auto-flow: dense;**/
 }
 
+
+/* Foto Frame */
 .detailseite.seite-fotografie .foto {
     margin: 0;
-    overflow: hidden;
     height: 100%;
     width: 100%;
-    /**aspect-ratio: 4 / 5;**/
+    overflow: hidden;
 }
-
-
 
 .detailseite.seite-fotografie .galerie__item--portrait .foto {
     aspect-ratio: 3 / 4;
@@ -33,8 +31,6 @@
     aspect-ratio: 4 / 3;
 }
 
-
-
 .detailseite.seite-fotografie .foto img {
     display: block;
     width: 100%;
@@ -42,6 +38,17 @@
     object-fit: cover;
 }
 
+
+/* Robustheit: verhindert Overflow in Grid-Zellen und entfernt Default margins */
+.detailseite.seite-fotografie .galerie > * {
+    min-width: 0;
+    margin: 0;
+}
+
+
+
+/* --------- Breakpoints: Content --------- */
+/* Breakpoint ab 768px */
 @media (min-width: 768px) {
     .detailseite.seite-fotografie .galerie {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -52,6 +59,7 @@
     }
 }
 
+/* Breakpoint ab 1280px */
 @media (min-width: 1280px) {
     .detailseite.seite-fotografie .galerie {
         grid-template-columns: repeat(4, minmax(0, 1fr));

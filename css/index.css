@@ -1,41 +1,68 @@
+/* --------------------------- Seite "Startseite" --------------------------- */
+
+
+
+/* --------- Startseite: Grundabstände --------- */
 .startseite {
     row-gap: 2rem;
     padding-bottom: 6rem;
 }
 
+/* Abstände zwischen den einzelnen Teasern */
+.startseite .teaser + .teaser {
+    margin-block-start: 4rem;
+}
 
+@media (min-width: 768px) {
+    .startseite .teaser + .teaser {
+        margin-block-start: 6rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .startseite .teaser + .teaser {
+        margin-block-start: 8rem;
+    }
+}
+
+
+
+/* --------- Hero-Bereich: Headline, Bild (mobile first) --------- */
 .startseite .hero {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
 
+    /* Bild über die volle Viewport-Breite */
     width: 100vw;
     max-width: 100vw;
 
     position: relative;
     overflow: hidden;
 
+    /* Zentrierung des 100vw-Containers innerhalb des Grid-Layouts */
     margin-left: 50%;
     transform: translateX(-50%);
 }
-
-
 
 .startseite .hero__media {
     grid-column: 1 / -1;
     grid-row: 1;
 
     margin: 0;
-    
-    aspect-ratio: 2 / 1;
     overflow: hidden;
+
+    height: 20rem;
 }
 
 .startseite .hero__media img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
+
+    /* Bild passend zentriert */
+    object-position: 50% 40%;
 }
 
 .startseite .hero__heading {
@@ -48,23 +75,25 @@
     justify-self: center;
 }
 
+/* Breakpoints: Hero */
 @media (min-width: 768px) {
     .startseite .hero__media {
-        aspect-ratio: 2 /1;
+        height: 30rem;
+        /*aspect-ratio: 2 /1;*/
     }
 }
 
 @media (min-width: 1280px) {
     .startseite .hero__media {
-        aspect-ratio: 3 /1;
+        height: 40rem;
+        /*aspect-ratio: 3 /1;*/
     }
 }
 
 
 
 
-
-/** Teaser: Grundstruktur **/
+/* --------- Teaser: Grundstruktur (mobile first) --------- */
 .startseite .teaser {
     grid-column: 1 / -1;
 
@@ -81,40 +110,25 @@
     margin: 0;
 }
 
-.startseite .teaser__heading {
-    grid-area: heading;
+.startseite .teaser__heading,
+.startseite .teaser__text,
+.startseite .teaser__link {
     margin: 0;
     min-width: 0;
     overflow-wrap: anywhere;
+}
 
-    /** Design erst später
-    align-self: center;
-    justify-self: center;
-    **/
+.startseite .teaser__heading {
+    grid-area: heading;
 }
 
 .startseite .teaser__text {
     grid-area: text;
-    margin: 0;
-    min-width: 0;
-    overflow-wrap: anywhere;
-
-    /** Design erst später
-    align-self: center;
-    justify-self: center;
-    **/
 }
 
 .startseite .teaser__link {
     grid-area: link;
-    margin: 0;
-    min-width: 0;
     width: fit-content;
-
-    /** Design erst später
-    align-self: center;
-    justify-self: center;
-    **/
 }
 
 .startseite .teaser__media {
@@ -130,227 +144,178 @@
     object-fit: cover;
 }
 
+/* Zentrierung der Teaser-Texte ab 768px Bildschirmbreite*/
+/* Breakpoints: Teaser */
+@media (min-width: 768px) {
+    .startseite .teaser__heading,
+    .startseite .teaser__link {
+        justify-self: center;
+    }
+
+    .startseite .teaser__text {
+        justify-self: center;
+        text-align: center;
+    }
+}
+
+@media (min-width: 1280px) {
+    .startseite .teaser {
+        grid-column: 2 / -2;
+    }
+}
+
+
+/* Robustheit: verhindert Overflow in Grid-Zellen und entfernt Default margins */
+.startseite .teaser--ueber,
+.startseite .teaser--fotografie,
+.startseite .teaser--projekte, 
+.startseite .teaser--prozess,
+.startseite .teaser--prozess .prozess-preview {
+    margin: 0;
+    min-width: 0;
+}
 
 
 
-/** Teaser: Über mich **/
+
+
+/* --------- Teaser: Wiederverwendbare Preview-Komponente (für Fotografie & Projekte) --------- */
+/* Kann später bei Bedarf durch weitere Bilder ergänzt werden */
+.startseite .teaser__galerie,
+.startseite .projekt-preview {
+    grid-area: media;
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: grid;
+    gap: 1rem;
+
+    justify-self: center; /* Zentriert innerhalb des Teasers */
+
+    max-inline-size: min(44rem, 100%);
+
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+/* Robustheit für alle direkten Kinder */
+.startseite .teaser__galerie > *,
+.startseite .projekt-preview > * {
+    min-width: 0;
+    margin: 0;
+}
+
+/* Preview-Frame für Fotografie und Projekte Teaser */
+.startseite .teaser--fotografie .teaser__media,
+.startseite .teaser--projekte .teaser__media {
+    margin: 0;
+    overflow: hidden;
+
+    /* Einheitliches Format */
+    aspect-ratio: 4 / 3;
+
+    /* Responsive Höhenbegrenzung */
+    max-block-size: clamp(14rem, 30vw, 20rem);
+
+    /*max-inline-size: min(28rem, 100%);*/
+
+    justify-self: center;
+}
+
+.startseite .teaser--fotografie .teaser__media img,
+.startseite .teaser--projekte .teaser__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    /* Bild passend zentriert */
+    object-position: 50% 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --------- Teaser: "Über mich" --------- */
 .startseite .teaser--ueber {
-    grid-template-columns: 1fr;
     grid-template-areas: 
     "heading" 
     "text"
     "link";
 }
 
-@media (min-width: 768px) {
-    .startseite .teaser--ueber {
-        grid-template-columns: 1fr;
-        grid-template-areas: 
-        "heading"
-        "text"
-        "link";
-    }
-}
-
-@media (min-width: 1280px) {
-    .startseite .teaser--ueber {
-        grid-template-columns: 1fr;
-        grid-template-areas: 
-        "heading"
-        "text"
-        "link";
-    }
-}
 
 
 
 
-
-
-
-
-
-/** Teaser: Fotografie **/
+/* --------- Teaser: "Fotografie" --------- */
 .startseite .teaser--fotografie {
-    grid-template-columns: 1fr 1fr;
     grid-template-areas: 
-    "heading heading"
-    "text text"
-    "media media"
-    "link link";
-    align-items: start;
-}
-
-.startseite .teaser__galerie {
-    grid-area: media;
-
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
-    display: grid;
-    gap: 1rem;
-
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-@media (min-width: 768px) {
-    .startseite .teaser--fotografie {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: 
-        "heading heading"
-        "text text"
-        "media media"
-        "link link";
-        align-items: start;
-        gap: 2rem;
-    }
-
-    .startseite .teaser--fotografie .teaser__galerie {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        align-items: start;
-    }
-}
-
-@media (min-width: 1280px) {
-    .startseite .teaser--fotografie {
-        grid-template-columns: 1fr 2fr 1fr;
-        grid-template-areas: 
-        "heading heading heading"
-        "text text text"
-        "media media media"
-        "link link link";
-        align-items: start;
-    }
-
-    .startseite .teaser--fotografie .teaser__galerie {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        align-items: start;
-    }
-}
-
-.startseite .teaser__galerie .teaser__media {
-    margin: 0;
-    overflow: hidden;
-}
-
-.startseite .teaser__item--portrait .teaser__media {
-    aspect-ratio: 3 / 4;
+    "heading"
+    "text"
+    "media"
+    "link";
 }
 
 
 
 
 
-
-
-
-/** Teaser: Projekte **/
+/* --------- Teaser: "Projekte" --------- */
 .startseite .teaser--projekte {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: 
-        "heading heading"
-        "text text"
-        "media media"
-        "link link";
-}
-
-.startseite .teaser--projekte .teaser__media {
-    aspect-ratio: 3 / 4;
-    grid-area: auto;
-    margin: 0;
-}
-
-
-@media (min-width: 768px) {
-    .startseite .teaser--projekte {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: 
-        "heading heading"
-        "text text"
-        "media media"
-        "link link";
-    }
-}
-
-@media (min-width: 1280px) {
-    .startseite .teaser--projekte {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: 
-        "heading heading"
-        "text text"
-        "media media"
-        "link link";
-    }
-}
-
-.startseite .teaser--projekte .projekt-preview {
-    grid-area: media;
-
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
-    display: grid;
-    gap: 1rem;
-
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-
-    min-width: 0;
-}
-
-@media (min-width: 768px) {
-    .startseite .teaser--projekt .projekt-preview {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        align-items: start; 
-    }
-}
-
-@media (min-width: 1280px) {
-    .startseite .teaser--projekt .projekt-preview {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        align-items: start; 
-    }
+    grid-template-areas: 
+    "heading"
+    "text"
+    "media"
+    "link";
 }
 
 
 
 
 
-
-
-
-
-/** Teaser: Prozess **/
+/* --------- Teaser: "Prozess" --------- */
 .startseite .teaser--prozess {
-    grid-template-columns: 1fr;
     grid-template-areas: 
     "heading"
     "preview"
     "link";
 }
 
-@media (min-width: 768px) {
-    .startseite .teaser--prozess {
-        grid-template-columns: 1fr;
-        grid-template-areas: 
-        "heading"
-        "preview"
-        "link";
-    }
+/* Liste: Counter startet hier */
+.startseite .teaser--prozess .list-prozess-preview {
+    grid-area: preview;
+    min-width: 0;
+
+    counter-reset: schritt;
 }
 
-@media (min-width: 1280px) {
-    .startseite .teaser--prozess {
-        grid-template-columns: 1fr;
-        grid-template-areas: 
-        "heading"
-        "preview"
-        "link";
-    }
+/* Einzelner Preview */
+.startseite .teaser--prozess .prozess-preview {
+    display: grid;
+    gap: 0.5rem;
+
+    grid-template-columns: 1fr 6fr;
+    grid-template-areas: 
+    "number summary"
+    "number text";
+
+    border: 1px solid black;
+    padding: 1rem;
+    min-width: 0;
 }
-
-
 
 .startseite .teaser--prozess .prozess-preview::before {
     grid-area: number;
@@ -362,44 +327,12 @@
     min-width: 0;
 }
 
-.startseite .teaser--prozess .prozess-preview {
-    display: grid;
-    gap: 0.5rem;
-    /**margin-bottom: 1rem;**/
-
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-areas: 
-    "number summary summary"
-    "number text text";
-}
-
-@media (min-width: 768px) {
-    .startseite .teaser--prozess .prozess-preview {
-        /**margin-bottom: 2rem;**/
-
-        grid-template-columns: 1fr 6fr 1fr;
-        grid-template-areas: 
-        "number summary summary"
-        "number text text";
-    }
-}
-
-@media (min-width: 1280px) {
-    .startseite .teaser--prozess .prozess-preview {
-        /**margin-bottom: 3rem;**/
-
-        grid-template-columns: 1fr 10fr 1fr;
-        grid-template-areas: 
-        "number summary summary"
-        "number text text";
-    }
-}
-
 .startseite .teaser--prozess .prozess-preview__summary {
     grid-area: summary;
     margin: 0;
     min-width: 0;
     overflow-wrap: anywhere;
+    cursor: pointer;
 }
 
 .startseite .teaser--prozess .prozess-preview__text {
@@ -408,45 +341,26 @@
     min-width: 0;
 }
 
-.startseite .teaser--prozess .list-prozess-preview {
-    grid-area: preview;
-    min-width: 0;
-
-    counter-reset: schritt;
+/* Breakpoints: Prozess */
+@media (min-width: 768px) {
+    .startseite .teaser--prozess .prozess-preview {
+        grid-template-columns: 1fr 8fr 1fr;
+        grid-template-areas: 
+        "number summary summary"
+        "number text    text";
+    }
 }
 
-.startseite .prozess-preview__summary {
-    cursor: pointer;
+@media (min-width: 1280px) {
+    .startseite .teaser--prozess .prozess-preview {
+        grid-template-columns: 1fr 10fr 1fr;
+        grid-template-areas: 
+        "number summary summary"
+        "number text    text";
+    }
 }
 
 
 
-.startseite .prozess-preview {
-    border: 1px solid black;
-    padding: 1rem;
-}
 
 
-
-
-
-
-
-
-
-
-.startseite .prozess-preview__summary {
-    cursor: pointer;
-}
-
-/* Sicherstellen, dass lange Inhalte in Grids nicht “sprengen” */
-.startseite .teaser--ueber,
-.startseite .teaser--fotografie,
-.startseite .teaser--projekte,
-.startseite .teaser--prozess {
-    min-width: 0;
-}
-
-.startseite .teaser--prozess .prozess-preview {
-    min-width: 0;
-}

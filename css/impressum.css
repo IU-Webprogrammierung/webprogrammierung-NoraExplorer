@@ -1,7 +1,101 @@
+/* --------------------------- Seite "Impressum" --------------------------- */
+
+
+
+.impressum {
+    row-gap: 2rem;
+    padding-block: 2rem;
+    margin-block: 1rem;
+}
+
+
+/* Grundlayout */
 .impressum .impressum__heading {
     grid-column: 1 / -1;
+    margin: 0;
 }
 
 .impressum .impressum-content {
     grid-column: 1 / -1;
+    min-width: 0;
+}
+
+
+/* Robustheit: verhindert Overflow in Grid-Zellen und entfernt Default margins */
+.impressum .impressum-content > * {
+    min-width: 0;
+    margin: 0;
+}
+
+
+/* Abstand zwischen inhaltlichen Blöcken */
+.impressum > .impressum-content + .impressum-content {
+    margin-block-start: 1rem;
+}
+
+
+/* --------- Breakpoints: Content --------- */
+/* Breakpoint ab 768px */
+@media (min-width: 768px) {
+    .impressum {
+        margin-block: 2rem;
+    }
+
+    .impressum .impressum__heading {
+        grid-column: 1 / -1;
+    }
+
+    .impressum .impressum-content {
+        grid-column: 1 / -1;
+    }
+
+    .impressum > .impressum-content + .impressum-content {
+        margin-block-start: 2rem;
+    }
+}
+
+/* Breakpoint ab 1280px */
+@media (min-width: 1280px) {
+    .impressum {
+        margin-block: 6rem;
+    }
+
+    .impressum .impressum__heading {
+        grid-column: 2 / -2;
+    }
+
+    .impressum .impressum-content {
+        grid-column: 2 / -2;
+    }
+
+    .impressum > .impressum-content + .impressum-content {
+        margin-block-start: 4rem;
+    }
+}
+
+
+
+/* --------- Description List im Impressum --------- */
+.impressum dl {
+    margin: 0;
+}
+
+/* Werte untereinander anzeigen */
+.impressum dd {
+    margin: 0;
+}
+
+.impressum dd + dt,
+.impressum dd + dd {
+    margin-block-start: 0.5rem;
+}
+
+.impressum dl:focus-within dt.visually-hidden {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
 }

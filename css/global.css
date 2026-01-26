@@ -1,3 +1,8 @@
+/* --------------------------- Globale Basis-Styles, Variablen & Barrierefreiheit-Zusätze --------------------------- */
+
+
+
+/* --------- Box-Model --------- */
 *,
 *::before,
 *::after {
@@ -5,41 +10,42 @@
 }
 
 
-/** Variablen und Breakpoints **/
+
+/* --------- Grid, Abstände, Layout-Konstanten --------- */
 :root {
+    /** Grid-System **/
     --columns: 4;
-    --gap: 16px;
+    --gap: 1rem;
     --margin-sides: 24px;
     --margin-top-bottom: 0px;
 
+    /* Layout-Konstanen */
     --header-height: 5.5rem;
     --nav-inset: 2.5rem;
     --nav-panel-width: 18rem;
-
     --footer-height: 5.5rem;
-
 }
 
+/* Breakpoint ab 768px */
 @media (min-width: 768px) {
     :root {
         --columns: 8;
-        --gap: 16px;
+        --gap: 1.5rem;
         --margin-sides: 64px;
-        --margin-top-bottom: 0px;
     }
 }
 
+/* Breakpoint ab 1280px */
 @media (min-width: 1280px) {
     :root {
         --columns: 12;
-        --gap: 24px;
+        --gap: 2rem;
         --margin-sides: 128px;
-        --margin-top-bottom: 0px;
     }
 }
 
 
-/** Basis **/
+/* --------- Basis-Styles --------- */
 body {
     margin: 0;
     padding: 0;
@@ -53,29 +59,70 @@ body {
 
 
 
+/* --------- Hilfen für Barrierefreiheit --------- */
 
-
-/** Hilfen für Barrierefreiheit **/
-
-/** Skip-Link (nur bei FOkus sichtbar) **/
+/* Skip-Links: nur sichtbar, wenn fokussiert (Keyboard-Navigation) */
 .skip-link {
     position: absolute;
     top: 0;
-    /**bottom: 0;**/
     left: 0;
 
     transform: translateY(-200%);
     padding: 0.75rem 1rem;
 
+    /* inherit, damit sich das Verhalten visuell nicht ändert */
     background-color: inherit;
     color: inherit;
 
     text-decoration: underline;
 
-    z-index: 2000;
+    z-index: 9999;
 }
 
 .skip-link:focus, 
 .skip-link:focus-visible {
     transform: translateY(0);
+
+    background-color: white;
+    color: black;
+
+    top: 0.5rem;
+    left: 0.5rem;
+
+    outline: 2px solid orange;
 }
+
+
+/* visuell ausgebelendet, aber semantisch für Barrierefreiheit vorhanden (visually hidden, nur bei Fokus sichtbar) */
+.visually-hidden {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+
+    clip-path: inset(50%);
+    white-space: nowrap;
+
+    border: 0;
+}
+
+.visually-hidden:focus,
+.visually-hidden:focus-visible {
+    position: static;
+
+    width: auto;
+    height: auto;
+
+    margin: 0;
+
+    overflow: visible;
+    
+    clip-path: none;
+    white-space: normal;
+}
+
