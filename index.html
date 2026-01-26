@@ -31,7 +31,7 @@
 
     <!-- Header: enthält die Hauptnavigation -->
     <header>
-        <!-- TODO: input und label soll in Projektphase 2 oder 3 durch ein button element und js ersetzt werden-->
+        <!-- TODO: input und label soll in Projektphase 2 oder 3 durch ein button element und js ersetzt werden! input type checkbox ist nur provisorisch -->
         <input type="checkbox" id="nav-toggle" class="nav-toggle">
         <label for="nav-toggle" class="nav-toggle__button" role="button" aria-controls="main-nav">
             Menü
@@ -59,7 +59,7 @@
 
             <!-- figure: Mediencontainer, ggf. später figcaption ergänzrn -->
             <figure class="hero__media">
-                <img src="images/content/testfoto.JPG" alt="Portrait von Nora Mikus">
+                <img src="images/content/portrait_frontal.jpg" alt="Portrait von Nora Mikus im Sitzen">
             </figure>
         </section>
 
@@ -86,15 +86,11 @@
             <ul class="teaser__galerie" aria-label="Beispielfotos aus der Galerie">
                 <li class="teaser__item teaser__item--portrait">
                     <figure class="teaser__media">
-                        <img src="images/content/testfoto.JPG" alt="Testfoto 1">
+                        <img src="images/content/fotografie_hero.jpg" alt="Testfoto 1">
                     </figure>
                 </li>
-
-                <li class="teaser__item teaser__item--portrait">
-                    <figure class="teaser__media">
-                        <img src="images/content/testfoto.JPG" alt="Testfoto 2">
-                    </figure>
-                </li>
+                
+                <!-- hier ggf. weitere list-item-elemente ergänzen, falls mehr Vorschaubilder benötigt werden-->
             </ul>
 
             <a class="teaser__link" href="fotografie.html" aria-label="Mehr über Fotografie erfahren">Mehr erfahren</a>
@@ -109,21 +105,11 @@
             <ul class="projekt-preview" aria-label="Beispielfotos von Projekten">
                 <li class="projekt-preview__item">
                     <figure class="teaser__media">
-                        <img src="images/content/testfoto.JPG" alt="Testfoto1">
+                        <img src="images/content/projekte_hero.jpg" alt="Testfoto1">
                     </figure>
                 </li>
 
-                <li class="projekt-preview__item">
-                    <figure class="teaser__media">
-                        <img src="images/content/testfoto.JPG" alt="Testfoto2">
-                    </figure>
-                </li>
-
-                <li class="projekt-preview__item">
-                    <figure class="teaser__media">
-                        <img src="images/content/testfoto.JPG" alt="Testfoto2">
-                    </figure>
-                </li>
+                <!-- hier ggf. weitere list-item-elemente ergänzen, falls mehr Vorschaubilder benötigt werden-->
             </ul>
 
             <a class="teaser__link" href="projekte.html" aria-label="Mehr zu den Projekten erfahren">Mehr erfahren</a>
