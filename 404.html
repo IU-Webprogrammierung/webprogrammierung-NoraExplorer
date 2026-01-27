@@ -1,0 +1,83 @@
+<!-- 
+    Hinweis zur Projektstruktur:
+    Die 404-Seite dient aktuell als Platzhalter.
+    Erweiterungen erfolgen bewusst erst in der Projektphase 2 & 3. 
+
+    Geplante Funktionen:
+    * Klare Fehlermeldungen
+    * Link zurück zu den Hauptseiten 
+-->
+
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <!-- Basis Metadaten -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Seitenspezifische Metadaten -->
+    <title>404 - Seite nicht gefunden</title>
+    <meta name="description" content="404 - Seite nicht gefunden">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+
+
+<body>
+    <!-- Header: enthält die Hauptnavigation -->
+    <header>
+        <!-- TODO: input und label soll in Projektphase 2 oder 3 durch ein button element und js ersetzt werden! input type checkbox ist nur provisorisch -->
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle__button" role="button" aria-controls="main-nav">
+            Menü
+        </label>
+        
+        <!-- Hauptnavigation, aktueller Menüpunkt mit aria-current="page" -->
+        <nav id="main-nav" aria-label="Hauptnavigation">
+            <ul>
+                <li><a href="index.html" aria-current="page">Startseite</a></li> 
+                <li><a href="ueber.html">Über mich</a></li>
+                <li><a href="fotografie.html">Fotografie</a></li>
+                <li><a href="projekte.html">Projekte</a></li>
+                <li><a href="prozess.html">Prozess</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+
+    <main>
+        <h1>404</h1>
+
+        <p>Ups, diese Seite konnte leider nicht gefunden werden.</p>
+
+        <a href="index.html">Zurück zur Startseite</a>
+
+        <figure>
+            <img src="images/content/404.jpeg" alt="">
+        </figure>
+    </main>
+
+
+
+    <!-- Footer: sekundäre Navigation -->
+    <footer id="footer">
+        <nav aria-label="Navigation am Seitenende">
+            <ul>
+                <li>
+                    <a href="impressum.html">Impressum</a>
+                </li>
+                <li>
+                    <a href="einstellungen.html">Einstellungen</a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
+
+</body>
+</html>
