@@ -32,14 +32,13 @@
 <body>
     <!-- Header: enthält die Hauptnavigation -->
     <header>
-        <!-- TODO: input und label soll in Projektphase 2 oder 3 durch ein button element und js ersetzt werden! input type checkbox ist nur provisorisch -->
-        <input type="checkbox" id="nav-toggle" class="nav-toggle">
-        <label for="nav-toggle" class="nav-toggle__button" role="button" aria-controls="main-nav">
+        <!-- TODO: In Projektphase 2 soll es mit JS erweitert werden -->
+        <button class="nav-toggle__button" type="button">
             Menü
-        </label>
+        </button>
         
         <!-- Hauptnavigation, aktueller Menüpunkt mit aria-current="page" -->
-        <nav id="main-nav" aria-label="Hauptnavigation">
+        <nav id="main-nav" class="main-nav" aria-label="Hauptnavigation">
             <ul>
                 <li><a href="index.html" aria-current="page">Startseite</a></li> 
                 <li><a href="ueber.html">Über mich</a></li>
