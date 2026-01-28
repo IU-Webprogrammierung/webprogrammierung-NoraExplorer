@@ -75,27 +75,3 @@
 
 
 
-/* --------- Description List im Impressum --------- */
-.impressum dl {
-    margin: 0;
-}
-
-/* Werte untereinander anzeigen */
-.impressum dd {
-    margin: 0;
-}
-
-.impressum dd + dt,
-.impressum dd + dd {
-    margin-block-start: 0.5rem;
-}
-
-.impressum dl:focus-within dt.visually-hidden {
-    position: static;
-    width: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    clip-path: none;
-    white-space: normal;
-}
