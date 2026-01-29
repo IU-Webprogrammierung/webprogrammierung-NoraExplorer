@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/404.css">
 </head>
 
 
@@ -39,7 +40,7 @@
         <!-- Hauptnavigation, aktueller Menüpunkt mit aria-current="page" -->
         <nav id="main-nav" class="main-nav" aria-label="Hauptnavigation">
             <ul>
-                <li><a href="index.html" aria-current="page">Startseite</a></li> 
+                <li><a href="index.html">Startseite</a></li> 
                 <li><a href="ueber.html">Über mich</a></li>
                 <li><a href="fotografie.html">Fotografie</a></li>
                 <li><a href="projekte.html">Projekte</a></li>
@@ -50,15 +51,15 @@
 
 
 
-    <main>
-        <h1>404</h1>
+    <main id="main" class="grid not-found">
+        <h1 class="not-found__heading">404</h1>
 
-        <p>Ups, diese Seite konnte leider nicht gefunden werden.</p>
+        <p class="not-found__text">Ups, diese Seite konnte leider nicht gefunden werden.</p>
 
-        <a href="index.html">Zurück zur Startseite</a>
+        <a class="not-found__link" href="index.html">Zurück zur Startseite</a>
 
-        <figure>
-            <img src="images/content/404.jpeg" alt="">
+        <figure class="not-found__pic">
+            <img src="images/content/404.jpg" alt="Illustration zur 404 Fehlermeldung">
         </figure>
     </main>
 
