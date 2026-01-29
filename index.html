@@ -37,7 +37,7 @@
         </button>
         
         <!-- Hauptnavigation, aktueller Menüpunkt mit aria-current="page" -->
-        <nav id="main-nav" class="main-nav" aria-label="Hauptnavigation">
+        <nav id="main-nav" class="main-nav" aria-label="Hauptseiten">
             <ul>
                 <li><a href="index.html" aria-current="page">Startseite</a></li> 
                 <li><a href="ueber.html">Über mich</a></li>
@@ -57,10 +57,10 @@
             <h1 id="hero-heading" class="hero__heading">Nora Mikus</h1>
 
             <!-- figure: Mediencontainer -->
-            <figure class="hero__media">
+             <div class="hero__media">
                 <img src="images/content/index/hero-portrait.jpg" alt="Portrait von Nora Mikus">
-                <!-- bei Bedarf im weiteren Projektverlauf figcaption ergänzen-->
-            </figure>
+             </div>
+            
         </section>
 
 
@@ -89,9 +89,7 @@
             <!-- Vorschauliste mit Beispielbildern -->
             <ul class="teaser__galerie" aria-label="Beispielfotos aus der Galerie">
                 <li class="teaser__item teaser__item--portrait">
-                    <figure class="teaser__media">
-                        <img src="images/content/fotografie/hero-fotografie.jpg" alt="Portrait von Nora mit einer Kamera">
-                    </figure>
+                    <img class="teaser__media"src="images/content/fotografie/hero-fotografie.jpg" alt="Portrait von Nora mit einer Kamera">
                 </li>
                 
                 <!-- hier ggf. weitere list-item-elemente ergänzen, falls mehr Vorschaubilder benötigt werden-->
@@ -108,9 +106,7 @@
 
             <ul class="projekt-preview" aria-label="Beispielfotos von Projekten">
                 <li class="projekt-preview__item">
-                    <figure class="teaser__media">
-                        <img src="images/content/projekte/hero-projekte.jpg" alt="Darstellung verschiedener Apps und Websites auf verschiedenen Endgeräten">
-                    </figure>
+                    <img class="teaser__media" src="images/content/projekte/hero-projekte.jpg" alt="Darstellung verschiedener Apps und Websites auf verschiedenen Endgeräten">
                 </li>
 
                 <!-- hier ggf. weitere list-item-elemente ergänzen, falls mehr Vorschaubilder benötigt werden-->
@@ -193,7 +189,7 @@
 
     <!-- Footer: sekundäre Navigation -->
     <footer id="footer" class="footer">
-        <nav aria-label="Navigation am Seitenende">
+        <nav aria-label="Seitenende">
             <ul>
                 <li>
                     <a href="impressum.html">Impressum</a>
