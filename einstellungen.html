@@ -1,10 +1,10 @@
 <!-- 
     Hinweis zur Projektstruktur:
-    Die Einstellungsseite dient aktuell als Platzhalter und ist unvollständig.
-    Erweiterungen erfolgen bewusst erst in der Projektphase 2 & 3. 
+    Die Einstellungsseite ist in Phase 1 nur konzeptionell angelegt und bildet die semantische Grundstruktur der geplanten Einstellungen.
+    Eine funktionale Umsetzung erfolgt bewusst erst in den Projektphasen 2 & 3
 
     Geplante Funktionen zur Unterstützung der Barrierefreiheit:
-    * Light Mode / Dark Mode 
+    * Light Mode / Dark Mode / Automatisch
     * Schriftgröße und Textskalierung 
     * Reduzierung von Animationen und Bewegungen
 -->
@@ -19,17 +19,23 @@
 
     <!-- Seitenspezifische Metadaten -->
     <title>Einstellungen</title>
-    <meta name="description" content="Einstellungen">
+    <meta name="description" content="Einstellungen - Nora Mikus">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/einstellungen.css">
 </head>
 
 
 <body>
+    <!-- Skip-Link, um direkt zum Inhalt oder Footer zu springen -->
+    <a href="#main" class="skip-link">Zu den Einstellungen springen</a>
+    <a href="#footer" class="skip-link">Zum Seitenende springen</a>
+
+
     <!-- Header: enthält die Hauptnavigation -->
     <header class="header">
         <!-- TODO: In Projektphase 2 soll es mit JS erweitert werden -->
@@ -40,7 +46,7 @@
         <!-- Hauptnavigation, aktueller Menüpunkt mit aria-current="page" -->
         <nav id="main-nav" class="main-nav" aria-label="Hauptnavigation">
             <ul>
-                <li><a href="index.html" aria-current="page">Startseite</a></li> 
+                <li><a href="index.html">Startseite</a></li> 
                 <li><a href="ueber.html">Über mich</a></li>
                 <li><a href="fotografie.html">Fotografie</a></li>
                 <li><a href="projekte.html">Projekte</a></li>
@@ -52,8 +58,69 @@
 
 
     <!-- Main: Hauptinhalt der Seite -->
-    <main>
-        <h1>Einstellungen</h1>
+    <main id="main" class="grid einstellungen">
+
+        <section class="intro">
+            <h1>Einstellungen</h1>
+
+            <p>
+                Hier findest du Einstellungen, die es dir ermöglichen, die Website an deine persönlichen Bedürfnisse anzupassen.
+            </p>
+        </section>
+
+
+        <!-- Modus -->
+        <section class="preference" aria-labelledby="settings-mode">
+            <h2 id="settings-mode">Modus</h2>
+
+            <fieldset>
+                <legend>Anzeigemodus</legend>
+
+                <input type="radio" name="theme" id="theme-light" value="light">
+                <label for="theme-light">Hell</label>
+
+                <input type="radio" name="theme" id="theme-dark" value="dark">
+                <label for="theme-dark">Dunkel</label>
+
+                <input type="radio" name="theme" id="theme-auto" value="auto" checked>
+                <label for="theme-auto">Automatisch</label>
+            </fieldset>
+        </section>
+
+
+        <!-- Schrift & Text -->
+        <section class="preference" aria-labelledby="settings-text">
+            <h2 id="settings-text">Text</h2>
+
+            <fieldset>
+                <legend>Textgröße</legend>
+
+                <input type="radio" name="text-size" id="text-small" value="small">
+                <label for="text-small">Klein</label>
+
+                <input type="radio" name="text-size" id="text-medium" value="medium" checked>
+                <label for="text-medium">Mittel</label>
+
+                <input type="radio" name="text-size" id="text-large" value="large">
+                <label for="text-large">Groß</label>
+            </fieldset>
+        </section>
+
+
+        <!-- Bewegung -->
+        <section class="preference" aria-labelledby="settings-motion">
+            <h2 id="settings-motion">Animationen und Bewegungen</h2>
+
+            <fieldset>
+                <legend>Reduziert</legend>
+
+                <label class="switch">
+                    <input type="checkbox" id="reduce-motion" name="reduce-motion">
+                    <span class="slider" aria-hidden="true"></span>
+                    <span class="switch-label">Bewegungen reduzieren</span>
+                </label>
+            </fieldset>
+        </section>
     </main>
 
 
@@ -66,7 +133,7 @@
                     <a href="impressum.html">Impressum</a>
                 </li>
                 <li>
-                    <a href="einstellungen.html">Einstellungen</a>
+                    <a href="einstellungen.html" aria-current="page">Einstellungen</a>
                 </li>
             </ul>
         </nav>
