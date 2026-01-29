@@ -1,0 +1,44 @@
+/*
+    Hinweis:
+    Die Einstellungen dienen aktuell als Platzhalter und sind unvollständig.
+    Erweiterungen erfolgen bewusst erst in der Projektphase 2 & 3. 
+
+    Geplante Funktionen zur Unterstützung der Barrierefreiheit:
+    * Light Mode / Dark Mode 
+    * Schriftgröße und Textskalierung 
+    * Reduzierung von Animationen und Bewegungen
+*/
+
+
+/* --------- Einstellungen-Seite: Grundabstände --------- */
+.einstellungen {
+    row-gap: 2rem;
+    padding-block: 2rem;
+    margin-block: 1rem;
+}
+
+.einstellungen .intro,
+.einstellungen .preference {
+    grid-column: 1 / -1;
+    margin: 0;
+}
+
+
+/* Breakpoint ab 768px */
+@media (min-width: 768px) {
+    .einstellungen {
+        margin-block: 2rem;
+    }
+}
+
+/* Breakpoint ab 1280px */
+@media (min-width: 1280px) {
+    .einstellungen {
+        margin-block: 6rem;
+    }
+
+    .einstellungen .intro,
+    .einstellungen .preference {
+        grid-column: 2 / -2;
+    }
+}
