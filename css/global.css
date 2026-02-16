@@ -24,6 +24,9 @@
     --nav-inset: 2.5rem;
     --nav-panel-width: 18rem;
     --footer-height: 5.5rem;
+
+    --content-start: 1;
+    --content-end: -1;
 }
 
 /* Breakpoint ab 768px */
@@ -41,13 +44,16 @@
         --columns: 12;
         --gap: 2rem;
         --margin-sides: 128px;
+
+        --content-start: 2;
+        --content-end: -2;
     }
 }
 
 
 /* --------- Basis-Styles --------- */
 html {
-    height: 100%;
+    height: 100%; /* kann ich ggf auch einfach weg lassen */
 }
 
 body {
@@ -56,7 +62,7 @@ body {
 
     min-height: 100vh;
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto 1fr auto; /* Body in 3 Zeilen aufgeteilt (Hader Main Footer) */
     
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.5;

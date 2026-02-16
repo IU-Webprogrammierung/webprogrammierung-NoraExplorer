@@ -13,8 +13,6 @@
 
 /* --------- Hero-Bereich: Headline, Text & Bild (mobile first) --------- */
 .detailseite .hero {
-    grid-column: 1 / -1;
-
     display: grid;
     gap: 1rem;
 
@@ -33,15 +31,15 @@
     min-width: 0 verhindert, dass Inhalte die Grid-Spalten sprengen.
     overflow-wrap sorgt für einen passenden Umbruch bei langen Wörtern/URLs
 */
-.detailseite .hero__heading,
-.detailseite .hero__text,
-.detailseite .hero__media {
+.detailseite .hero > * {
     min-width: 0;
 }
+
 
 .detailseite .hero__heading,
 .detailseite .hero__text {
     overflow-wrap: anywhere;
+    margin: 0;
 }
 
 .detailseite .hero__heading {
@@ -63,7 +61,6 @@
 }
 
 .detailseite .hero__media img {
-    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -73,7 +70,6 @@
 /* Breakpoint ab 768px */
 @media (min-width: 768px) {
     .detailseite .hero {
-        grid-column: 1 / -1;
         gap: 1.5rem;
         margin-top: 2rem;
         margin-bottom: 6rem;
@@ -91,18 +87,9 @@
 /* Breakpoint ab 1280px */
 @media (min-width: 1280px) {
     .detailseite .hero {
-        grid-column: 2 / -2;
         gap: 2rem;
         margin-top: 6rem;
         margin-bottom: 8rem;
-
-        grid-template-columns: 4fr 3fr;
-        grid-template-rows: auto 1fr; 
-        grid-template-areas: 
-            "heading    media"
-            "text       media";
-
-        align-items: start;
     }
 }
 
@@ -110,13 +97,12 @@
 
 /* --------- Content-Bereich (mobile first) --------- */
 .detailseite .content {
-    grid-column: 1 / -1;
     gap: 1rem;
     margin-bottom: 4rem;
 }
 
 .detailseite .content__heading {
-    grid-column: 1 / -1;
+    
 }
 
 /* Robustheit für alle direkten Kinder */
@@ -124,21 +110,11 @@
     min-width: 0;
 }
 
-.detailseite .content figure {
-    margin: 0;
-}
-
-.detailseite .content img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
 
 /* --------- Breakpoints: Content --------- */
 /* Breakpoint ab 768px */
 @media (min-width: 768px) {
     .detailseite .content {
-        grid-column: 1 / -1;
         gap: 1.5rem;
         margin-bottom: 6rem;
     }
@@ -147,7 +123,6 @@
 /* Breakpoint ab 1280px */
 @media (min-width: 1280px) {
     .detailseite .content {
-        grid-column: 2 / -2;
         gap: 2rem;
         margin-top: 6rem;
         margin-bottom: 8rem;

@@ -52,7 +52,7 @@ header.header {
     z-index: 2000;
 
     width: min(80vw, var(--nav-panel-width));
-    height: calc(100vh - var(--header-height));
+    height: calc(100dvh - var(--header-height));
 
     padding: 1.5rem var(--nav-inset);
     background-color: #FFFFFF;
@@ -89,10 +89,6 @@ header.header {
     .header .nav-toggle__button {
         display: none;
     }   
-    
-    .header .main-nav {
-        display: block;
-    }
 
     .header .main-nav {
         display: block;

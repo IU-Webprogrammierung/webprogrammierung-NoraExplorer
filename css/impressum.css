@@ -11,14 +11,9 @@
 
 /* Grundlayout */
 .impressum .impressum__heading {
-    grid-column: 1 / -1;
     margin: 0;
 }
 
-.impressum .impressum-content {
-    grid-column: 1 / -1;
-    min-width: 0;
-}
 
 
 /* Robustheit: verhindert Overflow in Grid-Zellen und entfernt Default margins */
@@ -41,14 +36,6 @@
         margin-block: 2rem;
     }
 
-    .impressum .impressum__heading {
-        grid-column: 1 / -1;
-    }
-
-    .impressum .impressum-content {
-        grid-column: 1 / -1;
-    }
-
     .impressum > .impressum-content + .impressum-content {
         margin-block-start: 2rem;
     }
@@ -58,14 +45,6 @@
 @media (min-width: 1280px) {
     .impressum {
         margin-block: 6rem;
-    }
-
-    .impressum .impressum__heading {
-        grid-column: 2 / -2;
-    }
-
-    .impressum .impressum-content {
-        grid-column: 2 / -2;
     }
 
     .impressum > .impressum-content + .impressum-content {

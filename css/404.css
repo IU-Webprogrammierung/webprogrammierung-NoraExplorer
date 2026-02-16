@@ -18,7 +18,6 @@
 .not-found__text,
 .not-found__link, 
 .not-found__pic {
-    grid-column: 1 / -1;
     margin: 0;
     justify-self: center;
 }
@@ -28,8 +27,6 @@
     max-height: 100vh;
     width: auto;
     height: auto;
-
-    display: block;
 }
 
 
@@ -37,12 +34,5 @@
 @media (min-width: 1280px) {
     .not-found {
         margin-block: 6rem;
-    }
-
-    .not-found__heading,
-    .not-found__text,
-    .not-found__link, 
-    .not-found__pic {
-        grid-column: 2 / -2;
     }
 }

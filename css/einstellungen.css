@@ -19,7 +19,6 @@
 
 .einstellungen .intro,
 .einstellungen .preference {
-    grid-column: 1 / -1;
     margin: 0;
 }
 
@@ -35,10 +34,5 @@
 @media (min-width: 1280px) {
     .einstellungen {
         margin-block: 6rem;
-    }
-
-    .einstellungen .intro,
-    .einstellungen .preference {
-        grid-column: 2 / -2;
     }
 }

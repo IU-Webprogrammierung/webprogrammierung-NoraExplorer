@@ -33,16 +33,12 @@
 
 .detailseite.seite-ueber .interesse__media {
     grid-area: media;
-
     align-self: center;
-
-    margin: 0;
     overflow: hidden;
     aspect-ratio: 4 / 3;
 }
 
 .detailseite.seite-ueber .interesse__media img {
-    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -68,8 +64,6 @@
         grid-template-areas: 
             "heading    media"
             "text       media";
-
-        align-items: start;
     }
 
     .detailseite.seite-ueber .content > .interesse + .interesse {
@@ -81,14 +75,6 @@
 @media (min-width: 1280px) {
     .detailseite.seite-ueber .content > .interesse {
         gap: 2rem;
-        
-        grid-template-columns: 2fr 1fr;
-        grid-template-rows: auto 1fr; 
-        grid-template-areas: 
-            "heading    media"
-            "text       media";
-
-        align-items: start;
     }
 
     .detailseite.seite-ueber .content > .interesse + .interesse {

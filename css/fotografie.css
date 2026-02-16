@@ -17,7 +17,6 @@
 
 /* Foto Frame */
 .detailseite.seite-fotografie .foto {
-    margin: 0;
     height: 100%;
     width: 100%;
     overflow: hidden;
@@ -32,7 +31,6 @@
 }
 
 .detailseite.seite-fotografie .foto img {
-    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -42,7 +40,6 @@
 /* Robustheit: verhindert Overflow in Grid-Zellen und entfernt Default margins */
 .detailseite.seite-fotografie .galerie > * {
     min-width: 0;
-    margin: 0;
 }
 
 
