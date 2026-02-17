@@ -27,6 +27,66 @@
 
     --content-start: 1;
     --content-end: -1;
+
+
+    /* User Settings (Default) */
+    --user-font-scale: 1;
+
+    /* Accentfarben */
+    --color-accent-primary: #f97316;
+    --color-accent-hover: #ea580c;
+    --color-accent-soft: #fff7ed;
+    
+    /* Typografie Tokens */
+    --font-family-base: system-ui, -apple-system, "Segoe UI", Arial, Helvetica, sans-serif;
+
+    --font-weight-regular: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    --line-height-base: 1.6;
+
+    --font-size-small: calc(0.75rem * var(--user-font-scale));
+    --font-size-base: calc(1rem * var(--user-font-scale));
+    --font-size-heading-3: calc(1.25rem * var(--user-font-scale));
+    --font-size-heading-2: calc(1.5rem * var(--user-font-scale));
+    --font-size-heading-1: calc(2rem * var(--user-font-scale));
+
+    /* UI Tokens */
+    --border-radius-small: 8px;
+    --border-radius-medium: 10px;
+    --border-radius-large: 12px;
+}
+
+:root,
+html[data-theme="light"] {
+    color-scheme: light;
+
+    --color-background-primary: #F9F6F7;
+    --color-background-secondary: #ffffff;
+    --color-text-primary: #000000;
+    --color-focus-ring: #b84d01;
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --color-background-primary: #000000;
+    --color-background-secondary: #111111;
+    --color-text-primary: #F9F6F7;
+    --color-focus-ring: #ff984f;
+}
+
+html[data-font-size="small"] {
+    --user-font-scale: 0.9;
+}
+
+html[data-font-size="medium"] {
+    --user-font-scale: 1;
+}
+
+html[data-font-size="large"] {
+    --user-font-scale: 1.1;
 }
 
 /* Breakpoint ab 768px */
@@ -64,14 +124,56 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto; /* Body in 3 Zeilen aufgeteilt (Hader Main Footer) */
     
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    font-weight: var(--font-weight-regular);
+
+    color: var(--color-text-primary);
+    background-color: var(--color-background-primary);
+    /*font-family: Arial, Helvetica, sans-serif;
     line-height: 1.5;
 
     color: black;
     background-color: #F9F6F7;
+    */
+}
+
+h1 {
+    font-size: var(--font-size-heading-1);
+    font-weight: var(--font-weight-bold);
+    margin: 0 0 0.5em;
+}
+
+h2 {
+    font-size: var(--font-size-heading-2);
+    font-weight: var(--font-weight-semibold);
+    margin: 0 0 0.5em;
+}
+
+h3 {
+    font-size: var(--font-size-heading-3);
+    font-weight: var(--font-weight-semibold);
+    margin: 0 0 0.5em;
+}
+
+p {
+    margin: 0 0 1em;
+}
+
+a {
+    color: var(--color-text-primary);
+}
+
+a:hover {
+    color: var(--color-accent-hover);
 }
 
 
+:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+}
 
 /* --------- Hilfen für Barrierefreiheit --------- */
 
@@ -97,13 +199,13 @@ body {
 .skip-link:focus-visible {
     transform: translateY(0);
 
-    background-color: white;
-    color: black;
+    background-color: var(--color-background-primary);
+    color: var(--color-text-primary);
 
     top: 0.5rem;
     left: 0.5rem;
 
-    outline: 2px solid orange;
+    outline: 2px solid var(--color-focus-ring);
 }
 
 

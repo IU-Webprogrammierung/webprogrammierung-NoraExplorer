@@ -6,7 +6,8 @@ footer.footer {
     min-height: var(--footer-height);
     padding: 0 var(--nav-inset);
 
-    background-color: #FFFFFF;
+    background-color: var(--color-background-secondary);
+    color: var(--color-text-primary);
 
     display: flex;
     align-items: center;
