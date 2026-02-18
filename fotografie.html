@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="light" data-font-size="medium">
 
 <head>
     <!-- Basis Metadaten -->
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/fotografie.css">
@@ -29,20 +30,24 @@
     <!-- Header: enthält die Hauptnavigation -->
     <header class="header">
         <!-- TODO: In Projektphase 2 soll es mit JS erweitert werden -->
+        <!--
         <button class="nav-toggle__button" type="button">
             Menü
         </button>
+        -->
         
         <!-- Hauptnavigation, aktueller Menüpunkt mit aria-current="page" -->
-        <nav id="main-nav" class="main-nav" aria-label="Hauptseiten">
-            <ul>
-                <li><a href="index.html">Startseite</a></li>
-                <li><a href="ueber.html">Über mich</a></li>
-                <li><a href="fotografie.html" aria-current="page">Fotografie</a></li>
-                <li><a href="projekte.html">Projekte</a></li>
-                <li><a href="prozess.html">Prozess</a></li>
-            </ul>
-        </nav>
+        <div class="header__inner">
+            <nav id="main-nav" class="main-nav" aria-label="Hauptseiten">
+                <ul>
+                    <li><a class="nav-link" href="index.html">Startseite</a></li>
+                    <li><a class="nav-link" href="ueber.html">Über mich</a></li>
+                    <li><a class="nav-link" href="fotografie.html" aria-current="page">Fotografie</a></li>
+                    <li><a class="nav-link" href="projekte.html">Projekte</a></li>
+                    <li><a class="nav-link" href="prozess.html">Prozess</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
 
@@ -51,9 +56,9 @@
 
        <!-- Hero: Seitenüberschrift + Einleitung + Bild -->
         <section class="hero" aria-labelledby="fotografie-heading">
-            <h1 id="fotografie-heading" class="hero__heading">Fotografie</h1>
+            <h1 id="fotografie-heading" class="hero__title">Fotografie</h1>
 
-            <p class="hero__text">
+            <p class="hero__lead">
                 <span class="break">
                 Fotografie bedeutet für mich, bewusst hinzusehen.
                 </span>
@@ -64,7 +69,7 @@
             </p>
 
             <div class="hero__media">
-                <img src="images/content/fotografie/hero-fotografie.jpg" alt="Portrait von Nora mit einer Kamera">
+                <img class="hero__image" src="images/content/fotografie/hero-fotografie.jpg" alt="Portrait von Nora mit einer Kamera">
                 <!-- bei Bedarf im weiteren Projektverlauf figcaption ergänzen-->
             </div>
         </section>
@@ -76,56 +81,56 @@
 
             <ul class="galerie" aria-label="Fotogalerie">
                 <li class="galerie__item galerie__item--portrait">
-                    <div class="foto">
-                        <img src="images/content/fotografie/taube-weiß.jpg" alt="Weiße Taube auf einem Holzpfosten vor dunklem Hintergrund">
+                    <div class="foto media">
+                        <img class="media__inner" src="images/content/fotografie/taube-weiß.jpg" alt="Weiße Taube auf einem Holzpfosten vor dunklem Hintergrund">
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--portrait">
-                    <div class="foto">
-                        <img src="images/content/fotografie/doldenbluete-vereist.JPG" alt="Nahaufnahme einer vereisten Doldenblüte">
+                    <div class="foto media">
+                        <img class="media__inner" src="images/content/fotografie/doldenbluete-vereist.JPG" alt="Nahaufnahme einer vereisten Doldenblüte">
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--landscape">
-                    <div class="foto">
-                        <img src="images/content/fotografie/weissdorn-winter.jpg" alt="Nahaufnahme von vereisten roten Beeren an einem Zweig">
+                    <div class="foto media">
+                        <img class="media__inner" src="images/content/fotografie/weissdorn-winter.jpg" alt="Nahaufnahme von vereisten roten Beeren an einem Zweig">
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--landscape">
-                    <div class="foto">
-                        <img src="images/content/fotografie/tor-orientalisch.jpg" alt="Detailansicht eines verzierten orientalischen Tors">
+                    <div class="foto media">
+                        <img class="media__inner" src="images/content/fotografie/tor-orientalisch.jpg" alt="Detailansicht eines verzierten orientalischen Tors">
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--portrait">
-                    <div class="foto">
-                        <img src="images/content/fotografie/tuer-windrad.JPG" alt="Metalltür mit Gitter, Warnschild und Graffiti">
+                    <div class="foto media">
+                        <img class="media__inner" src="images/content/fotografie/tuer-windrad.JPG" alt="Metalltür mit Gitter, Warnschild und Graffiti">
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--portrait">
-                    <div class="foto">
-                        <img src="images/content/fotografie/kasten-graffiti.JPG" alt="Mit Graffiti bemalter Stromkasten">
+                    <div class="foto media">
+                        <img class="media__inner" src="images/content/fotografie/kasten-graffiti.JPG" alt="Mit Graffiti bemalter Stromkasten">
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--portrait">
-                    <div class="foto">
-                        <img src="images/content/fotografie/spinnennetz.JPG" alt="Detailaufnahme eines beschädigten Kastens mit Spinnennetz">
+                    <div class="foto media">
+                        <img class="media__inner" src="images/content/fotografie/spinnennetz.JPG" alt="Detailaufnahme eines beschädigten Kastens mit Spinnennetz">
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--portrait">
-                    <div class="foto">
-                        <img src="images/content/fotografie/haus-einsam.JPG" alt="Winterliche Landschaft mit vereisten Ästen und einem Haus im Hintergrund">
+                    <div class="foto media">
+                        <img class="media__inner" src="images/content/fotografie/haus-einsam.JPG" alt="Winterliche Landschaft mit vereisten Ästen und einem Haus im Hintergrund">
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--landscape">
-                    <div class="foto">
-                        <img class="foto" src="images/content/fotografie/boot-narzissen.jpg" alt="Boot mit gelben Blumen in Töpfen vor einer urbanen Hafenkulisse">
+                    <div class="foto media">
+                        <img class="media__inner" class="foto" src="images/content/fotografie/boot-narzissen.jpg" alt="Boot mit gelben Blumen in Töpfen vor einer urbanen Hafenkulisse">
                     </div>
                 </li>
             </ul>
@@ -135,16 +140,18 @@
 
     <!-- Footer: sekundäre Navigation -->
     <footer id="footer" class="footer">
-        <nav aria-label="Seitenende">
-            <ul>
-                <li>
-                    <a href="impressum.html">Impressum</a>
-                </li>
-                <li>
-                    <a href="einstellungen.html">Einstellungen</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="footer__inner">
+            <nav aria-label="Seitenende">
+                <ul>
+                    <li>
+                        <a class="nav-link" href="impressum.html">Impressum</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="einstellungen.html">Einstellungen</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </footer>
 
 </body>

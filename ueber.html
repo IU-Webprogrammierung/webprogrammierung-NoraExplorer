@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="light" data-font-size="medium">
 
 <head>
     <!-- Basis Metadaten -->
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/ueber.css">
@@ -29,21 +30,25 @@
     <!-- Header: enthält die Hauptnavigation -->
     <header class="header">
         <!-- TODO: In Projektphase 2 soll es mit JS erweitert werden -->
+        <!--
         <button class="nav-toggle__button" type="button">
             Menü
         </button>
+        -->
 
         
         <!-- Hauptnavigation, aktueller Menüpunkt mit aria-current="page" -->
-        <nav id="main-nav" class="main-nav" aria-label="Hauptseiten">
-            <ul>
-                <li><a href="index.html">Startseite</a></li>
-                <li><a href="ueber.html" aria-current="page">Über mich</a></li>
-                <li><a href="fotografie.html">Fotografie</a></li>
-                <li><a href="projekte.html">Projekte</a></li>
-                <li><a href="prozess.html">Prozess</a></li>
-            </ul>
-        </nav>
+        <div class="header__inner">
+            <nav id="main-nav" class="main-nav" aria-label="Hauptseiten">
+                <ul>
+                    <li><a class="nav-link" href="index.html">Startseite</a></li>
+                    <li><a class="nav-link" href="ueber.html" aria-current="page">Über mich</a></li>
+                    <li><a class="nav-link" href="fotografie.html">Fotografie</a></li>
+                    <li><a class="nav-link" href="projekte.html">Projekte</a></li>
+                    <li><a class="nav-link" href="prozess.html">Prozess</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
 
@@ -52,9 +57,9 @@
 
         <!-- Hero: Seitenüberschrift + Einleitung + Bild -->
         <section class="hero" aria-labelledby="ueber-heading">
-            <h1 id="ueber-heading" class="hero__heading">Über mich</h1>
+            <h1 id="ueber-heading" class="hero__title">Über mich</h1>
 
-            <p class="hero__text">
+            <p class="hero__lead">
                 <span class="break">
                     Hi, ich bin Nora!
                 </span>
@@ -66,7 +71,7 @@
             </p>
 
             <div class="hero__media">
-                <img src="images/content/ueber/hero-portrait.jpg" alt="Seitliches Portrait von Nora Mikus im Stehen">
+                <img class="hero__image" src="images/content/ueber/hero-portrait.jpg" alt="Seitliches Portrait von Nora Mikus im Stehen">
             </div>
         </section>
 
@@ -91,8 +96,8 @@
                     </span>
                 </p>
 
-                <div class="interesse__media">
-                    <img src="images/content/ueber/portrait-gitarre.jpg" alt="Nora mit Gitarre in dynamischer Pose">
+                <div class="interesse__media media">
+                    <img class="media__inner" src="images/content/ueber/portrait-gitarre.jpg" alt="Nora mit Gitarre in dynamischer Pose">
                 </div>
             </article>
 
@@ -112,8 +117,8 @@
                     </span>
                 </p>
 
-                <div class="interesse__media">
-                    <img src="images/content/ueber/yoga-kueste.jpg" alt="Nora beim Yoga an der Küste">
+                <div class="interesse__media media">
+                    <img class="media__inner" src="images/content/ueber/yoga-kueste.jpg" alt="Nora beim Yoga an der Küste">
                 </div>
             </article>
 
@@ -132,8 +137,8 @@
                     </span>
                 </p>
 
-                <div class="interesse__media">
-                    <img src="images/content/ueber/buecher.jpg" alt="Bücher im Regal">
+                <div class="interesse__media media">
+                    <img class="media__inner" src="images/content/ueber/buecher.jpg" alt="Bücher im Regal">
                 </div>
             </article>
 
@@ -153,8 +158,8 @@
                     </span>
                 </p>
 
-                <div class="interesse__media">
-                    <img src="images/content/ueber/kunst-street-art.jpg" alt="Farbiges Street-Art-Graffiti im urbanen Raum">
+                <div class="interesse__media media">
+                    <img class="media__inner" src="images/content/ueber/kunst-street-art.jpg" alt="Farbiges Street-Art-Graffiti im urbanen Raum">
                 </div>
             </article>
         </section>
@@ -163,16 +168,18 @@
 
     <!-- Footer: sekundäre Navigation -->
     <footer id="footer" class="footer">
-        <nav aria-label="Seitenende">
-            <ul>
-                <li>
-                    <a href="impressum.html">Impressum</a>
-                </li>
-                <li>
-                    <a href="einstellungen.html">Einstellungen</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="footer__inner">
+            <nav aria-label="Seitenende">
+                <ul>
+                    <li>
+                        <a class="nav-link" href="impressum.html">Impressum</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="einstellungen.html">Einstellungen</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </footer>
 
 </body>

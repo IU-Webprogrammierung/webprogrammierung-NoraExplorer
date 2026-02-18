@@ -6,12 +6,13 @@
 .detailseite {
     row-gap: 2rem;
     padding-bottom: 2rem;
-    padding-top: 2rem;
+    padding-top: 0rem;
 }
 
 
 
 /* --------- Hero-Bereich: Headline, Text & Bild (mobile first) --------- */
+/*
 .detailseite .hero {
     display: grid;
     gap: 1rem;
@@ -19,23 +20,26 @@
     margin-top: 1rem;
     margin-bottom: 4rem;
 
-    /*grid-template-columns: 1fr;*/
+    /*grid-template-columns: 1fr;
     grid-template-areas: 
         "heading"
         "text"
         "media";
 }
+*/
 
 /* 
     Robustheit im Grid: 
     min-width: 0 verhindert, dass Inhalte die Grid-Spalten sprengen.
     overflow-wrap sorgt für einen passenden Umbruch bei langen Wörtern/URLs
 */
+/*
 .detailseite .hero > * {
     min-width: 0;
 }
+*/
 
-
+/*
 .detailseite .hero__heading,
 .detailseite .hero__text {
     overflow-wrap: anywhere;
@@ -48,6 +52,7 @@
 
 .detailseite .hero__text {
     grid-area: text;
+    font-size: var(--font-size-hero);
 }
 
 .detailseite .hero__media {
@@ -56,7 +61,7 @@
 
     align-self: center;
     
-    /*aspect-ratio: 3 / 4;*/
+    /*aspect-ratio: 3 / 4;
     overflow: hidden;
 }
 
@@ -65,9 +70,11 @@
     height: 100%;
     object-fit: cover;
 }
+*/
 
 /* --------- Breakpoints: Hero --------- */
 /* Breakpoint ab 768px */
+/*
 @media (min-width: 768px) {
     .detailseite .hero {
         gap: 1.5rem;
@@ -83,8 +90,10 @@
         align-items: start;
     }
 }
+*/
 
 /* Breakpoint ab 1280px */
+/*
 @media (min-width: 1280px) {
     .detailseite .hero {
         gap: 2rem;
@@ -92,7 +101,7 @@
         margin-bottom: 8rem;
     }
 }
-
+*/
 
 
 /* --------- Content-Bereich (mobile first) --------- */
@@ -101,9 +110,11 @@
     margin-bottom: 4rem;
 }
 
+/*
 .detailseite .content__heading {
     
 }
+*/
 
 /* Robustheit für alle direkten Kinder */
 .detailseite .content > * {

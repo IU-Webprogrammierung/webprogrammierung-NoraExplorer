@@ -40,6 +40,14 @@
 
     display: block;
     min-width: 0;
+
+    font-weight: var(--font-weight-bold);
+    /*line-clamp: clapm(1.4rem, 1.1rem + 1.2vw, 2.2rem);*/
+    font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2.2rem);
+    letter-spacing: 0.04em;
+    color: color-mix(in srgb, var(--text) 75%, var(--accent-500) 25%);
+    line-height: 1;
+
 }
 
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="dark" data-font-size="medium">
 
 <head>
     <!-- Basis Metadaten -->
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/projekte.css">
@@ -29,20 +30,24 @@
     <!-- Header: enthält die Hauptnavigation -->
     <header class="header">
         <!-- TODO: In Projektphase 2 soll es mit JS erweitert werden -->
+        <!--
         <button class="nav-toggle__button" type="button">
             Menü
         </button>
+        -->
         
         <!-- Hauptnavigation, aktueller Menüpunkt mit aria-current="page" -->
-        <nav id="main-nav" class="main-nav" aria-label="Hauptseiten">
-            <ul>
-                <li><a href="index.html">Startseite</a></li>
-                <li><a href="ueber.html">Über mich</a></li>
-                <li><a href="fotografie.html">Fotografie</a></li>
-                <li><a href="projekte.html" aria-current="page">Projekte</a></li>
-                <li><a href="prozess.html">Prozess</a></li>
-            </ul>
-        </nav>
+        <div class="header__inner">
+            <nav id="main-nav" class="main-nav" aria-label="Hauptseiten">
+                <ul>
+                    <li><a class="nav-link" href="index.html">Startseite</a></li>
+                    <li><a class="nav-link" href="ueber.html">Über mich</a></li>
+                    <li><a class="nav-link" href="fotografie.html">Fotografie</a></li>
+                    <li><a class="nav-link" href="projekte.html" aria-current="page">Projekte</a></li>
+                    <li><a class="nav-link" href="prozess.html">Prozess</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
 
@@ -51,15 +56,15 @@
 
         <!-- Hero: Seitenüberschrift + Einleitung + Bild -->
         <section class="hero" aria-labelledby="projekte-heading">
-            <h1 id="projekte-heading" class="hero__heading">Projekte</h1>
+            <h1 id="projekte-heading" class="hero__title"">Projekte</h1>
 
-            <p class="hero__text">
+            <p class="hero__lead">
                 Hier findest du eine Auswahl meiner Projekte. Sie sind im Rahmen meines Studiums entstanden und zeigen, 
                 wie ich mich mit unterschiedlichen Themen, Medien und Ideen auseinandersetze.
             </p>
 
             <div class="hero__media">
-                <img src="images/content/projekte/hero-projekte.jpg" alt="Darstellung verschiedener Apps und Websites auf verschiedenen Endgeräten">
+                <img class="hero__image" src="images/content/projekte/hero-projekte.jpg" alt="Darstellung verschiedener Apps und Websites auf verschiedenen Endgeräten">
             </div>
         </section>
 
@@ -84,8 +89,8 @@
                         </span>
                     </p>
 
-                    <div class="projekt__mockup projekt__mockup--big">
-                        <img src="images/content/projekte/fotodesign-thaddy-hell.jpg" alt="Startseite einer hellen Fotografie-Website mit großem Hero-Bereich">
+                    <div class="projekt__mockup projekt__mockup--big media">
+                        <img class="media__inner" src="images/content/projekte/fotodesign-thaddy-hell.jpg" alt="Startseite einer hellen Fotografie-Website mit großem Hero-Bereich">
                     </div>
                 </div>
 
@@ -103,8 +108,8 @@
                         </span>
                     </p>
                     
-                    <div class="projekt__mockup projekt__mockup--small">
-                        <img src="images/content/projekte/fotodesign-thaddy-dunkel.jpg" alt="Startseite einer dunklen Fotografie-Website mit großem Hero-Bereich">
+                    <div class="projekt__mockup projekt__mockup--small media">
+                        <img class="media__inner" src="images/content/projekte/fotodesign-thaddy-dunkel.jpg" alt="Startseite einer dunklen Fotografie-Website mit großem Hero-Bereich">
                     </div>
                 </div>
 
@@ -126,8 +131,8 @@
                         </span>
                     </p>
 
-                    <div class="projekt__mockup projekt__mockup--big">
-                        <img src="images/content/projekte/brutzel-profil.jpg" alt="Profilansicht und Übersicht von Kochbüchern in einer mobilen Koch-App">
+                    <div class="projekt__mockup projekt__mockup--big media">
+                        <img class="media__inner" src="images/content/projekte/brutzel-profil.jpg" alt="Profilansicht und Übersicht von Kochbüchern in einer mobilen Koch-App">
                     </div>
                 </div>
 
@@ -143,8 +148,8 @@
                         </span>
                     </p>
 
-                    <div class="projekt__mockup projekt__mockup--small">
-                        <img src="images/content/projekte/brutzel-rezept-detail.jpg" alt="Rezeptdetailansicht und Community-Bereich einer mobilen Koch-App">
+                    <div class="projekt__mockup projekt__mockup--small media">
+                        <img class="media__inner" src="images/content/projekte/brutzel-rezept-detail.jpg" alt="Rezeptdetailansicht und Community-Bereich einer mobilen Koch-App">
                     </div>
                 </div>
 
@@ -162,8 +167,8 @@
                         Im Mittelpunkt steht eine narrative Lernwelt rund um den Drachen Ananas, die Lernen motivierender und zugänglicher machen soll.
                     </p>
 
-                    <div class="projekt__mockup projekt__mockup--big">
-                        <img src="images/content/projekte/ananas-matheinsel-aufgabe.jpg" alt="Interaktive E-Learning Oberfläche mit einer Rechenmauer und Spielfiguren">
+                    <div class="projekt__mockup projekt__mockup--big media">
+                        <img class="media__inner" src="images/content/projekte/ananas-matheinsel-aufgabe.jpg" alt="Interaktive E-Learning Oberfläche mit einer Rechenmauer und Spielfiguren">
                     </div>
                 </div>
 
@@ -181,8 +186,8 @@
                         </span>
                     </p>
                     
-                    <div class="projekt__mockup projekt__mockup--small">
-                        <img src="images/content/projekte/ananas-matheinsel-chat.jpg" alt="Spielszene mit mehreren Spielfiguren in einem Audiochat-Raum">
+                    <div class="projekt__mockup projekt__mockup--small media">
+                        <img class="media__inner" src="images/content/projekte/ananas-matheinsel-chat.jpg" alt="Spielszene mit mehreren Spielfiguren in einem Audiochat-Raum">
                     </div>
                 </div>
 
@@ -193,16 +198,18 @@
 
     <!-- Footer: sekundäre Navigation -->
     <footer id="footer" class="footer">
-        <nav aria-label="Seitenende">
-            <ul>
-                <li>
-                    <a href="impressum.html">Impressum</a>
-                </li>
-                <li>
-                    <a href="einstellungen.html">Einstellungen</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="footer__inner">
+            <nav aria-label="Seitenende">
+                <ul>
+                    <li>
+                        <a class="nav-link" href="impressum.html">Impressum</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="einstellungen.html">Einstellungen</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </footer>
 
 </body>

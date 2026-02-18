@@ -26,9 +26,12 @@ img {
     grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
     gap: var(--gap);
 
-    margin: var(--margin-top-bottom) var(--margin-sides);
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
 
-    align-content: start;
+    /*margin: var(--margin-top-bottom) var(--margin-sides);*/
+
+    /*align-content: start;*/
 }
 
 /* Default: alle direkten Kinder belegen die volle Breite */

@@ -13,13 +13,29 @@
 
 /* --------- Grid, Abstände, Layout-Konstanten --------- */
 :root {
-    /** Grid-System **/
+    /* Layout */
+    --header-height: 5.5rem;
+    --footer-height: 5.5rem;
+    --container-padding: 24px;
+
+    /* Grid */
+    --columns: 4;
+    --gap: 1rem;
+    --content-start: 1;
+    --content-end: -1;
+
+
+    --margin-sides: 24px;
+
+    /* Grid-System */
+    /*
     --columns: 4;
     --gap: 1rem;
     --margin-sides: 24px;
     --margin-top-bottom: 0px;
 
     /* Layout-Konstanen */
+    /*
     --header-height: 5.5rem;
     --nav-inset: 2.5rem;
     --nav-panel-width: 18rem;
@@ -27,55 +43,153 @@
 
     --content-start: 1;
     --content-end: -1;
+    */
 
+    /* Radius */
+    --radius-s: 8px;
+    --radius-m: 12px;
+    --radius-l: 18px;
+    --radius-xl: 24px;
+    --radius-pill: 999px;
 
-    /* User Settings (Default) */
-    --user-font-scale: 1;
+    /* Schatten */
+    /*
+    --shadow-soft: 0 10px 30px #0f172a14;
+    --shadow-header: 0 8px 20px #0f172a0f;
+    */
 
-    /* Accentfarben */
-    --color-accent-primary: #f97316;
-    --color-accent-hover: #ea580c;
-    --color-accent-soft: #fff7ed;
-    
-    /* Typografie Tokens */
+    /* Typography */
     --font-family-base: system-ui, -apple-system, "Segoe UI", Arial, Helvetica, sans-serif;
-
     --font-weight-regular: 400;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
-
     --line-height-base: 1.6;
 
-    --font-size-small: calc(0.75rem * var(--user-font-scale));
-    --font-size-base: calc(1rem * var(--user-font-scale));
-    --font-size-heading-3: calc(1.25rem * var(--user-font-scale));
-    --font-size-heading-2: calc(1.5rem * var(--user-font-scale));
-    --font-size-heading-1: calc(2rem * var(--user-font-scale));
+    --user-font-scale: 1; /* User Settings (Default) */
+
+    /*
+    --font-size-small: calc(clamp(0.8rem, 0.7rem + 0.2vw, 0.9rem) * var(--user-font-scale));
+    --font-size-base: calc(clamp(1rem, 0.8rem + 0.4vw, 1.1rem) * var(--user-font-scale));
+    /*--font-size-hero: calc(clamp(1.1rem, 1rem + 0.4vw, 1.2rem) * var(--user-font-scale));*/
+    /*
+    --font-size-h3: calc(clamp(1.1rem, 1rem + 0.6vw, 1.5rem) * var(--user-font-scale));
+    --font-size-h2: calc(clamp(1.5rem, 1.25rem + 1vw, 2.25rem) * var(--user-font-scale));
+    /*--font-size-h1: calc(clamp(2.25rem, 2rem + 3vw, 4rem) * var(--user-font-scale));
+    */
+
+    --font-size-small: calc(clamp(0.75rem, 0.7rem + 0.25vw, 0.95rem) * var(--user-font-scale));
+    --font-size-base: calc(clamp(0.95rem, 0.85rem + 0.45vw, 1.15rem) * var(--user-font-scale));
+
+    --font-size-h3: calc(clamp(1.05rem, 0.95rem + 0.9vw, 1.75rem) * var(--user-font-scale));
+    --font-size-h2: calc(clamp(1.35rem, 1.1rem + 1.6vw, 2.75rem) * var(--user-font-scale));
+    --font-size-h1: calc(clamp(1.8rem, 1.4rem + 3.6vw, 6rem) * var(--user-font-scale));
+    --font-size-hero-lead: calc(clamp(0.95rem, 0.8rem + 0.9vw, 1.55rem) * var(--user-font-scale));
+
+
+    /* Accentfarben */
+    --accent-100: #fff1e8;
+    --accent-500: #ff6a00;
+    --accent-600: #ea580c;
+    --accent-700: #c2410c;
+    --accent-contrast: #0b1220;
+    /*--color-button-text-accent: #000000;*/
+
+    /* Fokus */
+    --focus-outline: 2px;
+    --focus-offset: 4px;
+    
+
+}
+
 
     /* UI Tokens */
+    /*
+    --surface: var(--color-background-secondary);
+    --border: color-mix(in srgb, var(--color-text-primary) 14%, transparent);
+    --muted: color-mix(in srgb, var(--color-text-primary) 70%, transpaent);
+    --shadow: var(--shadow-soft);
+
     --border-radius-small: 8px;
     --border-radius-medium: 10px;
     --border-radius-large: 12px;
+    --border-radius-button: 26px;
+
+    --focus-outline: 2px;
+    --focus-offset: 4px;
 }
 
+
+/* Themes */
 :root,
 html[data-theme="light"] {
     color-scheme: light;
 
-    --color-background-primary: #F9F6F7;
+    --bg: #f3f6fc;
+    --surface: #ffffff;
+    --text: #0f172a;
+    --muted: #475569;
+    --border: #0f172a1a;
+
+    --focus-ring: #ff6a0099;
+
+    --hero-bg: linear-gradient(180deg, #eef4ff 0%, #f3f6fc 100%);
+
+    --hero-band: linear-gradient(180deg, #bfd4ff 0%, #eef4ff 75%, var(--bg) 100%);
+
+    --shadow-soft: 0 10px 30px #0f172a14;
+    --shadow-header: 0 8px 20px #0f172a0f;
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --bg: #0b1220;
+    --surface: #111c33;
+    --text: #f8fafc;
+    --muted: #a7b3c6;
+    --border: #f8fafc1f;
+
+    --focus-ring: #ff8a3db3;
+
+    --hero-bg: linear-gradient(180deg, #132b55 0%, #0b1220 100%);
+
+    --hero-band: linear-gradient(180deg, #0d3281 0%, #0d172c 75%, var(--bg) 100%);
+
+    --shadow-soft: 0 10px 30px #00000066;
+    --shadow-header: 0 8px 20px #0000004d;
+}
+
+
+
+
+
+/*
+:root,
+html[data-theme="light"] {
+    color-scheme: light;
+
+    --color-background-primary: #f1f1f3;
     --color-background-secondary: #ffffff;
     --color-text-primary: #000000;
+    --color-text-hover: #000000;
+    --color-button-text-accent: #000000;
     --color-focus-ring: #b84d01;
+    --shadow-soft: 2px 8px 16px #beb3ab;
 }
 
 html[data-theme="dark"] {
     color-scheme: dark;
 
     --color-background-primary: #000000;
-    --color-background-secondary: #111111;
+    --color-background-secondary: #222222;
     --color-text-primary: #F9F6F7;
+    --color-text-hover: #ff984f;
+    --color-button-text-accent: #000000;
     --color-focus-ring: #ff984f;
+    --shadow-soft: 2px 8px 16px #272524;
 }
+*/
+
 
 html[data-font-size="small"] {
     --user-font-scale: 0.9;
@@ -94,7 +208,7 @@ html[data-font-size="large"] {
     :root {
         --columns: 8;
         --gap: 1.5rem;
-        --margin-sides: 64px;
+        --container-padding: 64px;
     }
 }
 
@@ -103,10 +217,11 @@ html[data-font-size="large"] {
     :root {
         --columns: 12;
         --gap: 2rem;
-        --margin-sides: 128px;
+        --container-padding: 128px;
 
         --content-start: 2;
         --content-end: -2;
+
     }
 }
 
@@ -118,9 +233,9 @@ html {
 
 body {
     margin: 0;
-    padding: 0;
-
+    /*padding: 0;*/
     min-height: 100vh;
+
     display: grid;
     grid-template-rows: auto 1fr auto; /* Body in 3 Zeilen aufgeteilt (Hader Main Footer) */
     
@@ -129,8 +244,8 @@ body {
     line-height: var(--line-height-base);
     font-weight: var(--font-weight-regular);
 
-    color: var(--color-text-primary);
-    background-color: var(--color-background-primary);
+    color: var(--text);
+    background: var(--bg);
     /*font-family: Arial, Helvetica, sans-serif;
     line-height: 1.5;
 
@@ -139,22 +254,28 @@ body {
     */
 }
 
-h1 {
-    font-size: var(--font-size-heading-1);
-    font-weight: var(--font-weight-bold);
+h1,
+h2,
+h3 {
     margin: 0 0 0.5em;
+}
+
+h1 {
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.05;
 }
 
 h2 {
-    font-size: var(--font-size-heading-2);
+    font-size: var(--font-size-h2);
     font-weight: var(--font-weight-semibold);
-    margin: 0 0 0.5em;
+    line-height: 1.15;
 }
 
 h3 {
-    font-size: var(--font-size-heading-3);
+    font-size: var(--font-size-h3);
     font-weight: var(--font-weight-semibold);
-    margin: 0 0 0.5em;
+    line-height: 1.25;
 }
 
 p {
@@ -162,18 +283,26 @@ p {
 }
 
 a {
-    color: var(--color-text-primary);
+    color: inherit;
 }
 
+
+/*
 a:hover {
-    color: var(--color-accent-hover);
+    color: var(--color-text-hover);
 }
+*/
+
+
 
 
 :focus-visible {
-    outline: 2px solid var(--color-focus-ring);
-    outline-offset: 2px;
+    outline: var(--focus-outline) solid var(--focus-ring);
+    outline-offset: var(--focus-offset);
+    
 }
+
+
 
 /* --------- Hilfen für Barrierefreiheit --------- */
 
@@ -187,8 +316,8 @@ a:hover {
     padding: 0.75rem 1rem;
 
     /* inherit, damit sich das Verhalten visuell nicht ändert */
-    background-color: inherit;
-    color: inherit;
+    background: var(--surface);
+    color: var(--text);
 
     text-decoration: underline;
 
@@ -199,13 +328,15 @@ a:hover {
 .skip-link:focus-visible {
     transform: translateY(0);
 
+    /*
     background-color: var(--color-background-primary);
     color: var(--color-text-primary);
+    */
 
     top: 0.5rem;
     left: 0.5rem;
 
-    outline: 2px solid var(--color-focus-ring);
+    /*outline: 2px solid var(--color-focus-ring);*/
 }
 
 

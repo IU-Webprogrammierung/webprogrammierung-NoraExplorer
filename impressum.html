@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="light" data-font-size="medium">
 
 <head>
     <!-- Basis Metadaten -->
@@ -13,9 +13,9 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/impressum.css">
 </head>
 
@@ -29,20 +29,24 @@
     <!-- Header: enthält die Hauptnavigation -->
     <header class="header">
         <!-- TODO: In Projektphase 2 soll es mit JS erweitert werden -->
+        <!--
         <button class="nav-toggle__button" type="button">
             Menü
         </button>
+        -->
         
         <!-- Hauptnavigation, aktueller Menüpunkt mit aria-current="page" -->
-        <nav id="main-nav" class="main-nav" aria-label="Hauptseiten">
-            <ul>
-                <li><a href="index.html">Startseite</a></li>
-                <li><a href="ueber.html">Über mich</a></li>
-                <li><a href="fotografie.html">Fotografie</a></li>
-                <li><a href="projekte.html">Projekte</a></li>
-                <li><a href="prozess.html">Prozess</a></li>
-            </ul>
-        </nav>
+        <div class="header__inner">
+            <nav id="main-nav" class="main-nav" aria-label="Hauptseiten">
+                <ul>
+                    <li><a class="nav-link" href="index.html">Startseite</a></li>
+                    <li><a class="nav-link" href="ueber.html">Über mich</a></li>
+                    <li><a class="nav-link" href="fotografie.html">Fotografie</a></li>
+                    <li><a class="nav-link" href="projekte.html">Projekte</a></li>
+                    <li><a class="nav-link" href="prozess.html">Prozess</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
 
@@ -103,16 +107,18 @@
 
     <!-- Footer: sekundäre Navigation -->
     <footer id="footer" class="footer">
-        <nav aria-label="Seitenende">
-            <ul>
-                <li>
-                    <a href="impressum.html" aria-current="page">Impressum</a>
-                </li>
-                <li>
-                    <a href="einstellungen.html">Einstellungen</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="footer__inner">
+            <nav aria-label="Seitenende">
+                <ul>
+                    <li>
+                        <a class="nav-link" href="impressum.html" aria-current="page">Impressum</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="einstellungen.html">Einstellungen</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </footer>
 
 </body>

@@ -8,6 +8,20 @@
     padding-bottom: 6rem;
 }
 
+.startseite .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    /*
+    background: transparent;
+    box-shadow: none;
+    border-bottom: none;
+    */
+    
+}
+
 /* Abstände zwischen den einzelnen Teasern */
 .startseite .teaser + .teaser {
     margin-block-start: 4rem;
@@ -41,6 +55,8 @@
     overflow: hidden;
 
     /* Zentrierung des 100vw-Containers innerhalb des Grid-Layouts */
+    margin-top: calc(var(--header-height) * -1);
+    padding-top: var(--header-height);
     margin-left: 50%;
     transform: translateX(-50%);
 }
@@ -53,6 +69,7 @@
     overflow: hidden;
 
     height: 20rem;
+    border-radius: 0;
 }
 
 .startseite .hero__media img {
@@ -64,7 +81,7 @@
     object-position: 50% 40%;
 }
 
-.startseite .hero__heading {
+.startseite .hero__title {
     grid-column: 1 / -1;
     grid-row: 1;
 
@@ -72,6 +89,12 @@
 
     align-self: center;
     justify-self: center;
+    word-spacing: 25rem;
+    /*padding: 0 1.5rem;*/
+    padding: clamp(1rem, 7vw, 6rem);
+
+    font-size: calc(clamp(1rem, 0.5rem + 8vw, 20rem) * var(--user-font-scale));
+    color: #000000;
 }
 
 /* Breakpoints: Hero */
@@ -80,12 +103,20 @@
         height: 30rem;
         /*aspect-ratio: 2 /1;*/
     }
+
+    .startseite .hero__title {
+        padding: 0 6rem;
+    }
 }
 
 @media (min-width: 1280px) {
     .startseite .hero__media {
         height: 40rem;
         /*aspect-ratio: 3 /1;*/
+    }
+
+    .startseite .hero__title {
+        padding: 0 10rem;
     }
 }
 
@@ -116,6 +147,8 @@
 .startseite .teaser__link {
     margin: 0;
     overflow-wrap: anywhere;
+    justify-self: center;
+    text-align: center;
 }
 
 .startseite .teaser__heading {
@@ -145,6 +178,7 @@
 
 /* Zentrierung der Teaser-Texte ab 768px Bildschirmbreite*/
 /* Breakpoints: Teaser */
+/*
 @media (min-width: 768px) {
     .startseite .teaser__heading,
     .startseite .teaser__link {
@@ -156,6 +190,7 @@
         text-align: center;
     }
 }
+*/
 
 
 
@@ -285,26 +320,33 @@
 }
 
 /* Einzelner Preview */
-.startseite .teaser--prozess .prozess-preview {
-    margin: 0;
+
+.startseite .teaser--prozess .accordion--numbered {
+    /*margin: 0;*/
     display: grid;
     gap: 0.5rem;
 
     grid-template-columns: 1fr 6fr;
     grid-template-areas: 
     "number summary"
-    "number text";
+    "number content";
 
+    /*
     border: 1px solid black;
     padding: 1rem;
+    
     /*min-width: 0;*/
 }
 
-.startseite .teaser--prozess .prozess-preview > * {
+
+
+.startseite .teaser--prozess .accordion--numbered > * {
     min-width: 0;
 }
 
-.startseite .teaser--prozess .prozess-preview::before {
+
+
+.startseite .teaser--prozess .accordion--numbered::before {
     grid-area: number;
     
     counter-increment: schritt;
@@ -312,21 +354,34 @@
 
     display: block;
     /*min-width: 0;*/
+
+    color: currentColor;
 }
 
-.startseite .teaser--prozess .prozess-preview__summary {
-    grid-area: summary;
-    margin: 0;
-    /*min-width: 0;*/
-    overflow-wrap: anywhere;
+.startseite .teaser--prozess .accordion--numbered:hover::before {
+    color: var(--accent-600);
+    font-weight: var(--font-weight-semibold);
     cursor: pointer;
 }
 
-.startseite .teaser--prozess .prozess-preview__text {
-    grid-area: text;
-    margin: 0;
-    /*min-width: 0;*/
+
+.startseite .teaser--prozess .accordion--numbered .accordion__summary {
+    grid-area: summary;
+    padding: 0.5rem 0;
+    /*min-width: 0;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+    */
 }
+
+
+
+.startseite .teaser--prozess .accordion--numbered .accordion__content {
+    grid-area: content;
+    /*margin: 0;
+    min-width: 0;*/
+}
+
 
 /* Breakpoints: Prozess */
 @media (min-width: 768px) {
@@ -334,7 +389,7 @@
         grid-template-columns: 1fr 8fr 1fr;
         grid-template-areas: 
         "number summary summary"
-        "number text    text";
+        "number content content";
     }
 }
 
@@ -343,7 +398,7 @@
         grid-template-columns: 1fr 10fr 1fr;
         grid-template-areas: 
         "number summary summary"
-        "number text    text";
+        "number content content";
     }
 }
 

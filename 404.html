@@ -9,7 +9,7 @@
 -->
 
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="light" data-font-size="medium">
 
 <head>
     <!-- Basis Metadaten -->
@@ -23,6 +23,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/404.css">
@@ -33,20 +34,24 @@
     <!-- Header: enthält die Hauptnavigation -->
     <header class="header">
         <!-- TODO: In Projektphase 2 soll es mit JS erweitert werden -->
+        <!--
         <button class="nav-toggle__button" type="button">
             Menü
         </button>
+        -->
         
         <!-- Hauptnavigation, aktueller Menüpunkt mit aria-current="page" -->
-        <nav id="main-nav" class="main-nav" aria-label="Hauptseiten">
-            <ul>
-                <li><a href="index.html">Startseite</a></li> 
-                <li><a href="ueber.html">Über mich</a></li>
-                <li><a href="fotografie.html">Fotografie</a></li>
-                <li><a href="projekte.html">Projekte</a></li>
-                <li><a href="prozess.html">Prozess</a></li>
-            </ul>
-        </nav>
+        <div class="header__inner">
+            <nav id="main-nav" class="main-nav" aria-label="Hauptseiten">
+                <ul>
+                    <li><a href="index.html">Startseite</a></li> 
+                    <li><a href="ueber.html">Über mich</a></li>
+                    <li><a href="fotografie.html">Fotografie</a></li>
+                    <li><a href="projekte.html">Projekte</a></li>
+                    <li><a href="prozess.html">Prozess</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
 
@@ -59,7 +64,7 @@
         <a class="not-found__link" href="index.html">Zurück zur Startseite</a>
 
         <div class="not-found__pic">
-            <img src="images/content/404.jpg" alt="Illustration zur 404 Fehlermeldung">
+            <img class="media" src="images/content/404.jpg" alt="Illustration zur 404 Fehlermeldung">
         </div>
     </main>
 
@@ -67,16 +72,18 @@
 
     <!-- Footer: sekundäre Navigation -->
     <footer id="footer" class="footer">
-        <nav aria-label="Seitenende">
-            <ul>
-                <li>
-                    <a href="impressum.html">Impressum</a>
-                </li>
-                <li>
-                    <a href="einstellungen.html">Einstellungen</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="footer__inner">
+            <nav aria-label="Seitenende">
+                <ul>
+                    <li>
+                        <a href="impressum.html">Impressum</a>
+                    </li>
+                    <li>
+                        <a href="einstellungen.html">Einstellungen</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </footer>
 
 </body>

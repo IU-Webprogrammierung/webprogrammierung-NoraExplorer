@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="light" data-font-size="medium">
 
 <head>
     <!-- Basis Metadaten -->
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/prozess.css">
@@ -29,20 +30,24 @@
     <!-- Header: enthält die Hauptnavigation -->
     <header class="header">
         <!-- TODO: In Projektphase 2 soll es mit JS erweitert werden -->
+        <!--
         <button class="nav-toggle__button" type="button">
             Menü
         </button>
+        -->
         
         <!-- Hauptnavigation, aktueller Menüpunkt mit aria-current="page" -->
-        <nav id="main-nav" class="main-nav" aria-label="Hauptseiten">
-            <ul>
-                <li><a href="index.html">Startseite</a></li>
-                <li><a href="ueber.html">Über mich</a></li>
-                <li><a href="fotografie.html">Fotografie</a></li>
-                <li><a href="projekte.html">Projekte</a></li>
-                <li><a href="prozess.html" aria-current="page">Prozess</a></li>
-            </ul>
-        </nav>
+        <div class="header__inner">
+            <nav id="main-nav" class="main-nav" aria-label="Hauptseiten">
+                <ul>
+                    <li><a class="nav-link" href="index.html">Startseite</a></li>
+                    <li><a class="nav-link" href="ueber.html">Über mich</a></li>
+                    <li><a class="nav-link" href="fotografie.html">Fotografie</a></li>
+                    <li><a class="nav-link" href="projekte.html">Projekte</a></li>
+                    <li><a class="nav-link" href="prozess.html" aria-current="page">Prozess</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
 
@@ -51,16 +56,17 @@
         
         <!-- Hero: Seitenüberschrift + Einleitung + Bild -->
         <section class="hero" aria-labelledby="prozess-heading">
-            <h1 id="prozess-heading" class="hero__heading">Prozess</h1>
+            <h1 id="prozess-heading" class="hero__title">Prozess</h1>
 
-            <p class="hero__text">
+            <p class="hero__lead">
                 In meinen Projekten folge ich einem klar strukturierten Prozess. 
                 Die klare Struktur hilft mir dabei, Anforderungen zu verstehen, fundierte Entscheidungen zu treffen und Lösungen zu entwickeln, die sowohl gestalterisch als auch funktional überzeugen. 
                 Die einzelnen Schritte bauen aufeinander auf und sorgen für Transparenz und Nachvollziehbarkeit im gesamten Projektverlauf.
             </p>
 
             <div class="hero__media">
-                <img src="images/content/prozess/hero-prozess.jpg" alt="Wireframe mit Skizzen und Anmerkungen einer Webseite">
+                <img 
+                    class="hero__image" src="images/content/prozess/hero-prozess.jpg" alt="Wireframe mit Skizzen und Anmerkungen einer Webseite">
             </div>
         </section>
 
@@ -84,7 +90,7 @@
                             Diese Phase schafft eine fundierte Grundlage für alle weiteren konzeptionellen und gestalterischen Entscheidungen.
                         </p>
 
-                        <div class="prozessschritt__media">
+                        <div class="prozessschritt__media media">
                             <img src="images/content/prozess/recherche.jpg" alt="Notizen, Fragen und Skizzen zur Recherche und Analyse eines Projekts">
                         </div>
                     </article>
@@ -102,7 +108,7 @@
                             Ziel ist es, eine nachvollziehbare und tragfähige Struktur zu schaffen, die als Basis für das spätere Design dient.
                         </p>
 
-                        <div class="prozessschritt__media">
+                        <div class="prozessschritt__media media">
                             <img src="images/content/prozess/konzeption.jpg" alt="Wireframe und Konzeption der Seitenstruktur und Inhalte">
                         </div>
                     </article>
@@ -120,7 +126,7 @@
                             Mockups und Styleguides helfen dabei, das Design konsistent umzusetzen und frühzeitig erlebbar zu machen.
                         </p>
 
-                        <div class="prozessschritt__media">
+                        <div class="prozessschritt__media media">
                             <img src="images/content/prozess/design-system.jpg" alt="Designsystem mit UI-Elementen, Farben und Typografie">
                         </div>
                     </article>
@@ -137,7 +143,7 @@
                             Je nach Projekt entstehen funktionale Prototypen oder erste produktionsnahe Lösungen, die das geplante Produkt realistisch abbilden und testbar machen.
                         </p>
 
-                        <div class="prozessschritt__media">
+                        <div class="prozessschritt__media media">
                             <img src="images/content/prozess/umsetzung-code.jpg" alt="Technische Umsetzung eines Webprojekts im Code-Editor">
                         </div>
                     </article>
@@ -155,7 +161,7 @@
                             Dieser Schritt stellt sicher, dass das Ergebnis nicht nur technisch funktioniert, sondern auch den Bedürfnissen der Zielgruppe entspricht.
                         </p>
 
-                        <div class="prozessschritt__media">
+                        <div class="prozessschritt__media media">
                             <img src="images/content/prozess/evaluation-fragebogen.jpg" alt="Auswertung eines Usability-Tests anhand eines Fragebogens">
                         </div>
                     </article>
@@ -167,16 +173,18 @@
 
     <!-- Footer: sekundäre Navigation -->
     <footer id="footer" class="footer">
-        <nav aria-label="Seitenende">
-            <ul>
-                <li>
-                    <a href="impressum.html">Impressum</a>
-                </li>
-                <li>
-                    <a href="einstellungen.html">Einstellungen</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="footer__inner">
+            <nav aria-label="Seitenende">
+                <ul>
+                    <li>
+                        <a class="nav-link" href="impressum.html">Impressum</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="einstellungen.html">Einstellungen</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </footer>
 
 </body>
