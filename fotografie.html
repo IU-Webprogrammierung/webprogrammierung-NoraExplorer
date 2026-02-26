@@ -22,8 +22,8 @@
     <!-- Header-Komponente wird per jQuery nachgeladen -->
     <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
 
-    <!-- lädt components/header.html.component in <header> -->
-    <script src="js/header-include.js" defer></script>
+    <!-- lädt components/header.html.component in <header>  & components/footer.html.component in <footer> -->
+    <script src="js/layout-include.js" defer></script>
 
     <!-- Navigationsverhalten (offnet/schließt Offcanvas, Overlay, Fokus)-->
     <script src="js/nav.js" defer></script>
@@ -33,7 +33,7 @@
 <body>
     <!-- Skip-Link, um direkt zum Inhalt oder Footer zu springen -->
     <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
-    <a href="#footer" class="skip-link">Zum Seitenende springen</a>
+    <a href="#site-footer" class="skip-link">Zum Seitenende springen</a>
 
 
     <!-- Header: enthält die Hauptnavigation, wird nachgeladen -->
@@ -134,21 +134,8 @@
     </main>
 
 
-    <!-- Footer: sekundäre Navigation -->
-    <footer id="footer" class="footer">
-        <div class="footer__inner">
-            <nav aria-label="Seitenende">
-                <ul>
-                    <li>
-                        <a class="nav-link" href="impressum.html">Impressum</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="einstellungen.html">Einstellungen</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </footer>
+    <!-- Footer: sekundäre Navigation, wird nachgeladen -->
+    <footer id="site-footer" class="footer"></footer>
 
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!-- 
     Header Komponente:
-    wird per header-include.js in <header id="site-header" nachgeladen.
-    Enthält Desktop-NAvigation & Mobile-NAvigation inklusive Offcanvas und Overlay
+    wird per layout-include.js in <header id="site-header"> nachgeladen.
+    Enthält Desktop-Navigation & Mobile-Navigation inklusive Offcanvas und Overlay
 -->
 
 <div class="header__inner header__inner--mobilebar">

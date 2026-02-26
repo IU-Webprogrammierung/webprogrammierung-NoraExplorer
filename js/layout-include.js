@@ -1,12 +1,22 @@
 /*
-    Lädt die Header-Komponente in #site-header nach und setzt anschließend:
-    - aria-current="page" für den aktuellen Menüpunkt
-    - initialisiert die Offcanvas-Navigation (initHeaderNav)
+    Lädt Header & Footer Komponenten nach
 
+    Header: 
+        - lädt components/header.html.component in #site-header
+        - setzt aria-current="page" anhand Dateiname (data-page-mapping)
+        - initialisiert die Offcanvas-Navigation (initHeaderNav)
+
+    Footer: 
+        - lädt components/footer.html.component in #site-footer
+
+    Abhängigkeiten:
     - jQuery -> (für DOMReady & .load & Selektoren)
+    - nav.js (stellt window.initHeaderNav bereit)
 */
 
+
 $(function () {
+    /* --------------------------- Header: laden & initialisieren --------------------------- */
     // Lädt die HTML-Komponente in #site-header 
     $("#site-header").load("components/header.html.component", function (_response, status) {
         // Defensive: Falls Laden fehlschlägt, abbrechen 
@@ -39,5 +49,12 @@ $(function () {
         if (typeof window.initHeaderNav === "function") {
             window.initHeaderNav();
         }
+    });
+
+
+
+    /* --------------------------- Footer: laden --------------------------- */
+    $("#site-footer").load("components/footer.html.component", function (_response, status) {
+        if (status !== "success") return;
     });
 });

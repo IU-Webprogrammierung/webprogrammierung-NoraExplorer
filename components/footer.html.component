@@ -1,0 +1,12 @@
+<!-- 
+    Footer Komponente:
+    wird per layout-include.js in <footer id="site-footer"> nachgeladen.
+-->
+<div class="footer__inner">
+    <nav aria-label="Seitenende">
+        <ul>
+            <li><a class="nav-link" href="impressum.html">Impressum</a></li>
+            <li><a class="nav-link" href="einstellungen.html">Einstellungen</a></li>
+        </ul>
+    </nav>
+</div>

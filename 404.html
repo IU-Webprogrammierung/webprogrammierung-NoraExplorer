@@ -31,8 +31,8 @@
     <!-- Header-Komponente wird per jQuery nachgeladen -->
     <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
 
-    <!-- lädt components/header.html.component in <header> -->
-    <script src="js/header-include.js" defer></script>
+    <!-- lädt components/header.html.component in <header>  & components/footer.html.component in <footer> -->
+    <script src="js/layout-include.js" defer></script>
 
     <!-- Navigationsverhalten (offnet/schließt Offcanvas, Overlay, Fokus)-->
     <script src="js/nav.js" defer></script>
@@ -59,21 +59,8 @@
 
 
 
-    <!-- Footer: sekundäre Navigation -->
-    <footer id="footer" class="footer">
-        <div class="footer__inner">
-            <nav aria-label="Seitenende">
-                <ul>
-                    <li>
-                        <a href="impressum.html">Impressum</a>
-                    </li>
-                    <li>
-                        <a href="einstellungen.html">Einstellungen</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </footer>
+    <!-- Footer: sekundäre Navigation, wird nachgeladen -->
+    <footer id="site-footer" class="footer"></footer>
 
 </body>
 </html>
