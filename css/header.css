@@ -1,28 +1,19 @@
+/* --------------------------- Header (Desktop & Mobile) --------------------------- */
+
+
 /* --------------------------- Header --------------------------- */
-
-
-/* Header: Sticky */
 .header {
-    /*width: 100%;*/
     height: var(--header-height);
-    /*padding: 0 var(--nav-inset);*/
 
     position: sticky;
     top: 0;
-    z-index: 3000;
+    z-index: 9999;
 
     background: color-mix(in srgb, var(--surface) 80%, transparent);
     backdrop-filter: blur(14px) saturate(140%);
     border-bottom: 1px solid var(--border);
     box-shadow: var(--shadow-header);
     color: var(--text);
-
-    /*
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    */
-    
 }
 
 html[data-theme="dark"] .header {
@@ -34,131 +25,250 @@ html[data-theme="dark"] .header {
     padding: 0 var(--container-padding);
 
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
     gap: 0.5rem;
-
-    /*
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-    */
 }
 
 
 
-/* --------------------------- Mobile Navigation Toggle Button (vorläufig zunächst nur mit CSS und HTML) --------------------------- */
-/*  Toggle Button (für die mobile Navigation) 
-    Anmerkung: Ohne JS steuert der Button keinen persistenten Zustand */
-.header .nav-toggle__button {
-    display: inline-block;
-    padding: 0.5rem 0rem;
+/* --------------------------- Overlay & Panel --------------------------- */
+.nav-overlay {
+    /*display: none;*/
+    position: fixed;
+    inset: 0;
+    z-index: 4900;
 
-    cursor: pointer;
+    background: #00000073;
+    opacity: 0;
+    pointer-events: none;
 
-    position: relative;
-    z-index: 3100;
+    transition: opacity 200ms ease-in-out;
 }
 
-/* Sichtbarer Fokus für Tastatur-Nutzung */
-.header .nav-toggle__button:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: 4px;
-}
-
-
-
-/* --------------------------- Mobile Navigation Panel (Off-Canvas) --------------------------- */
-/* Mobile Standardzustand: Navigation ist geschlossen (nicht sichtbar) */
-/*
-.header .main-nav {
-    display: none;
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
 
     position: fixed;
-    top: var(--header-height);
+    top: 0;
     left: 0;
-    z-index: 2000;
+    z-index: 5000;
 
-    width: min(80vw, var(--nav-panel-width));
-    height: calc(100dvh - var(--header-height));
+    width: min(80vw, 45rem);
+    height: 100dvh;
 
-    padding: 1.5rem var(--nav-inset);
-    background-color: var(--color-background-secondary);
+    padding: 2rem 4rem;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    box-shadow: var(--shadow-header);
+
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    transform: translateX(-150%);
+    transition: transform 0.8s cubic-bezier(0.25,0.10,0.25,1.00);
+    will-change: transform;
 }
 
-/*  Ein-/Ausblenden erfolgt vorläufig nur über :focus-within.
-    Sobald der Fokus im Header liegt wird das Panel sichtbar. */
-/*
-.header:focus-within .main-nav {
-    display: block;
+/* Open State (per JS: body.nav-open */
+body.nav-open {
+    overflow: hidden; /* Scroll Lock */
 }
-*/
 
-/* Navigation als verlinkte Linkliste */
-.header .main-nav ul {
+body.nav-open .nav-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+body.nav-open .mobile-nav {
+    transform: translateX(0);
+}
+
+/* Hidden Attribute: initial geschlossen */
+.mobile-nav[hidden],
+.nav-overlay[hidden] {
+    display: none;
+}
+
+
+
+/* --------------------------- Panel Header --------------------------- */
+.mobile-nav__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0.75rem;
+}
+
+.mobile-nav__title {
+    margin: 0;
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-base);
+    color: var(--muted);
+}
+
+.mobile-nav__close {
+    width: 32px;
+    height: 32px;
+
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.mobile-nav__close:focus-visible {
+    outline: var(--focus-outline) solid var(--focus-ring);
+    outline-offset: var(--focus-offset);
+}
+
+
+/* --------------------------- Panel Links --------------------------- */
+.mobile-nav__links ul,
+.mobile-nav__secondary ul {
     list-style: none;
     margin: 0;
     padding: 0;
 
+    display: grid;
+    gap: 0.25rem;
+}
+
+.mobile-nav__links a.nav-link,
+.mobile-nav__secondary a.nav-link {
+    display: block;
+    padding: 1rem 0rem;
+    border-radius: 0.75rem;
+
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-base);
+}
+
+/* Active Indicator im Panel */
+.mobile-nav__links a.nav-link[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+
+    left: 0rem;
+    right: 0rem;
+    bottom: 0.15rem;
+    height: 4px;
+
+    background: var(--accent-500);
+    border-radius: var(--radius-pill);
+}
+
+.mobile-nav__divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1rem 0;
+    margin-top: auto;
+}
+
+/*
+.mobile-nav__secondary {
+    margin-top: 0;
+}
+
+.mobile-nav__secondary ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: grid;
+    gap: 0.25rem;
+}
+
+.mobile-nav__secondary a.nav-link {
+    display: block;
+    padding: 1rem 0;
+    border-radius: 0.75rem;
+
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-base);
+}
+*/
+
+
+
+/* --------------------------- Logo --------------------------- */
+.header__center {
+    flex: 1;
     display: flex;
-    flex-wrap: wrap;
-    /*flex-direction: column;*/
-    gap: 3rem;
+    justify-content: center;
     align-items: center;
-    justify-content: center;
+    min-width: 0;
 }
 
-.header__cta {
-    display: flex;
-    justify-content: center;
-    /*margin-top: 0.5rem;*/
+.header__center .icon-button {
+    width: 86px;
+    height: 46px;
+
+    padding: 6px 10px;
+    border-radius: var(--radius-pill);
+    border: 1px solid transparent;
+    background: transparent;
+}
+
+.header__center img {
+    display: block;
+    height: 32px;
+    width: auto;
+    max-width: 180px;
+     
+}
+
+.header__center .icon-button:active {
+    transform: translateY(1px);
+}
+
+.header__logo{
+    width: auto;
+    height: auto;
+    padding: 8px 12px;
+    line-height: 0;
+}
+
+.header__logo-img{
+    display: none;
+    height: 32px;
+    width: auto;
+}
+
+.header__center .header__logo-img {
+  display: none !important;
+}
+
+.header__center .header__logo-img:hover {
+    filter: drop-shadow(0 1px 8px color-mix(in srgb, var(--accent-500) 70%, transparent));
+}
+
+html[data-theme="light"] .header__logo-img--lightmode { 
+    display: block !important; 
+}
+
+html[data-theme="dark"] .header__logo-img--darkmode { 
+    display: block !important; 
 }
 
 
-/* --------- Breakpoints: Header Inline Navigation --------- */
-/*  Breakpoint ab 1024px:
-    Navigation wird inline angezeigt und der Toggle-Button ausgeblendet. */
+
+/* --------------------------- Desktop --------------------------- */
 @media (min-width: 1024px) {
-    /*
-    header.header {
-        justify-content: center;
-    }
-
-    .header .nav-toggle__button {
+    #navToggle {
         display: none;
-    }   
-
-    .header .main-nav {
-        display: block;
-
-        position: static;
-        width: auto;
-        height: auto;
-        padding: 0;
-
-        background-color: transparent;
-        overflow: visible;
     }
 
-    .header .main-nav ul {
-        flex-direction: row;
-        gap: 1.5rem;
-
-        align-items: center;
-        justify-content: center;
-
-        flex-wrap: wrap;
-    }
-    */
-
-    .header__inner {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        /*grid-template-columns: 1fr auto;*/
-        /*column-gap: 2rem;*/
+    .nav-overlay,
+    .mobile-nav {
+        display: none !important;
     }
 
     .header .main-nav {
@@ -167,11 +277,69 @@ html[data-theme="dark"] .header {
         justify-content: center;
     }
 
-    .header__cta {
-        justify-content: flex-end;
-        /*
-        justify-self: end;
-        margin-top: 0;
-        */
+    .header .main-nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        display: flex;
+        gap: 3rem;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .main-nav__home-link{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 0;
+        padding: 0.25rem 0; 
+    }
+
+    .main-nav__logo-img{
+        display: none;
+        height: 32px;
+        width: auto;
+    }
+
+    html[data-theme="light"] .main-nav__logo-img--lightmode { 
+        display: block; 
+    }
+
+    html[data-theme="dark"] .main-nav__logo-img--darkmode { 
+        display: block; 
+    }
+
+    .main-nav__home-link:hover .main-nav__logo-img {
+        filter: drop-shadow(0 1px 8px color-mix(in srgb, var(--accent-500) 70%, transparent));
+    }
+
+    .header__center { 
+        display: none; 
+    }
+
+    .main-nav__divider{
+        width: 1px;
+        height: 22px;
+        background: var(--border);
+        align-self: center;
+    }
+}
+
+
+
+/* --------------------------- Mobile --------------------------- */
+@media (max-width: 1023px) {
+    #main-nav {
+        display: none;
+    }
+
+    .header__center {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .header__cta--always .button {
+        white-space: nowrap;
     }
 }

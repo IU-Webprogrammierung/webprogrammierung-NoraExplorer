@@ -18,6 +18,15 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/projekte.css">
+
+    <!-- Header-Komponente wird per jQuery nachgeladen -->
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+
+    <!-- lädt components/header.html.component in <header> -->
+    <script src="js/header-include.js" defer></script>
+
+    <!-- Navigationsverhalten (offnet/schließt Offcanvas, Overlay, Fokus)-->
+    <script src="js/nav.js" defer></script>
 </head>
 
 
@@ -27,32 +36,8 @@
     <a href="#footer" class="skip-link">Zum Seitenende springen</a>
 
 
-    <!-- Header: enthält die Hauptnavigation -->
-    <header class="header">
-        <!-- TODO: In Projektphase 2 soll es mit JS erweitert werden -->
-        <!--
-        <button class="nav-toggle__button" type="button">
-            Menü
-        </button>
-        -->
-        
-        <!-- Hauptnavigation, aktueller Menüpunkt mit aria-current="page" -->
-        <div class="header__inner">
-            <nav id="main-nav" class="main-nav" aria-label="Hauptseiten">
-                <ul>
-                    <li><a class="nav-link" href="index.html">Startseite</a></li>
-                    <li><a class="nav-link" href="ueber.html">Über mich</a></li>
-                    <li><a class="nav-link" href="fotografie.html">Fotografie</a></li>
-                    <li><a class="nav-link" href="projekte.html" aria-current="page">Projekte</a></li>
-                    <li><a class="nav-link" href="prozess.html">Prozess</a></li>
-                </ul>
-            </nav>
-
-            <div class="header__cta">
-                <a class="button button--primary" href="einstellungen.html">Einstellungen</a>
-            </div>
-        </div>
-    </header>
+    <!-- Header: enthält die Hauptnavigation, wird nachgeladen -->
+    <header class="header" id="site-header"></header>
 
 
     <!-- Main: Hauptinhalt der Seite -->
@@ -67,6 +52,7 @@
                 wie ich mich mit unterschiedlichen Themen, Medien und Ideen auseinandersetze.
             </p>
 
+            <!-- CTA: Sprung zur nächsten Sektion-->
             <p class="hero__actions">
                 <a class="button button--primary" href="#projektuebersicht-heading">
                     Mehr erfahren

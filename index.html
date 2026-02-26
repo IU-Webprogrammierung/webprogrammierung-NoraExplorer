@@ -17,6 +17,15 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/index.css">
+
+    <!-- Header-Komponente wird per jQuery nachgeladen -->
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+
+    <!-- lädt components/header.html.component in <header> -->
+    <script src="js/header-include.js" defer></script>
+
+    <!-- Navigationsverhalten (offnet/schließt Offcanvas, Overlay, Fokus)-->
+    <script src="js/nav.js" defer></script>
 </head>
 
 
@@ -30,31 +39,9 @@
     <a href="#footer" class="skip-link">Zum Seitenende springen</a>
 
 
-    <!-- Header: enthält die Hauptnavigation -->
-    <header class="header">
-        <!-- TODO: In Projektphase 2 soll es mit JS erweitert werden -->
-        <!--
-        <button class="nav-toggle__button" type="button">
-            Menü
-        </button>
-        -->
-        
-        <!-- Hauptnavigation, aktueller Menüpunkt mit aria-current="page" -->
-        <div class="header__inner">
-            <nav id="main-nav" class="main-nav" aria-label="Hauptseiten">
-                <ul>
-                    <li><a class="nav-link" href="index.html" aria-current="page">Startseite</a></li> 
-                    <li><a class="nav-link" href="ueber.html">Über mich</a></li>
-                    <li><a class="nav-link" href="fotografie.html">Fotografie</a></li>
-                    <li><a class="nav-link" href="projekte.html">Projekte</a></li>
-                    <li><a class="nav-link" href="prozess.html">Prozess</a></li>
-                </ul>
-            </nav>
-
-            <div class="header__cta">
-                <a class="button button--primary" href="einstellungen.html">Einstellungen</a>
-            </div>            
-        </div>
+    <!-- Header: enthält die Hauptnavigation, wird via header-include.js nachgeladen -->
+    <header class="header" id="site-header">
+        <!-- Ausgelagert in components/header.html.component -->
     </header>
 
 
@@ -69,12 +56,10 @@
              <div class="hero__media">
                 <img src="images/content/index/hero-portrait.jpg" alt="Portrait von Nora Mikus">
              </div>
-            
         </section>
-
-
+        
         <!-- Teaser: Einstieg "Über mich" -->
-         <section class="teaser teaser--ueber" aria-labelledby="ueber-heading">
+        <section class="teaser teaser--ueber" aria-labelledby="ueber-heading">
             <h2 id="ueber-heading" class="teaser__heading">Über mich</h2>
             <p class="teaser__text">
                 <span class="break">
@@ -87,11 +72,11 @@
             </p>
 
             <a class="teaser__link button button--ghost" href="ueber.html" aria-label="Mehr über mich erfahren">Mehr erfahren</a>
-         </section>
+        </section>
 
 
-         <!-- Teaser: "Fotografie" mit kleiner Bildvorschau -->
-         <section class="teaser teaser--fotografie" aria-labelledby="fotografie-heading">
+        <!-- Teaser: "Fotografie" mit kleiner Bildvorschau -->
+        <section class="teaser teaser--fotografie" aria-labelledby="fotografie-heading">
             <h2 id="fotografie-heading" class="teaser__heading">Fotografie</h2>
             <p class="teaser__text">Fotografie ist meine Art, Momente einzufangen und Geschichten zu erzählen.</p>
 
@@ -105,28 +90,28 @@
             </ul>
 
             <a class="teaser__link button button--ghost" href="fotografie.html" aria-label="Mehr über Fotografie erfahren">Mehr erfahren</a>
-         </section>
+        </section>
 
 
-         <!-- Teaser: "Projekte" mit Bildvorscheu -->
-         <section class="teaser teaser--projekte" aria-labelledby="projekt-heading">
+        <!-- Teaser: "Projekte" mit Bildvorscheu -->
+        <section class="teaser teaser--projekte" aria-labelledby="projekt-heading">
             <h2 id="projekt-heading" class="teaser__heading">Projekte</h2>
             <!-- <p class="teaser__text">Lorem ipsum dolor sit amet</p> -->
 
             <ul class="projekt-preview" aria-label="Beispielfotos von Projekten">
                 <li class="projekt-preview__item media">
-                    <img class="media__inner" class="teaser__media" src="images/content/projekte/hero-projekte.jpg" alt="Darstellung verschiedener Apps und Websites auf verschiedenen Endgeräten">
+                    <img class="media__inner teaser__media" src="images/content/projekte/hero-projekte.jpg" alt="Darstellung verschiedener Apps und Websites auf verschiedenen Endgeräten">
                 </li>
 
                 <!-- hier ggf. weitere list-item-elemente ergänzen, falls mehr Vorschaubilder benötigt werden-->
             </ul>
 
             <a class="teaser__link button button--ghost" href="projekte.html" aria-label="Mehr zu den Projekten erfahren">Mehr erfahren</a>
-         </section>
+        </section>
 
 
-         <!-- Teaser: "Prozess" als kurze Vorschau mit <details> und <summary> für eine native Interaktion (auch mit Tastatur) -->
-         <section class="teaser teaser--prozess" aria-labelledby="prozess-heading">
+        <!-- Teaser: "Prozess" als kurze Vorschau mit <details> und <summary> für eine native Interaktion (auch mit Tastatur) -->
+        <section class="teaser teaser--prozess" aria-labelledby="prozess-heading">
             <h2 id="prozess-heading" class="teaser__heading">Prozess</h2>
 
             <!-- Prozessvorschau: Darstellung mit aufklappbaren Inhalten-->
@@ -192,7 +177,7 @@
             </div>
 
             <a class="teaser__link button button--ghost" href="prozess.html" aria-label="Mehr über den Prozess erfahren">Mehr erfahren</a>
-         </section>
+        </section>
     </main>
 
 

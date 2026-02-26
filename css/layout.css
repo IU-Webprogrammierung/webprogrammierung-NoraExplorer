@@ -1,8 +1,8 @@
-/* --------------------------- Seitenlayout & Grid-System --------------------------- */
+/* --------------------------- Grid-System & grundlegende Layout-Resets --------------------------- */
 
 
 
-/* --------- Main Reset --------- */
+/* --------------------------- Resets --------------------------- */
 main {
     margin: 0;
     padding: 0;
@@ -20,7 +20,8 @@ img {
 }
 
 
-/* --------- Grid-System: Spaltenzahl, Gap & Außenabstände über CSS-Variablen--------- */
+
+/* --------------------------- Grid --------------------------- */
 .grid {
     display: grid;
     grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
@@ -28,10 +29,6 @@ img {
 
     padding-left: var(--container-padding);
     padding-right: var(--container-padding);
-
-    /*margin: var(--margin-top-bottom) var(--margin-sides);*/
-
-    /*align-content: start;*/
 }
 
 /* Default: alle direkten Kinder belegen die volle Breite */
@@ -41,7 +38,7 @@ img {
 
 
 
-/* --------- Zeilenumbruch --------- */
+/* Zeilenumbruch (für gezielte Zeilenumbrüche in Texten) */
 .break {
     display: block;
 }
