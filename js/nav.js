@@ -17,7 +17,14 @@ window.initHeaderNav = function initHeaderNav() {
     const closeBtn = mobileNav?.querySelector("[data-nav-close]");
 
     // Guard Clause 
-    if (!toggleBtn || !mobileNav || !overlay || !closeBtn) return;
+    if (!toggleBtn || !mobileNav || !overlay || !closeBtn) {
+        return;
+    }
+
+    if (toggleBtn.dataset.navInitialized === "true") {
+        return;
+    }
+    toggleBtn.dataset.navInitialized = "true";
 
     // 
     let lastActiveElement = null;
@@ -33,7 +40,7 @@ window.initHeaderNav = function initHeaderNav() {
 
     // aria-expanded: Zustand des Toggle-Buttons ist geschlossen
     toggleBtn.setAttribute("aria-expanded", "false");
-
+    toggleBtn.setAttribute("aria-label", "Menü öffnen");
 
     /* --------------------------- Fokus-Utilities --------------------------- */
     // CSS-Selektor für Elemente, die per Tastatur fokussierbar sind
@@ -41,19 +48,24 @@ window.initHeaderNav = function initHeaderNav() {
         'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
     // Liefert alle fokussierbaren Elemente innerhalb eines Containers und filtert disabled Elemente sowie aria-hidden="true" raus
-    const getFocusable = (root) =>
-        [...root.querySelectorAll(focusableSelector)].filter(
-            (el) => !el.hasAttribute("disabled") && el.getAttribute("aria-hidden") !== "true"
-        );
+    const getFocusable = (root) => {
+        return [...root.querySelectorAll(focusableSelector)].filter((el) => {
+            return !el.hasAttribute("disabled") && el.getAttribute("aria-hidden") !== "true";
+        });
+    };
 
     // Prüft, ob Offcanvas aktuell offen ist
-    const isOpen = () => document.body.classList.contains("nav-open");
+    const isOpen = () => {
+        return document.body.classList.contains("nav-open");
+    };
 
 
     /* --------------------------- Open/Close Logik --------------------------- */
     // Öffnet das Offcanvas Menü
     const openNav = () => {
-        if (isOpen()) return;
+        if (isOpen()) {
+            return;
+        }
 
         // Fokusposition vor Öffnen merken
         lastActiveElement = document.activeElement;
@@ -73,13 +85,20 @@ window.initHeaderNav = function initHeaderNav() {
 
         // Fokus ins Panel setzen
         const focusables = getFocusable(mobileNav);
-        (focusables[0] || closeBtn).focus();
+        if (focusables.length > 0) {
+            focusables[0].focus();
+        } else {
+            closeBtn.focus();
+        }
+        /*(focusables[0] || closeBtn).focus();*/
     };
 
 
     // Schließt das Offcanvas Menü
     const closeNav = () => {
-        if (!isOpen()) return;
+        if (!isOpen()) {
+            return;
+        }
 
         // CSS-State dektivieren
         document.body.classList.remove("nav-open");
@@ -106,16 +125,28 @@ window.initHeaderNav = function initHeaderNav() {
     /* --------------------------- Event Handler --------------------------- */
     // Toggle Button 
     toggleBtn.addEventListener("click", () => {
-        isOpen() ? closeNav() : openNav();
+        if (isOpen()) {
+            closeNav();
+        } else {
+            openNav();
+        }
+        /*isOpen() ? closeNav() : openNav();*/
     });
 
     // Close-Button und Overlay
-    closeBtn.addEventListener("click", closeNav);
-    overlay.addEventListener("click", closeNav);
+    closeBtn.addEventListener("click", () => {
+        closeNav();
+    });
+
+    overlay.addEventListener("click", () => {
+         closeNav();
+    });
 
     // Tastatursteuerung 
     document.addEventListener("keydown", (e) => {
-        if (!isOpen()) return;
+        if (!isOpen()) {
+            return;
+        }
 
         // Esc schließt das Menü
         if (e.key === "Escape") {
@@ -127,7 +158,9 @@ window.initHeaderNav = function initHeaderNav() {
         // Tab als Focus Trap (Fokus innerhalb des Pannels)
         if (e.key === "Tab") {
             const focusables = getFocusable(mobileNav);
-            if (focusables.length === 0) return;
+            if (focusables.length === 0) {
+                return;
+            }
 
             const first = focusables[0];
             const last = focusables[focusables.length - 1];
@@ -136,7 +169,7 @@ window.initHeaderNav = function initHeaderNav() {
             if (e.shiftKey && document.activeElement === first) {
                 e.preventDefault();
                 last.focus();
-            //Tab am letzten Element -> springt zum ersten
+            // Tab am letzten Element -> springt zum ersten
             } else if (!e.shiftKey && document.activeElement === last) {
                 e.preventDefault();
                 first.focus();
@@ -147,7 +180,9 @@ window.initHeaderNav = function initHeaderNav() {
     // Klick auf einen Link im Panel
     mobileNav.addEventListener("click", (e) => {
         const link = e.target.closest("a[href]");
-        if (link) closeNav();
+        if (link) { 
+            closeNav();
+        }
     });
 
     // Responsive: wenn auf Desktop gewechselt wird, schließt das Mobile Panel
@@ -159,7 +194,9 @@ window.initHeaderNav = function initHeaderNav() {
 
     // Klick außerhalb (zusätzlich zum Overlay): Defensive UX (schließt auch, falls das Overlay nicht greift)
     document.addEventListener("click", (e) => {
-        if (!isOpen()) return;
+        if (!isOpen()) {
+            return;
+        }
 
         const clickedInsideNav = mobileNav.contains(e.target);
         const clickedToggle = toggleBtn.contains(e.target);
