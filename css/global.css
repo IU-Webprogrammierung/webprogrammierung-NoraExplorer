@@ -60,6 +60,7 @@
 
     /* Accentfarben */
     --accent-100: #fff1e8;
+    --accent-200: #aca39e;
     --accent-500: #ff6a00;
     --accent-600: #ea580c;
     --accent-700: #c2410c;
@@ -105,7 +106,7 @@ html[data-theme="dark"] {
     --bg: #0b1220;
     --surface: #111c33;
     --text: #f8fafc;
-    --muted: #a7b3c6;
+    --muted: #c9d1df;
     --border: #f8fafc1f;
 
     --focus-ring: #ff8a3db3;
