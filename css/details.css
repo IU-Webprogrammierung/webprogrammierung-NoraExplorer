@@ -110,11 +110,17 @@
     margin-bottom: 4rem;
 }
 
-/*
+
 .detailseite .content__heading {
-    
+    font-size: calc(var(--font-size-h2) * 0.5);
+    font-weight: var(--font-weight-semibold);
+    color: var(--muted);
+
+    margin-bottom: 4rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.75rem;
 }
-*/
+
 
 /* Robustheit für alle direkten Kinder */
 .detailseite .content > * {

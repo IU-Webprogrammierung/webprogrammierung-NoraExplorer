@@ -1,23 +1,36 @@
 /* --------------------------- Detailseite "Prozess" --------------------------- */
 
 
+/* Anchor-Offset für Sprungmarke "Prozessschritte" */
+#schritte-heading {
+    scroll-margin-top: calc(var(--header-height) + 4rem);
+}
 
-/* --------- Prozess-Liste: Reset, vertikales Spacing & Counter-Setup (mobilefirst) --------- */
+
+
+/* --------- Prozess-Liste --------- */
+/* Grid Container & Start des CSS Counters */
 .detailseite.seite-prozess .prozess {
     display: grid;
-    gap: 4rem;
+    gap: 6rem;
     margin: 0;
     padding: 0;
-
     list-style: none;
 
-    /* Startet den Counter für die Pseudo-Nummer in .prozessschritt::before */
+    /* Startet den Counter für die Pseudo-Nummer */
     counter-reset: schritt; 
+}
+
+/* Reset für <li> */
+.detailseite.seite-prozess .prozess__item {
+    margin: 0;
+    padding: 0;
 }
 
 
 
 /* --------- Prozessschritt (mobilefirst) --------- */
+/* Mobile: vertikale Reihenfolge mit Grid Areas */
 .detailseite.seite-prozess .prozessschritt {
     display: grid;
     gap: 1rem;
@@ -29,25 +42,30 @@
         "media";
 
     align-items: start;
+    position: relative;
+
+    /* Counter pro Schritt erhöhen */
+    counter-increment: schritt;
 }
 
-/* Nummerierung: CSS Counter als Pseudo-Element */
-.detailseite.seite-prozess .prozessschritt::before {
+/* Nummer (wird per CSS erzeugt) */
+.detailseite.seite-prozess .prozessschritt__nr {
     grid-area: number;
-    
-    counter-increment: schritt;
-    content: counter(schritt, decimal-leading-zero);
 
     display: block;
-    min-width: 0;
+    margin: 0;
+    line-height: 0.85;
+    
 
     font-weight: var(--font-weight-bold);
-    /*line-clamp: clapm(1.4rem, 1.1rem + 1.2vw, 2.2rem);*/
-    font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2.2rem);
+    font-size: calc(var(--font-size-base) * 3);
     letter-spacing: 0.04em;
-    color: color-mix(in srgb, var(--text) 75%, var(--accent-500) 25%);
-    line-height: 1;
+    color: color-mix(in srgb, var(--muted) 80%, transparent);
+}
 
+/* Ausgabe: 01, 02, 03 etc. */
+.detailseite.seite-prozess .prozessschritt__nr::before {
+    content: counter(schritt, decimal-leading-zero);
 }
 
 
@@ -60,12 +78,12 @@
     grid-area: text;
 }
 
+
+/* Bildbereich mit festem Seitenverhältnis */
 .detailseite.seite-prozess .prozessschritt__media {
     grid-area: media;
-
     align-self: center;
 
-    /*margin: 0;*/
     overflow: hidden;
     aspect-ratio: 4 / 3;
 }
@@ -87,27 +105,20 @@
 /* --------- Breakpoints: Content Prozess --------- */
 /* Breakpoint ab 768px */
 @media (min-width: 768px) {
-    .detailseite.seite-prozess .prozess {
-        gap: 6rem;
-    }
-        
     .detailseite.seite-prozess .prozessschritt {
         gap: 1.5rem;
+        row-gap: 1rem;
 
-        grid-template-columns: 1fr 4fr 2fr;
-        grid-template-areas: 
-            "number heading media"
-            ".      text    media"; 
-    }
-}
+        grid-template-columns: 6rem 4fr 2fr;
+        grid-template-rows: 1fr 8fr;
+        grid-template-areas:
+        "number heading media"
+        "number text    media";
 
-/* Breakpoint ab 1280px */
-@media (min-width: 1280px) {
-    .detailseite.seite-prozess .prozess {
-        gap: 12rem;
+        align-items: start;
     }
-        
-    .detailseite.seite-prozess .prozessschritt {
-        gap: 2rem;
+
+    .detailseite.seite-prozess .prozessschritt__nr {
+        justify-self: start;
     }
 }
