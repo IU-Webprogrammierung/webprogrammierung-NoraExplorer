@@ -52,16 +52,25 @@
 
 
 
-    <main id="main" class="grid not-found">
-        <h1 class="not-found__heading">404</h1>
+    <main id="main" class="grid not-found" aria-labelledby="not-found-title">
 
-        <p class="not-found__text">Sorry, diese Seite konnte leider nicht gefunden werden.</p>
-
-        <a class="not-found__link" href="index.html">Zurück zur Startseite</a>
-
+        <!-- Bild-Card mit "404" Overlay -->
         <div class="not-found__pic">
-            <img class="media" src="images/content/404.jpg" alt="Illustration zur 404 Fehlermeldung">
+            <img src="images/content/404.jpg" alt="Illustration zur 404 Fehlermeldung">
+
+            <div class="not-found__overlay">
+                <h1 class="not-found__heading" id="not-found-title">404</h1>
+            </div>
         </div>
+
+        <!-- Kurze Erklärung -->
+        <p class="not-found__text">Ups, diese Seite konnte leider nicht gefunden werden.</p>
+
+        <!-- Link zurück zur Startseite -->
+        <div class="not-found__link">
+            <a class="button button--ghost" href="index.html">Zurück zur Startseite</a>
+        </div>
+
     </main>
 
 

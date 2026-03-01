@@ -1,38 +1,76 @@
-/* 
-    Hinweis:
-    404 dient aktuell als Platzhalter.
-    Erweiterungen erfolgen bewusst erst in der Projektphase 2 & 3. 
-
-    Geplante Funktionen:
-    * Klare Fehlermeldungen 
-    * Link zurück zu den Hauptseiten 
-*/
-
+/* --------------------------- 404-Seite --------------------------- */
 .not-found {
-    row-gap: 2rem;
-    padding-block: 2rem;
+    row-gap: 1rem;
+    padding-block: 1rem;
     margin-block: 1rem;
 }
 
-.not-found__heading,
-.not-found__text,
-.not-found__link, 
+.not-found__text, 
+.not-found__link,
 .not-found__pic {
-    margin: 0;
     justify-self: center;
-}
-
-.not-found__pic img {
-    max-width: 100%;
-    max-height: 100vh;
-    width: auto;
-    height: auto;
+    text-align: center;
 }
 
 
-/* Breakpoint ab 1280px */
-@media (min-width: 1280px) {
-    .not-found {
-        margin-block: 6rem;
-    }
+/* --------------------------- Bild-Card --------------------------- */
+.not-found__pic {
+    position: relative;
+    justify-self: center;
+    
+    width: min(80vw, 900px);
+    height: clamp(320px, 60vw, 520px);
+
+    border-radius: var(--radius-l);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    border: 2px solid var(--accent-500);
+}
+
+/* Bild innerhalb der Card (füllt den Container vollständig) */
+.not-found__pic > img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* --------------------------- Overlay: h1("404") liegt über dem Bild --------------------------- */
+.not-found__overlay {
+    position: absolute;
+    inset: 0;
+    
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    
+    padding: clamp(1rem, 3vw, 2.5rem);
+    margin: 3rem;
+}
+
+
+/* Überschrift */
+.not-found__heading {
+    margin: 0;
+    font-size: calc(var(--font-size-h1) * 1.6);
+    color: #0f172a;
+}
+
+
+/* --------------------------- Erklärungstext unterhalb des Bildes --------------------------- */
+.not-found__text {
+    max-width: 60ch;
+    margin: 0;
+    font-size: calc(var(--font-size-base) * 1.6);
+    font-weight: var(--font-weight-semibold);
+}
+
+html[data-theme="light"] .not-found__text {
+    color: #0f172a;
+}
+
+html[data-theme="dark"] .not-found__text {
+    color: #ffc116;
 }

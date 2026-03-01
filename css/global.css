@@ -91,7 +91,7 @@ html[data-theme="light"] {
     --hero-bg: linear-gradient(180deg, #eef4ff 0%, #f3f6fc 100%);
     --hero-band: linear-gradient(180deg, #bfd4ff 0%, #eef4ff 75%, var(--bg) 100%);
 
-    --shadow-soft: 0 10px 30px #0f172a14;
+    --shadow-soft: 0 10px 30px #0f172a2c;
     --shadow-header: 0 8px 20px #0f172a0f;
 
     --icon-fg: var(--text);
@@ -114,7 +114,7 @@ html[data-theme="dark"] {
     --hero-bg: linear-gradient(180deg, #132b55 0%, #0b1220 100%);
     --hero-band: linear-gradient(180deg, #0d3281 0%, #0d172c 75%, var(--bg) 100%);
 
-    --shadow-soft: 0 10px 30px #00000066;
+    --shadow-soft: 0 10px 30px #50474050;
     --shadow-header: 0 8px 20px #0000004d;
 
     --icon-fg: var(--text);
