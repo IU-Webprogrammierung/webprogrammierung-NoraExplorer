@@ -44,6 +44,9 @@
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
     --line-height-base: 1.6;
+    --letter-spacing-body: normal;
+    --word-spacing: normal;
+
 
     /* User Setting (Default): Schriftgröße */
     --user-font-scale: 1; 
@@ -206,6 +209,8 @@ body {
     font-size: var(--font-size-base);
     line-height: var(--line-height-base);
     font-weight: var(--font-weight-regular);
+    letter-spacing: var(--letter-spacing-body);
+    word-spacing: var(--word-spacing);
 
     color: var(--text);
     background: var(--bg);
