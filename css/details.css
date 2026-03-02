@@ -112,7 +112,7 @@
 
 
 .detailseite .content__heading {
-    font-size: calc(var(--font-size-h2) * 0.5);
+    font-size: calc(var(--font-size-h2) * 0.6);
     font-weight: var(--font-weight-semibold);
     color: var(--muted);
 

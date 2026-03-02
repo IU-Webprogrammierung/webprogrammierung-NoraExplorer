@@ -16,7 +16,7 @@
     /* Layout */
     --header-height: 5.5rem;
     --footer-height: 5.5rem;
-    --container-padding: 24px;
+    --container-padding: 32px;
 
     /* Grid (wird mit Breakpoints überschrieben) */
     --columns: 4;
@@ -52,7 +52,8 @@
     --font-size-extra-small: calc(clamp(0.68rem, 0.64rem + 0.2vw, 0.75rem) * var(--user-font-scale));
     --font-size-small: calc(clamp(0.75rem, 0.7rem + 0.25vw, 0.95rem) * var(--user-font-scale));
     --font-size-base: calc(clamp(0.95rem, 0.85rem + 0.45vw, 1.15rem) * var(--user-font-scale));
-    --font-size-h3: calc(clamp(1.05rem, 0.95rem + 0.9vw, 1.75rem) * var(--user-font-scale));
+    --font-size-h4: calc(clamp(1rem, 0.95rem + 0.85vw, 1.7rem) * var(--user-font-scale));
+    --font-size-h3: calc(clamp(1.1rem, 0.95rem + 0.9vw, 1.75rem) * var(--user-font-scale));
     --font-size-h2: calc(clamp(1.35rem, 1.1rem + 1.6vw, 2.75rem) * var(--user-font-scale));
     --font-size-h1: calc(clamp(1.8rem, 1.4rem + 3.6vw, 6rem) * var(--user-font-scale));
     --font-size-hero-lead: calc(clamp(0.95rem, 0.8rem + 0.9vw, 1.55rem) * var(--user-font-scale));
@@ -91,7 +92,7 @@ html[data-theme="light"] {
     --hero-bg: linear-gradient(180deg, #eef4ff 0%, #f3f6fc 100%);
     --hero-band: linear-gradient(180deg, #bfd4ff 0%, #eef4ff 75%, var(--bg) 100%);
 
-    --shadow-soft: 0 10px 30px #0f172a2c;
+    --shadow-soft: 0 10px 30px #0f172a21;
     --shadow-header: 0 8px 20px #0f172a0f;
 
     --icon-fg: var(--text);
@@ -114,7 +115,7 @@ html[data-theme="dark"] {
     --hero-bg: linear-gradient(180deg, #132b55 0%, #0b1220 100%);
     --hero-band: linear-gradient(180deg, #0d3281 0%, #0d172c 75%, var(--bg) 100%);
 
-    --shadow-soft: 0 10px 30px #50474050;
+    --shadow-soft: 0 10px 30px #50474031;
     --shadow-header: 0 8px 20px #0000004d;
 
     --icon-fg: var(--text);
