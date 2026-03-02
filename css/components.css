@@ -298,6 +298,8 @@
 
     border: 1px solid var(--border);
     background: #ffffff59;
+
+    width: min(100%, 26rem);
 }
 
 html[data-theme="dark"] .hero__media {
