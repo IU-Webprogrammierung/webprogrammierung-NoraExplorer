@@ -97,6 +97,7 @@ html[data-theme="light"] {
 
     --shadow-soft: 0 10px 30px #0f172a21;
     --shadow-header: 0 8px 20px #0f172a0f;
+    --accent-glow: 0 0 30px color-mix(in srgb, var(--accent-600) 20%, transparent);
 
     --icon-fg: var(--text);
     --icon-bg-hover: color-mix(in srgb, var(--accent-500) 100%, transparent);
@@ -120,6 +121,7 @@ html[data-theme="dark"] {
 
     --shadow-soft: 0 10px 30px #50474031;
     --shadow-header: 0 8px 20px #0000004d;
+    --accent-glow: 0 0 30px color-mix(in srgb, var(--accent-500) 70%, transparent);
 
     --icon-fg: var(--text);
     --icon-bg-hover: color-mix(in srgb, var(--accent-500) 90%, transparent);

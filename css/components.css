@@ -147,6 +147,7 @@
 
     background: var(--surface);
     border-radius: var(--radius-l);
+    border: 1px solid var(--border);
 }
 
 .accordion + .accordion {
