@@ -252,8 +252,17 @@
     margin-left: -50vw;
     margin-right: -50vw;
 
-    background: var(--hero-band, var(--hero-bg));
+    /*background: var(--hero-band, var(--hero-bg));*/
+
     z-index: -1;
+}
+
+html[data-theme="dark"] .hero::before {
+    background: linear-gradient(90deg, var(--bg) 0%, var(--surface) 65%, var(--accent-contrast) 100%);
+}
+
+html[data-theme="light"] .hero::before {
+    background: linear-gradient(90deg, var(--accent-contrast) 0%, var(--bg) 65%, var(--surface) 100%);
 }
 
 .hero::after {
