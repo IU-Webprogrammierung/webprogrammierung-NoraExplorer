@@ -13,18 +13,22 @@
     --projekt-bg-url: none;
 
     /* Eineitliche Innenabstände */
-    --inner-pad: clamp(1rem, 2vw, 1.75rem);
+    --inner-pad: 0rem;
 
     /* Zusätzlicher "Inset" innerhalb des Projektrahmens */
-    --card-inset: clamp(0.75rem, 1.5vw, 1.25rem); 
+    --card-inset: 0rem;
+    
 
+    /*
     position: relative;
     isolation: isolate; /* hält ::before/::after z-index im eigenen Kontext */
     margin: 0;
-    border-radius: var(--radius-xl);
+    /*
+    border-radius: var(--radius-xl);*/
 }
 
 /* Hintergrundbild */
+/*
 .detailseite.seite-projekte .projekt--bg::before {
     content: "";
     position: absolute;
@@ -38,8 +42,10 @@
 
     border-radius: inherit;
 }
+*/
 
 /* Overlay für Lesbarkeit über dem Hintergrundbild */
+/*
 .detailseite.seite-projekte .projekt--bg::after {
     content: "";
     position: absolute;
@@ -55,17 +61,72 @@
 
     border-radius: inherit;
 }
+*/
 
 /* Innerer Wrapper: steuert Layout und Abstand zum Box-Rand */
 .detailseite.seite-projekte .projekt__inner {
     display: grid;
+    gap: 0.75rem;
+    padding: 0;
+    justify-items: stretch;
+
+    /*
+    display: grid;
     gap: 1.25rem;
 
-    /* Abstand zum Rand des articles (statt Cards per margin zu verschieben) */
+    /* Abstand zum Rand des articles (statt Cards per margin zu verschieben) 
     padding: calc(var(--inner-pad) + var(--card-inset));
 
     justify-items: stretch;
+    */
 }
+
+
+/* Projekt Teaser (Titel, Intro Card, Hintergrund) */
+.detailseite.seite-projekte .projekt__teaser {
+    position: relative;
+    isolation: isolate;
+
+    display: grid;
+    gap: 1.25rem;
+
+    /*padding: 0.75rem;*/
+    padding: 0;
+
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.detailseite.seite-projekte .projekt__teaser::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+
+    background-image: var(--projekt-bg-url);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border-radius: inherit;
+}
+
+.detailseite.seite-projekte .projekt__teaser::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--surface) 50%, transparent) 0%,
+        color-mix(in srgb, var(--surface) 70%, transparent) 60%,
+        color-mix(in srgb, var(--surface) 85%, transparent) 100%
+    );
+
+    border-radius: inherit;
+}
+
 
 
 /* Projekt-Titel */
@@ -79,7 +140,7 @@
     margin: 0;
     color: var(--text);
     font-size: calc(var(--font-size-h3) * 1.6);
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-bold);
 }
 
 
@@ -88,7 +149,7 @@
 /* --------- Abstand zwischen Projekten --------- */
 .detailseite.seite-projekte .projekt-liste {
     display: grid;
-    gap: clamp(3rem, 8vw, 12rem);
+    gap: clamp(6rem, 12vw, 20rem);
 }
 
 
@@ -102,7 +163,8 @@
     backdrop-filter: blur(10px);
 
     box-shadow: var(--shadow-soft);
-    padding: 1.25rem;
+    /*padding: 1.25rem;*/
+    padding: 1rem 1rem;
 
     overflow: hidden;
 
@@ -126,10 +188,15 @@
 
 /* Intro-Card: zentrierte Länge & responsives Padding */
 .detailseite.seite-projekte .detail-card--intro {
+    width: 100%;
+    justify-self: stretch;
+    padding: 1.25rem;
+    /*
     width: min(90ch, 100%);
     justify-self: center;
 
     padding: clamp(1rem, 2vw, 1.75rem) clamp(1.25rem, 6vw, 4rem);
+    */
 }
 
 .detailseite.seite-projekte .detail-card--intro .detail-card__text {
@@ -192,8 +259,22 @@
     cursor: pointer;
     user-select: none;
 
-    /* Abstand zwischen Button und aufgeklappten Cards */
+    position: relative;
+    z-index: 2;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+
+    /*
+    display: inline-flex;
+    justify-self: center;
+
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+
+    /* Abstand zwischen Button und aufgeklappten Cards 
     margin-bottom: clamp(1rem, 2vw, 2rem);
+    */
 }
 
 .detailseite.seite-projekte .projekt__summary::-webkit-details-marker {
@@ -213,7 +294,8 @@
 
     margin-top: 1rem;
     display: grid;
-    gap: 1.25rem;
+    /*gap: 1.25rem;*/
+    gap: 1rem;
 }
 
 /* Icon drehen, wenn offen */
@@ -258,6 +340,76 @@
             "content media";
         align-items: center;
         gap: 1.5rem;
+    }
+
+    .detailseite.seite-projekte .detail-card--intro {
+        width: min(90ch, 100%);
+        justify-self: center;
+
+        padding: clamp(1rem, 2vw, 1.75rem) clamp(1.25rem, 6vw, 4rem);
+    }
+
+    .detailseite.seite-projekte .projekt__teaser {
+        padding: calc(var(--inner-pad) + var(--card-inset));
+    }
+}
+
+/* Breakpoint ab 768px */
+@media (min-width: 768px) { 
+    .detailseite.seite-projekte .projekt--bg { 
+        --inner-pad: clamp(1rem, 2vw, 1.75rem);
+        --card-inset: clamp(0.75rem, 1.5vw, 1.25rem);
+
+        position: relative;
+        isolation: isolate;
+        border-radius: var(--radius-xl);
+    }
+
+    .detailseite.seite-projekte .projekt--bg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+
+        background-image: var(--projekt-bg-url);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        border-radius: inherit;
+    }
+
+    .detailseite.seite-projekte .projekt--bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+
+        background: linear-gradient(
+            180deg,
+            color-mix(in srgb, var(--surface) 35%, transparent) 0%,
+            color-mix(in srgb, var(--surface) 70%, transparent) 60%,
+            color-mix(in srgb, var(--surface) 85%, transparent) 100%
+        );
+
+        border-radius: inherit;
+    }
+
+       /* Mobile-Teaser-Hintergrund auf Desktop deaktivieren */
+    .detailseite.seite-projekte .projekt__teaser::before,
+    .detailseite.seite-projekte .projekt__teaser::after {
+        content: none;
+    }
+
+    .detailseite.seite-projekte .projekt__inner {
+        gap: 1.5rem;
+        padding: calc(var(--inner-pad) + var(--card-inset));
+    }
+
+    .detailseite.seite-projekte .projekt__teaser {
+        padding: 0;
+        border-radius: 0;
+        overflow: visible;
     }
 }
 
