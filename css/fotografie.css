@@ -1,6 +1,9 @@
 /* --------------------------- Detailseite "Fotografie" --------------------------- */
 
-
+/* Anchor-Offset für Sprungmarke "Galerie" */
+#galerie-heading {
+    scroll-margin-top: calc(var(--header-height) + 4rem);
+}
 
 /* Galerie-Liste: Reset & Grid */
 .detailseite.seite-fotografie .galerie {

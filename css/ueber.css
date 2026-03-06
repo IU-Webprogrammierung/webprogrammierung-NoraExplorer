@@ -1,6 +1,9 @@
 /* --------------------------- Detailseite "Über mich" --------------------------- */
 
-
+/* Anchor-Offset für Sprungmarke "Interessen" */
+#interessen-heading {
+    scroll-margin-top: calc(var(--header-height) + 4rem);
+}
 
 /* --------- Content-Bereich: Interessen Artikel (mobile first) --------- */
 .detailseite.seite-ueber .content > .interesse {

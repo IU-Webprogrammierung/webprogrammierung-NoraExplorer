@@ -149,3 +149,22 @@
         margin-bottom: 8rem;
     }
 }
+
+
+
+
+
+
+/* --------- Snap Scrolling --------- */
+@media (min-width: 1024px) {
+  html.snap-active {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: auto;
+    scroll-padding-top: var(--header-height); 
+  }
+
+  .detailseite .snap-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always; 
+  }
+}

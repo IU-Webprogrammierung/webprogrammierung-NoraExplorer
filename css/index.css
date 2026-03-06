@@ -38,7 +38,7 @@
 /* Breakpoint ab 1280px */
 @media (min-width: 1280px) {
     .startseite .teaser + .teaser {
-        margin-block-start: 12rem;
+        margin-block-start: 16rem;
     }
 }
 
@@ -82,7 +82,7 @@ body:has(.startseite) {
     overflow: hidden;
     isolation: isolate;
 
-    margin-bottom: 20rem;
+    margin-bottom: clamp(4rem, 18vw, 26rem); /* 111111111111111111111111111111111111111111111111111111111111111111 */
 }
 
 /* Hero-Band/Fade aus components.css deaktivieren ! */
@@ -389,15 +389,16 @@ body:has(.startseite) {
 
 
 /* --------- Snap Scrolling --------- */
+/*
 @media (min-width: 1280px) {
-    /* Footer als Snap-Endpunkt */
+    /* Footer als Snap-Endpunkt 
     #site-footer {
         scroll-snap-align: start;
         scroll-snap-stop: always;
         margin-top: 6rem;
     }
   
-   /* Snap-Verhalten aktivieren */
+   /* Snap-Verhalten aktivieren 
     html:has(.startseite) {
         scroll-snap-type: y mandatory;
         scroll-padding-top: 0;
@@ -406,16 +407,27 @@ body:has(.startseite) {
         
     }
 
-    /* Jede Section ist ein Snap-Ziel */
+    /* Jede Section ist ein Snap-Ziel 
     .startseite > section {
         scroll-snap-align: center;
         scroll-snap-stop: always;
         scroll-margin-top: var(--header-height);
         /*position: relative;
-        isolation: isolate;*/
+        isolation: isolate;*
     }
 }
+*/
+@media (min-width: 1280px) {
+  html:has(.startseite) {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
 
+  .startseite > section {
+    scroll-margin-top: var(--header-height);
+
+  }
+}
 
 
 
