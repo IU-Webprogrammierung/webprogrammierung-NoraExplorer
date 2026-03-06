@@ -143,7 +143,7 @@
 /* --------------------------- Accordion --------------------------- */
 .accordion {
     margin: 0;
-    padding: 1rem 2rem;
+    padding: 1rem 1rem;
 
     background: var(--surface);
     border-radius: var(--radius-l);
@@ -203,7 +203,18 @@
     overflow-wrap: anywhere;
 }
 
+/* --------- Breakpoints --------- */
+/* Breakpoint ab 768px */
+@media (min-width: 768px) {
+    .accordion {
+        margin: 0;
+        padding: 1rem 2rem;
 
+        background: var(--surface);
+        border-radius: var(--radius-l);
+        border: 1px solid var(--border);
+    }
+}
 
 
 /* --------------------------- Media --------------------------- */

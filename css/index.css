@@ -481,13 +481,27 @@ body:has(.startseite) {
     cursor: pointer;
 }
 
-/* Accordion COntents */
+/* Accordion Contents */
 .startseite .teaser--prozess .accordion--numbered .accordion__content {
     margin-top: 0.75rem;
     margin-bottom: 1rem;
     margin-left: 0;
-    padding-left: calc(2.75rem + 0.75rem);
-    padding-right: 2rem;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+/* --------- Breakpoints --------- */
+/* Breakpoint ab 768px */
+@media (min-width: 768px) {
+    /* Accordion Contents */
+    .startseite .teaser--prozess .accordion--numbered .accordion__content {
+        margin-top: 0.75rem;
+        margin-bottom: 1rem;
+        margin-left: 0;
+        padding-left: calc(2.75rem + 0.75rem);
+        padding-right: 2rem;
+    }
 }
 
 
