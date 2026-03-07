@@ -71,26 +71,32 @@ window.initHeaderNav = function initHeaderNav() {
         lastActiveElement = document.activeElement;
 
         // CSS-State aktivieren
-        document.body.classList.add("nav-open");
+        /*document.body.classList.add("nav-open");*/
 
         // Panel/Overlay sichtbar machen
         overlay.hidden = false;
         mobileNav.hidden = false;
 
+
         // ARIA: offen
-        overlay.setAttribute("aria-hidden", "false");
+        /*overlay.setAttribute("aria-hidden", "false");*/
         mobileNav.setAttribute("aria-hidden", "false");
         toggleBtn.setAttribute("aria-expanded", "true");
         toggleBtn.setAttribute("aria-label", "Menü schließen");
 
-        // Fokus ins Panel setzen
-        const focusables = getFocusable(mobileNav);
-        if (focusables.length > 0) {
-            focusables[0].focus();
-        } else {
-            closeBtn.focus();
-        }
-        /*(focusables[0] || closeBtn).focus();*/
+        requestAnimationFrame(() => { 
+            document.body.classList.add("nav-open");
+
+            // Fokus ins Panel setzen
+            const focusables = getFocusable(mobileNav);
+            if (focusables.length > 0) {
+                focusables[0].focus();
+            } else {
+                closeBtn.focus();
+            }
+            /*(focusables[0] || closeBtn).focus();*/
+
+        });
     };
 
 
@@ -106,12 +112,19 @@ window.initHeaderNav = function initHeaderNav() {
         // ARIA: geschlossen
         toggleBtn.setAttribute("aria-expanded", "false");
         toggleBtn.setAttribute("aria-label", "Menü öffnen");
-        overlay.setAttribute("aria-hidden", "true");
-        mobileNav.setAttribute("aria-hidden", "true");
+        /*overlay.setAttribute("aria-hidden", "true");*/
+        /*mobileNav.setAttribute("aria-hidden", "true");*/
 
-        // Panel/Overlay verstecken
-        overlay.hidden = true;
-        mobileNav.hidden = true;
+        const onTransitionEnd = (e) => {
+            if (e.target === mobileNav) {
+                // Panel/Overlay verstecken
+                overlay.hidden = true;
+                mobileNav.hidden = true;
+                mobileNav.removeEventListener("transitionend", onTransitionEnd);
+             }
+        };
+
+        mobileNav.addEventListener("transitionend", onTransitionEnd);
 
         //Fokus zurückgeben (wenn möglich), ansonsten auf Toggle-Button
         const target = lastActiveElement && typeof lastActiveElement.focus === "function"

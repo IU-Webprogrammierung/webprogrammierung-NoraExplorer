@@ -43,10 +43,10 @@
     
             if (key) {
                 // Active-State zurücksetzen (aria-current entfernen, is-active entfernen)
-                $(".nav-link").removeAttr("aria-current").removeClass("is-active");
+                $("[data-page]").removeAttr("aria-current").removeClass("is-active");
 
                 // Passenden Link anhand des data-page Attributs selektieren & markieren
-                $(`.nav-link[data-page="${key}"]`).attr("aria-current", "page").addClass("is-active");
+                $(`[data-page="${key}"]`).attr("aria-current", "page").addClass("is-active");
             }
 
             // Offcanvas-Navigation initialisieren (wichtig: diese Funktion existiert in nav.js)

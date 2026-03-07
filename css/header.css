@@ -43,7 +43,7 @@ html[data-theme="dark"] .header {
     opacity: 0;
     pointer-events: none;
 
-    transition: opacity 200ms ease-in-out;
+    transition: opacity 200ms ease;
 }
 
 .mobile-nav {
@@ -66,8 +66,8 @@ html[data-theme="dark"] .header {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 
-    transform: translateX(-150%);
-    transition: transform 0.8s cubic-bezier(0.25,0.10,0.25,1.00);
+    transform: translateX(-100%);
+    transition: transform 250ms ease;
     will-change: transform;
 }
 
@@ -86,11 +86,12 @@ body.nav-open .mobile-nav {
 }
 
 /* Hidden Attribute: initial geschlossen */
+/*
 .mobile-nav[hidden],
 .nav-overlay[hidden] {
     display: none;
 }
-
+*/
 
 
 /* --------------------------- Panel Header --------------------------- */
@@ -148,6 +149,7 @@ body.nav-open .mobile-nav {
 
 .mobile-nav__links a.nav-link,
 .mobile-nav__secondary a.nav-link {
+    position: relative;
     display: block;
     padding: 1rem 0rem;
     border-radius: 0.75rem;
