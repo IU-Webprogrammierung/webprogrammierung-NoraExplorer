@@ -112,6 +112,8 @@
     transition: color 0.2s ease;
 
     transition: color 0.2s ease, transform 0.08s ease;
+
+    border-radius: var(--radius-s);
 }
 
 .nav-link:hover {
@@ -203,6 +205,16 @@
     margin: 0.75rem 0 0;
     color: var(--text);
     overflow-wrap: anywhere;
+}
+
+.accordion__summary:focus-visible {
+    outline: none;
+}
+
+.accordion:focus-within {
+    outline: var(--focus-outline) solid var(--focus-ring);
+    outline-offset: var(--focus-offset);
+    border-radius: var(--radius-l);
 }
 
 /* --------- Breakpoints --------- */

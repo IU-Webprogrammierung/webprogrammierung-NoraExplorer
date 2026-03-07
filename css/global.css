@@ -83,7 +83,7 @@ html[data-theme="light"] {
     --muted: #475569;
     --border: #0f172a1a;
 
-    --focus-ring: #8a1841;
+    --focus-ring: #af0946;
 
     --hero-bg: linear-gradient(180deg, #eef4ff 0%, #f3f6fc 100%);
     --hero-band: linear-gradient(180deg, #bfd4ff 0%, #eef4ff 75%, var(--bg) 100%);
@@ -116,7 +116,7 @@ html[data-theme="dark"] {
     --muted: #c9d1df;
     --border: #f8fafc1f;
 
-    --focus-ring: #f6c1cc;
+    --focus-ring: #faa0b2;
 
     --hero-bg: linear-gradient(180deg, #132b55 0%, #0b1220 100%);
     --hero-band: linear-gradient(180deg, #0d3281 0%, #0d172c 75%, var(--bg) 100%);
@@ -206,6 +206,7 @@ html[data-motion="reduced"] *::after {
 /* --------------------------- Basis-Styles --------------------------- */
 html {
     height: 100%; /* wichtig */
+    scrollbar-gutter: stable;
 }
 
 body {
