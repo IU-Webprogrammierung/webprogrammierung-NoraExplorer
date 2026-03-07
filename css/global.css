@@ -32,12 +32,6 @@
     --radius-xl: 24px;
     --radius-pill: 999px;
 
-    /* Schatten */
-    /*
-    --shadow-soft: 0 10px 30px #0f172a14;
-    --shadow-header: 0 8px 20px #0f172a0f;
-    */
-
     /* Typografie */
     --font-family-base: system-ui, -apple-system, "Segoe UI", Arial, Helvetica, sans-serif;
     --font-weight-regular: 400;
@@ -62,13 +56,13 @@
     --font-size-hero-lead: calc(clamp(0.95rem, 0.8rem + 0.9vw, 1.55rem) * var(--user-font-scale));
 
 
-    /* Accentfarben */
-    --accent-100: #fff1e8;
-    --accent-200: #aca39e;
-    --accent-500: #ff6a00;
-    --accent-600: #ea580c;
-    --accent-700: #c2410c;
-    /*--color-button-text-accent: #000000;*/
+    /* Accentfarben Basis */
+    --accent-100: #fdecef;
+    --accent-200: #f6c1cc;
+    --accent-500: #d6336c;
+    --accent-600: #a61e4d;
+    --accent-700: #8a1841;
+    --accent-800: #711436;
 
     /* Fokus */
     --focus-outline: 2px;
@@ -89,19 +83,27 @@ html[data-theme="light"] {
     --muted: #475569;
     --border: #0f172a1a;
 
-    --focus-ring: #ff6a0099;
+    --focus-ring: #8a1841;
 
     --hero-bg: linear-gradient(180deg, #eef4ff 0%, #f3f6fc 100%);
     --hero-band: linear-gradient(180deg, #bfd4ff 0%, #eef4ff 75%, var(--bg) 100%);
 
     --shadow-soft: 0 10px 30px #0f172a21;
     --shadow-header: 0 8px 20px #0f172a0f;
-    --accent-glow: 0 0 30px color-mix(in srgb, var(--accent-600) 20%, transparent);
-    --accent-contrast: #cfdbf1;
+
+    --accent-text: #8a1841;
+    --accent-text-hover: #a61e4d;
+    --accent-line: #a61e4d;
+    --accent-button: #a61e4d;
+    --accent-button-hover: #8a1841;
+    --accent-button-active: #711436;
+    --accent-soft: #fdf0f4;
+    --accent-glow: 0 0 30px color-mix(in srgb, #a61e4d 16%, transparent);
+    --accent-contrast: #fdf0f4;
 
     --icon-fg: var(--text);
-    --icon-bg-hover: color-mix(in srgb, var(--accent-500) 100%, transparent);
-    --icon-bg-active: color-mix(in srgb, var(--accent-700) 100%, transparent);
+    --icon-bg-hover: var(--accent-button);
+    --icon-bg-active: var(--accent-button-hover);
     --icon-ring: var(--focus-ring);
 }
 
@@ -114,19 +116,27 @@ html[data-theme="dark"] {
     --muted: #c9d1df;
     --border: #f8fafc1f;
 
-    --focus-ring: #ff8a3db3;
+    --focus-ring: #f6c1cc;
 
     --hero-bg: linear-gradient(180deg, #132b55 0%, #0b1220 100%);
     --hero-band: linear-gradient(180deg, #0d3281 0%, #0d172c 75%, var(--bg) 100%);
 
     --shadow-soft: 0 10px 30px #50474031;
     --shadow-header: 0 8px 20px #0000004d;
-    --accent-glow: 0 0 30px color-mix(in srgb, var(--accent-500) 70%, transparent);
-    --accent-contrast: #08183b;
+
+    --accent-text: #ff5c95;
+    --accent-text-hover: #ff77a7;
+    --accent-line: #f04f88;
+    --accent-button: #c2255c;
+    --accent-button-hover: #a61e4d;
+    --accent-button-active: #8a1841;
+    --accent-soft: #2a1020;
+    --accent-glow: 0 0 30px color-mix(in srgb, #d6336c 35%, transparent);
+    --accent-contrast: #1a1030;
 
     --icon-fg: var(--text);
-    --icon-bg-hover: color-mix(in srgb, var(--accent-500) 90%, transparent);
-    --icon-bg-active: color-mix(in srgb, var(--accent-700) 100%, transparent);
+    --icon-bg-hover: var(--accent-button);
+    --icon-bg-active: var(--accent-button-hover);
     --icon-ring: var(--focus-ring);
 }
 
@@ -200,9 +210,7 @@ html {
 
 body {
     margin: 0;
-    /*height: auto;*/
     min-height: 100vh;
-    /*overflow-y: visible;*/
 
     /* Layout: Header / Main / Footer */
     display: grid;

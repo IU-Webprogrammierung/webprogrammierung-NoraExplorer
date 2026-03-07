@@ -35,7 +35,6 @@ html[data-theme="dark"] .header {
 
 /* --------------------------- Overlay & Panel --------------------------- */
 .nav-overlay {
-    /*display: none;*/
     position: fixed;
     inset: 0;
     z-index: 4900;
@@ -124,6 +123,12 @@ body.nav-open .mobile-nav {
     cursor: pointer;
 }
 
+.mobile-nav__close:hover {
+    color: var(--accent-text);
+    border-color: var(--accent-line);
+    background: color-mix(in srgb, var(--accent-soft) 55%, var(--surface));
+}
+
 .mobile-nav__close:focus-visible {
     outline: var(--focus-outline) solid var(--focus-ring);
     outline-offset: var(--focus-offset);
@@ -151,6 +156,11 @@ body.nav-open .mobile-nav {
     font-size: var(--font-size-base);
 }
 
+.mobile-nav__links a.nav-link:hover,
+.mobile-nav__secondary a.nav-link:hover {
+    color: var(--accent-text);
+}
+
 /* Active Indicator im Panel */
 .mobile-nav__links a.nav-link[aria-current="page"]::after {
     content: "";
@@ -161,7 +171,7 @@ body.nav-open .mobile-nav {
     bottom: 0.15rem;
     height: 4px;
 
-    background: var(--accent-500);
+    background: var(--accent-line);
     border-radius: var(--radius-pill);
 }
 
@@ -172,29 +182,6 @@ body.nav-open .mobile-nav {
     margin-top: auto;
 }
 
-/*
-.mobile-nav__secondary {
-    margin-top: 0;
-}
-
-.mobile-nav__secondary ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    display: grid;
-    gap: 0.25rem;
-}
-
-.mobile-nav__secondary a.nav-link {
-    display: block;
-    padding: 1rem 0;
-    border-radius: 0.75rem;
-
-    font-weight: var(--font-weight-regular);
-    font-size: var(--font-size-base);
-}
-*/
 
 
 
@@ -247,7 +234,7 @@ body.nav-open .mobile-nav {
 }
 
 .header__center .header__logo-img:hover {
-    filter: drop-shadow(0 1px 8px color-mix(in srgb, var(--accent-500) 70%, transparent));
+    filter: drop-shadow(0 1px 8px color-mix(in srgb, var(--accent-line) 70%, transparent));
 }
 
 html[data-theme="light"] .header__logo-img--lightmode { 
@@ -311,7 +298,7 @@ html[data-theme="dark"] .header__logo-img--darkmode {
     }
 
     .main-nav__home-link:hover .main-nav__logo-img {
-        filter: drop-shadow(0 1px 8px color-mix(in srgb, var(--accent-500) 70%, transparent));
+        filter: drop-shadow(0 1px 8px color-mix(in srgb, var(--accent-line) 70%, transparent));
     }
 
     .header__center { 

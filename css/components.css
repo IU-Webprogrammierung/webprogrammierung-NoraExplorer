@@ -21,33 +21,35 @@
 }
 
 .button--primary {
-    background: var(--accent-500);
+    background: var(--accent-button);
     color: #ffffff;
-    box-shadow: 0 4px 8px #ff6a0038;
-    border-color: var(--accent-600);
+    box-shadow: 0 4px 8px color-mix(in srgb, var(--accent-button) 25%, transparent);
+    border-color: var(--accent-button-hover);
     border-width: 2px;
 }
 
 .button--primary:hover {
-    background: var(--accent-700);
+    background: var(--accent-button-hover);
     /*color: #ffffff;*/
-    border-color: var(--accent-700);
+    border-color: var(--accent-button-hover);
 }
 
 .button--primary:active {
     transform: translateY(2px);
+    background: var(--accent-button-active);
+    border-color: var(--accent-button-active);
 }
 
 .button--ghost {
     background: transparent;
     color: var(--text);
-    border-color: var(--accent-500);
+    border-color: var(--accent-button);
     border-width: 2px;
 }
 
 .button--ghost:hover {
-    background: var(--accent-500);
-    border-color: var(--accent-600);
+    background: var(--accent-button);
+    border-color: var(--accent-button-hover);
     color: #ffffff;
 }
 
@@ -80,14 +82,14 @@
 
 .icon-button:hover {
     background: var(--icon-bg-hover);
-    border-color: color-mix(in srgb, var(--accent-500) 45%, transparent);
+    border-color: var(--accent-600);
     color: #ffffff;
 }
 
 .icon-button:active {
     transform: translateY(2px);
     background: var(--icon-bg-active);
-    border-color: color-mix(in srgb, var(--accent-500) 60%, transparent);
+    border-color: var(--accent-700);
     color: #ffffff;
 }
 
@@ -113,12 +115,12 @@
 }
 
 .nav-link:hover {
-    color: var(--accent-500);
+    color: var(--accent-text);
 }
 
 .nav-link:active {
     transform: scale(1.02);
-    color: var(--accent-700);
+    color: var(--accent-text-hover);
 }
 
 .nav-link[aria-current="page"] {
@@ -134,7 +136,7 @@
     bottom: 0.15rem;
 
     height: 4px;
-    background: var(--accent-500);
+    background: var(--accent-line);
     border-radius: var(--radius-pill);
 }
 
@@ -170,7 +172,7 @@
 }
 
 .accordion:hover .accordion__summary {
-    color: var(--accent-600);
+    color: var(--accent-text);
     font-weight: var(--font-weight-semibold);
     cursor: pointer;
 }
