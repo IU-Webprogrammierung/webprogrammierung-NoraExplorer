@@ -124,8 +124,8 @@
 
     /* --------------------------- Core Logik --------------------------- */
     // Startet den einmaligen Snap zur Zielsektion
-    function snapToTarget(targetElement) {
-        if (!isArmed || isLocking || !targetElement) {
+    function snapToTarget(targetElement, force = false) {
+        if ((!isArmed && !force) || isLocking || !targetElement) {
             return;
         }
 
@@ -166,6 +166,17 @@
         }
     }
 
+    // Reagiert auf Klick auf den Hero-CTA
+    function handleCtaClick(event, targetElement) {
+        event.preventDefault();
+
+        if (!targetElement) {
+            return;
+        }
+
+        snapToTarget(targetElement, true);
+    }
+
     // Aktiviert den Snap erneut, wenn die Seite wieder ganz oben ist
     function handleScroll() {
         const atTop = isAtTop();
@@ -183,7 +194,7 @@
 
     /* --------------------------- Event Listener --------------------------- */
     // Registriert alle benötigten Event Listener
-    function registerListeners(targetElement) {
+    function registerListeners(targetElement, cta) {
         window.addEventListener("wheel", (event) => {
             handleWheel(event, targetElement);
         }, { passive: false });
@@ -194,6 +205,10 @@
 
         window.addEventListener("scroll", handleScroll, { 
             passive: true 
+        });
+
+        cta.addEventListener("click", (event) => {
+            handleCtaClick(event, targetElement);
         });
     }
 
@@ -228,7 +243,7 @@
         setArmedState(isAtTop());
 
         // Listener registrieren
-        registerListeners(targetElement);
+        registerListeners(targetElement, cta);
     }
 
 

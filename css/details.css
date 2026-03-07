@@ -160,7 +160,7 @@
   html.snap-active {
     scroll-snap-type: y mandatory;
     scroll-behavior: auto;
-    scroll-padding-top: var(--header-height); 
+    /*scroll-padding-top: var(--header-height); */
   }
 
   .detailseite .snap-section {
