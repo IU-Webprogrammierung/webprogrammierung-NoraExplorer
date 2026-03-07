@@ -1,27 +1,17 @@
 /* --------------------------- Seite "Startseite" --------------------------- */
 
-
+/* Footer-Abstand */
+#site-footer {
+    margin-top: 4rem;
+}
 
 /* --------- Startseite: Grundabstände --------- */
 .startseite {
     row-gap: 2rem;
     padding-block: 0 2rem;
+    overflow-x: clip;
 }
 
-
-/*
-.startseite .header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-
-    /*
-    background: transparent;
-    box-shadow: none;
-    border-bottom: none; 
-}
-*/
 
 /* --------- Abstände zwischen den einzelnen Teasern --------- */
 .startseite .teaser + .teaser {
@@ -50,39 +40,32 @@
 
 
 /* Wichtig: verhindert 100vw-Overflow (verhindert horizontales Scrollen) */
+/*
 html:has(.startseite),
 body:has(.startseite) {
     overflow-x: clip;
 }
-
+*/
 
 
 /* --------- Hero-Bereich: (full-bleed)) --------- */
 
 /* überschreibt die wiederverwendbare .hero aus components.css */
 .startseite .hero {
-    /* IMPORTANT OVERRIDES: components.css setzt hero in dein Content-Grid und gibt min-height & padding */
     grid-column: 1 / -1 !important;
     min-height: auto !important;
     padding: 0 !important;
+    margin: 0 calc(var(--container-padding) * -1);
+    margin-bottom: clamp(4rem, 18vw, 26rem);
 
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     gap: 1.5rem;
 
-    /* Full-bleed */
-    width: 100vw;
-    max-width: 100vw;
-    margin: 0;
-    margin-left: 50%;
-    transform: translateX(-50%);
-
     position: relative;
-    overflow: hidden;
+    overflow: clip;
     isolation: isolate;
-
-    margin-bottom: clamp(4rem, 18vw, 26rem); /* 111111111111111111111111111111111111111111111111111111111111111111 */
 }
 
 /* Hero-Band/Fade aus components.css deaktivieren ! */
@@ -150,7 +133,6 @@ body:has(.startseite) {
 /* gemeinsame Grid-Struktur für alle Teaser-Sections */
 .startseite .teaser {
     display: grid;
-    gap: 1rem;
 
     grid-template-columns: 1fr;
     grid-template-areas: 
@@ -159,6 +141,7 @@ body:has(.startseite) {
     "media"
     "link";
 
+    gap: 1rem;
     margin: 0rem;
 }
 
@@ -180,13 +163,12 @@ body:has(.startseite) {
 /* Überschrift-Style & Unterstreichung via ::after */
 .startseite .teaser__heading {
     grid-area: heading;
+    position: relative;
+    padding-bottom: 0.75rem;
 
     font-size: calc(var(--font-size-h2) * 0.6);
     font-weight: var(--font-weight-semibold);
     color: var(--muted);
-
-    position: relative;
-    padding-bottom: 0.75rem;
 }
 
 /* Unterstreichung länger als Text & leichter „Shadow/Glow“ */
@@ -203,7 +185,6 @@ body:has(.startseite) {
     background: var(--border);
 
     box-shadow: 0 6px 10px color-mix(in srgb, var(--text) 10%, transparent);
-    /*box-shadow: var(--shadow-soft);*/
 }
 
 /* Text-Block, etwas größer & semibold */
@@ -228,7 +209,6 @@ body:has(.startseite) {
     overflow: hidden;
 
     border-radius: var(--radius-l);
-
     border: 1px solid color-mix(in srgb, var(--border) 45%, transparent);
     background: color-mix(in srgb, var(--surface) 8%, transparent);
 
@@ -337,86 +317,43 @@ body:has(.startseite) {
 /* ------------------- Hintergrund Banner ------------------- */
 /* Jede Section bekommt eigenen Hintergrund (full-bleed) */
 .startseite > section {
-  position: relative;
-  isolation: isolate;
+    position: relative;
+    isolation: isolate;
 }
 
 /* Full-width Background Band */
 .startseite > section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+    content: "";
+    position: absolute;
+    inset: 0;
 
-  /* full-bleed über volle Viewportbreite */
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+    /* full-bleed über volle Viewportbreite */
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 
-  z-index: -1;
+    z-index: -1;
 
-  box-shadow: var(--accent-glow);
-  border: 1px solid var(--border);
+    box-shadow: var(--accent-glow);
+    border: 1px solid var(--border);
 }
 
 /* Individuelle Hintergründe pro section */
 .startseite > section.hero::before {
-  background: var(--hero-band);
+    background: var(--hero-band);
 }
 
-.startseite > section.teaser--ueber::before {
-  background: color-mix(in srgb, var(--surface) 70%, var(--bg));
-}
-
-.startseite > section.teaser--fotografie::before {
-  background: color-mix(in srgb, var(--surface) 70%, var(--bg));
-}
-
-.startseite > section.teaser--projekte::before {
-  background: color-mix(in srgb, var(--surface) 70%, var(--bg));
-}
-
+.startseite > section.teaser--ueber::before,
+.startseite > section.teaser--fotografie::before,
+.startseite > section.teaser--projekte::before,
 .startseite > section.teaser--prozess::before {
-  background: color-mix(in srgb, var(--surface) 70%, var(--bg));
+    background: color-mix(in srgb, var(--surface) 70%, var(--bg));
 }
 
 
-
-/* Footer-Abstand */
-#site-footer {
-    margin-top: 4rem;
-}
-
-
-/* --------- Snap Scrolling --------- */
-/*
-@media (min-width: 1280px) {
-    /* Footer als Snap-Endpunkt 
-    #site-footer {
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
-        margin-top: 6rem;
-    }
-  
-   /* Snap-Verhalten aktivieren 
-    html:has(.startseite) {
-        scroll-snap-type: y mandatory;
-        scroll-padding-top: 0;
-        scroll-padding-bottom: 0;
-        scroll-behavior: smooth;
-        
-    }
-
-    /* Jede Section ist ein Snap-Ziel 
-    .startseite > section {
-        scroll-snap-align: center;
-        scroll-snap-stop: always;
-        scroll-margin-top: var(--header-height);
-        /*position: relative;
-        isolation: isolate;*
-    }
-}
-*/
+/* --------- Breakpoints --------- */
+/* Breakpoint ab 768px */
 @media (min-width: 1280px) {
   html:has(.startseite) {
     scroll-snap-type: none;
@@ -425,11 +362,8 @@ body:has(.startseite) {
 
   .startseite > section {
     scroll-margin-top: var(--header-height);
-
   }
 }
-
-
 
 
 /* --------- Snap Prozess-Teaser (Accordion) --------- */
@@ -503,25 +437,3 @@ body:has(.startseite) {
         padding-right: 2rem;
     }
 }
-
-
-/* Breakpoints: Prozess */
-/*
-@media (min-width: 768px) {
-    .startseite .teaser--prozess .prozess-preview {
-        grid-template-columns: 1fr 8fr 1fr;
-        grid-template-areas: 
-        "number summary summary"
-        "number content content";
-    }
-}
-
-@media (min-width: 1280px) {
-    .startseite .teaser--prozess .prozess-preview {
-        grid-template-columns: 1fr 10fr 1fr;
-        grid-template-areas: 
-        "number summary summary"
-        "number content content";
-    }
-}
-*/
