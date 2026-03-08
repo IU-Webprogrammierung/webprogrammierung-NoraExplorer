@@ -65,8 +65,8 @@
     --accent-800: #711436;
 
     /* Fokus */
-    --focus-outline: 2px;
-    --focus-offset: 4px;
+    --focus-outline: 4px;
+    --focus-offset: 3px;
 }
 
 
@@ -83,7 +83,7 @@ html[data-theme="light"] {
     --muted: #475569;
     --border: #0f172a1a;
 
-    --focus-ring: #af0946;
+    --focus-ring: #2563eb;
 
     --hero-bg: linear-gradient(180deg, #eef4ff 0%, #f3f6fc 100%);
     --hero-band: linear-gradient(180deg, #bfd4ff 0%, #eef4ff 75%, var(--bg) 100%);
@@ -116,7 +116,7 @@ html[data-theme="dark"] {
     --muted: #c9d1df;
     --border: #f8fafc1f;
 
-    --focus-ring: #faa0b2;
+    --focus-ring: #60a5fa;
 
     --hero-bg: linear-gradient(180deg, #132b55 0%, #0b1220 100%);
     --hero-band: linear-gradient(180deg, #0d3281 0%, #0d172c 75%, var(--bg) 100%);
@@ -272,9 +272,9 @@ a {
 /* --------------------------- Hilfen für Barrierefreiheit --------------------------- */
 /* Skip-Links: nur sichtbar, wenn fokussiert (Keyboard-Navigation) */
 .skip-link {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
 
     transform: translateY(-200%);
     padding: 0.75rem 1rem;
@@ -283,14 +283,12 @@ a {
     color: var(--text);
     text-decoration: underline;
 
-    z-index: 9999;
+    z-index: 10000;
 }
 
 .skip-link:focus, 
 .skip-link:focus-visible {
     transform: translateY(0);
-    top: 0.5rem;
-    left: 0.5rem;
 }
 
 
