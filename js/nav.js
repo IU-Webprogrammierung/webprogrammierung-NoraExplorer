@@ -37,6 +37,7 @@ window.initHeaderNav = function initHeaderNav() {
     // aria-hidden: Screenreader sollen Overlay/Panel ignorieren, solange es geschlossen ist
     overlay.setAttribute("aria-hidden", "true");
     mobileNav.setAttribute("aria-hidden", "true");
+    mobileNav.setAttribute("inert", "");
 
     // aria-expanded: Zustand des Toggle-Buttons ist geschlossen
     toggleBtn.setAttribute("aria-expanded", "false");
@@ -77,9 +78,11 @@ window.initHeaderNav = function initHeaderNav() {
         overlay.hidden = false;
         mobileNav.hidden = false;
 
+        mobileNav.removeAttribute("inert");
+
 
         // ARIA: offen
-        /*overlay.setAttribute("aria-hidden", "false");*/
+        overlay.setAttribute("aria-hidden", "false");
         mobileNav.setAttribute("aria-hidden", "false");
         toggleBtn.setAttribute("aria-expanded", "true");
         toggleBtn.setAttribute("aria-label", "Menü schließen");
@@ -112,8 +115,10 @@ window.initHeaderNav = function initHeaderNav() {
         // ARIA: geschlossen
         toggleBtn.setAttribute("aria-expanded", "false");
         toggleBtn.setAttribute("aria-label", "Menü öffnen");
-        /*overlay.setAttribute("aria-hidden", "true");*/
-        /*mobileNav.setAttribute("aria-hidden", "true");*/
+        overlay.setAttribute("aria-hidden", "true");
+        mobileNav.setAttribute("aria-hidden", "true");
+
+        mobileNav.setAttribute("inert", "");
 
         const onTransitionEnd = (e) => {
             if (e.target === mobileNav) {

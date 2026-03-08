@@ -57,7 +57,7 @@
 <div class="nav-overlay" id="navOverlay" aria-hidden="true" hidden></div>
 
 <!-- Offcanvas-Panel (initial hidden, wird per JS geöffnet/geschlossen) -->
-<aside id="mobileNav" class="mobile-nav" aria-labelledby="mobileNavTitle" aria-hidden="true" hidden>
+<aside id="mobileNav" class="mobile-nav" aria-labelledby="mobileNavTitle" aria-hidden="true" hidden inert>
     <div class="mobile-nav__header">
         <h2 class="mobile-nav__title" id="mobileNavTitle">Menü</h2>
 
