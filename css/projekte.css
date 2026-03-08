@@ -18,50 +18,9 @@
     /* Zusätzlicher "Inset" innerhalb des Projektrahmens */
     --card-inset: 0rem;
     
-
-    /*
-    position: relative;
-    isolation: isolate; /* hält ::before/::after z-index im eigenen Kontext */
     margin: 0;
-    /*
-    border-radius: var(--radius-xl);*/
 }
 
-/* Hintergrundbild */
-/*
-.detailseite.seite-projekte .projekt--bg::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -2;
-
-    background-image: var(--projekt-bg-url);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    border-radius: inherit;
-}
-*/
-
-/* Overlay für Lesbarkeit über dem Hintergrundbild */
-/*
-.detailseite.seite-projekte .projekt--bg::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-
-    background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--surface) 35%, transparent) 0%,
-        color-mix(in srgb, var(--surface) 70%, transparent) 60%,
-        color-mix(in srgb, var(--surface) 85%, transparent) 100%
-    );
-
-    border-radius: inherit;
-}
-*/
 
 /* Innerer Wrapper: steuert Layout und Abstand zum Box-Rand */
 .detailseite.seite-projekte .projekt__inner {
@@ -69,16 +28,6 @@
     gap: 0.75rem;
     padding: 0;
     justify-items: stretch;
-
-    /*
-    display: grid;
-    gap: 1.25rem;
-
-    /* Abstand zum Rand des articles (statt Cards per margin zu verschieben) 
-    padding: calc(var(--inner-pad) + var(--card-inset));
-
-    justify-items: stretch;
-    */
 }
 
 
@@ -90,7 +39,6 @@
     display: grid;
     gap: 1.25rem;
 
-    /*padding: 0.75rem;*/
     padding: 0;
 
     border-radius: var(--radius-xl);
@@ -163,7 +111,6 @@
     backdrop-filter: blur(10px);
 
     box-shadow: var(--shadow-soft);
-    /*padding: 1.25rem;*/
     padding: 1rem 1rem;
 
     overflow: hidden;
@@ -191,12 +138,6 @@
     width: 100%;
     justify-self: stretch;
     padding: 1.25rem;
-    /*
-    width: min(90ch, 100%);
-    justify-self: center;
-
-    padding: clamp(1rem, 2vw, 1.75rem) clamp(1.25rem, 6vw, 4rem);
-    */
 }
 
 .detailseite.seite-projekte .detail-card--intro .detail-card__text {
@@ -263,18 +204,6 @@
     z-index: 2;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-
-    /*
-    display: inline-flex;
-    justify-self: center;
-
-    list-style: none;
-    cursor: pointer;
-    user-select: none;
-
-    /* Abstand zwischen Button und aufgeklappten Cards 
-    margin-bottom: clamp(1rem, 2vw, 2rem);
-    */
 }
 
 .detailseite.seite-projekte .projekt__summary::-webkit-details-marker {
@@ -294,7 +223,6 @@
 
     margin-top: 1rem;
     display: grid;
-    /*gap: 1.25rem;*/
     gap: 1rem;
 }
 
@@ -430,146 +358,4 @@
 }
 
 
-
-/* --------- Content-Bereich: Projekte (mobile first) --------- */
-/*
-.detailseite.seite-projekte .content > .projekt {
-    display: grid;
-    gap: 1rem; /* Abstand zwischen projekt__block1 und projekt__block2 
-    margin: 0;
-}
-
-/* Block 1: Heading, Text, Mockup 
-.detailseite.seite-projekte .projekt__block1 {
-    display: grid;
-    gap: 1rem;
-
-    grid-template-areas: 
-    "heading"
-    "text1"
-    "mockup1";
-
-    align-items: start;
-}
-
-/* Block 2: Text, Mockup 
-.detailseite.seite-projekte .projekt__block2 {
-    display: grid;
-    gap: 1rem;
-
-    grid-template-areas: 
-    "text2"
-    "mockup2";
-
-    align-items: start;
-}
-
-
-/* Inhalte: Zuordnung zu Grid-Areas 
-.detailseite.seite-projekte .projekt__heading {
-    grid-area: heading;
-}
-
-.detailseite.seite-projekte .projekt__text {
-    grid-area: text1;
-    max-width: 75ch;
-}
-
-.detailseite.seite-projekte .projekt__text--detail {
-    grid-area: text2;
-    max-width: 75ch;
-}
-
-/* Mockups: 
-.detailseite.seite-projekte .projekt__mockup {
-    margin: 0;
-    overflow: hidden;
-}
-
-.detailseite.seite-projekte .projekt__mockup--big {
-    grid-area: mockup1;
-    aspect-ratio: 4 / 3;
-}  
-
-.detailseite.seite-projekte .projekt__mockup--small {
-    grid-area: mockup2;
-    aspect-ratio: 4 / 3;
-}
-
-.detailseite.seite-projekte .projekt__mockup img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-
-
-/* Robustheit: verhindert Overflow in Grid-Zellen und entfernt Default margins 
-.detailseite.seite-projekte .projekt__block1 > *,
-.detailseite.seite-projekte .projekt__block2 > * {
-    margin: 0;
-    min-width: 0;
-}
-
-
-/* Spacing zwischen den Projekten 
-.detailseite.seite-projekte .content > .projekt + .projekt {
-    margin-block-start: 4rem;
-}
-
-
-
-/* --------- Breakpoints: Content --------- 
-/* Breakpoint ab 768px 
-@media (min-width: 768px) {
-    .detailseite.seite-projekte .content > .projekt {
-        gap: 2rem;
-    }
-
-    .detailseite.seite-projekte .projekt__block1 {
-        gap: 1.5rem;
-
-        grid-template-columns: 6fr 2fr 2fr;
-        grid-template-rows: auto 1fr;
-        grid-template-areas: 
-            "heading heading ."
-            "text1 mockup1 .";
-    }
-
-    .detailseite.seite-projekte .projekt__block2 {
-        gap: 1.5rem;
-
-        grid-template-columns: 2fr 2fr 6fr;
-        grid-template-rows: auto;
-        grid-template-areas: 
-            ". mockup2 text2";
-
-    }
-
-    .detailseite.seite-projekte .content > .projekt + .projekt {
-        margin-block-start: 6rem;
-    }
-
-}
-
-/* Breakpoint ab 1280px 
-@media (min-width: 1280px) {
-    .detailseite.seite-projekte .content > .projekt {
-        gap: 4rem;
-    }
-
-    .detailseite.seite-projekte .projekt__block1 {
-        gap: 2rem;
-    }
-
-    .detailseite.seite-projekte .projekt__block2 {
-        gap: 2rem;
-    }
-
-    .detailseite.seite-projekte .content > .projekt + .projekt {
-        margin-block-start: 18rem;
-    }
-
-}
-*/
 

@@ -39,14 +39,6 @@
 }
 
 
-/* Wichtig: verhindert 100vw-Overflow (verhindert horizontales Scrollen) */
-/*
-html:has(.startseite),
-body:has(.startseite) {
-    overflow-x: clip;
-}
-*/
-
 
 /* --------- Hero-Bereich: (full-bleed)) --------- */
 
