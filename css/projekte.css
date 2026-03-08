@@ -17,7 +17,7 @@
 
     /* Zusätzlicher "Inset" innerhalb des Projektrahmens */
     --card-inset: 0rem;
-    
+
     margin: 0;
 }
 
@@ -346,15 +346,15 @@
 /* --------- Projekt-spezifische Hintergründe --------- */
 /* zunächst nur Platzhalter, werden im weirteren verlauf durch korrekte hintergründe ersetzt */
 .detailseite.seite-projekte .projekt--bg.thaddy {
-  --projekt-bg-url: url("/images/content/fotografie/tor-orientalisch.jpg");
+  --projekt-bg-url: url("/images/content/projekte/fotodesign-thaddy-bg.webp");
 }
 
 .detailseite.seite-projekte .projekt--bg.brutzel {
-  --projekt-bg-url: url("/images/content/fotografie/tor-orientalisch.jpg");
+  --projekt-bg-url: url("/images/content/projekte/brutzel-bg.webp");
 }
 
 .detailseite.seite-projekte .projekt--bg.ananas {
-  --projekt-bg-url: url("/images/content/fotografie/tor-orientalisch.jpg");
+  --projekt-bg-url: url("/images/content/projekte/ananas-matheinsel-bg.webp");
 }
 
 
