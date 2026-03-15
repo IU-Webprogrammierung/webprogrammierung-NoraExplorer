@@ -11,6 +11,7 @@
 /* --------- Prozess-Liste --------- */
 /* Grid Container & Start des CSS Counters */
 .detailseite.seite-prozess .prozess {
+    position: relative;
     display: grid;
     gap: 6rem;
     margin: 0;
@@ -19,17 +20,41 @@
 
     /* Startet den Counter für die Pseudo-Nummer */
     counter-reset: schritt; 
+
+    /* Werte werden per JS gesetzt */
+    --timeline-start: 0px;
+    --timeline-length: 0px;
+    --timeline-progress: 0px;
+
+    /* Größe des Nummernkreises */
+    --step-circle-size: 3.5rem;
+    --timeline-x: calc(var(--step-circle-size) / 2);
+
+    isolation: isolate;
 }
 
-/* Reset für <li> */
+/* Mobile first: Linie ist auf kleinen Screens deaktiviert */
+.detailseite.seite-prozess .prozess::before,
+.detailseite.seite-prozess .prozess::after {
+    content: none;
+}
+
+
+
+
+/* ------------ Item ------------- */
+/* Listen-Elemente bleiben relativ positioniert, damit Zustände und Ebenen sauber kontrollierbar sind */
 .detailseite.seite-prozess .prozess__item {
+    position: relative;
     margin: 0;
     padding: 0;
+    z-index: 1;
 }
 
 
 
-/* --------- Prozessschritt (mobilefirst) --------- */
+
+/* --------- Prozessschritt (mobile first) --------- */
 /* Mobile: vertikale Reihenfolge mit Grid Areas */
 .detailseite.seite-prozess .prozessschritt {
     display: grid;
@@ -46,21 +71,65 @@
 
     /* Counter pro Schritt erhöhen */
     counter-increment: schritt;
+ 
+    padding: 0;
+    transform: none;
+    transition: opacity 360ms ease, filter 360ms ease;
 }
 
+/* mobiler Hintergrundakzent für den aktiven Schritt (dient nur als visuelle Hervorhebung) */
+.detailseite.seite-prozess .prozessschritt::after {
+    content: "";
+    position: absolute;
+    inset: -0.5rem -0.25rem;
+    border-radius: var(--radius-xl);
+
+    background: radial-gradient(circle at 100% 50%, color-mix(in srgb, var(--accent-line) 30%, transparent) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 280ms ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.detailseite.seite-prozess .prozess__item.is-active .prozessschritt::after {
+    opacity: 1;
+}
+
+
+
+
+/* --------- Nummer & Kreis --------- */
 /* Nummer (wird per CSS erzeugt) */
 .detailseite.seite-prozess .prozessschritt__nr {
     grid-area: number;
 
-    display: block;
+    position: relative;
+    z-index: 2;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: start;
+    align-self: start;
+
+    width: var(--step-circle-size);
+    aspect-ratio: 1 / 1;
+
     margin: 0;
-    line-height: 0.85;
-    
+    line-height: 1;
 
     font-weight: var(--font-weight-bold);
-    font-size: calc(var(--font-size-base) * 3);
-    letter-spacing: 0.04em;
-    color: color-mix(in srgb, var(--muted) 80%, transparent);
+    font-size: calc(var(--font-size-base) * 1.5);
+    letter-spacing: 0.02em;
+
+    color: var(--muted);
+    background-color: var(--surface);
+    border-radius: 50%;
+
+    overflow: visible;
+    isolation: isolate;
+
+    transition: color 240ms ease, background-color 240ms ease, border-color 240ms ease, box-shadow 280ms ease, transform 280ms ease;
 }
 
 /* Ausgabe: 01, 02, 03 etc. */
@@ -68,16 +137,44 @@
     content: counter(schritt, decimal-leading-zero);
 }
 
-
-/* Inhalte: Zuordnung zu Grid-Areas */
-.detailseite.seite-prozess .prozessschritt__heading {
-    grid-area: heading;
+/* Bereits erreichte und aktiver Schritt teilen dieselbe Grundfarbe */
+.detailseite.seite-prozess .prozess__item.is-passed .prozessschritt__nr,
+.detailseite.seite-prozess .prozess__item.is-active .prozessschritt__nr {
+    color: #ffffff;
+    background: var(--accent-line);
 }
 
+/* Aktiver Schritt erhält zusätzlich eine minimale Skalierung */
+.detailseite.seite-prozess .prozess__item.is-active .prozessschritt__nr {
+    transform: scale(1.04);
+}
+
+
+
+
+/* --------- Inhaltselemente & Zuordnung zu Grid-Areas --------- */
+/* Überschrift */
+.detailseite.seite-prozess .prozessschritt__heading {
+    grid-area: heading;
+    margin: 0;
+    color: var(--text);
+}
+
+/* Aktive Überschrift wird minimal angehoben */
+.detailseite.seite-prozess .prozess__item.is-active .prozessschritt__heading {
+    opacity: 1;
+    color: var(--text);
+
+    transform: translateY(-1px);
+    transition: transform 280ms ease, color 280ms ease;
+}
+
+/* Beschreibungstext */
 .detailseite.seite-prozess .prozessschritt__text {
     grid-area: text;
-
     max-width: 70ch;
+    margin: 0;
+    color: var(--text);
 }
 
 
@@ -98,7 +195,41 @@
     object-fit: cover;
 }
 
-/* Robustheit: verhindert Overflow in Grid-Zellen und entfernt Default margins */
+
+
+
+/* ---------- Zustände mobile ----------- */
+/* Inaktive Bilder etwas ruhiger */
+.detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt__media img {
+    transform: scale(0.985);
+    opacity: 0.82;
+    filter: saturate(0.88) contrast(0.98);
+}
+
+/* Aktives Bild leicht präsenter */
+.detailseite.seite-prozess .prozess__item.is-active .prozessschritt__media img {
+    transform: scale(1.02);
+    opacity: 1;
+    filter: saturate(1.04) contrast(1.01);
+}
+
+/* Inaktive Texte dezenter */
+.detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt__heading,
+.detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt__text {
+    opacity: 0.78;
+}
+
+/* Aktive Texte voll sichtbar */
+.detailseite.seite-prozess .prozess__item.is-active .prozessschritt__heading,
+.detailseite.seite-prozess .prozess__item.is-active .prozessschritt__text {
+    opacity: 1;
+}
+
+
+
+
+
+/* ---------- Robustheit: verhindert Overflow in Grid-Zellen und entfernt Default margins ---------- */
 .detailseite.seite-prozess .prozessschritt > * {
     margin: 0;
     min-width: 0;   
@@ -106,9 +237,47 @@
 
 
 
+
+/* --------- Reveal-Animation --------- */
+/* Der gesamte Schritt fährt beim ersten Sichtbarwerden weich ein */
+.detailseite.seite-prozess .prozess__item.reveal {
+    opacity: 0;
+    transform: translateY(2.5rem);
+    transition: opacity 700ms ease, transform 700ms ease;
+    will-change: opacity, transform;
+}
+
+/* Nummer und Bild werden leicht verzögert eingeblendet */
+.detailseite.seite-prozess .prozess__item.reveal .prozessschritt__nr,
+.detailseite.seite-prozess .prozess__item.reveal .prozessschritt__media {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 700ms ease 120ms, transform 700ms ease 120ms;
+}
+
+/* Zielzustand nach Reveal */
+.detailseite.seite-prozess .prozess__item.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.detailseite.seite-prozess .prozess__item.reveal.is-visible .prozessschritt__nr,
+.detailseite.seite-prozess .prozess__item.reveal.is-visible .prozessschritt__media {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+
+
 /* --------- Breakpoints: Content Prozess --------- */
 /* Breakpoint ab 768px */
 @media (min-width: 768px) {
+    .detailseite.seite-prozess .prozess {
+        gap: 8rem;
+    }
+
     .detailseite.seite-prozess .prozessschritt {
         gap: 1.5rem;
         row-gap: 1rem;
@@ -116,17 +285,216 @@
         grid-template-columns: 1fr 8fr 3fr;
         grid-template-rows: auto 1fr;
         grid-template-areas:
-        "number heading media"
-        "number text    media";
+            "number heading media"
+            "number text    media";
 
         align-items: start;
+        transform-origin: left top;
+        transition: transform 560ms cubic-bezier(.2, .8, .2, 1), opacity 420ms ease, filter 420ms ease;
     }
 
-    .detailseite.seite-prozess .prozessschritt__nr {
-        justify-self: start;
+    /* Inaktive Desktop-Schritte wirken etwas kompakter */
+    .detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt {
+        transform: scale(0.98);
+        filter: saturate(0.92);
     }
 
+
+    /* Aktiver Schritt wächst leicht */
+    .detailseite.seite-prozess .prozess__item.is-active .prozessschritt {
+        opacity: 1;
+        transform: scale(1.02);
+        filter: saturate(1.03);
+    }
+
+    /* Bild darf auf größeren Screens breiter werden */
     .detailseite.seite-prozess .prozessschritt__media {
         width: 100%;
+        max-width: 30rem;
+    }
+
+    /* Bildanimationen werden aktiviert */
+    .detailseite.seite-prozess .prozessschritt__media img {
+        transition: transform 700ms cubic-bezier(.2, .8, .2, 1), filter 420ms ease, opacity 420ms ease;
+    }
+
+    .detailseite.seite-prozess .prozess__item.is-active .prozessschritt__media img {
+    animation: prozess-image-breathe 6.5s ease-in-out infinite;
+    }
+
+    /* Timeline-Grundlinie und aktive Fortschrittslinie */
+    .detailseite.seite-prozess .prozess::before,
+    .detailseite.seite-prozess .prozess::after {
+        content: "";
+        position: absolute;
+        left: var(--timeline-x);
+        transform: translateX(-50%);
+        width: 2px;
+        border-radius: var(--radius-pill);
+        pointer-events: none;
+    }
+
+    /* Graue Basislinie */
+    .detailseite.seite-prozess .prozess::before {
+        top: var(--timeline-start);
+        height: var(--timeline-length);
+        background: color-mix(in srgb, var(--muted) 14%, transparent);
+        z-index: 0;
+    }
+
+    /* Aktive Fortschrittslinie */
+    .detailseite.seite-prozess .prozess::after {
+        top: var(--timeline-start);
+        height: var(--timeline-progress);
+        background: linear-gradient( to bottom, color-mix(in srgb, var(--accent-line) 70%, white 10%) 0%, var(--accent-line) 100%);
+        box-shadow: 0 0 6px color-mix(in srgb, var(--accent-line) 20%, transparent), 0 0 14px color-mix(in srgb, var(--accent-line) 10%, transparent);
+        transition: height 600ms cubic-bezier(.22, .61, .36, 1);
+        z-index: 0;
+    }
+}
+
+
+
+/* Breakpoint bis 767px (Feinjustierung für kleine mobile Bildschirme) */
+@media (max-width: 767px) {
+    .detailseite.seite-prozess .prozess {
+        gap: 3rem;
+    }
+
+    .detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt,
+    .detailseite.seite-prozess .prozess__item.is-active .prozessschritt {
+        transform: none;
+        filter: none;
+    }
+
+    .detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt {
+        opacity: 0.9;
+    }
+
+    .detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt__heading,
+    .detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt__text {
+        opacity: 0.78;
+    }
+
+    .detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt__media img,
+    .detailseite.seite-prozess .prozess__item.is-active .prozessschritt__media img {
+        transform: none;
+        animation: none;
+    }
+
+    .detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt__media img {
+        opacity: 0.82;
+        filter: saturate(0.94) contrast(0.99);
+    }
+
+    .detailseite.seite-prozess .prozess__item.is-active .prozessschritt__media img {
+        opacity: 1;
+        filter: saturate(1.02) contrast(1.01);
+    }
+
+    .detailseite.seite-prozess .prozessschritt::after {
+        inset: -0.35rem;
+    }
+
+    /* zusätzlicher Layer hinter dem Kreis für Puls-Effekt */
+    .detailseite.seite-prozess .prozessschritt__nr::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: var(--accent-line);
+
+        opacity: 0;
+        transform: scale(1);
+
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    /* Pulsanimation nur beim aktiven Schritt */
+    .detailseite.seite-prozess .prozess__item.is-active .prozessschritt__nr::after {
+        animation: prozess-mobile-circle-pulse 1.2s ease-out infinite;
+    }
+}
+
+
+
+/* Breakpoint ab 1280px */
+/* Etwas mehr vertikaler Rhythmus auf sehr großen Displays */
+@media (min-width: 1280px) {
+    .detailseite.seite-prozess .prozess {
+        gap: 10rem;
+    }
+}
+
+
+
+
+/* --------- Keyframes --------- */
+@keyframes prozess-image-breathe {
+    0% {
+        transform: scale(1.02);
+    }
+    50% {
+        transform: scale(1.028);
+    }
+    100% {
+        transform: scale(1.02);
+    }
+}
+
+
+@keyframes prozess-mobile-circle-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+    60% {
+        transform: scale(1.2);
+        opacity: 0.2;
+    }
+    100% {
+        transform: scale(1.1);
+        opacity: 0;
+    }
+}
+
+
+
+
+
+/* ------------ Reduced Motion ------------ */
+/* Deaktiviert Animationen und Bewegungen, wenn der Nutzer explizit reduzierte Bewegung eingestellt hat */
+html[data-motion="reduced"] .detailseite.seite-prozess .prozess::after,
+html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item,
+html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item *,
+html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item.is-active .prozessschritt__media img,
+html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item::before,
+html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+}
+
+/* Reveal-Zustände sofort sichtbar setzen */
+html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item.reveal {
+    opacity: 1 !important;
+}
+
+/* Systemweite Fallback-Regel bei prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    html:not([data-motion]) .detailseite.seite-prozess .prozess::after,
+    html:not([data-motion]) .detailseite.seite-prozess .prozess__item,
+    html:not([data-motion]) .detailseite.seite-prozess .prozess__item *,
+    html:not([data-motion]) .detailseite.seite-prozess .prozess__item.is-active .prozessschritt__media img,
+    html:not([data-motion]) .detailseite.seite-prozess .prozess__item::before,
+    html:not([data-motion]) .detailseite.seite-prozess .prozess__item::after {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+
+    html:not([data-motion]) .detailseite.seite-prozess .prozess__item.reveal {
+        opacity: 1 !important;
     }
 }
