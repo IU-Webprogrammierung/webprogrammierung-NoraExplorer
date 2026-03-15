@@ -5,33 +5,128 @@
     scroll-margin-top: calc(var(--header-height) + 4rem);
 }
 
-/* --------- Content-Bereich: Interessen Artikel (mobile first) --------- */
-.detailseite.seite-ueber .content > .interesse {
+
+/* --------- Content-Bereich: Interessen-Artikel (mobile first) --------- */
+.detailseite.seite-ueber .content .interesse {
+    position: relative;
     display: grid;
     gap: 1rem;
     margin: 0;
+    padding: 1.25rem;
 
-    grid-template-areas: 
+    grid-template-areas:
         "heading"
         "text"
         "media";
 
     align-items: start;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background:
+        linear-gradient(
+            180deg,
+            color-mix(in srgb, var(--surface) 94%, transparent) 0%,
+            color-mix(in srgb, var(--surface) 100%, transparent) 100%
+        );
+    box-shadow: 0 10px 30px color-mix(in srgb, var(--shadow-soft) 35%, transparent);
+
+    overflow: clip;
+    isolation: isolate;
+
+    transition:
+        transform 320ms ease,
+        border-color 320ms ease,
+        box-shadow 320ms ease,
+        background-color 320ms ease;
 }
+
+
+/* --------- Dekorative Akzent-Layer --------- */
+/* Grundakzent hinter der Karte */
+.detailseite.seite-ueber .content .interesse::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.9;
+
+    background:
+        radial-gradient(
+            circle at 100% 50%,
+            color-mix(in srgb, var(--accent-line) 10%, transparent) 0%,
+            transparent 42%
+        );
+}
+
+/* gespiegelt für alternierende Karten */
+.detailseite.seite-ueber .content .interesse:nth-of-type(even)::before {
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            color-mix(in srgb, var(--accent-line) 10%, transparent) 0%,
+            transparent 42%
+        );
+}
+
+/* zusätzlicher Glow-Layer für aktive Karten */
+.detailseite.seite-ueber .content .interesse::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    pointer-events: none;
+
+    border-radius: inherit;
+    opacity: 0;
+
+    background:
+        radial-gradient(
+            circle at 100% 50%,
+            color-mix(in srgb, var(--accent-line) 30%, transparent) 0%,
+            transparent 70%
+        );
+
+    transition: opacity 320ms ease;
+}
+
+/* gespiegelt für alternierende Karten */
+.detailseite.seite-ueber .content .interesse:nth-of-type(even)::after {
+    background:
+        radial-gradient(
+            circle at 0% 50%,
+            color-mix(in srgb, var(--accent-line) 30%, transparent) 0%,
+            transparent 70%
+        );
+}
+
 
 /* --------- Spacing zwischen Interessen-Artikeln --------- */
-.detailseite.seite-ueber .content > .interesse + .interesse {
-  margin-block-start: 4rem;
+.detailseite.seite-ueber .content .interesse + .interesse {
+    margin-block-start: 4rem;
 }
 
 
-/* Inhalte: Zuordnung zu Grid-Areas */
+/* --------- Inhalte: Zuordnung zu Grid-Areas --------- */
 .detailseite.seite-ueber .interesse__heading {
     grid-area: heading;
+    margin: 0;
+
+    transition:
+        color 260ms ease,
+        transform 260ms ease,
+        opacity 260ms ease;
 }
 
 .detailseite.seite-ueber .interesse__text {
     grid-area: text;
+    margin: 0;
+
+    color: var(--text);
+    max-width: 68ch;
+
+    transition: opacity 280ms ease, transform 280ms ease;
 }
 
 .detailseite.seite-ueber .interesse__media {
@@ -42,45 +137,254 @@
 }
 
 .detailseite.seite-ueber .interesse__media img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+
+    transform: scale(1.04);
+    filter: saturate(0.98) contrast(1.01);
+
+    transition:
+        transform 700ms cubic-bezier(.2, .8, .2, 1),
+        filter 320ms ease,
+        opacity 320ms ease;
 }
 
 
-/* Robustheit: verhindert Overflow in Grid-Zellen und entfernt Default margins */
-.detailseite.seite-ueber .content > .interesse > * {
+/* Robustheit: verhindert Overflow in Grid-Zellen und entfernt Default-Margins */
+.detailseite.seite-ueber .content .interesse > * {
     margin: 0;
     min-width: 0;
 }
 
 
+/* --------- Reveal Animation --------- */
+/* Karte fährt weich ein */
+.detailseite.seite-ueber .interesse.reveal {
+    opacity: 0;
+    transform: translateY(2rem);
+    will-change: opacity, transform;
+
+    transition:
+        opacity 700ms ease,
+        transform 700ms ease,
+        box-shadow 320ms ease,
+        border-color 320ms ease;
+}
+
+/* Heading, Text und Bild folgen leicht gestaffelt */
+.detailseite.seite-ueber .interesse.reveal .interesse__heading,
+.detailseite.seite-ueber .interesse.reveal .interesse__text,
+.detailseite.seite-ueber .interesse.reveal .interesse__media {
+    opacity: 0;
+    transform: translateY(1rem);
+
+    transition:
+        opacity 700ms ease,
+        transform 700ms ease;
+}
+
+.detailseite.seite-ueber .interesse.reveal .interesse__heading {
+    transition-delay: 70ms;
+}
+
+.detailseite.seite-ueber .interesse.reveal .interesse__text {
+    transition-delay: 140ms;
+}
+
+.detailseite.seite-ueber .interesse.reveal .interesse__media {
+    transition-delay: 210ms;
+}
+
+/* Zielzustand nach dem Reveal */
+.detailseite.seite-ueber .interesse.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.detailseite.seite-ueber .interesse.reveal.is-visible .interesse__heading,
+.detailseite.seite-ueber .interesse.reveal.is-visible .interesse__text,
+.detailseite.seite-ueber .interesse.reveal.is-visible .interesse__media {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.detailseite.seite-ueber .interesse.reveal.is-visible .interesse__media img {
+    transform: scale(1);
+}
+
+
+/* --------- Aktiver Interessen-Block --------- */
+/* wird per JS gesetzt und hebt den aktuell relevantesten Block hervor */
+.detailseite.seite-ueber .interesse.is-active {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--accent-line) 20%, var(--border));
+    box-shadow:
+        0 16px 40px color-mix(in srgb, var(--shadow-soft) 55%, transparent),
+        0 0 0 1px color-mix(in srgb, var(--accent-line) 8%, transparent);
+}
+
+.detailseite.seite-ueber .interesse.is-active::after {
+    opacity: 1;
+}
+
+.detailseite.seite-ueber .interesse.is-active .interesse__heading {
+    color: var(--accent-text);
+    transform: translateY(-1px);
+}
+
+.detailseite.seite-ueber .interesse.is-active .interesse__text {
+    opacity: 1;
+}
+
+.detailseite.seite-ueber .interesse.is-active .interesse__media img {
+    transform: scale(1.015);
+    filter: saturate(1.04) contrast(1.02);
+}
+
 
 /* --------- Breakpoints: Content --------- */
 /* Breakpoint ab 768px */
 @media (min-width: 768px) {
-    .detailseite.seite-ueber .content > .interesse {
+    .detailseite.seite-ueber .content .interesse {
         gap: 1.5rem;
 
         grid-template-columns: 2fr 1fr;
-        grid-template-rows: auto 1fr; 
-        grid-template-areas: 
-            "heading    media"
-            "text       media";
+        grid-template-rows: auto 1fr;
+        grid-template-areas:
+            "heading media"
+            "text    media";
     }
 
-    .detailseite.seite-ueber .content > .interesse + .interesse {
+    .detailseite.seite-ueber .content .interesse + .interesse {
         margin-block-start: 6rem;
+    }
+
+    /* alternierende Anordnung für mehr Rhythmus */
+    .detailseite.seite-ueber .content .interesse:nth-of-type(even) {
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas:
+            "media heading"
+            "media text";
+    }
+
+    .detailseite.seite-ueber .content .interesse:nth-of-type(even) .interesse__media {
+        justify-self: start;
     }
 }
 
 /* Breakpoint ab 1280px */
 @media (min-width: 1280px) {
-    .detailseite.seite-ueber .content > .interesse {
+    .detailseite.seite-ueber .content .interesse {
         gap: 2rem;
+        padding: 1.75rem;
     }
 
-    .detailseite.seite-ueber .content > .interesse + .interesse {
-        margin-block-start: 12rem;
+    .detailseite.seite-ueber .content .interesse + .interesse {
+        margin-block-start: 8rem;
+    }
+}
+
+
+/* --------- Mobile bis 767px --------- */
+/* 
+   Auf kleinen Geräten:
+   - kein Reveal
+   - keine Bewegungs-/Lift-Effekte
+   - aber weiterhin farbliche Hervorhebung des aktiven Blocks
+   - Akzent-Gradient unten mittig statt seitlich
+*/
+@media (max-width: 767px) {
+    .detailseite.seite-ueber .content .interesse::before,
+    .detailseite.seite-ueber .content .interesse:nth-of-type(even)::before {
+        background:
+            radial-gradient(
+                circle at 50% 100%,
+                color-mix(in srgb, var(--accent-line) 40%, transparent) 0%,
+                transparent 60%
+            );
+    }
+
+    .detailseite.seite-ueber .content .interesse::after,
+    .detailseite.seite-ueber .content .interesse:nth-of-type(even)::after {
+        background:
+            radial-gradient(
+                circle at 50% 100%,
+                color-mix(in srgb, var(--accent-line) 80%, transparent) 0%,
+                transparent 60%
+            );
+    }
+
+    /* Reveal-Zustände auf Mobile immer sichtbar halten */
+    .detailseite.seite-ueber .interesse,
+    .detailseite.seite-ueber .interesse.reveal,
+    .detailseite.seite-ueber .interesse.reveal .interesse__heading,
+    .detailseite.seite-ueber .interesse.reveal .interesse__text,
+    .detailseite.seite-ueber .interesse.reveal .interesse__media {
+        opacity: 1;
+        transform: none;
+    }
+
+    /* Bild auf Mobile ruhig halten */
+    .detailseite.seite-ueber .interesse__media img,
+    .detailseite.seite-ueber .interesse.reveal.is-visible .interesse__media img,
+    .detailseite.seite-ueber .interesse.is-active .interesse__media img {
+        transform: none;
+        filter: saturate(1) contrast(1);
+    }
+
+    /* Active-State bleibt farblich sichtbar, aber ohne Lift */
+    .detailseite.seite-ueber .interesse.is-active {
+        transform: none;
+        border-color: color-mix(in srgb, var(--accent-line) 20%, var(--border));
+        box-shadow: 0 10px 30px color-mix(in srgb, var(--shadow-soft) 35%, transparent);
+    }
+
+    .detailseite.seite-ueber .interesse.is-active::after {
+        opacity: 1;
+    }
+
+    .detailseite.seite-ueber .interesse.is-active .interesse__heading {
+        color: var(--accent-text);
+        transform: none;
+    }
+}
+
+
+/* --------- Reduced Motion --------- */
+/* Nutzerpräferenz im Projekt */
+html[data-motion="reduced"] .detailseite.seite-ueber .interesse,
+html[data-motion="reduced"] .detailseite.seite-ueber .interesse *,
+html[data-motion="reduced"] .detailseite.seite-ueber .interesse::before,
+html[data-motion="reduced"] .detailseite.seite-ueber .interesse::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+}
+
+html[data-motion="reduced"] .detailseite.seite-ueber .interesse.reveal,
+html[data-motion="reduced"] .detailseite.seite-ueber .interesse.reveal .interesse__heading,
+html[data-motion="reduced"] .detailseite.seite-ueber .interesse.reveal .interesse__text,
+html[data-motion="reduced"] .detailseite.seite-ueber .interesse.reveal .interesse__media {
+    opacity: 1 !important;
+}
+
+/* System-Fallback */
+@media (prefers-reduced-motion: reduce) {
+    html:not([data-motion]) .detailseite.seite-ueber .interesse,
+    html:not([data-motion]) .detailseite.seite-ueber .interesse *,
+    html:not([data-motion]) .detailseite.seite-ueber .interesse::before,
+    html:not([data-motion]) .detailseite.seite-ueber .interesse::after {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+
+    html:not([data-motion]) .detailseite.seite-ueber .interesse.reveal,
+    html:not([data-motion]) .detailseite.seite-ueber .interesse.reveal .interesse__heading,
+    html:not([data-motion]) .detailseite.seite-ueber .interesse.reveal .interesse__text,
+    html:not([data-motion]) .detailseite.seite-ueber .interesse.reveal .interesse__media {
+        opacity: 1 !important;
     }
 }
