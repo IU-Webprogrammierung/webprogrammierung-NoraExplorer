@@ -5,7 +5,8 @@
     scroll-margin-top: calc(var(--header-height) + 4rem);
 }
 
-/* Galerie-Liste: Reset & Grid */
+
+/* --------- Galerie-Liste --------- */
 .detailseite.seite-fotografie .galerie {
     display: grid;
     gap: 1rem;
@@ -18,11 +19,18 @@
 }
 
 
-/* Foto Frame */
+/* --------- Foto Frame --------- */
 .detailseite.seite-fotografie .foto {
+    position: relative;
     height: 100%;
     width: 100%;
     overflow: hidden;
+
+    border-radius: var(--radius-l);
+    background: var(--surface);
+    box-shadow: var(--shadow-soft);
+
+    transition: transform 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
 }
 
 .detailseite.seite-fotografie .galerie__item--portrait .foto {
@@ -37,6 +45,9 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+
+    transform: scale(1);
+    transition: transform 0.8s ease;
 }
 
 
@@ -46,8 +57,76 @@
 }
 
 
+/* --------- Reveal Animation --------- */
+/* Galerie-Items werden beim ersten Sichtbarwerden des Content-Bereichs weich eingeblendet */
+html.motion-enhanced .detailseite.seite-fotografie .galerie__item.reveal {
+    opacity: 0;
+    transform: translateY(2rem) scale(0.985);
+    filter: blur(8px);
 
-/* --------- Breakpoints: Content --------- */
+    transition: opacity 0.7s ease, transform 0.7s ease, filter 0.7s ease;
+
+    will-change: opacity, transform, filter;
+}
+
+/* Zielzustand nach dem Reveal */
+html.motion-enhanced .detailseite.seite-fotografie .galerie__item.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+/* leichte Staffelung für eine hochwertigere Bildwirkung */
+html.motion-enhanced .detailseite.seite-fotografie .galerie__item.reveal:nth-child(2) {
+    transition-delay: 0.05s;
+}
+
+html.motion-enhanced .detailseite.seite-fotografie .galerie__item.reveal:nth-child(3) {
+    transition-delay: 0.1s;
+}
+
+html.motion-enhanced .detailseite.seite-fotografie .galerie__item.reveal:nth-child(4) {
+    transition-delay: 0.15s;
+}
+
+html.motion-enhanced .detailseite.seite-fotografie .galerie__item.reveal:nth-child(5) {
+    transition-delay: 0.2s;
+}
+
+html.motion-enhanced .detailseite.seite-fotografie .galerie__item.reveal:nth-child(6) {
+    transition-delay: 0.25s;
+}
+
+html.motion-enhanced .detailseite.seite-fotografie .galerie__item.reveal:nth-child(7) {
+    transition-delay: 0.3s;
+}
+
+html.motion-enhanced .detailseite.seite-fotografie .galerie__item.reveal:nth-child(8) {
+    transition-delay: 0.35s;
+}
+
+html.motion-enhanced .detailseite.seite-fotografie .galerie__item.reveal:nth-child(9) {
+    transition-delay: 0.4s;
+}
+
+
+/* --------- Hover-Effekt --------- */
+/* nur auf Geräten mit echtem Hover & feinem Pointer */
+@media (hover: hover) and (pointer: fine) {
+    .detailseite.seite-fotografie .galerie__item:hover .foto,
+    .detailseite.seite-fotografie .galerie__item:focus-within .foto {
+        transform: translateY(-0.25rem);
+        box-shadow: 0 18px 36px color-mix(in srgb, var(--text) 14%, transparent);
+    }
+
+    .detailseite.seite-fotografie .galerie__item:hover .foto img,
+    .detailseite.seite-fotografie .galerie__item:focus-within .foto img {
+        transform: scale(1.04);
+    }
+}
+
+
+/* --------- Breakpoints --------- */
 /* Breakpoint ab 768px */
 @media (min-width: 768px) {
     .detailseite.seite-fotografie .galerie {
@@ -67,5 +146,69 @@
 
     .detailseite.seite-fotografie .galerie__item--landscape {
         grid-column: span 2;
+    }
+}
+
+
+/* --------- Mobile bis 767px --------- */
+/*
+   Auf kleinen Geräten:
+   - kein Reveal
+   - keine Bewegungs-/Hover-Effekte
+   - Bilder bleiben ruhig sichtbar
+*/
+@media (max-width: 767px) {
+    .detailseite.seite-fotografie .galerie__item.reveal {
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
+
+    .detailseite.seite-fotografie .foto,
+    .detailseite.seite-fotografie .foto img,
+    .detailseite.seite-fotografie .galerie__item:hover .foto,
+    .detailseite.seite-fotografie .galerie__item:focus-within .foto,
+    .detailseite.seite-fotografie .galerie__item:hover .foto img,
+    .detailseite.seite-fotografie .galerie__item:focus-within .foto img {
+        transform: none;
+    }
+}
+
+
+/* --------- Reduced Motion --------- */
+/* Nutzerpräferenz im Projekt */
+html[data-motion="reduced"] .detailseite.seite-fotografie .galerie__item,
+html[data-motion="reduced"] .detailseite.seite-fotografie .galerie__item *,
+html[data-motion="reduced"] .detailseite.seite-fotografie .foto,
+html[data-motion="reduced"] .detailseite.seite-fotografie .foto *,
+html[data-motion="reduced"] .detailseite.seite-fotografie .galerie__item::before,
+html[data-motion="reduced"] .detailseite.seite-fotografie .galerie__item::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+}
+
+/* Reveal-Zustände sofort sichtbar setzen */
+html[data-motion="reduced"] .detailseite.seite-fotografie .galerie__item.reveal {
+    opacity: 1 !important;
+    filter: none !important;
+}
+
+/* System-Fallback */
+@media (prefers-reduced-motion: reduce) {
+    html:not([data-motion]) .detailseite.seite-fotografie .galerie__item,
+    html:not([data-motion]) .detailseite.seite-fotografie .galerie__item *,
+    html:not([data-motion]) .detailseite.seite-fotografie .foto,
+    html:not([data-motion]) .detailseite.seite-fotografie .foto *,
+    html:not([data-motion]) .detailseite.seite-fotografie .galerie__item::before,
+    html:not([data-motion]) .detailseite.seite-fotografie .galerie__item::after {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+
+    html:not([data-motion]) .detailseite.seite-fotografie .galerie__item.reveal {
+        opacity: 1 !important;
+        filter: none !important;
     }
 }
