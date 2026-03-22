@@ -3,8 +3,18 @@
 /* Footer */
 .footer {
     min-height: var(--footer-height);
-    border-top: 1px solid var(--border);
-    background: var(--surface);
+    border-top: 1px solid var(--clay-footer-border);
+
+    /*
+    background: var(--surface-raised);
+    /*background: var(--surface);*/
+    /*
+    color: var(--text);
+    box-shadow: 0 -8px 24px color-mix(in srgb, var(--text) 4%, transparent);
+    */
+    background: var(--clay-footer);
+    box-shadow:var(--clay-footer-shadow);
+    border-radius:var(--radius-xl) var(--radius-xl) 0 0;
     color: var(--text);
 }
 

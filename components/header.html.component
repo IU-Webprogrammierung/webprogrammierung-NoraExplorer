@@ -61,7 +61,7 @@
     <div class="mobile-nav__header">
         <h2 class="mobile-nav__title" id="mobileNavTitle">Menü</h2>
 
-        <button type="button" class="mobile-nav__close" data-nav-close aria-label="Menü schließen">
+        <button type="button" class="mobile-nav__close icon-button" data-nav-close aria-label="Menü schließen">
             <!-- SVG stammt von https://heroicons.com -->
             <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />

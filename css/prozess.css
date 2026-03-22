@@ -28,7 +28,7 @@
 
     /* Größe des Nummernkreises */
     --step-circle-size: 3.5rem;
-    --timeline-x: calc(var(--step-circle-size) / 2);
+    --timeline-x: calc(var(--step-circle-size) / 2 + 1rem);
 
     isolation: isolate;
 }
@@ -72,9 +72,15 @@
     /* Counter pro Schritt erhöhen */
     counter-increment: schritt;
  
-    padding: 0;
+    /*padding: 0;*/
+    padding: 1rem;
     transform: none;
     transition: opacity 360ms ease, filter 360ms ease;
+
+    border-radius: var(--radius-xl);
+    background: var(--clay-blue);
+    border: 1px solid var(--clay-blue-border);
+    box-shadow: var(--clay-blue-shadow);
 }
 
 /* mobiler Hintergrundakzent für den aktiven Schritt (dient nur als visuelle Hervorhebung) */
@@ -82,9 +88,20 @@
     content: "";
     position: absolute;
     inset: -0.5rem -0.25rem;
+
+    /*
     border-radius: var(--radius-xl);
 
-    background: radial-gradient(circle at 100% 50%, color-mix(in srgb, var(--accent-line) 30%, transparent) 0%, transparent 70%);
+    background: var(--clay-blue);
+    border: 1px solid var(--clay-blue-border);
+    box-shadow: var(--clay-card-shadow);
+    /*
+    background: var(--clay-soft);
+    border: 1px solid var(--clay-soft-border);
+    box-shadow: var(--clay-soft-shadow);
+    */
+
+    /*background: radial-gradient(circle at 100% 50%, color-mix(in srgb, var(--accent-line) 30%, transparent) 0%, transparent 70%);*/
     opacity: 0;
     transition: opacity 280ms ease;
     pointer-events: none;
@@ -104,7 +121,7 @@
     grid-area: number;
 
     position: relative;
-    z-index: 2;
+    z-index: 10;
 
     display: inline-flex;
     align-items: center;
@@ -122,9 +139,16 @@
     font-size: calc(var(--font-size-base) * 1.5);
     letter-spacing: 0.02em;
 
+    color: var(--text);
+    background: var(--clay-soft);
+    border: 1px solid var(--clay-soft-border);
+    border-radius: 50%;
+    box-shadow: var(--clay-soft-shadow);
+    /*
     color: var(--muted);
     background-color: var(--surface);
     border-radius: 50%;
+    */
 
     overflow: visible;
     isolation: isolate;
@@ -140,13 +164,23 @@
 /* Bereits erreichte und aktiver Schritt teilen dieselbe Grundfarbe */
 .detailseite.seite-prozess .prozess__item.is-passed .prozessschritt__nr,
 .detailseite.seite-prozess .prozess__item.is-active .prozessschritt__nr {
+    /*color: #ffffff;*/
     color: #ffffff;
-    background: var(--accent-line);
+    background: var(--clay-accent);
+    border: 1px solid var(--clay-accent-border);
+    box-shadow: var(--clay-accent-shadow);
+
+
+    /*
+    background: linear-gradient(180deg, color-mix(in srgb, var(--accent-line) 86%, white 14%) 0%, var(--accent-line) 100%);
+    border-color: color-mix(in srgb, var(--accent-line) 85%, black 10%);
+    /*background: var(--accent-line);*/
 }
 
 /* Aktiver Schritt erhält zusätzlich eine minimale Skalierung */
 .detailseite.seite-prozess .prozess__item.is-active .prozessschritt__nr {
-    transform: scale(1.04);
+    /*transform: scale(1.04);*/
+    transform: scale(1.05);
 }
 
 
@@ -187,6 +221,13 @@
     aspect-ratio: 4 / 3;
     
     width: clamp(16rem, 85vw, 22rem);
+
+    border-radius: var(--radius-l);
+    /*
+    border: 1px solid var(--border);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow-soft), var(--shadow-card-inset);
+    */
 }
 
 .detailseite.seite-prozess .prozessschritt__media img {
@@ -329,7 +370,7 @@
         position: absolute;
         left: var(--timeline-x);
         transform: translateX(-50%);
-        width: 2px;
+        width: 8px;
         border-radius: var(--radius-pill);
         pointer-events: none;
     }
@@ -346,7 +387,8 @@
     .detailseite.seite-prozess .prozess::after {
         top: var(--timeline-start);
         height: var(--timeline-progress);
-        background: linear-gradient( to bottom, color-mix(in srgb, var(--accent-line) 70%, white 10%) 0%, var(--accent-line) 100%);
+        /*background: linear-gradient( to bottom, color-mix(in srgb, var(--accent-line) 70%, white 10%) 0%, var(--accent-line) 100%);*/
+        background: var(--accent-line);
         box-shadow: 0 0 6px color-mix(in srgb, var(--accent-line) 20%, transparent), 0 0 14px color-mix(in srgb, var(--accent-line) 10%, transparent);
         transition: height 600ms cubic-bezier(.22, .61, .36, 1);
         z-index: 0;

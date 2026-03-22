@@ -21,6 +21,14 @@
 
     align-items: start;
 
+    /*background: var(--section-bg);*/
+    border-radius: var(--radius-xl);
+    /*
+    background: var(--clay-card);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--clay-card-border);
+    box-shadow: var(--clay-card-shadow);
+    /*
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
     background:
@@ -30,15 +38,25 @@
             color-mix(in srgb, var(--surface) 100%, transparent) 100%
         );
     box-shadow: 0 10px 30px color-mix(in srgb, var(--shadow-soft) 35%, transparent);
+    */
 
     overflow: clip;
     isolation: isolate;
 
+    /*
     transition:
         transform 320ms ease,
         border-color 320ms ease,
         box-shadow 320ms ease,
         background-color 320ms ease;
+    */
+
+    transition: 
+        transform 0.18s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;;
 }
 
 
@@ -51,23 +69,28 @@
     z-index: -1;
     pointer-events: none;
     opacity: 0.9;
+    background: transparent;
 
+    /*
     background:
         radial-gradient(
             circle at 100% 50%,
             color-mix(in srgb, var(--accent-line) 10%, transparent) 0%,
             transparent 42%
         );
+    */
 }
 
 /* gespiegelt für alternierende Karten */
 .detailseite.seite-ueber .content .interesse:nth-of-type(even)::before {
+    /*
     background:
         radial-gradient(
             circle at 10% 15%,
             color-mix(in srgb, var(--accent-line) 10%, transparent) 0%,
             transparent 42%
         );
+    */
 }
 
 /* zusätzlicher Glow-Layer für aktive Karten */
@@ -81,30 +104,39 @@
     border-radius: inherit;
     opacity: 0;
 
+    background: transparent;
+
+    /*
     background:
         radial-gradient(
             circle at 100% 50%,
             color-mix(in srgb, var(--accent-line) 30%, transparent) 0%,
             transparent 70%
         );
+    */
 
-    transition: opacity 320ms ease;
+    /*transition: opacity 320ms ease;*/
+    transition: opacity 0.32s ease;
 }
 
 /* gespiegelt für alternierende Karten */
 .detailseite.seite-ueber .content .interesse:nth-of-type(even)::after {
+    /*
     background:
         radial-gradient(
             circle at 0% 50%,
             color-mix(in srgb, var(--accent-line) 30%, transparent) 0%,
             transparent 70%
         );
+    */
 }
 
 
 /* --------- Spacing zwischen Interessen-Artikeln --------- */
-.detailseite.seite-ueber .content .interesse + .interesse {
-    margin-block-start: 4rem;
+.detailseite.seite-ueber .content .interesse-row + .interesse-row {
+    /*margin-block-start: 4rem;*/
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 
@@ -131,9 +163,17 @@
 
 .detailseite.seite-ueber .interesse__media {
     grid-area: media;
-    align-self: center;
+    /*align-self: center;
     overflow: hidden;
-    aspect-ratio: 4 / 3;
+    /*aspect-ratio: 4 / 3;*/
+    align-self: start;
+
+    /*
+    border-radius: var(--radius-l);
+    border: 1px solid var(--clay-soft-border);
+    background: var(--clay-soft);
+    box-shadow: var(--clay-soft-shadow);
+    */
 }
 
 .detailseite.seite-ueber .interesse__media img {
@@ -219,10 +259,17 @@
 /* wird per JS gesetzt und hebt den aktuell relevantesten Block hervor */
 .detailseite.seite-ueber .interesse.is-active {
     transform: translateY(-2px);
+
+    /*
     border-color: color-mix(in srgb, var(--accent-line) 20%, var(--border));
+    box-shadow:
+        var(--shadow-soft-hover),
+        0 0 0 1px color-mix(in srgb, var(--accent-line) 8%, transparent);
+    /*
     box-shadow:
         0 16px 40px color-mix(in srgb, var(--shadow-soft) 55%, transparent),
         0 0 0 1px color-mix(in srgb, var(--accent-line) 8%, transparent);
+    */
 }
 
 .detailseite.seite-ueber .interesse.is-active::after {
@@ -257,19 +304,21 @@
             "text    media";
     }
 
-    .detailseite.seite-ueber .content .interesse + .interesse {
-        margin-block-start: 6rem;
+    .detailseite.seite-ueber .content .interesse-row + .interesse-row {
+        /*margin-block-start: 6rem;*/
+        padding-top: 3rem;
+        padding-bottom: 3rem;
     }
 
     /* alternierende Anordnung für mehr Rhythmus */
-    .detailseite.seite-ueber .content .interesse:nth-of-type(even) {
+    .detailseite.seite-ueber .content .interesse-row:nth-of-type(even) .interesse {
         grid-template-columns: 1fr 2fr;
         grid-template-areas:
             "media heading"
             "media text";
     }
 
-    .detailseite.seite-ueber .content .interesse:nth-of-type(even) .interesse__media {
+    .detailseite.seite-ueber .content .interesse-row:nth-of-type(even) .interesse .interesse__media {
         justify-self: start;
     }
 }
@@ -281,8 +330,10 @@
         padding: 1.75rem;
     }
 
-    .detailseite.seite-ueber .content .interesse + .interesse {
-        margin-block-start: 8rem;
+    .detailseite.seite-ueber .content .interesse-row + .interesse-row {
+        /*margin-block-start: 8rem;*/
+        padding-top: 4rem;
+        padding-bottom: 4rem;
     }
 }
 
@@ -297,21 +348,21 @@
 */
 @media (max-width: 767px) {
     .detailseite.seite-ueber .content .interesse::before,
-    .detailseite.seite-ueber .content .interesse:nth-of-type(even)::before {
+    .detailseite.seite-ueber .content .interesse-row:nth-of-type(even) .interesse::before {
         background:
             radial-gradient(
                 circle at 50% 100%,
-                color-mix(in srgb, var(--accent-line) 40%, transparent) 0%,
+                /*color-mix(in srgb, var(--accent-line) 40%, transparent) 0%,*/
                 transparent 60%
             );
     }
 
     .detailseite.seite-ueber .content .interesse::after,
-    .detailseite.seite-ueber .content .interesse:nth-of-type(even)::after {
+    .detailseite.seite-ueber .content .interesse-row:nth-of-type(even) .interesse::after {
         background:
             radial-gradient(
                 circle at 50% 100%,
-                color-mix(in srgb, var(--accent-line) 80%, transparent) 0%,
+                /*color-mix(in srgb, var(--accent-line) 80%, transparent) 0%,*/
                 transparent 60%
             );
     }
@@ -337,8 +388,10 @@
     /* Active-State bleibt farblich sichtbar, aber ohne Lift */
     .detailseite.seite-ueber .interesse.is-active {
         transform: none;
+        /*
         border-color: color-mix(in srgb, var(--accent-line) 20%, var(--border));
-        box-shadow: 0 10px 30px color-mix(in srgb, var(--shadow-soft) 35%, transparent);
+        box-shadow: var(--shadow-soft);
+        /*box-shadow: 0 10px 30px color-mix(in srgb, var(--shadow-soft) 35%, transparent);*/
     }
 
     .detailseite.seite-ueber .interesse.is-active::after {

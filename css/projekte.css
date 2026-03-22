@@ -21,6 +21,12 @@
     margin: 0;
 
     transition: box-shadow 280ms ease;
+
+    /*
+    margin-inline: calc(50% - 50vw);
+    padding-inline: calc(50vw - 50%);
+    width: auto;
+    */
 }
 
 
@@ -31,6 +37,7 @@
     display: grid;
     gap: 0.75rem;
     padding: 0;
+    padding: calc(var(--inner-pad) + var(--card-inset));
     justify-items: stretch;
 }
 
@@ -79,6 +86,12 @@
     inset: 0;
     z-index: -1;
 
+
+    /*border-radius: var(--radius-l);*/
+    background: color-mix(in srgb, var(--clay-card) 90%, transparent);
+    border: 1px solid color-mix(in srgb, var(--clay-card-border) 90%, transparent);
+    box-shadow: var(--clay-card-shadow);
+    /*
     background:
         linear-gradient(
             180deg,
@@ -97,6 +110,7 @@
             color-mix(in srgb, var(--surface) 42%, transparent) 72%,
             color-mix(in srgb, var(--surface) 84%, transparent) 100%
         );
+    */
 
     border-radius: inherit;
 }
@@ -129,7 +143,8 @@
 .detailseite.seite-projekte .projekt__header {
     position: relative;
     display: grid;
-    justify-items: center;
+    /*justify-items: center;*/
+    justify-items: left;
     padding: 2rem 1rem;
     isolation: isolate;
 }
@@ -145,8 +160,6 @@
 }
 
 
-
-
 /* --------- Detail Cards --------- */
 /* Card-Komponente für Intro und Details */
 .detailseite.seite-projekte .detail-card {
@@ -155,11 +168,18 @@
     overflow: hidden;
     padding: 1rem;
 
-    border: 1px solid var(--border);
-    border-radius: var(--radius-l);
+    /*border: 1px solid var(--border);*/
+    /*border-radius: var(--radius-l);*/
 
+    border-radius: var(--radius-l);
+    /*
+    background: color-mix(in srgb, var(--clay-blue) 20%, #ffffff 80%);
+    border: 1px solid color-mix(in srgb, var(--clay-blue-border) 20%, #ffffff 80%);
+    box-shadow: var(--clay-card-shadow);
+    /*
     background: color-mix(in srgb, var(--surface) 85%, transparent);
     backdrop-filter: blur(10px);
+    */
 
     transition: border-color 320ms ease, box-shadow 320ms ease, background-color 320ms ease;
 }
@@ -231,9 +251,11 @@
     overflow: hidden;
 
     aspect-ratio: 4 / 3;
+    /*
     border: 1px solid color-mix(in srgb, var(--border) 45%, transparent);
     border-radius: var(--radius-l);
     background: color-mix(in srgb, var(--surface) 8%, transparent);
+    */
 }
 
 /* Bild innerhalb der Card */
@@ -267,10 +289,14 @@
     z-index: 2;
 
     display: inline-flex;
-    justify-self: center;
+    /*justify-self: center;*/
+    justify-self: left;
 
+    /*
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+    */
+    margin: 1.2rem;
 
     list-style: none;
     cursor: pointer;
@@ -469,8 +495,17 @@
 
 /* Intro-Card des aktiven Projekts hervorheben */
 .detailseite.seite-projekte .projekt.is-active .detail-card--intro {
-    border-color: color-mix(in srgb, var(--accent-line) 20%, var(--border));
-    box-shadow: 0 16px 40px color-mix(in srgb, var(--shadow-soft) 55%, transparent), 0 0 0 1px color-mix(in srgb, var(--accent-line) 8%, transparent);
+    /*border-color: color-mix(in srgb, var(--accent-line) 20%, var(--border));*/
+    /*
+    background: color-mix(in srgb, var(--clay-soft) 20%, #ffffff 80%);
+    border: 1px solid color-mix(in srgb, var(--clay-soft-border) 20%, #ffffff 80%);
+    box-shadow: var(--clay-soft-shadow);
+
+    /*
+    box-shadow:
+        var(--shadow-soft-hover),
+        0 0 0 1px color-mix(in srgb, var(--accent-line) 8%, transparent);
+    /*box-shadow: 0 16px 40px color-mix(in srgb, var(--shadow-soft) 55%, transparent), 0 0 0 1px color-mix(in srgb, var(--accent-line) 8%, transparent);*/
 }
 
 
@@ -519,7 +554,8 @@
     .detailseite.seite-projekte .detail-card--intro {
         width: min(90ch, 100%);
         justify-self: center;
-        padding: clamp(1rem, 2vw, 1.75rem) clamp(1.25rem, 6vw, 4rem);
+        justify-self: left;
+        /*padding: clamp(1rem, 2vw, 1.75rem) clamp(1.25rem, 6vw, 4rem);*/
     }
 
     .detailseite.seite-projekte .projekt--bg {
@@ -555,6 +591,10 @@
         inset: 0;
         z-index: -1;
 
+        background: color-mix(in srgb, var(--clay-blue) 100%, transparent);
+        border: 1px solid color-mix(in srgb, var(--clay-blue-border) 100%, transparent);
+        box-shadow: var(--clay-blue-shadow);
+        /*
         background:
             linear-gradient(
                 180deg,
@@ -573,6 +613,7 @@
                 color-mix(in srgb, var(--surface) 42%, transparent) 72%,
                 color-mix(in srgb, var(--surface) 84%, transparent) 100%
             );
+        */
 
         border-radius: inherit;
 
@@ -596,7 +637,7 @@
         padding: 0;
         border-radius: 0;
         overflow: visible;
-        padding: calc(var(--inner-pad) + var(--card-inset));
+        /*padding: calc(var(--inner-pad) + var(--card-inset));*/
     }
 
     /* Überschrift im oberen Projektbereich */
@@ -607,17 +648,25 @@
     /* --------- Summary-Interaktion --------- */
     @media (hover: hover) and (pointer: fine) {
         .detailseite.seite-projekte .projekt--bg:hover {
-            box-shadow: 0 0 28px color-mix(in srgb, var(--accent-line) 24%, transparent);
+            /*box-shadow: 0 0 28px color-mix(in srgb, var(--accent-line) 24%, transparent);*/
         }
 
         .detailseite.seite-projekte .projekt--bg:hover::after {
-            opacity: 0.96;
+            opacity: 0.92;
         }
 
         .detailseite.seite-projekte .projekt--bg:hover .detail-card--intro {
+            /*
             border-color: color-mix(in srgb, var(--accent-line) 40%, var(--border));
             background: color-mix(in srgb, var(--surface) 88%, transparent);
             box-shadow: 0 12px 28px color-mix(in srgb, var(--shadow-soft) 16%, transparent);
+            */
+
+            /*
+            background: color-mix(in srgb, var(--clay-blue) 10%, #ffffff 90%);
+            border: 1px solid color-mix(in srgb, var(--clay-blue-border) 10%, #ffffff 90%);
+            box-shadow: var(--clay-card-shadow);
+            */
         }
 
         .detailseite.seite-projekte .projekt--bg:hover .projekt__title {
@@ -660,8 +709,15 @@
 
     /* Active-State auf Mobile nur dezent halten */
     .detailseite.seite-projekte .projekt.is-active .detail-card--intro {
+        /*
         border-color: color-mix(in srgb, var(--accent-line) 20%, var(--border));
         box-shadow: var(--shadow-soft);
+        */
+        /*
+        background: var(--clay-soft);
+        border: 1px solid var(--clay-soft-border);
+        box-shadow: var(--clay-soft-shadow);
+        */
     }
 }
 

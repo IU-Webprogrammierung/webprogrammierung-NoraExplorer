@@ -20,10 +20,15 @@
 
 /* --------------------------- Section als Card --------------------------- */
 .einstellungen .preference {
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--clay-card-neutral);
+    border: 1px solid var(--clay-card-neutral-border);
+    box-shadow: var(--clay-card-neutral-shadow);
+
+    /*background: var(--surface);*/
+    /*border: 1px solid var(--border);*/
     border-radius: var(--radius-l);
-    box-shadow: var(--shadow-soft);
+    /*box-shadow: var(--shadow-soft), var(--shadow-card-inset);*/
+    /*box-shadow: var(--shadow-soft);*/
     padding: 1.25rem;
 }
 
@@ -93,14 +98,31 @@
     padding: 1rem;
 
     border-radius: var(--radius-l);
-    border: 1.5px solid var(--border);
+    background: var(--clay-soft);
+    border: 1px solid var(--clay-soft-border);
+    box-shadow: var(--clay-soft-shadow);
+    /*
+    border: 2px solid var(--border);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow-soft), var(--shadow-card-inset);  
+    */ 
+    /*
     background: color-mix(in srgb, var(--surface) 92%, transparent);
     box-shadow: var(--shadow-soft);
+    */
 
     cursor: pointer;
     user-select: none;
 
-    transition: transform 0.08s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    transition:
+        transform 0.18s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+    /*
+    transition: transform 0.12s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    */
 }
 
 .einstellungen fieldset.tiles .tile:active {
@@ -132,9 +154,27 @@
     align-items: center;
     justify-content: center;
 
-    color: var(--icon-fg);
+    /*color: var(--icon-fg);*/
+    color: var(--text);
+    background: color-mix(in srgb, var(--clay-button-bg) 50%, var(--clay-soft) 50%);
+    border: 1px solid color-mix(in srgb, var(--clay-button-border) 50%, var(--clay-soft-border) 50%);
+    box-shadow: var(--clay-button-shadow);
+
+    transition:
+        transform 0.18s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+
+    /*
     border: 1px solid var(--border);
+    background: var(--surface-sunken);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    */
+    /*
     background: color-mix(in srgb, var(--surface) 85%, transparent);
+    */
 }
 
 /* Breakpoint ab 768px (Icon-Badge größer) */
@@ -155,8 +195,12 @@
 /* Breakpoint ab 768px (SVG größer) */
 @media (min-width: 768px) {
     .einstellungen fieldset.tiles .tile__icon svg {
+        width: 34px;
+        height: 34px;
+        /*
         width: 28px;
         height: 28px;
+        */
     }
 }
 
@@ -172,36 +216,96 @@
 
 
 /* --------------------------- Hover --------------------------- */
+.einstellungen fieldset.tiles .tile:hover {
+    background: var(--clay-soft-hover);
+    border: 1px solid var(--clay-soft-border-hover);
+    box-shadow: var(--clay-soft-shadow-hover);
+    /*
+    border-color: var(--accent-button-hover);
+    background: color-mix(in srgb, var(--accent-soft) 24%, var(--surface));
+    box-shadow: var(--shadow-soft-hover), var(--shadow-card-inset);
+    transform: translateY(-1px);
+    */
+}
+
+/*
 html[data-theme="light"] .einstellungen fieldset.tiles .tile:hover {
     border-color: var(--accent-600);
     background: color-mix(in srgb, var(--accent-200) 5%, var(--surface));
 }
 
 html[data-theme="dark"] .einstellungen fieldset.tiles .tile:hover {
-    border-color: var(--accent-600);
-    background: color-mix(in srgb, var(--accent-100) 5%, var(--surface));
+    border-color: var(--accent-button-hover);
+    background: color-mix(in srgb, var(--accent-soft) 24%, var(--surface));
 }
+*/
 
 .einstellungen fieldset.tiles .tile:hover .tile__icon {
-    border-color: var(--accent-600);
+    /*
+    border-color: var(--accent-button-hover);
+    */
+    /*
+    background: color-mix(in srgb, var(--clay-button-bg-hover) 50%, var(--clay-soft-hover) 50%);
+    border: 1px solid color-mix(in srgb, var(--clay-button-border-hover) 50%, var(--clay-soft-border-hover) 50%);
+    box-shadow: var(--clay-button-shadow-hover);
+    */
+    background: var(--clay-button-bg-hover);
+    border: 1px solid var(--clay-button-border-hover);
+    box-shadow: var(--clay-button-shadow-hover);
+    transform: translateY(0px) scale(1.1);
+}
+
+.einstellungen fieldset.tiles .tile:active .tile__icon {
+    /*
+    border-color: var(--accent-button-hover);
+    */
+
+    background: var(--clay-button-bg-active);
+    border: 1px solid var(--clay-button-border-active);
+    box-shadow: var(--clay-button-shadow-active);
+    transform: translateY(0px) scale(0.95);
 }
 
 
 
 /* --------------------------- Selected (checked) --------------------------- */
 .einstellungen fieldset.tiles input[type="radio"]:checked + .tile {
-    border-color: var(--accent-600);
+    background: var(--clay-soft-active);
+    border: 1px solid var(--clay-soft-border-active);
+    box-shadow: var(--clay-soft-shadow-active);
+
+    outline: 2px solid color-mix(in srgb, var(--clay-accent) 70%, transparent);
+    outline-offset: 0;
+    /*
+    border-color: var(--accent-button);
     background: color-mix(in srgb, var(--accent-500) 10%, var(--surface));
     box-shadow: 0 6px 10px #ff6a002c;
 
     outline: 2px solid color-mix(in srgb, var(--accent-600) 70%, transparent);
     outline-offset: 0;
+    */
 }
 
 .einstellungen fieldset.tiles input[type="radio"]:checked + .tile .tile__icon {
+
+    /*
+    border-color: var(--accent-button);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--accent-button) 88%, white 12%) 0%, var(--accent-button) 100%);
+    */
+    background: var(--clay-accent);
+    border: 1px solid var(--clay-accent-border);
+    box-shadow: var(--clay-accent-shadow);
+    
+    color: #ffffff;
+    /*
     border-color: var(--accent-600);
     background: var(--accent-500);
     color: #ffffff;
+    */
+}
+
+.einstellungen fieldset.tiles input[type="radio"]:checked + .tile .tile__text {
+    font-weight: var(--font-weight-bold);
 }
 
 /* Keyboard-Focus */
@@ -214,9 +318,14 @@ html[data-theme="dark"] .einstellungen fieldset.tiles .tile:hover {
 
 /* --------------------------- Typografie-Preview (Textgröße) --------------------------- */
 /* Typografie-Preview im Icon-Badge (nur visuell, der Inhalt ist aria-hidden im HTML) */
+/*
 .einstellungen .tile__icon--type {
+    background: var(--clay-soft);
+    /*
     background: color-mix(in srgb, var(--surface) 88%, transparent);
+    
 }
+*/
 
 .einstellungen .type-preview {
     font-weight: var(--font-weight-bold);
@@ -247,18 +356,52 @@ html[data-theme="dark"] .einstellungen fieldset.tiles .tile:hover {
     gap: 0.85rem;
 
     padding: 0.95rem 1rem;
+    background: var(--clay-soft);
+    border: 1px solid var(--clay-soft-border);
+    box-shadow: var(--clay-soft-shadow);
+    border-radius: var(--radius-l);
+
+    outline: 2px solid color-mix(in srgb, var(--clay-soft-active) 55%, transparent);
+    outline-offset: 0;
+
+    /*
     border: 1.5px solid var(--border);
     border-radius: var(--radius-l);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow-soft), var(--shadow-card-inset);
     background: color-mix(in srgb, var(--surface) 92%, transparent);
     box-shadow: var(--shadow-soft);
+    */
 
     cursor: pointer;
     user-select: none;
+
+    transition:
+        transform 0.18s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 /* Hover */
 .einstellungen .switch:hover {
-    border-color: var(--accent-600);
+    /*border-color: var(--accent-button);*/
+    background: var(--clay-soft-hover);
+    border: 1px solid var(--clay-soft-border-hover);
+    box-shadow: var(--clay-soft-shadow-hover);
+    /*
+    background: color-mix(in srgb, var(--clay-button-bg-hover) 30%, var(--clay-soft-hover) 70%);
+    border: 1px solid color-mix(in srgb, var(--clay-button-border-hover) 30%, var(--clay-soft-border-hover) 70%);
+    box-shadow: var(--clay-button-shadow-hover);
+    /*transform: translateY(0px) scale(1.05);*/
+}
+
+.einstellungen .switch:active {
+    background: var(--clay-soft-active);
+    border: 1px solid var(--clay-soft-border-active);
+    box-shadow: var(--clay-soft-shadow-active);
+    /*transform: translateY(0px) scale(0.95);*/
 }
 
 /* Checkbox zugänglich lassen, aber visuell "unsichtbar" */
@@ -277,14 +420,31 @@ html[data-theme="dark"] .einstellungen fieldset.tiles .tile:hover {
 /* Slider */
 .einstellungen .switch .slider {
     position: relative;
+    width: 88px;
+    height: 44px;
+    /*
     width: 52px;
     height: 30px;
+    */
 
     border-radius: var(--radius-pill);
-    border: 1px solid var(--border);
 
+    background: var(--muted);
+    border: var(--muted);
+    box-shadow:  
+        inset 0px 0px 8px 2px #000000a8;
+        /*inset 2px 2px 8px 2px #ffffff3d;*/
+
+    /*border: 1px solid var(--border);
+
+    /*
     background: color-mix(in srgb, var(--muted) 35%, var(--surface));
     box-shadow: inset 0 0 0 1px #00000010;
+    
+
+    background: var(--surface-sunken);
+    box-shadow: var(--shadow-pressed);
+    */
 
     flex: 0 0 auto;
     transition: background-color 0.2s ease, border-color 0.2s ease;
@@ -298,13 +458,26 @@ html[data-theme="dark"] .einstellungen fieldset.tiles .tile:hover {
     left: 3px;
     transform: translateY(-50%);
 
+    /*
     width: 24px;
     height: 24px;
+    */
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
 
+    background: #ffffff;
+    border: 1px solid #7e7e7e;
+    box-shadow: var(--clay-button-shadow-hover);
+    box-shadow: 
+        8px 8px 16px 0 #00000025, 
+        inset -8px -8px 16px 0 #00000040, 
+        inset 8px 8px 16px 0 #ffffff;
+    /*
     background: var(--surface);
     border: 1px solid var(--border);
     box-shadow: var(--shadow-header);
+    */
 
     transition: transform 0.2s ease;
 }
@@ -316,12 +489,18 @@ html[data-theme="dark"] .einstellungen fieldset.tiles .tile:hover {
 
 /* Checked */
 .einstellungen .switch input[type="checkbox"]:checked + .slider {
+    background: var(--clay-button-bg);
+    border: 1px solid var(--clay-button-border);
+    box-shadow: 
+        inset 0px 0px 8px 2px #00000081;
+    /*
     background: color-mix(in srgb, var(--accent-500) 85%, var(--surface));
     border-color: var(--accent-600);
+    */
 }
 
 .einstellungen .switch input[type="checkbox"]:checked + .slider::before {
-    transform: translateY(-50%) translateX(22px);
+    transform: translateY(-50%) translateX(44px);
 }
 
 /* Fokus (Keyboard) */

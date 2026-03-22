@@ -36,6 +36,8 @@
 
     <script src="js/snap.js" defer></script>
 
+    <script src="js/index-reveal.js" defer></script>
+
     <!-- defer sorgt dafür, dass die Scripts erst nach dem HTML-Parsn ausgeführt wwerden -->
 </head>
 
@@ -61,140 +63,150 @@
 
         <!-- Hero: große, prägnante Einführung  -->
         <section class="hero" aria-labelledby="hero-heading">
-            <h1 id="hero-heading" class="hero__title">Nora Mikus</h1>
+            <!-- <h1 id="hero-heading" class="hero__title">Nora Mikus</h1> -->
 
             <!-- figure: Mediencontainer -->
-             <div class="hero__media">
-                <img src="images/content/index/index-hero-portrait.webp" alt="Portrait von Nora Mikus">
-             </div>
+            <div class="hero__media">
+            <img src="images/content/index/index-hero-portrait.webp" alt="Portrait von Nora Mikus">
+            </div>
+
+            <div class="heading-overlay">
+                <h1 id="hero-heading" class="hero__title">Nora Mikus</h1>
+            </div>
         </section>
         
         <!-- Teaser: Einstieg "Über mich" -->
-        <section class="teaser teaser--ueber" aria-labelledby="ueber-heading">
-            <h2 id="ueber-heading" class="teaser__heading">Über mich</h2>
-            <p class="teaser__text">
-                <span class="break">
-                    Hi, ich bin Nora.
+        <div class="teaser-row section--bleed section--bg-soft">
+            <section class="teaser teaser--ueber" aria-labelledby="ueber-heading">
+                <h2 id="ueber-heading" class="teaser__heading">Über mich</h2>
+                <p class="teaser__text">
+                    <span class="break">
+                        Hi, ich bin Nora.
+                        </span>
+                    <span class="break">
+                        Mich begeistert es, Ideen zum Leben zu erwecken und dabei immer wieder Neues zu entdecken.
                     </span>
-                <span class="break">
-                    Mich begeistert es, Ideen zum Leben zu erwecken und dabei immer wieder Neues zu entdecken.
-                </span>
-            </p>
+                </p>
 
-            <a class="teaser__link button button--ghost" href="ueber.html" aria-label="Mehr über mich erfahren">Mehr erfahren</a>
-        </section>
-
+                <a class="teaser__link button button--ghost" href="ueber.html" aria-label="Mehr über mich erfahren">Mehr erfahren</a>
+            </section>
+        </div>
 
         <!-- Teaser: "Fotografie" mit kleiner Bildvorschau -->
-        <section class="teaser teaser--fotografie" aria-labelledby="fotografie-heading">
-            <h2 id="fotografie-heading" class="teaser__heading">Fotografie</h2>
-            <p class="teaser__text">
-                <span class="break">
-                Fotografie ist meine Art,
-                </span>
-                <span class="break"> 
-                Momente einzufangen und Geschichten zu erzählen.
-                </span>
-            </p>
+        <div class="teaser-row section--bleed section--bg">
+            <section class="teaser teaser--fotografie" aria-labelledby="fotografie-heading">
+                <h2 id="fotografie-heading" class="teaser__heading">Fotografie</h2>
+                <p class="teaser__text">
+                    <span class="break">
+                    Fotografie ist meine Art,
+                    </span>
+                    <span class="break"> 
+                    Momente einzufangen und Geschichten zu erzählen.
+                    </span>
+                </p>
 
-            <!-- Vorschauliste mit Beispielbildern -->
-            <ul class="teaser__galerie" aria-label="Beispielfotos aus der Galerie">
-                <li class="teaser__item teaser__item--portrait media">
-                    <img class="media__inner teaser__media" src="images/content/fotografie/hero-fotografie.webp" alt="Portrait von Nora mit einer Kamera">
-                </li>
-                
-                <!-- hier ggf. weitere list-item-elemente ergänzen, falls mehr Vorschaubilder benötigt werden-->
-            </ul>
+                <!-- Vorschauliste mit Beispielbildern -->
+                <ul class="teaser__galerie" aria-label="Beispielfotos aus der Galerie">
+                    <li class="teaser__item teaser__item--portrait media">
+                        <img class="media__inner teaser__media" src="images/content/fotografie/camera-hero.webp" alt="Portrait von Nora mit einer Kamera">
+                    </li>
+                    
+                    <!-- hier ggf. weitere list-item-elemente ergänzen, falls mehr Vorschaubilder benötigt werden-->
+                </ul>
 
-            <a class="teaser__link button button--ghost" href="fotografie.html" aria-label="Mehr über Fotografie erfahren">Mehr erfahren</a>
-        </section>
+                <a class="teaser__link button button--ghost" href="fotografie.html" aria-label="Mehr über Fotografie erfahren">Mehr erfahren</a>
+            </section>
+        </div>
 
 
         <!-- Teaser: "Projekte" mit Bildvorscheu -->
-        <section class="teaser teaser--projekte" aria-labelledby="projekt-heading">
-            <h2 id="projekt-heading" class="teaser__heading">Projekte</h2>
-            <!-- <p class="teaser__text">Lorem ipsum dolor sit amet</p> -->
+        <div class="teaser-row section--bleed section--bg-soft">
+            <section class="teaser teaser--projekte" aria-labelledby="projekt-heading">
+                <h2 id="projekt-heading" class="teaser__heading">Projekte</h2>
+                <!-- <p class="teaser__text">Lorem ipsum dolor sit amet</p> -->
 
-            <ul class="projekt-preview" aria-label="Beispielfotos von Projekten">
-                <li class="projekt-preview__item media">
-                    <img class="media__inner teaser__media" src="images/content/projekte/hero-projekte.webp" alt="Darstellung verschiedener Apps und Websites auf verschiedenen Endgeräten">
-                </li>
+                <ul class="projekt-preview" aria-label="Beispielfotos von Projekten">
+                    <li class="projekt-preview__item media">
+                        <img class="media__inner teaser__media" src="images/content/projekte/projekte.webp" alt="Darstellung verschiedener Apps und Websites auf verschiedenen Endgeräten">
+                    </li>
 
-                <!-- hier ggf. weitere list-item-elemente ergänzen, falls mehr Vorschaubilder benötigt werden-->
-            </ul>
+                    <!-- hier ggf. weitere list-item-elemente ergänzen, falls mehr Vorschaubilder benötigt werden-->
+                </ul>
 
-            <a class="teaser__link button button--ghost" href="projekte.html" aria-label="Mehr zu den Projekten erfahren">Mehr erfahren</a>
-        </section>
-
+                <a class="teaser__link button button--ghost" href="projekte.html" aria-label="Mehr zu den Projekten erfahren">Mehr erfahren</a>
+            </section>
+        </div>
 
         <!-- Teaser: "Prozess" als kurze Vorschau mit <details> und <summary> für eine native Interaktion (auch mit Tastatur) -->
-        <section class="teaser teaser--prozess" aria-labelledby="prozess-heading">
-            <h2 id="prozess-heading" class="teaser__heading">Prozess</h2>
+        <div class="teaser-row section--bleed section--bg">
+            <section class="teaser teaser--prozess" aria-labelledby="prozess-heading">
+                <h2 id="prozess-heading" class="teaser__heading">Prozess</h2>
 
-            <!-- Prozessvorschau: Darstellung mit aufklappbaren Inhalten-->
-            <div class="list-prozess-preview">
-                <!-- 01. Recherche und Analyse -->
-                <details class="accordion accordion--numbered">
-                    <summary class="accordion__summary">Recherche und Analyse</summary>
+                <!-- Prozessvorschau: Darstellung mit aufklappbaren Inhalten-->
+                <div class="list-prozess-preview">
+                    <!-- 01. Recherche und Analyse -->
+                    <details class="accordion accordion--numbered">
+                        <summary class="accordion__summary">Recherche und Analyse</summary>
 
-                    <p class="accordion__content">
-                        Im ersten Schritt steht die Analyse und Festlegung des Nutzungskontexts im Fokus. 
-                        Ziel ist es, die Zielgruppe, ihre Bedürfnisse und Nutzungssituationen genau zu verstehen. 
-                        Dazu gehören unter anderem Zielgruppenanalysen, Wettbewerbsanalysen sowie Briefinggespräche mit Stakeholdern und Auftraggebern. 
-                        Diese Phase schafft eine fundierte Grundlage für alle weiteren konzeptionellen und gestalterischen Entscheidungen.
-                    </p>
-                </details>
+                        <p class="accordion__content">
+                            Im ersten Schritt steht die Analyse und Festlegung des Nutzungskontexts im Fokus. 
+                            Ziel ist es, die Zielgruppe, ihre Bedürfnisse und Nutzungssituationen genau zu verstehen. 
+                            Dazu gehören unter anderem Zielgruppenanalysen, Wettbewerbsanalysen sowie Briefinggespräche mit Stakeholdern und Auftraggebern. 
+                            Diese Phase schafft eine fundierte Grundlage für alle weiteren konzeptionellen und gestalterischen Entscheidungen.
+                        </p>
+                    </details>
 
-                <!-- 02. Konzeption -->
-                <details class="accordion accordion--numbered">
-                    <summary class="accordion__summary">Konzeption</summary>
-                    
-                    <p class="accordion__content">
-                        Auf Grundlage der Analyse werden im zweiten Schritt konkrete Konzepte entwickelt. 
-                        Inhalte, Funktionen und Abläufe werden strukturiert definiert und sinnvoll angeordnet. 
-                        Mithilfe von Konzeptskizzen, Sitemaps, User Flows und ersten Wireframes entsteht ein klarer Überblick über den Aufbau und die Funktionsweise des Projekts. 
-                        Ziel ist es, eine nachvollziehbare und tragfähige Struktur zu schaffen, die als Basis für das spätere Design dient.
-                    </p>
-                </details>
+                    <!-- 02. Konzeption -->
+                    <details class="accordion accordion--numbered">
+                        <summary class="accordion__summary">Konzeption</summary>
+                        
+                        <p class="accordion__content">
+                            Auf Grundlage der Analyse werden im zweiten Schritt konkrete Konzepte entwickelt. 
+                            Inhalte, Funktionen und Abläufe werden strukturiert definiert und sinnvoll angeordnet. 
+                            Mithilfe von Konzeptskizzen, Sitemaps, User Flows und ersten Wireframes entsteht ein klarer Überblick über den Aufbau und die Funktionsweise des Projekts. 
+                            Ziel ist es, eine nachvollziehbare und tragfähige Struktur zu schaffen, die als Basis für das spätere Design dient.
+                        </p>
+                    </details>
 
-                <!-- 03. Design -->
-                <details class="accordion accordion--numbered">
-                    <summary class="accordion__summary">Design</summary>
-                    
-                    <p class="accordion__content">
-                        Im Design werden die konzeptionellen Ideen visuell ausgearbeitet. 
-                        Ziel ist es, ein stimmiges Erscheinungsbild zu entwickeln, das zur Zielgruppe passt und die Inhalte klar und verständlich vermittelt. 
-                        Dazu gehören die Gestaltung von Layouts, Farb- und Typografiekonzepten sowie UI Elementen. 
-                        Mockups und Styleguides helfen dabei, das Design konsistent umzusetzen und frühzeitig erlebbar zu machen.
-                    </p>
-                </details>
+                    <!-- 03. Design -->
+                    <details class="accordion accordion--numbered">
+                        <summary class="accordion__summary">Design</summary>
+                        
+                        <p class="accordion__content">
+                            Im Design werden die konzeptionellen Ideen visuell ausgearbeitet. 
+                            Ziel ist es, ein stimmiges Erscheinungsbild zu entwickeln, das zur Zielgruppe passt und die Inhalte klar und verständlich vermittelt. 
+                            Dazu gehören die Gestaltung von Layouts, Farb- und Typografiekonzepten sowie UI Elementen. 
+                            Mockups und Styleguides helfen dabei, das Design konsistent umzusetzen und frühzeitig erlebbar zu machen.
+                        </p>
+                    </details>
 
-                <!-- 04. Umsetzung -->
-                <details class="accordion accordion--numbered">
-                    <summary class="accordion__summary">Umsetzung</summary>
+                    <!-- 04. Umsetzung -->
+                    <details class="accordion accordion--numbered">
+                        <summary class="accordion__summary">Umsetzung</summary>
 
-                    <p class="accordion__content">
-                        In der Umsetzungsphase werden die entwickelten Konzepte und Designs konkret realisiert. 
-                        Dazu gehören die Ausarbeitung von Inhalten, Layouts und Interaktionen ebenso wie die technische Umsetzung und Programmierung. 
-                        Je nach Projekt entstehen funktionale Prototypen oder erste produktionsnahe Lösungen, die das geplante Produkt realistisch abbilden und testbar machen.
-                    </p>
-                </details>
+                        <p class="accordion__content">
+                            In der Umsetzungsphase werden die entwickelten Konzepte und Designs konkret realisiert. 
+                            Dazu gehören die Ausarbeitung von Inhalten, Layouts und Interaktionen ebenso wie die technische Umsetzung und Programmierung. 
+                            Je nach Projekt entstehen funktionale Prototypen oder erste produktionsnahe Lösungen, die das geplante Produkt realistisch abbilden und testbar machen.
+                        </p>
+                    </details>
 
-                <!-- 05. Evaluation -->
-                <details class="accordion accordion--numbered">
-                    <summary class="accordion__summary">Evaluation</summary>
+                    <!-- 05. Evaluation -->
+                    <details class="accordion accordion--numbered">
+                        <summary class="accordion__summary">Evaluation</summary>
 
-                    <p class="accordion__content">
-                        In der Evaluationsphase wird geprüft, wie gut die Lösung in der Praxis funktioniert. 
-                        Dazu gehören Usability Tests, Feedback von Nutzerinnen und Nutzern sowie die Analyse von Nutzung und Interaktionen. 
-                        Ziel ist es, Stärken und Schwachstellen frühzeitig zu erkennen, Annahmen zu überprüfen und auf dieser Basis gezielte Verbesserungen abzuleiten. 
-                        Dieser Schritt stellt sicher, dass das Ergebnis nicht nur technisch funktioniert, sondern auch den Bedürfnissen der Zielgruppe entspricht.
-                    </p>
-                </details>
-            </div>
+                        <p class="accordion__content">
+                            In der Evaluationsphase wird geprüft, wie gut die Lösung in der Praxis funktioniert. 
+                            Dazu gehören Usability Tests, Feedback von Nutzerinnen und Nutzern sowie die Analyse von Nutzung und Interaktionen. 
+                            Ziel ist es, Stärken und Schwachstellen frühzeitig zu erkennen, Annahmen zu überprüfen und auf dieser Basis gezielte Verbesserungen abzuleiten. 
+                            Dieser Schritt stellt sicher, dass das Ergebnis nicht nur technisch funktioniert, sondern auch den Bedürfnissen der Zielgruppe entspricht.
+                        </p>
+                    </details>
+                </div>
 
-            <a class="teaser__link button button--ghost" href="prozess.html" aria-label="Mehr über den Prozess erfahren">Mehr erfahren</a>
-        </section>
+                <a class="teaser__link button button--ghost" href="prozess.html" aria-label="Mehr über den Prozess erfahren">Mehr erfahren</a>
+            </section>
+        </div>
     </main>
 
 

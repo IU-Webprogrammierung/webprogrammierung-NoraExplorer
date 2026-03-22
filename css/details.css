@@ -20,11 +20,21 @@
 .detailseite .content__heading {
     font-size: calc(var(--font-size-h2) * 0.6);
     font-weight: var(--font-weight-semibold);
-    color: var(--muted);
+    /*color: var(--muted);*/
+    color: var(--text);
 
     margin-bottom: 2rem;
     border-bottom: 1px solid var(--border);
     padding-bottom: 0.75rem;
+
+    padding: 0.95rem 1.15rem;
+
+    /*
+    background: var(--clay-header);
+    border: 1px solid var(--clay-header-border);
+    border-radius: 1.5rem;
+    box-shadow: var(--clay-header-shadow);*/
+
 }
 
 
@@ -43,7 +53,9 @@
     }
 
     .detailseite .content__heading {
-        margin-bottom: 4rem;
+        /*margin-bottom: 4rem;*/
+        margin-bottom: 2.5rem;
+        padding: 1rem 1.25rem;
     }
 }
 
