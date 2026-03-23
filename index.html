@@ -62,7 +62,7 @@
     <main id="main" class="grid startseite">
 
         <!-- Hero: große, prägnante Einführung  -->
-        <section class="hero" aria-labelledby="hero-heading">
+        <section class="hero" data-snap-panel aria-labelledby="hero-heading">
             <!-- <h1 id="hero-heading" class="hero__title">Nora Mikus</h1> -->
 
             <!-- figure: Mediencontainer -->
@@ -71,13 +71,13 @@
             </div>
 
             <div class="heading-overlay">
-                <h1 id="hero-heading" class="hero__title">Nora Mikus</h1>
+                <h1 id="hero-heading" class="hero__title hero__title--intro">Nora Mikus</h1>
             </div>
         </section>
         
         <!-- Teaser: Einstieg "Über mich" -->
-        <div class="teaser-row section--bleed section--bg-soft">
-            <section class="teaser teaser--ueber" aria-labelledby="ueber-heading">
+        <div class="teaser-row section--bleed section--bg-soft" data-snap-panel>
+            <section class="teaser teaser--ueber reveal" aria-labelledby="ueber-heading">
                 <h2 id="ueber-heading" class="teaser__heading">Über mich</h2>
                 <p class="teaser__text">
                     <span class="break">
@@ -88,58 +88,53 @@
                     </span>
                 </p>
 
-                <a class="teaser__link button button--ghost" href="ueber.html" aria-label="Mehr über mich erfahren">Mehr erfahren</a>
+                <div class="teaser__media media">
+                    <img class="media__inner" src="images/content/ueber/hero-portrait.webp" alt="Darstellung von Nora">
+                </div>
+
+                <a class="teaser__link button button--ghost" href="ueber.html" aria-label="Mehr über mich erfahren">Lerne mich kennen</a>
             </section>
         </div>
 
         <!-- Teaser: "Fotografie" mit kleiner Bildvorschau -->
-        <div class="teaser-row section--bleed section--bg">
-            <section class="teaser teaser--fotografie" aria-labelledby="fotografie-heading">
+        <div class="teaser-row section--bleed section--bg" data-snap-panel>
+            <section class="teaser teaser--fotografie reveal" aria-labelledby="fotografie-heading">
                 <h2 id="fotografie-heading" class="teaser__heading">Fotografie</h2>
                 <p class="teaser__text">
-                    <span class="break">
                     Fotografie ist meine Art,
-                    </span>
-                    <span class="break"> 
                     Momente einzufangen und Geschichten zu erzählen.
-                    </span>
                 </p>
 
-                <!-- Vorschauliste mit Beispielbildern -->
-                <ul class="teaser__galerie" aria-label="Beispielfotos aus der Galerie">
-                    <li class="teaser__item teaser__item--portrait media">
-                        <img class="media__inner teaser__media" src="images/content/fotografie/camera-hero.webp" alt="Portrait von Nora mit einer Kamera">
-                    </li>
-                    
-                    <!-- hier ggf. weitere list-item-elemente ergänzen, falls mehr Vorschaubilder benötigt werden-->
-                </ul>
+                <div class="teaser__media media">
+                    <img class="media__inner" src="images/content/fotografie/camera-hero.webp" alt="">
+                </div>
 
-                <a class="teaser__link button button--ghost" href="fotografie.html" aria-label="Mehr über Fotografie erfahren">Mehr erfahren</a>
+                <a class="teaser__link button button--ghost" href="fotografie.html" aria-label="Mehr über Fotografie erfahren">Zur Galerie</a>
             </section>
         </div>
 
 
         <!-- Teaser: "Projekte" mit Bildvorscheu -->
-        <div class="teaser-row section--bleed section--bg-soft">
-            <section class="teaser teaser--projekte" aria-labelledby="projekt-heading">
+        <div class="teaser-row section--bleed section--bg-soft" data-snap-panel>
+            <section class="teaser teaser--projekte reveal" aria-labelledby="projekt-heading">
                 <h2 id="projekt-heading" class="teaser__heading">Projekte</h2>
-                <!-- <p class="teaser__text">Lorem ipsum dolor sit amet</p> -->
+                <p class="teaser__text">
+                    Entdecke meine Projekte und 
+                    erfahre wie aus Ideen strukturierte Konzepte und 
+                    digitale Lösungen geworden sind.
+                </p>
 
-                <ul class="projekt-preview" aria-label="Beispielfotos von Projekten">
-                    <li class="projekt-preview__item media">
-                        <img class="media__inner teaser__media" src="images/content/projekte/projekte.webp" alt="Darstellung verschiedener Apps und Websites auf verschiedenen Endgeräten">
-                    </li>
+                <div class="teaser__media media">
+                    <img class="media__inner" src="images/content/projekte/projekte.webp" alt="">
+                </div>
 
-                    <!-- hier ggf. weitere list-item-elemente ergänzen, falls mehr Vorschaubilder benötigt werden-->
-                </ul>
-
-                <a class="teaser__link button button--ghost" href="projekte.html" aria-label="Mehr zu den Projekten erfahren">Mehr erfahren</a>
+                <a class="teaser__link button button--ghost" href="projekte.html" aria-label="Mehr zu den Projekten erfahren">Projekte ansehen</a>
             </section>
         </div>
 
         <!-- Teaser: "Prozess" als kurze Vorschau mit <details> und <summary> für eine native Interaktion (auch mit Tastatur) -->
-        <div class="teaser-row section--bleed section--bg">
-            <section class="teaser teaser--prozess" aria-labelledby="prozess-heading">
+        <div class="teaser-row section--bleed section--bg" data-snap-panel>
+            <section class="teaser teaser--prozess reveal" aria-labelledby="prozess-heading">
                 <h2 id="prozess-heading" class="teaser__heading">Prozess</h2>
 
                 <!-- Prozessvorschau: Darstellung mit aufklappbaren Inhalten-->

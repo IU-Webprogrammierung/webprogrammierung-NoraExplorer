@@ -5,95 +5,64 @@
     margin-top: 4rem;
 }
 
-/* --------- Startseite: Grundabstände --------- */
+/* --------- Startseite: Grundlayout --------- */
 .startseite {
-    row-gap: 2rem;
+    row-gap: 0;
     padding-block: 0 2rem;
     overflow-x: clip;
 }
 
-
-/* --------- Abstände zwischen den einzelnen Teasern --------- */
-.startseite .teaser-row + .teaser-row {
-    /*margin-block-start: 4rem;*/
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+.startseite .teaser-row {
+    padding-block: 2rem;
 }
 
-/* Breakpoint ab 768px */
 @media (min-width: 768px) {
-    .startseite .teaser-row + .teaser-row {
-        /*margin-block-start: 6rem;*/
-        padding-top: 3rem;
-        padding-bottom: 3rem;
+    .startseite .teaser-row {
+        padding-block: 3rem;
     }
 }
 
-/* Breakpoint ab 1280px */
 @media (min-width: 1280px) {
-    .startseite .teaser-row + .teaser-row {
-        /*margin-block-start: 16rem;*/
-        padding-top: 8rem;
-        padding-bottom: 8rem;
+    .startseite .teaser-row {
+        padding-block: 8rem;
     }
 }
 
 
-/* --------- Teaser Außen-Padding, responsiv --------- */
-.startseite .teaser {
-    padding: clamp(1.5rem, 2.5vw, 4rem);
-}
-
-
-
-/* --------- Hero-Bereich: (full-bleed)) --------- */
-
-/* überschreibt die wiederverwendbare .hero aus components.css */
+/* --------------------------- Hero --------------------------- */
 .startseite .hero {
-    grid-column: 1 / -1 !important;
-    min-height: auto !important;
-    padding: 0 !important;
-    margin: 0 calc(var(--container-padding) * -1);
-    margin-bottom: clamp(4rem, 18vw, 26rem);
-    gap: 0;
-
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
-    /*gap: 1.5rem;*/
+    grid-column: 1 / -1 !important;
 
-    position: relative;
-    overflow: clip;
+    margin: calc(-1 * var(--header-height)) calc(var(--container-padding) * -1) 0;
     isolation: isolate;
+    overflow: clip;
 
-    top: calc(-1 * var(--header-height))
+    min-height: calc(100svh - var(--header-height)) !important;
+    padding: 0 !important;
+    gap: 0;
 }
 
-/* Hero-Band/Fade aus components.css deaktivieren ! */
 .startseite .hero::before,
 .startseite .hero::after {
     content: none !important;
 }
 
-
-/* Container für das Bild, full width innerhalb des full-bleed hero */
 .startseite .hero__media {
     grid-column: 1 / -1;
     grid-row: 1;
 
+    width: 100%;
+    height: clamp(18rem, 65vh, 65rem);
     margin: 0 !important;
     padding: 0;
-    width: 100%;
-    height: clamp(18rem, 65vh, 40rem);
 
+    background: var(--clay-soft);
     border: 0 !important;
     border-radius: 0 !important;
-    /*background: transparent !important;*/
-    background: var(--section-hero);
     box-shadow: none !important;
-
-    overflow: hidden;
-    position: relative;
 }
 
 .startseite .hero__media img {
@@ -102,170 +71,209 @@
     height: 100%;
     object-fit: cover;
     object-position: 50% 40%;
-
-    filter: drop-shadow(40px -10px 18px #5f6a6d9a);
+    filter: drop-shadow(40px -10px 15px var(--clay-soft-border-active));
 }
 
-/* Headline über dem Bild (unterstützt beide Klassen: heading + title) */
 .startseite .hero__heading,
 .startseite .hero__title {
     grid-column: 1 / -1;
     grid-row: 2;
 
     justify-self: center;
-    text-align: center;
-
     margin: 0 !important;
     padding: 0 2rem;
 
+    text-align: center;
     font-size: calc(var(--font-size-h1) * 2.4);
-}
-
-/* Fade unten in den Seitenhintergrund */
-.startseite .hero__media::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-
-    /*background: linear-gradient(to bottom,transparent 40%, color-mix(in srgb, var(--bg) 40%, transparent) 70%,var(--bg) 100%);*/
 }
 
 .heading-overlay {
     position: relative;
-    padding: 1rem 1rem 5rem 1rem;
-    margin-top: 0;
-    border-radius: var(--radius-overlay-card) var(--radius-overlay-card) 0 0;
+    margin: 0;
+    padding: 1rem 1rem 6rem;
+    height: 100%;
+    background: var(--section-bg-soft);
     border-top: 1px solid #68535a15;
-
-    /*background: var(--bg);*/
-    background: var(--bg);
-    box-shadow: 
-        0px -8px 16px 0 #68535a15, 
-        inset 0px 8px 16px 0 #47152725;
+    border-radius: var(--radius-overlay-card) var(--radius-overlay-card) 0 0;
+    box-shadow: transparent;
 }
 
-/* Hintergrund-Füllung für die Ecken */
+html[data-theme="light"] .heading-overlay {
+    box-shadow:
+        0 -4px 14px 0 #68535a15,
+        inset 0 -12px 10px 0 var(--section-bg-soft),
+        inset 0 16px 14px 0 #47152717;
+}
+
+html[data-theme="dark"] .heading-overlay {
+    box-shadow:
+        0 -4px 14px 0 #3b0c1c15,
+        inset 0 -12px 10px 0 var(--section-bg-soft),
+        inset 0 4px 15px 0 #30091752;
+}
+
 .heading-overlay::before {
     content: "";
     position: absolute;
     inset: -20px 0 0 0;
-    
-    background: var(--section-hero);
-    
     z-index: -1;
-}
-
-/* MASKIERT den unteren Bereich komplett */
-.heading-overlay::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -1px;
-    height: 20px;
-
-    background: var(--bg);
-    border-radius: 0;
-
-    pointer-events: none;
+    background: var(--clay-soft);
 }
 
 
 
 
-/* --------- Teaser: Grundstruktur (mobile first) --------- */
-
-/* gemeinsame Grid-Struktur für alle Teaser-Sections */
+/* --------------------------- Teaser: Basis --------------------------- */
 .startseite .teaser {
+    position: relative;
     display: grid;
-
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-    "heading"
-    "text"
-    "media"
-    "link";
-
     gap: 1rem;
-    margin: 0rem;
 
-    border: 1px solid transparent;
-    border-radius: var(--radius-xl);
+    grid-template-areas:
+        "heading"
+        "text"
+        "media"
+        "link";
+
+    align-items: center;
+
+    margin: 0;
+    padding: 1.25rem;
+
+    transition:
+        transform 0.18s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-/* verhindert, dass Grid-Kinder overflow erzeugen */
 .startseite .teaser > * {
     min-width: 0;
-}
-
-/* zentrierte Textausrichtung */
-.startseite .teaser__heading,
-.startseite .teaser__text,
-.startseite .teaser__link {
     margin: 0;
-    overflow-wrap: anywhere;
-    justify-self: center;
-    text-align: center;
 }
 
-/* Überschrift-Style & Unterstreichung via ::after */
+@media (min-width: 768px) {
+    .startseite .teaser {
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .startseite .teaser {
+        gap: 2rem;
+        padding: 1.75rem;
+    }
+}
+
+
+
+
+
+/* --------------------------- Galerie / Preview --------------------------- */
+.startseite .teaser__galerie,
+.startseite .projekt-preview {
+    grid-area: media;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 1rem;
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    max-inline-size: min(44rem, 100%);
+    justify-self: center;
+}
+
+.startseite .teaser__galerie > *,
+.startseite .projekt-preview > * {
+    min-width: 0;
+    margin: 0;
+}
+
+.startseite .teaser__galerie > li,
+.startseite .projekt-preview > li {
+    justify-self: center;
+    width: min(22rem, 100%);
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius-l);
+}
+
+.startseite .teaser__galerie > li img,
+.startseite .projekt-preview > li img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+
+
+/* --------- Inhalte: Zuordnung --------- */
 .startseite .teaser__heading {
     grid-area: heading;
     position: relative;
+    justify-self: start;
+
     padding-bottom: 0.75rem;
 
     font-size: calc(var(--font-size-h2) * 0.6);
     font-weight: var(--font-weight-semibold);
     color: var(--muted);
+    text-align: left;
+    overflow-wrap: anywhere;
 }
 
-/* Unterstreichung länger als Text & leichter „Shadow/Glow“ */
 .startseite .teaser__heading::after {
     content: "";
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     bottom: 0;
-
-    width: min(18rem, 120%);
-    height: 1px;
-
+    width: min(32rem, 100%);
+    height: 2px;
     background: var(--border);
-
     box-shadow: 0 6px 10px color-mix(in srgb, var(--text) 10%, transparent);
 }
 
-/* Text-Block, etwas größer & semibold */
 .startseite .teaser__text {
     grid-area: text;
+    justify-self: start;
+
     max-width: 65ch;
-    
+
+    font-size: calc(var(--font-size-hero-lead) * 1.4);
     font-weight: var(--font-weight-semibold);
-    font-size: calc(var(--font-size-hero-lead) * 1.2);
+    line-height: 1.45;
+    text-align: left;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
 }
 
-/* Button Link */
 .startseite .teaser__link {
     grid-area: link;
+    justify-self: start;
     width: fit-content;
 }
 
-/* Bild/Media-Frame für Teaser */
 .startseite .teaser__media {
     grid-area: media;
-    margin: 0;
+    align-self: center;
+
+    width: 100%;
+    max-width: 22rem;
+    /*aspect-ratio: 4 / 3;*/
+
     overflow: hidden;
-
     border-radius: var(--radius-l);
-    /*
-    border-radius: var(--radius-l);
-    border: 1px solid color-mix(in srgb, var(--border) 45%, transparent);
-    background: color-mix(in srgb, var(--surface) 8%, transparent);
-    */
 
-    aspect-ratio: 4 / 3;
-    width: clamp(16rem, 85vw, 22rem);
+    transition:
+        opacity 700ms ease,
+        transform 700ms ease;
 }
 
 .startseite .teaser__media img {
@@ -273,190 +281,105 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
 
+    transform: scale(1.04);
+    filter: saturate(0.98) contrast(1.01);
 
-
-/* --------- Teaser: Wiederverwendbare Preview-Komponente (für Fotografie & Projekte) --------- */
-/* Kann später bei Bedarf durch weitere Bilder ergänzt werden */
-.startseite .teaser__galerie,
-.startseite .projekt-preview {
-    grid-area: media;
-
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
-    display: grid;
-    gap: 1rem;
-
-    justify-self: center;
-    max-inline-size: min(44rem, 100%);
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-}
-
-/* Robustheit für alle direkten Kinder */
-.startseite .teaser__galerie > *,
-.startseite .projekt-preview > * {
-    min-width: 0;
-    margin: 0;
-}
-
-/* die LI-Items sollen gleich groß sein */
-.startseite .teaser__galerie > li,
-.startseite .projekt-preview > li {
-    width: min(22rem, 100%);
-    aspect-ratio: 4 / 3;
-    justify-self: center;
-
-    overflow: hidden;
-    border-radius: var(--radius-l);
-    /*
-    border: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
-    background: var(--surface-raised);
-    box-shadow: var(--shadow-soft), var(--shadow-card-inset);
-    */
-}
-
-/* das Bild füllt das Item korrekt */
-.startseite .teaser__galerie > li img,
-.startseite .projekt-preview > li img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+    transition:
+        transform 700ms cubic-bezier(.2, .8, .2, 1),
+        filter 320ms ease,
+        opacity 320ms ease;
 }
 
 
 
 
 
-/* ------------------- Teaser Varianten ------------------- */
-/* Teaser: "Über mich" */
-.startseite .teaser--ueber {
-    grid-template-areas: 
-    "heading" 
-    "text"
-    "link";
+/* --------------------------- Teaser Varianten: Mobile --------------------------- */
+.startseite .teaser--ueber,
+.startseite .teaser--fotografie,
+.startseite .teaser--projekte {
+    grid-template-areas:
+        "heading"
+        "text"
+        "media"
+        "link";
 }
 
-/* --------- Teaser: "Über mich" --------- */
-/* Textbloxk */
 .startseite .teaser--ueber .teaser__text {
     max-width: 43ch;
 }
 
-/* Teaser: "Prozess" */
 .startseite .teaser--prozess {
-    grid-template-areas: 
-    "heading"
-    "preview"
-    "link";
+    grid-template-areas:
+        "heading"
+        "text"
+        "preview"
+        "link";
 }
 
-/* Teaser: "Fotografie" */
-.startseite .teaser--fotografie {
-    grid-template-areas: 
-    "heading"
-    "text"
-    "media"
-    "link";
-}
-
-/*  Teaser: "Projekte" */
-.startseite .teaser--projekte {
-    grid-template-areas: 
-    "heading"
-    "media"
-    "link";
+.startseite .teaser--prozess .list-prozess-preview {
+    grid-area: preview;
 }
 
 
 
 
-/* ------------------- Hintergrund Banner ------------------- */
-/* Jede Section bekommt eigenen Hintergrund (full-bleed) */
-/*
-.startseite > section {
-    position: relative;
-    isolation: isolate;
-}
+/* --------------------------- Teaser Varianten: Desktop --------------------------- */
+@media (min-width: 768px) {
+    .startseite .teaser--ueber,
+    .startseite .teaser--fotografie,
+    .startseite .teaser--projekte {
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+            "heading media"
+            "text    media"
+            "link    media";
+    }
 
-/* Full-width Background Band */
+    .startseite .teaser--ueber .teaser__media,
+    .startseite .teaser--fotografie .teaser__media,
+    .startseite .teaser--projekte .teaser__media {
+        justify-self: end;
+    }
 
-/*
-.startseite > section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
+    /* alternierende Anmutung wie auf der Über-Seite */
+    .startseite .teaser--fotografie {
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas:
+            "media heading"
+            "media text"
+            "media link";
+    }
 
-    /* full-bleed über volle Viewportbreite 
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    .startseite .teaser--fotografie .teaser__media {
+        justify-self: start;
+    }
 
-    z-index: -1;
-
-    border-top: 1px solid color-mix(in srgb, var(--border) 45%, transparent);
-    border-bottom: 1px solid color-mix(in srgb, var(--border) 45%, transparent);
-    box-shadow: var(--accent-glow);
-    /*
-    box-shadow: var(--accent-glow);
-    border: 1px solid var(--border);
-    
-}
-*/
-
-/* Individuelle Hintergründe pro section */
-/*
-.startseite > section.hero::before {
-    background: var(--hero-band);
-}
-
-.startseite > section.teaser--ueber::before,
-.startseite > section.teaser--fotografie::before,
-.startseite > section.teaser--projekte::before,
-.startseite > section.teaser--prozess::before {
-    background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--surface) 74%, var(--bg)) 0%,
-        color-mix(in srgb, var(--surface) 64%, var(--bg)) 100%
-    );
-    /*
-    background: color-mix(in srgb, var(--surface) 70%, var(--bg));
-    
-}
-*/
-
-/* --------- Breakpoints --------- */
-/* Breakpoint ab 768px */
-@media (min-width: 1280px) {
-  html:has(.startseite) {
-    scroll-snap-type: none;
-    scroll-behavior: auto;
-  }
-
-  .startseite > section {
-    scroll-margin-top: var(--header-height);
-  }
+    .startseite .teaser--prozess {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "heading"
+            "text"
+            "preview"
+            "link";
+    }
 }
 
 
-/* --------- Snap Prozess-Teaser (Accordion) --------- */
 
-/* Liste im Prozess Teaser: Counter startet hier */
+
+/* --------------------------- Prozess-Teaser --------------------------- */
 .startseite .teaser--prozess .list-prozess-preview {
     grid-area: preview;
     counter-reset: schritt;
 }
 
-/*  Wrapper für nummerierte Accordions innerhalb des Prozess-Teasers */
 .startseite .teaser--prozess .accordion--numbered {
     display: block;
 }
 
-/* Accordion Summary Layout */
 .startseite .teaser--prozess .accordion--numbered .accordion__summary {
     display: flex;
     align-items: center;
@@ -464,56 +387,182 @@
     gap: 0.75rem;
 }
 
-/* Nummer (links) */
 .startseite .teaser--prozess .accordion--numbered .accordion__summary::before {
-    counter-increment: schritt;
     content: counter(schritt, decimal-leading-zero);
+    counter-increment: schritt;
 
     flex: 0 0 2.75rem;
     width: 2.75rem;
 
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
-
-    font-size: calc(var(--font-size-base) * 1.5);
+    font-size: calc(var(--font-size-base) * 1.6);
     line-height: 1;
     color: currentColor;
 }
 
-/* Pfeil/Icon ganz rechts */
 .startseite .teaser--prozess .accordion--numbered .accordion__summary::after {
     margin-left: auto;
 }
 
-/* Hover */
 .startseite .teaser--prozess .accordion--numbered:hover .accordion__summary::before {
-    color: var(--accent-text-hover);
-    /*
-    color: var(--accent-600);
-    */
     font-weight: var(--font-weight-semibold);
     cursor: pointer;
 }
 
-/* Accordion Contents */
 .startseite .teaser--prozess .accordion--numbered .accordion__content {
-    margin-top: 0.75rem;
-    margin-bottom: 1rem;
-    margin-left: 0;
-    padding-left: 0;
-    padding-right: 0;
+    margin: 0.75rem 0 1rem;
+    padding-inline: 0;
+}
+
+@media (min-width: 768px) {
+    .startseite .teaser--prozess .accordion--numbered .accordion__content {
+        padding-left: calc(2.75rem + 0.75rem);
+        padding-right: 2rem;
+    }
 }
 
 
-/* --------- Breakpoints --------- */
-/* Breakpoint ab 768px */
+
+
+/* --------------------------- Snap / Scroll --------------------------- */
+@media (min-width: 1280px) {
+    html:has(.startseite) {
+        scroll-snap-type: none;
+        scroll-behavior: auto;
+    }
+
+    .startseite > [data-snap-panel] {
+        scroll-margin-top: var(--header-height);
+    }
+}
+
+
+
+/* --------------------------- Hero: Intro-Animation --------------------------- */
+.motion-enhanced .startseite .hero__title--intro {
+    opacity: 0;
+    letter-spacing: 0.08rem;
+
+    transition:
+        opacity 700ms ease,
+        letter-spacing 900ms cubic-bezier(.22, .61, .36, 1);
+}
+
+.motion-enhanced .startseite .hero__title--intro.is-visible {
+    opacity: 1;
+    letter-spacing: 0;
+}
+
 @media (min-width: 768px) {
-    /* Accordion Contents */
-    .startseite .teaser--prozess .accordion--numbered .accordion__content {
-        margin-top: 0.75rem;
-        margin-bottom: 1rem;
-        margin-left: 0;
-        padding-left: calc(2.75rem + 0.75rem);
-        padding-right: 2rem;
+    .motion-enhanced .startseite .hero__title--intro {
+        letter-spacing: 0.8rem;
+    }
+}
+
+
+
+
+/* --------------------------- Startseite: Reveal-Animation --------------------------- */
+/* Teaser werden beim ersten Sichtbarwerden weich eingeblendet */
+.startseite .teaser.reveal {
+    opacity: 0;
+    transform: translateY(1rem);
+    will-change: opacity, transform;
+
+    transition:
+        opacity 900ms ease,
+        transform 900ms cubic-bezier(.22, .61, .36, 1),
+        border-color 320ms ease,
+        box-shadow 320ms ease,
+        background-color 320ms ease;
+}
+
+/* Unterelemente folgen leicht gestaffelt */
+.startseite .teaser.reveal .teaser__heading,
+.startseite .teaser.reveal .teaser__text,
+.startseite .teaser.reveal .teaser__media {
+    opacity: 0;
+    transform: translateY(0.75rem);
+
+    transition:
+        opacity 900ms ease,
+        transform 900ms cubic-bezier(.22, .61, .36, 1);
+}
+
+/* Staffelung der Unterelemente */
+.startseite .teaser.reveal .teaser__heading {
+    transition-delay: 70ms;
+}
+
+.startseite .teaser.reveal .teaser__text {
+    transition-delay: 140ms;
+}
+
+.startseite .teaser.reveal .teaser__media {
+    transition-delay: 210ms;
+}
+
+/* Zielzustand nach dem Reveal */
+.startseite .teaser.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.startseite .teaser.reveal.is-visible .teaser__heading,
+.startseite .teaser.reveal.is-visible .teaser__text,
+.startseite .teaser.reveal.is-visible .teaser__media {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 767px) {
+    /* Inhalte immer sichtbar (kein Reveal) */
+    .startseite .teaser,
+    .startseite .teaser.reveal,
+    .startseite .teaser.reveal .teaser__heading,
+    .startseite .teaser.reveal .teaser__text,
+    .startseite .teaser.reveal .teaser__media {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+
+
+
+/* --------------------------- Reduced Motion --------------------------- */
+html[data-motion="reduced"] .startseite .teaser,
+html[data-motion="reduced"] .startseite .teaser *,
+html[data-motion="reduced"] .startseite .teaser::before,
+html[data-motion="reduced"] .startseite .teaser::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+}
+
+html[data-motion="reduced"] .startseite .teaser.reveal,
+html[data-motion="reduced"] .startseite .teaser.reveal .teaser__heading,
+html[data-motion="reduced"] .startseite .teaser.reveal .teaser__text,
+html[data-motion="reduced"] .startseite .teaser.reveal .teaser__media {
+    opacity: 1 !important;
+}
+
+/* System-Fallback */
+@media (prefers-reduced-motion: reduce) {
+    html:not([data-motion]) .startseite .teaser,
+    html:not([data-motion]) .startseite .teaser *,
+    html:not([data-motion]) .startseite .teaser::before,
+    html:not([data-motion]) .startseite .teaser::after {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+
+    html:not([data-motion]) .startseite .teaser.reveal,
+    html:not([data-motion]) .startseite .teaser.reveal .teaser__heading,
+    html:not([data-motion]) .startseite .teaser.reveal .teaser__text,
+    html:not([data-motion]) .startseite .teaser.reveal .teaser__media {
+        opacity: 1 !important;
     }
 }

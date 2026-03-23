@@ -36,9 +36,18 @@
         return window.matchMedia(DESKTOP_INPUT_QUERY).matches;
     }
 
+    /* --------------------------- Motion Utilities --------------------------- */
     // Prüft die Systempräferenz für reduzierte Bewegung
     function prefersReducedMotion() {
         return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    }
+
+    function hasReducedMotionPreference() {
+        return document.documentElement.getAttribute("data-motion") === "reduced";
+    }
+
+    function shouldReduceMotion() {
+        return prefersReducedMotion() || hasReducedMotionPreference();
     }
 
 
@@ -50,7 +59,7 @@
         }
 
         return [
-            ...startMain.querySelectorAll(":scope > section"),
+            ...startMain.querySelectorAll(":scope > [data-snap-panel]"),
             footer
         ].filter(Boolean);
     }
@@ -149,27 +158,51 @@
 
     // Wechselt relativ zum aktuellen Panel
     function goToPanel(delta, panels) {
-        if (isLocking || panels.length < 2) {
-            return;
-        }
-
-        isLocking = true;
-
-        const currentIndex = getCurrentPanelIndex(panels);
-        const nextIndex = clamp(currentIndex + delta, 0, panels.length - 1);
-
-        if (nextIndex === currentIndex) {
-            isLocking = false;
-            return;
-        }
-
-        const targetY = getTargetYForPanel(panels[nextIndex]);
-        smoothScrollTo(targetY);
-
-        window.setTimeout(() => {
-            isLocking = false;
-        }, LOCK_DURATION);
+    if (isLocking || panels.length < 2) {
+        return;
     }
+
+    isLocking = true;
+
+    const currentIndex = getCurrentPanelIndex(panels);
+    const nextIndex = clamp(currentIndex + delta, 0, panels.length - 1);
+
+    if (nextIndex === currentIndex) {
+        isLocking = false;
+        return;
+    }
+
+    let targetY;
+
+    // Sonderfall: wenn man ganz oben im Hero ist und nach unten scrollt, dann zuerst zum oberen Rand des Hero-Overlays springen
+    const firstPanel = panels[0];
+    const isHeroFirstPanel = firstPanel?.classList.contains("hero");
+    const isFirstScrollDownFromHero = delta > 0 && currentIndex === 0 && nextIndex === 1;
+
+    if (isHeroFirstPanel && isFirstScrollDownFromHero) {
+        const overlay = firstPanel.querySelector(".heading-overlay");
+
+        if (overlay) {
+            const overlayRect = overlay.getBoundingClientRect();
+            const overlayTopInDocument = window.scrollY + overlayRect.top;
+            const headerHeight = getHeaderHeight();
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+            targetY = clamp(overlayTopInDocument - headerHeight, 0, maxScroll);
+        }
+    }
+
+    // Standardverhalten für alle anderen Sprünge
+    if (targetY === undefined) {
+        targetY = getTargetYForPanel(panels[nextIndex]);
+    }
+
+    smoothScrollTo(targetY);
+
+    window.setTimeout(() => {
+        isLocking = false;
+    }, LOCK_DURATION);
+}
 
 
     /* --------------------------- Event Handler --------------------------- */
@@ -195,7 +228,15 @@
     }
 
     // Reagiert auf Tastatur-Navigation
+    function isInteractiveElement(target) {
+        return target.closest("a, button, input, textarea, select, summary, details");
+    }
+
     function handleKeydown(event, panels) {
+        if (isInteractiveElement(event.target)) {
+            return;
+        }
+
         if (["ArrowDown", "PageDown", "Space"].includes(event.code)) {
             event.preventDefault();
             goToPanel(1, panels);
@@ -236,7 +277,7 @@
         }
 
         // reduzierte Bewegung respektieren
-        if (prefersReducedMotion()) {
+        if (shouldReduceMotion()) {
             return;
         }
 
