@@ -1,96 +1,100 @@
-/* --------------------------- Header (Desktop & Mobile) --------------------------- */
-
-
-/* --------------------------- Header --------------------------- */
+/* --------------------------- Header-Komponente --------------------------- */
+/* --------- Header: Grundcontainer --------- */
 .header {
-    height: var(--header-height);
-
     position: sticky;
     top: 0;
     z-index: 9999;
 
-    background: var(--clay-header);
-    /*backdrop-filter: blur(14px) saturate(140%);*/
-    box-shadow: var(--clay-header-shadow);
-    border-radius: 0 0 var(--radius-xl) var(--radius-xl);
-    color: var(--text);
-
+    height: var(--header-height);
     overflow: visible;
-    /*
-    background: color-mix(in srgb, var(--surface) 82%, transparent);
-    backdrop-filter: blur(14px) saturate(140%);
-    border-bottom: 1px solid var(--border);
-    box-shadow: var(--shadow-header);
+
     color: var(--text);
-    */
+    background: var(--clay-header);
+    border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+    box-shadow: var(--clay-header-shadow);
 }
 
-/*
-html[data-theme="dark"] .header {
-    background: color-mix(in srgb, var(--surface) 82%, transparent);
-    /*
-    background: #111827b8;
-    
-}
-*/
 
+/* --------- Header: Inneres Layout --------- */
 .header__inner {
-    height: 100%;
-    padding: 0 var(--container-padding);
-
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 0.5rem;
 
+    height: 100%;
+    min-width: 0;
+    padding-inline: var(--container-padding);
+}
+
+
+/* --------- Header: Actions --------- */
+.header__actions {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
     gap: 0.5rem;
 }
 
 
+/* --------- Header: Steuerungselemente --------- */
+.header__toggle,
+.header__settings {
+    flex-shrink: 0;
+}
 
-/* --------------------------- Overlay & Panel --------------------------- */
+
+
+
+/* --------------------------- Overlay-Komponente --------------------------- */
+/* --------- Overlay: Hintergrund bei offenem Mobile-Menü --------- */
 .nav-overlay {
     position: fixed;
     inset: 0;
     z-index: 4900;
 
-    background: #00000073;
+    background: rgb(0 0 0 / 45%);
     opacity: 0;
     pointer-events: none;
 
     transition: opacity 200ms ease;
 }
 
+
+
+
+/* --------------------------- Mobile-Navigation-Komponente --------------------------- */
+/* --------- Mobile-Navigation: Panel --------- */
 .mobile-nav {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 5000;
+
     display: flex;
     flex-direction: column;
 
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 5000;
-
     width: min(80vw, 45rem);
+    max-width: 100%;
     height: 100dvh;
-    padding: 2rem 4rem;
-
-    background: var(--clay-header);
-    box-shadow: var(--clay-header-shadow);
-    /*background: var(--surface);*
-    border-right: 1px solid var(--border);
-    box-shadow: var(--shadow-header);
-    */
+    padding: 2rem;
 
     overflow-y: auto;
+    overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
+
+    color: var(--text);
+    background: var(--clay-header);
+    box-shadow: var(--clay-header-shadow);
 
     transform: translateX(-100%);
     transition: transform 250ms ease;
     will-change: transform;
 }
 
-/* Open State (per JS: body.nav-open */
+
+/* --------- Mobile-Navigation: Offener Zustand --------- */
 body.nav-open {
-    overflow: hidden; /* Scroll Lock */
+    overflow: hidden;
 }
 
 body.nav-open .nav-overlay {
@@ -102,275 +106,223 @@ body.nav-open .mobile-nav {
     transform: translateX(0);
 }
 
-/* Hidden Attribute: initial geschlossen */
-/*
-.mobile-nav[hidden],
-.nav-overlay[hidden] {
-    display: none;
-}
-*/
 
-
-/* --------------------------- Panel Header --------------------------- */
+/* --------- Mobile-Navigation: Kopfbereich --------- */
 .mobile-nav__header {
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
 
+    margin-bottom: 1rem;
     padding-bottom: 0.75rem;
+
     border-bottom: 1px solid var(--border);
-    margin-bottom: 0.75rem;
 }
 
+
+/* --------- Mobile-Navigation: Titel --------- */
 .mobile-nav__title {
     margin: 0;
     padding: 1rem;
-    font-weight: var(--font-weight-regular);
-    font-size: var(--font-size-base);
+
     color: var(--muted);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-regular);
 }
 
+
+/* --------- Mobile-Navigation: Close-Button --------- */
 .mobile-nav__close {
     width: 44px;
     height: 44px;
-    /*
-    width: 32px;
-    height: 32px;
-    */
 
-    border-radius: var(--radius-pill);
-    /*
-    border: 1px solid var(--border);
-    background: var(--surface-raised);
-    /*background: transparent;*
-    color: var(--muted);
-    box-shadow: var(--shadow-soft);
-    */
-    color: var(text);
-    background: var(--clay-soft);
-    border-color: var(--clay-soft-border);
+    color: var(--text);
+    background: color-mix(in srgb, #ff0000 20%, var(--clay-soft) 80%);
+    border-color: color-mix(in srgb, #ff0000 70%, var(--clay-soft-border) 30%);
     box-shadow: var(--clay-soft-shadow);
-    cursor: pointer;
 }
 
 .mobile-nav__close:hover {
-    /*
-    color: #000000;
-    background: var(--clay-soft-hover);
-    border-color: var(--clay-soft-border-hover);
-    box-shadow: var(--clay-soft-shadow-hover);
-    transform: translateY(0px) scale(1.05);
-    /*
-    color: var(--accent-text);
-    border-color: var(--accent-line);
-    background: color-mix(in srgb, var(--accent-soft) 55%, var(--surface));
-    */
+    background: color-mix(in srgb, #ff0000 40%, var(--clay-soft) 60%);
+    border-color: color-mix(in srgb, #ff0000 90%, var(--clay-soft-border) 10%);
+    box-shadow: var(--clay-soft-shadow);
 }
 
+
+/* --------- Mobile-Navigation: Listen --------- */
+.mobile-nav__list {
+    display: grid;
+    gap: 0.25rem;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+/* --------- Mobile-Navigation: Navigationen --------- */
+.mobile-nav__primary {
+    margin-top: 0.5rem;
+}
+
+.mobile-nav__secondary {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+
+/* --------- Mobile-Navigation: Link-Anpassungen --------- */
+.mobile-nav__list .nav-link {
+    display: flex;
+    padding: 1rem;
+}
+
+
+/* --------- Mobile-Navigation: Aktive Seite --------- */
+.mobile-nav__list .nav-link[aria-current="page"]::after {
+    left: 0.75rem;
+    right: 0.75rem;
+}
+
+
+
+
+/* --------------------------- Header-Logo-Komponente --------------------------- */
+/* --------- Header-Mitte: zentriertes Logo --------- */
+.header__center {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+}
+
+
+/* --------- Header-Logo: Bildvarianten --------- */
+.header__logo-img,
+.main-nav__logo-img {
+    display: none;
+    width: auto;
+    height: 32px;
+}
+
+
+/* --------- Header-Logo: Linkgrößen --------- */
+.header__logo,
+.main-nav__item--home .icon-button {
+    width: 86px;
+    height: 46px;
+    padding: 6px 10px;
+}
+
+
+/* --------- Header-Logo: Mobile-Interaktion --------- */
+.header__logo {
+    line-height: 0;
+}
+
+.header__logo:active {
+    transform: translateY(1px);
+}
+
+
+/* --------- Header-Logo: Theme-Varianten --------- */
+html[data-theme="light"] .header__logo-img--lightmode,
+html[data-theme="light"] .main-nav__logo-img--lightmode {
+    display: block;
+}
+
+html[data-theme="dark"] .header__logo-img--darkmode,
+html[data-theme="dark"] .main-nav__logo-img--darkmode {
+    display: block;
+}
+
+
+
+
+/* --------------------------- Mobile-Layout --------------------------- */
+@media (max-width: 1023px) {
+    .main-nav {
+        display: none;
+    }
+}
+
+
+
+
+
+/* --------------------------- Desktop-Navigation-Komponente --------------------------- */
+@media (min-width: 1024px) {
+    .header__toggle,
+    .nav-overlay,
+    .mobile-nav,
+    .header__center {
+        display: none;
+    }
+
+    .main-nav {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        min-width: 0;
+    }
+
+    .main-nav__list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+
+        margin: 0;
+        padding: 0;
+
+        list-style: none;
+    }
+
+    /* --------- Desktop-Navigation: Divider nach Home --------- */
+    .main-nav__item--home + .main-nav__item {
+        position: relative;
+        padding-left: 3rem;
+    }
+
+    .main-nav__item--home + .main-nav__item::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+
+        width: 1px;
+        height: 22px;
+
+        background: var(--border);
+        transform: translateY(-50%);
+    }
+}
+
+
+
+
+
+/* --------------------------- Interaktionszustände --------------------------- */
 .mobile-nav__close:focus-visible {
     outline: var(--focus-outline) solid var(--focus-ring);
     outline-offset: var(--focus-offset);
 }
 
 
-/* --------------------------- Panel Links --------------------------- */
-.mobile-nav__links ul,
-.mobile-nav__secondary ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    display: grid;
-    gap: 0.25rem;
-}
-
-.mobile-nav__links a.nav-link,
-.mobile-nav__secondary a.nav-link {
-    position: relative;
-    display: block;
-    /*padding: 1rem 0rem;*/
-    padding: 1rem;
-    border-radius: 0.75rem;
-
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-base);
-}
-
-.mobile-nav__links a.nav-link:hover,
-.mobile-nav__secondary a.nav-link:hover {
-    /*color: var(--accent-text);*/
-}
-
-/* Active Indicator im Panel */
-.mobile-nav__links a.nav-link[aria-current="page"]::after {
-    content: "";
-    position: absolute;
-
-    left: 0.5rem;
-    right: 1rem;
-    bottom: 0;
-    height: 2px;
-
-    background: var(--text);
-    /*background: var(--accent-line);*/
-    border-radius: var(--radius-pill);
-}
-
-
-.mobile-nav__divider {
-    height: 1px;
-    background: var(--border);
-    margin: 1rem 0;
-    margin-top: auto;
-}
-
-
-
-
-/* --------------------------- Logo --------------------------- */
-.header__center {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 0;
-}
-
-.header__center .icon-button {
-    width: 86px;
-    height: 46px;
-
-    padding: 6px 10px;
-    /*
-    border: 1px solid transparent;
-    background: transparent;
-    */
-}
-
-.header__center img {
-    display: block;
-    height: 32px;
-    width: auto;
-    max-width: 180px;
-     
-}
-
-.header__center .icon-button:active {
-    transform: translateY(1px);
-}
-
-.header__logo{
-    width: auto;
-    height: auto;
-    padding: 8px 12px;
-    line-height: 0;
-}
-
-.header__logo-img{
-    display: none;
-    height: 32px;
-    width: auto;
-}
-
-.header__center .header__logo-img {
-  display: none !important;
-}
-
-.header__center .header__logo-img:hover {
-    filter: drop-shadow(0 1px 8px color-mix(in srgb, var(--accent-line) 70%, transparent));
-}
-
-html[data-theme="light"] .header__logo-img--lightmode { 
-    display: block !important; 
-}
-
-html[data-theme="dark"] .header__logo-img--darkmode { 
-    display: block !important; 
-}
-
-
-
-/* --------------------------- Desktop --------------------------- */
-@media (min-width: 1024px) {
-    #navToggle {
-        display: none;
-    }
-
+/* --------- Bewegungen reduzieren --------- */
+@media (prefers-reduced-motion: reduce) {
     .nav-overlay,
-    .mobile-nav {
-        display: none !important;
+    .mobile-nav,
+    .header__logo {
+        transition: none;
     }
 
-    .header .main-nav {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-    }
-
-    .header .main-nav ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-
-        display: flex;
-        gap: 3rem;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .main-nav__home-link{
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 0;
-        padding: 0.25rem 0; 
-    }
-
-    .main-nav__logo-img{
-        display: none;
-        height: 32px;
-        width: auto;
-    }
-
-    html[data-theme="light"] .main-nav__logo-img--lightmode { 
-        display: block; 
-    }
-
-    html[data-theme="dark"] .main-nav__logo-img--darkmode { 
-        display: block; 
-    }
-
-    .main-nav__home-link:hover .main-nav__logo-img {
-        filter: drop-shadow(0 1px 8px color-mix(in srgb, var(--accent-line) 70%, transparent));
-    }
-
-    .header__center { 
-        display: none; 
-    }
-
-    .main-nav__divider{
-        width: 1px;
-        height: 22px;
-        background: var(--border);
-        align-self: center;
-    }
-}
-
-
-
-/* --------------------------- Mobile --------------------------- */
-@media (max-width: 1023px) {
-    #main-nav {
-        display: none;
-    }
-
-    .header__center {
-        flex: 1;
-        min-width: 0;
-    }
-
-    .header__cta--always .button {
-        white-space: nowrap;
+    .header__logo:active {
+        transform: none;
     }
 }
