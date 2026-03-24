@@ -6,7 +6,7 @@
     "use strict";
 
     /* --------------------------- Konfuguration --------------------------- */
-    const ICON_LIGHT = "/favicon.ico"; // Favicon für Light-Mode 
+    const ICON_LIGHT = "favicon.ico"; // Favicon für Light-Mode 
     const ICON_DARK = "images/ui/favicon-dark-mode.ico"; // Favicon für Dark-Mode
 
     // Bei Favicon-Änderungen hochzählen
