@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light" data-font-size="medium">
+
+<head>
+    <!-- Basis Metadaten -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Seitenspezifische Metadaten -->
+    <title>Brutzel</title>
+    <meta name="description" content="Brutzel - Nora Mikus">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/details.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/projekte.css">
+
+    <!-- Favicon -->
+    <link id="favicon" rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any">
+    <script src="../js/favicon.js" defer></script>
+
+    <!-- Header-/Footer-Includes -->
+    <script src="https://code.jquery.com/jquery-4.0.0.js"
+        integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
+        crossorigin="anonymous"></script>
+    <script src="../js/layout-include.js" defer></script>
+
+    <!-- Navigation & User Preferences -->
+    <script src="../js/nav.js" defer></script>
+    <script src="../js/preferences.js" defer></script>
+
+    <!-- Einmaliges Snap-Scrolling -->
+    <script src="../js/snap-once.js" defer></script>
+</head>
+
+<body>
+    <!-- Skip-Links -->
+    <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+    <a href="#site-footer" class="skip-link">Zum Seitenende springen</a>
+
+    <!-- Header -->
+    <header class="header" id="site-header" data-include-base=".."></header>
+
+    <!-- Main -->
+    <main id="main" class="grid detailseite seite-projekt-detail seite-projekt-brutzel">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Seitenpfad">
+            <ol class="breadcrumb__list">
+                <li class="breadcrumb__item">
+                    <a href="../projekte.html#projektuebersicht-heading" class="breadcrumb__link">
+                        Projekte
+                    </a>
+                </li>
+                <li class="breadcrumb__item" aria-current="page">
+                    Brutzel
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Hero -->
+        <section class="snap-section hero section--bleed" aria-labelledby="projekt-heading">
+            <h1 id="projekt-heading" class="hero__title">Brutzel</h1>
+
+            <p class="hero__lead">
+                <span class="break">
+                    Brutzel ist ein Studienprojekt aus dem Kurs Medienplattformen und Systeme. 
+                    Im Rahmen des Projekts wurde das Konzept für eine Social-Media-Plattform entwickelt, 
+                    die sich gezielt an Hobbyköchinnen und Hobbyköche richtet und Kochen, Austausch und Community miteinander verbindet.
+                </span>
+                <span class="break">
+                    Im Fokus stand die Idee, eine Plattform zu schaffen, die über eine klassische Rezeptdatenbank hinausgeht.
+                </span>
+            </p>
+
+            <div class="hero__actions">
+                <a class="button button--primary" href="#projekt-details-heading">
+                    Mehr erfahren
+                </a>
+            </div>
+
+            <!--
+            <div class="hero__media">
+                <img
+                    class="hero__image"
+                    src="../images/content/projekte/brutzel-profil.webp"
+                    alt="Profilansicht und Übersicht von Kochbüchern in einer mobilen Koch-App">
+            </div>
+            -->
+        </section>
+
+        <!-- Content -->
+        <section class="snap-section content projekt-content" aria-labelledby="projekt-details-heading">
+            <h2 id="projekt-details-heading" class="content__heading">Projekt-Details</h2>
+
+            <div class="projekt-detail-row section--bleed section--bg">
+                <section class="projekt-detail-block" aria-labelledby="brutzel-konzept-heading">
+                    <div class="projekt-detail-block__content">
+                        <h3 id="brutzel-konzept-heading" class="projekt-detail-block__heading">
+                            Konzept und Zielsetzung
+                        </h3>
+                        <p class="projekt-detail-block__text">
+                            Ziel von Brutzel war die Konzeption einer nutzerzentrierten Plattform, auf der Rezepte nicht nur konsumiert, 
+                            sondern aktiv geteilt, kommentiert und gemeinsam weiterentwickelt werden können. 
+                            Neben dem Finden und Hochladen von Rezepten spielt der soziale Austausch eine zentrale Rolle. 
+                            Nutzerprofile, Interaktionen und Community-Funktionen sind fester Bestandteil des Konzepts.
+                        </p>
+                    </div>
+
+                    <div class="projekt-detail-block__media media">
+                        <img
+                            class="media__inner"
+                            src="../images/content/projekte/brutzel-profil.webp"
+                            alt="Profilansicht und Übersicht von Kochbüchern in einer mobilen Koch-App">
+                    </div>
+                </section>
+            </div>
+
+            <div class="projekt-detail-row section--bleed section--bg-soft">
+                <section class="projekt-detail-block" aria-labelledby="brutzel-features-heading">
+                    <div class="projekt-detail-block__content">
+                        <h3 id="brutzel-features-heading" class="projekt-detail-block__heading">
+                            Features und Umsetzung
+                        </h3>
+                        <p class="projekt-detail-block__text">
+                            Darüber hinaus wurden interaktive und innovative Funktionen wie Challenges, 
+                            Contests und eine intelligente Suchfunktion konzipiert, 
+                            um Motivation, Personalisierung und langfristige Nutzung zu fördern. 
+                            Die entstandenen Mockups zeigen exemplarisch, wie eine moderne, 
+                            mobil optimierte Plattform aussehen kann, 
+                            die Kochen als gemeinschaftliches Erlebnis versteht.
+                        </p>
+                    </div>
+
+                    <div class="projekt-detail-block__media media">
+                        <img
+                            class="media__inner"
+                            src="../images/content/projekte/brutzel-rezept-detail.webp"
+                            alt="Rezeptdetailansicht und Community-Bereich einer mobilen Koch-App">
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="site-footer" class="footer" data-include-base=".."></footer>
+</body>
+
+</html>

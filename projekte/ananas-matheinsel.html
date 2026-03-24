@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light" data-font-size="medium">
+
+<head>
+    <!-- Basis Metadaten -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Seitenspezifische Metadaten -->
+    <title>Ananas Matheinsel</title>
+    <meta name="description" content="Ananas Matheinsel - Nora Mikus">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/details.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/projekte.css">
+
+    <!-- Favicon -->
+    <link id="favicon" rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any">
+    <script src="../js/favicon.js" defer></script>
+
+    <!-- Header-/Footer-Includes -->
+    <script src="https://code.jquery.com/jquery-4.0.0.js"
+        integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
+        crossorigin="anonymous"></script>
+    <script src="../js/layout-include.js" defer></script>
+
+    <!-- Navigation & User Preferences -->
+    <script src="../js/nav.js" defer></script>
+    <script src="../js/preferences.js" defer></script>
+
+    <!-- Einmaliges Snap-Scrolling -->
+    <script src="../js/snap-once.js" defer></script>
+</head>
+
+<body>
+    <!-- Skip-Links -->
+    <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+    <a href="#site-footer" class="skip-link">Zum Seitenende springen</a>
+
+    <!-- Header -->
+    <header class="header" id="site-header" data-include-base=".."></header>
+
+    <!-- Main -->
+    <main id="main" class="grid detailseite seite-projekt-detail seite-projekt-ananas">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Seitenpfad">
+            <ol class="breadcrumb__list">
+                <li class="breadcrumb__item">
+                    <a href="../projekte.html#projektuebersicht-heading" class="breadcrumb__link">
+                        Projekte
+                    </a>
+                </li>
+                <li class="breadcrumb__item" aria-current="page">
+                    Ananas Matheinsel
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Hero -->
+        <section class="snap-section hero section--bleed" aria-labelledby="projekt-heading">
+            <h1 id="projekt-heading" class="hero__title">Ananas Matheinsel</h1>
+
+            <p class="hero__lead">
+                Ananas Matheinsel ist ein Studienprojekt aus dem Kurs Gestaltung interaktiver Medien. 
+                Dabei habe ich das Konzept für eine kindgerechte E-Learning Anwendung entwickelt, 
+                die Grundschulkinder spielerisch beim Mathelernen unterstützt. 
+                Im Mittelpunkt steht eine narrative Lernwelt rund um den Drachen Ananas, 
+                die Lernen motivierender und zugänglicher machen soll.
+            </p>
+
+            <div class="hero__actions">
+                <a class="button button--primary" href="#projekt-details-heading">
+                    Mehr erfahren
+                </a>
+            </div>
+
+            <!--
+            <div class="hero__media">
+                <img
+                    class="hero__image"
+                    src="../images/content/projekte/ananas-matheinsel-aufgabe.webp"
+                    alt="Interaktive E-Learning Oberfläche mit einer Rechenmauer und Spielfiguren">
+            </div>
+            -->
+        </section>
+
+        <!-- Content -->
+        <section class="snap-section content projekt-content" aria-labelledby="projekt-details-heading">
+            <h2 id="projekt-details-heading" class="content__heading">Projekt-Details</h2>
+
+            <div class="projekt-detail-row section--bleed section--bg">
+                <section class="projekt-detail-block" aria-labelledby="ananas-konzept-heading">
+                    <div class="projekt-detail-block__content">
+                        <h3 id="ananas-konzept-heading" class="projekt-detail-block__heading">
+                            Konzept &amp; Zielsetzung
+                        </h3>
+                        <p class="projekt-detail-block__text">
+                            Die Idee hinter Ananas Matheinsel ist eine Lernapp, 
+                            die Mathematik als Erlebnis vermittelt. 
+                            Kinder lösen kurze, storybasierte Aufgaben in einer klar strukturierten Lernwelt, 
+                            bekommen direktes Feedback und werden durch Belohnungen motiviert. 
+                            Gleichzeitig soll die Anwendung adaptiv funktionieren, 
+                            sodass Aufgaben und Schwierigkeitsgrade zum Lernstand passen 
+                            und weder Unterforderung noch Überforderung entsteht.
+                        </p>
+                    </div>
+
+                    <div class="projekt-detail-block__media media">
+                        <img
+                            class="media__inner"
+                            src="../images/content/projekte/ananas-matheinsel-aufgabe.webp"
+                            alt="Interaktive E-Learning Oberfläche mit einer Rechenmauer und Spielfiguren">
+                    </div>
+                </section>
+            </div>
+
+            <div class="projekt-detail-row section--bleed section--bg-soft">
+                <section class="projekt-detail-block" aria-labelledby="ananas-zugang-heading">
+                    <div class="projekt-detail-block__content">
+                        <h3 id="ananas-zugang-heading" class="projekt-detail-block__heading">
+                            Nutzungskontext &amp; Zugänglichkeit
+                        </h3>
+                        <p class="projekt-detail-block__text">
+                            Wichtig war mir außerdem, dass die App für verschiedene Alltagssituationen funktioniert, 
+                            in der Schule, zu Hause und unterwegs. 
+                            Deshalb ist sie als Tablet Anwendung gedacht, 
+                            mit großen, gut verständlichen Bedienelementen 
+                            und multimodalen Hilfen wie visuellen Hinweisen und Audio Unterstützung. 
+                            Ergänzend sind soziale Bereiche und sichere Austauschmöglichkeiten konzipiert, 
+                            damit Lernen auch gemeinsam funktionieren kann.
+                        </p>
+                    </div>
+
+                    <div class="projekt-detail-block__media media">
+                        <img
+                            class="media__inner"
+                            src="../images/content/projekte/ananas-matheinsel-chat.webp"
+                            alt="Spielszene mit mehreren Spielfiguren in einem Audiochat-Raum">
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="site-footer" class="footer" data-include-base=".."></footer>
+</body>
+
+</html>
