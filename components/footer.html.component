@@ -10,7 +10,7 @@
             <li class="footer-nav__item">
                 <a
                     class="nav-link"
-                    href="/impressum.html"
+                    href="impressum.html"
                     data-page="impressum"
                 >
                     Impressum
@@ -19,7 +19,7 @@
             <li class="footer-nav__item">
                 <a
                     class="nav-link"
-                    href="/einstellungen.html"
+                    href="einstellungen.html"
                     data-page="einstellungen"
                 >
                     Einstellungen

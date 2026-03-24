@@ -11,20 +11,20 @@
             <li class="main-nav__item main-nav__item--home">
                 <a
                     class="main-nav__home-link icon-button"
-                    href="/index.html"
+                    href="index.html"
                     aria-label="Startseite"
                     data-page="index"
                     data-tooltip="Startseite"
                 >
                     <img
                         class="main-nav__logo-img main-nav__logo-img--darkmode"
-                        src="/images/ui/logo-nora-mikus-darkmode.svg"
+                        src="images/ui/logo-nora-mikus-darkmode.svg"
                         alt=""
                         aria-hidden="true"
                     >
                     <img
                         class="main-nav__logo-img main-nav__logo-img--lightmode"
-                        src="/images/ui/logo-nora-mikus.svg"
+                        src="images/ui/logo-nora-mikus.svg"
                         alt=""
                         aria-hidden="true"
                     >
@@ -32,16 +32,16 @@
             </li>
 
             <li class="main-nav__item">
-                <a class="nav-link" href="/ueber.html" data-page="ueber">Über mich</a>
+                <a class="nav-link" href="ueber.html" data-page="ueber">Über mich</a>
             </li>
             <li class="main-nav__item">
-                <a class="nav-link" href="/fotografie.html" data-page="fotografie">Fotografie</a>
+                <a class="nav-link" href="fotografie.html" data-page="fotografie">Fotografie</a>
             </li>
             <li class="main-nav__item">
-                <a class="nav-link" href="/projekte.html" data-page="projekte">Projekte</a>
+                <a class="nav-link" href="projekte.html" data-page="projekte">Projekte</a>
             </li>
             <li class="main-nav__item">
-                <a class="nav-link" href="/prozess.html" data-page="prozess">Prozess</a>
+                <a class="nav-link" href="prozess.html" data-page="prozess">Prozess</a>
             </li>
         </ul>
     </nav>
@@ -79,20 +79,20 @@
     <div class="header__center">
         <a
             class="header__logo icon-button"
-            href="/index.html"
+            href="index.html"
             aria-label="Startseite"
             data-page="index"
             data-tooltip="Startseite"
         >
             <img
                 class="header__logo-img header__logo-img--darkmode"
-                src="/images/ui/logo-nora-mikus-darkmode.svg"
+                src="images/ui/logo-nora-mikus-darkmode.svg"
                 alt=""
                 aria-hidden="true"
             >
             <img
                 class="header__logo-img header__logo-img--lightmode"
-                src="/images/ui/logo-nora-mikus.svg"
+                src="images/ui/logo-nora-mikus.svg"
                 alt=""
                 aria-hidden="true"
             >
@@ -103,7 +103,7 @@
     <div class="header__actions">
         <a
             class="header__settings icon-button"
-            href="/einstellungen.html"
+            href="einstellungen.html"
             aria-label="Einstellungen"
             data-page="einstellungen"
             data-tooltip="Einstellungen"
@@ -184,19 +184,19 @@
     <nav class="mobile-nav__primary" aria-label="Hauptnavigation">
         <ul class="mobile-nav__list mobile-nav__list--primary">
             <li class="mobile-nav__item">
-                <a class="nav-link" href="/index.html" data-page="index">Startseite</a>
+                <a class="nav-link" href="index.html" data-page="index">Startseite</a>
             </li>
             <li class="mobile-nav__item">
-                <a class="nav-link" href="/ueber.html" data-page="ueber">Über mich</a>
+                <a class="nav-link" href="ueber.html" data-page="ueber">Über mich</a>
             </li>
             <li class="mobile-nav__item">
-                <a class="nav-link" href="/fotografie.html" data-page="fotografie">Fotografie</a>
+                <a class="nav-link" href="fotografie.html" data-page="fotografie">Fotografie</a>
             </li>
             <li class="mobile-nav__item">
-                <a class="nav-link" href="/projekte.html" data-page="projekte">Projekte</a>
+                <a class="nav-link" href="projekte.html" data-page="projekte">Projekte</a>
             </li>
             <li class="mobile-nav__item">
-                <a class="nav-link" href="/prozess.html" data-page="prozess">Prozess</a>
+                <a class="nav-link" href="prozess.html" data-page="prozess">Prozess</a>
             </li>
         </ul>
     </nav>
@@ -205,10 +205,10 @@
     <nav class="mobile-nav__secondary" aria-label="Sekundäre Navigation">
         <ul class="mobile-nav__list mobile-nav__list--secondary">
             <li class="mobile-nav__item">
-                <a class="nav-link" href="/einstellungen.html" data-page="einstellungen">Einstellungen</a>
+                <a class="nav-link" href="einstellungen.html" data-page="einstellungen">Einstellungen</a>
             </li>
             <li class="mobile-nav__item">
-                <a class="nav-link" href="/impressum.html" data-page="impressum">Impressum</a>
+                <a class="nav-link" href="impressum.html" data-page="impressum">Impressum</a>
             </li>
         </ul>
     </nav>

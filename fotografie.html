@@ -9,6 +9,25 @@
     <!-- Seitenspezifische Metadaten -->
     <title>Fotografie</title>
     <meta name="description" content="Fotografie - Nora Mikus">
+
+    <!-- 
+        Dynamischer Base-Pfad für korrekte relative URLs
+        - lokal: "/"
+        - GitHub Pages: "/webprogrammierung-NoraExplorer/"
+    -->
+    <base id="baseHref" href="/">
+
+    <script>
+        /* 
+            Setzt den Base-Pfad je nach Umgebung; 
+            muss im <head> ohne defer laufen, damit alle nachfolgenden relativen Ressourcen (CSS, JS, Bilder, Links) korrekt geladen werden
+        */        
+        (function () {
+            const isGitHubPages = location.hostname.includes("github.io");
+            const basePath = isGitHubPages ? "/webprogrammierung-NoraExplorer/" : "/";
+            document.getElementById("baseHref").setAttribute("href", basePath);
+        })();
+    </script>
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/global.css">
@@ -69,11 +88,11 @@
             </p>
 
             <!-- CTA: Sprung zur nächsten Sektion-->
-            <p class="hero__actions">
+            <div class="hero__actions">
                 <a class="button button--primary" href="#galerie-heading">
                     Mehr erfahren
                 </a>
-            </p>
+            </div>
 
             <div class="hero__media">
                 <img class="hero__image" src="images/content/fotografie/camera-hero.webp" alt="Portrait von Nora mit einer Kamera">
