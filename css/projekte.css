@@ -1,135 +1,34 @@
 /* --------------------------- Detailseite "Projekte" --------------------------- */
 
-/* Anchor-Offset für Sprungmarke "Projektübersicht" */
+
+
+/* Anchor-Offset für Sprungmarken */
+#projekt-details-heading,
 #projektuebersicht-heading {
     scroll-margin-top: calc(var(--header-height) + 4rem);
 }
 
 
 
-/* --------- Projekt Container (Artikel mit Background & Overlay) --------- */
-.detailseite.seite-projekte .projekt--bg {
-    /* Pro Projekt überschreiben (.brutzel, .thaddy, .ananas) */
-    --projekt-bg-url: none;
+/* --------------------------- Projektliste --------------------------- */
 
-    /* Einheitliche Innenabstände */
-    --inner-pad: 0rem;
-
-    /* Zusätzlicher Inset innerhalb des Projektrahmens */
-    --card-inset: 0rem;
-
-    margin: 0;
-
-    transition: box-shadow 280ms ease;
-
-    /*
-    margin-inline: calc(50% - 50vw);
-    padding-inline: calc(50vw - 50%);
-    width: auto;
-    */
-}
-
-
-
-/* --------- Innerer Wrapper --------- */
-/* Steuert Layout und Abstand zum Box-Rand */
-.detailseite.seite-projekte .projekt__inner {
-    display: grid;
-    gap: 0.75rem;
-    padding: 0;
-    padding: calc(var(--inner-pad) + var(--card-inset));
-    justify-items: stretch;
-}
-
-
-
-/* --------- Projekt Teaser --------- */
-/* Titel, Intro-Card und Hintergrundbild */
-.detailseite.seite-projekte .projekt__teaser {
-    position: relative;
-    isolation: isolate;
-
-    display: grid;
-    gap: 1.25rem;
-
-    padding: 0;
-
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-}
-
-
-/* Hintergrundbild des Projekts */
-.detailseite.seite-projekte .projekt__teaser::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -2;
-
-    background-image: var(--projekt-bg-url);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    border-radius: inherit;
-}
-
-
-/*
-   Zweistufiger Overlay-Verlauf:
-   - oben: ruhigere Lesefläche für die Überschrift
-   - unten: sanfte Einbettung zur Intro-Card
-*/
-.detailseite.seite-projekte .projekt__teaser::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-
-
-    /*border-radius: var(--radius-l);*/
-    background: color-mix(in srgb, var(--clay-card) 90%, transparent);
-    border: 1px solid color-mix(in srgb, var(--clay-card-border) 90%, transparent);
-    box-shadow: var(--clay-card-shadow);
-    /*
-    background:
-        linear-gradient(
-            180deg,
-            color-mix(in srgb, var(--surface) 60%, transparent) 0%,
-            color-mix(in srgb, var(--surface) 74%, transparent) 8%,
-            color-mix(in srgb, var(--surface) 80%, transparent) 22%,
-            color-mix(in srgb, var(--surface) 64%, transparent) 36%,
-            color-mix(in srgb, var(--surface) 14%, transparent) 52%,
-            transparent 68%
-        ),
-        linear-gradient(
-            180deg,
-            transparent 0%,
-            transparent 34%,
-            color-mix(in srgb, var(--surface) 10%, transparent) 48%,
-            color-mix(in srgb, var(--surface) 42%, transparent) 72%,
-            color-mix(in srgb, var(--surface) 84%, transparent) 100%
-        );
-    */
-
-    border-radius: inherit;
-}
-
-
-
-/* --------- Abstand zwischen Projekten --------- */
-/* vertikale Trennung der Projektblöcke */
+/* Mobile first: eine Spalte */
 .detailseite.seite-projekte .projekt-liste {
     display: grid;
-    gap: clamp(6rem, 12vw, 20rem);
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
 }
 
 
 
-/* --------- Projekt-Artikel --------- */
+/* --------------------------- Projekt-Komponente --------------------------- */
+
+/* --------- Projekt-Block --------- */
+/* Äußerer Grundcontainer eines Projekts */
 .detailseite.seite-projekte .projekt {
     position: relative;
     isolation: isolate;
+    height: 100%;
 
     transition:
         transform 320ms ease,
@@ -137,243 +36,264 @@
 }
 
 
-
-/* --------- Projekt-Titel --------- */
-/* Überschrift im oberen Projektbereich */
-.detailseite.seite-projekte .projekt__header {
-    position: relative;
-    display: grid;
-    /*justify-items: center;*/
-    justify-items: left;
-    padding: 2rem 1rem;
-    isolation: isolate;
+/* Wird per JS gesetzt und hebt den aktuell relevantesten Block hervor */
+.detailseite.seite-projekte .projekt.is-active {
+    filter: saturate(1.03);
 }
 
-.detailseite.seite-projekte .projekt__title {
+
+
+/* --------- Projekt mit Hintergrund --------- */
+/* Äußerer Karten-Container mit projektbezogenem Background */
+.detailseite.seite-projekte .projekt--bg {
+    /* Pro Projekt überschreiben (.brutzel, .thaddy, .ananas) */
+    --projekt-bg-url: none;
+
+    /* Einheitliche Innenabstände */
+    --inner-pad: 0rem;
+    --card-inset: 0rem;
+
+    /* Overlay-Zustände */
+    --projekt-overlay-opacity: 0.32;
+    --projekt-overlay-hover-opacity: 0.92;
+    --projekt-overlay-border-opacity: 0.32;
+    --projekt-overlay-border-hover-opacity: 0.92;
+
     margin: 0;
-    color: var(--text);
-    font-size: calc(var(--font-size-h3) * 2);
-    font-weight: var(--font-weight-bold);
-    text-align: center;
-
-    transition: color 260ms ease, transform 260ms ease, opacity 260ms ease;
-}
-
-
-/* --------- Detail Cards --------- */
-/* Card-Komponente für Intro und Details */
-.detailseite.seite-projekte .detail-card {
-    width: 100%;
-    justify-self: stretch;
-    overflow: hidden;
-    padding: 1rem;
-
-    /*border: 1px solid var(--border);*/
-    /*border-radius: var(--radius-l);*/
-
-    border-radius: var(--radius-l);
-    /*
-    background: color-mix(in srgb, var(--clay-blue) 20%, #ffffff 80%);
-    border: 1px solid color-mix(in srgb, var(--clay-blue-border) 20%, #ffffff 80%);
-    box-shadow: var(--clay-card-shadow);
-    /*
-    background: color-mix(in srgb, var(--surface) 85%, transparent);
-    backdrop-filter: blur(10px);
-    */
-
-    transition: border-color 320ms ease, box-shadow 320ms ease, background-color 320ms ease;
-}
-
-
-
-/* --------- Typografie in den Cards --------- */
-/* Card-Titel */
-.detailseite.seite-projekte .detail-card__title {
-    margin: 0 0 0.5rem;
-    color: var(--text);
-    font-size: calc(var(--font-size-h4) * 0.95);
-    font-weight: var(--font-weight-semibold);
-
-    transition: color 260ms ease, transform 260ms ease, opacity 260ms ease;
-}
-
-
-/* Card-Text */
-.detailseite.seite-projekte .detail-card__text {
-    margin: 0;
-    color: var(--text);
-    line-height: 1.65;
-
-    transition: opacity 280ms ease, transform 280ms ease;
-}
-
-
-
-/* --------- Intro-Card --------- */
-.detailseite.seite-projekte .detail-card--intro {
-    width: 100%;
-    justify-self: stretch;
-    padding: 1.25rem;
-}
-
-.detailseite.seite-projekte .detail-card--intro .detail-card__text {
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-semibold);
-}
-
-.detailseite.seite-projekte .projekt--bg .detail-card--intro {
-    transition: border-color 260ms ease, background-color 260ms ease, box-shadow 260ms ease;
-}
-
-
-
-/* --------- Split-Card --------- */
-/* Mobile-first untereinander */
-.detailseite.seite-projekte .detail-card--split {
-    display: grid;
-    gap: 1rem;
-
-    grid-template-areas:
-        "content"
-        "media";
-}
-
-/* Textbereich der Split-Card */
-.detailseite.seite-projekte .detail-card--split .detail-card__content {
-    grid-area: content;
-}
-
-
-/* Media-Container */
-.detailseite.seite-projekte .detail-card--split .detail-card__media {
-    grid-area: media;
-    margin: 0;
+    border-radius: var(--radius-xl);
     overflow: hidden;
 
-    aspect-ratio: 4 / 3;
-    /*
-    border: 1px solid color-mix(in srgb, var(--border) 45%, transparent);
-    border-radius: var(--radius-l);
-    background: color-mix(in srgb, var(--surface) 8%, transparent);
-    */
+    transition:
+        box-shadow 280ms ease,
+        border-color 280ms ease;
 }
 
-/* Bild innerhalb der Card */
-.detailseite.seite-projekte .detail-card--split .detail-card__media img {
-    display: block;
-    width: 100%;
+
+
+/* --------- Innerer Wrapper --------- */
+/* Steuert Layout und Abstand zum Kartenrand */
+.detailseite.seite-projekte .projekt__inner {
+    display: grid;
+    gap: 0.75rem;
     height: 100%;
-    object-fit: cover;
-
-    transform: scale(1.03);
-    filter: saturate(0.98) contrast(1.01);
-
-    transition: transform 700ms cubic-bezier(.2, .8, .2, 1), filter 320ms ease, opacity 320ms ease;
+    padding: calc(var(--inner-pad) + var(--card-inset));
+    justify-items: stretch;
 }
 
 
-
-
-/* --------- Details / Summary --------- */
-/* Container des aufklappbaren Detailbereichs */
-.detailseite.seite-projekte .projekt__details {
-    width: 100%;
-    display: grid;
-    justify-items: center;
-}
-
-
-/* Summary: Browser-Defaults entfernen & mit Button-Styles kompatibel machen */
-.detailseite.seite-projekte .projekt__summary {
-    position: relative;
-    z-index: 2;
-
-    display: inline-flex;
-    /*justify-self: center;*/
-    justify-self: left;
-
-    /*
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    */
-    margin: 1.2rem;
-
-    list-style: none;
-    cursor: pointer;
-    user-select: none;
-
-    transition: transform 180ms ease, box-shadow 180ms ease;
-}
-
-
-/* entfernt Standard-Marker */
-.detailseite.seite-projekte .projekt__summary::-webkit-details-marker {
-    display: none;
-}
-
-/* Fokus sichtbar für Barrierefreiheit */
-.detailseite.seite-projekte .projekt__summary:focus-visible {
-    outline: var(--focus-outline, 2px) solid var(--icon-ring, currentColor);
-    outline-offset: var(--focus-offset, 4px);
-}
-
-/* Button-Text ohne JS umschalten */
-.detailseite.seite-projekte .projekt__summary-text {
-    font-size: 0;
-}
-
-.detailseite.seite-projekte .projekt__summary-text::before {
-    content: "Details anzeigen";
-    font-size: var(--font-size-base);
-}
-
-.detailseite.seite-projekte .projekt__details[open] .projekt__summary-text::before {
-    content: "Details ausblenden";
-}
-
-
-/* Icon drehen, wenn offen */
-.detailseite.seite-projekte .projekt__details[open] .projekt__summary-icon {
-    transform: rotate(180deg);
-}
-
-.detailseite.seite-projekte .projekt__summary-icon {
-    transition: transform 160ms ease;
-}
-
-
-
-
-/* --------- Robustheit --------- */
-/* Verhindert Overflow in Grid-Zellen */
-.detailseite.seite-projekte .projekt__inner > *,
-.detailseite.seite-projekte .detail-card--split > * {
+/* Robustheit: verhindert Overflow in Grid-Zellen */
+.detailseite.seite-projekte .projekt__inner > * {
     min-width: 0;
 }
 
 
 
+/* --------------------------- Projekt-Teaser --------------------------- */
 
-/* --------- Reveal Animation --------- */
+/* Titel, Intro-Card und CTA */
+.detailseite.seite-projekte .projekt__teaser {
+    position: relative;
+    isolation: isolate;
+
+    display: grid;
+    gap: 1.25rem;
+    height: 100%;
+
+    padding: 1rem;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+
+/* Hintergrundbild auf Mobile direkt im Teaser */
+.detailseite.seite-projekte .projekt__teaser::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+
+    background-image: var(--projekt-bg-url);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    border-radius: inherit;
+}
+
+
+/* Overlay für bessere Lesbarkeit auf Mobile */
+.detailseite.seite-projekte .projekt__teaser::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: color-mix(
+        in srgb,
+        var(--clay-card) 92%,
+        transparent
+    );
+    border: 1px solid var(--clay-card-border);
+    box-shadow: var(--clay-card-shadow);
+
+    border-radius: inherit;
+}
+
+
+
+
+
+/* --------------------------- Projekt-Header --------------------------- */
+/* Überschrift im oberen Projektbereich */
+.detailseite.seite-projekte .projekt__header {
+    position: relative;
+    isolation: isolate;
+
+    display: grid;
+    justify-items: start;
+    text-align: left;
+}
+
+
+/* Projekttitel */
+.detailseite.seite-projekte .projekt__title {
+    margin: 0;
+    padding: 1rem 0.5rem 0 0.5rem;
+    /*text-align: center;*/
+    color: var(--text);
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.05;
+
+    transition:
+        color 260ms ease,
+        transform 260ms ease,
+        opacity 260ms ease;
+}
+
+
+/* Titel bleibt im Active-State ruhig */
+.detailseite.seite-projekte .projekt.is-active .projekt__title {
+    transform: translateY(-1px);
+}
+
+
+
+
+
+/* --------------------------- Detail-Card-Komponente --------------------------- */
+/* --------- Basis-Card --------- */
+/* Wiederverwendbare Card-Komponente für Projektinhalte */
+.detailseite.seite-projekte .detail-card {
+    width: 100%;
+    overflow: hidden;
+    justify-self: stretch;
+
+    transition:
+        opacity 280ms ease,
+        transform 280ms ease,
+        border-color 320ms ease,
+        box-shadow 320ms ease,
+        background-color 320ms ease;
+}
+
+
+/* --------- Typografie in den Cards --------- */
+/* Fließtext innerhalb der Card */
+.detailseite.seite-projekte .detail-card__text {
+    margin: 0;
+    color: var(--text);
+    line-height: 1.65;
+    text-wrap: balance;
+
+    transition:
+        opacity 280ms ease,
+        transform 280ms ease;
+}
+
+
+
+
+
+
+/* --------- Intro-Card --------- */
+/* Projektbeschreibung innerhalb der Karte */
+.detailseite.seite-projekte .detail-card--intro {
+    width: 100%;
+    padding: 0;
+    justify-self: stretch;
+}
+
+.detailseite.seite-projekte .detail-card--intro .detail-card__text {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    padding: 0 0.5rem;
+}
+
+.detailseite.seite-projekte .projekt--bg .detail-card--intro {
+    transition:
+        opacity 280ms ease,
+        transform 280ms ease,
+        border-color 260ms ease,
+        background-color 260ms ease,
+        box-shadow 260ms ease;
+}
+
+
+
+
+
+
+/* --------------------------- Projekt-Actions --------------------------- */
+/* CTA-Bereich am unteren Kartenrand */
+.detailseite.seite-projekte .projekt__actions {
+    margin: 0;
+    margin-top: auto;
+
+    display: flex;
+    justify-content: start;
+
+    padding: 0 0.5rem 1rem 0.5rem;
+}
+
+
+/* Link-Button kompakt halten */
+.detailseite.seite-projekte .projekt__actions .button {
+    width: fit-content;
+}
+
+
+
+
+
+
+/* --------------------------- Reveal-Animation --------------------------- */
 /* Projektblöcke werden beim ersten Sichtbarwerden weich eingeblendet */
 .detailseite.seite-projekte .projekt.reveal {
     opacity: 0;
     transform: translateY(2rem);
     will-change: opacity, transform;
 
-    transition: opacity 700ms ease, transform 700ms ease, box-shadow 320ms ease, border-color 320ms ease;
+    transition:
+        opacity 700ms ease,
+        transform 700ms ease,
+        box-shadow 320ms ease,
+        border-color 320ms ease;
 }
 
 
 /* Unterelemente folgen leicht gestaffelt */
 .detailseite.seite-projekte .projekt.reveal .projekt__title,
 .detailseite.seite-projekte .projekt.reveal .detail-card--intro,
-.detailseite.seite-projekte .projekt.reveal .projekt__summary {
+.detailseite.seite-projekte .projekt.reveal .projekt__actions {
     opacity: 0;
     transform: translateY(1rem);
 
-    transition: opacity 700ms ease, transform 700ms ease;
+    transition:
+        opacity 700ms ease,
+        transform 700ms ease;
 }
+
 
 /* Titel verzögert einblenden */
 .detailseite.seite-projekte .projekt.reveal .projekt__title {
@@ -385,10 +305,11 @@
     transition-delay: 140ms;
 }
 
-/* Summary verzögert einblenden */
-.detailseite.seite-projekte .projekt.reveal .projekt__summary {
+/* CTA verzögert einblenden */
+.detailseite.seite-projekte .projekt.reveal .projekt__actions {
     transition-delay: 210ms;
 }
+
 
 /* Zielzustand nach dem Reveal */
 .detailseite.seite-projekte .projekt.reveal.is-visible {
@@ -396,10 +317,11 @@
     transform: translateY(0);
 }
 
+
 /* Zielzustand der Unterelemente */
 .detailseite.seite-projekte .projekt.reveal.is-visible .projekt__title,
 .detailseite.seite-projekte .projekt.reveal.is-visible .detail-card--intro,
-.detailseite.seite-projekte .projekt.reveal.is-visible .projekt__summary {
+.detailseite.seite-projekte .projekt.reveal.is-visible .projekt__actions {
     opacity: 1;
     transform: translateY(0);
 }
@@ -407,166 +329,24 @@
 
 
 
-/* --------- Details Content Animation --------- */
-/* Animation für Öffnen und Schließen der Detail-Cards */
-.detailseite.seite-projekte .projekt__details-content {
-    width: 100%;
-    justify-self: stretch;
-
-    display: grid;
-    gap: 1rem;
-
-    margin-top: 1rem;
-    overflow: hidden;
-
-    max-height: 0;
-    opacity: 0;
-
-    transition: max-height 620ms cubic-bezier(.22, .61, .36, 1), opacity 320ms ease;
-}
 
 
-/* Geöffneter Zustand */
-.detailseite.seite-projekte .projekt__details.is-open .projekt__details-content,
-.detailseite.seite-projekte .projekt__details.is-opening .projekt__details-content {
-    opacity: 1;
-}
-
-
-/* Schließender Zustand */
-.detailseite.seite-projekte .projekt__details.is-closing .projekt__details-content {
-    opacity: 0;
-}
-
-
-/* Einzelne Detail-Cards fahren weich ein bzw. aus */
-.detailseite.seite-projekte .projekt__details-content .detail-card--split {
-    opacity: 0;
-    transform: translateY(1rem) scale(0.985);
-    filter: blur(6px);
-
-    transition: opacity 520ms cubic-bezier(.22, .61, .36, 1), transform 520ms cubic-bezier(.22, .61, .36, 1), filter 360ms ease;
-}
-
-
-/* Sichtbar während Öffnen/offenem Zustand */
-.detailseite.seite-projekte .projekt__details.is-open .projekt__details-content .detail-card--split,
-.detailseite.seite-projekte .projekt__details.is-opening .projekt__details-content .detail-card--split {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-}
-/* Beim Schließen weich zurück */
-.detailseite.seite-projekte .projekt__details.is-closing .projekt__details-content .detail-card--split {
-    opacity: 0;
-    transform: translateY(0.75rem) scale(0.985);
-    filter: blur(4px);
-}
-
-
-/* Leichte Staffelung */
-.detailseite.seite-projekte .projekt__details-content .detail-card--split:nth-child(1) {
-    transition-delay: 0ms;
-}
-
-.detailseite.seite-projekte .projekt__details-content .detail-card--split:nth-child(2) {
-    transition-delay: 80ms;
-}
-
-.detailseite.seite-projekte .projekt__details-content .detail-card--split:nth-child(3) {
-    transition-delay: 140ms;
-}
-
-
-
-
-/* --------- Aktiver Projekt-Block --------- */
-/* Wird per JS gesetzt und hebt den aktuell relevantesten Block hervor */
-.detailseite.seite-projekte .projekt.is-active {
-    filter: saturate(1.03);
-}
-
-
-/* Titel bleibt aus Kontrastgründen farblich stabil */
-.detailseite.seite-projekte .projekt.is-active .projekt__title {
-    transform: translateY(-1px);
-}
-
-
-/* Intro-Card des aktiven Projekts hervorheben */
-.detailseite.seite-projekte .projekt.is-active .detail-card--intro {
-    /*border-color: color-mix(in srgb, var(--accent-line) 20%, var(--border));*/
-    /*
-    background: color-mix(in srgb, var(--clay-soft) 20%, #ffffff 80%);
-    border: 1px solid color-mix(in srgb, var(--clay-soft-border) 20%, #ffffff 80%);
-    box-shadow: var(--clay-soft-shadow);
-
-    /*
-    box-shadow:
-        var(--shadow-soft-hover),
-        0 0 0 1px color-mix(in srgb, var(--accent-line) 8%, transparent);
-    /*box-shadow: 0 16px 40px color-mix(in srgb, var(--shadow-soft) 55%, transparent), 0 0 0 1px color-mix(in srgb, var(--accent-line) 8%, transparent);*/
-}
-
-
-/* Titel in Detail-Cards hervorheben */
-.detailseite.seite-projekte .projekt.is-active .detail-card--split .detail-card__title {
-    color: var(--accent-text);
-}
-
-
-/* Bild leicht präsenter machen */
-.detailseite.seite-projekte .projekt.is-active .detail-card--split .detail-card__media img {
-    filter: saturate(1.04) contrast(1.02);
-}
-
-
-
-
-
-/* --------- Summary-Interaktion --------- */
-@media (hover: hover) and (pointer: fine) {
-    .detailseite.seite-projekte .projekt__summary:hover {
-        transform: translateY(-0.125rem);
-    }
-
-    .detailseite.seite-projekte .projekt__summary:active {
-        transform: translateY(0);
-    }
-}
-
-
-
-
-
-/* --------- Breakpoints --------- */
-/* Breakpoint ab 768px: Split-Card zweispaltig & gesamter Projekt-Block übernimmt den Hintergrund */
+/* --------------------------- Breakpoint ab 768px --------------------------- */
 @media (min-width: 768px) {
-    .detailseite.seite-projekte .detail-card--split {
-        grid-template-columns: 1.6fr 1fr;
-        grid-template-areas:
-            "content media";
-            
-        align-items: center;
-        gap: 1.5rem;
+    /* Zwei Karten nebeneinander */
+    .detailseite.seite-projekte .projekt-liste {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: stretch;
     }
 
-    .detailseite.seite-projekte .detail-card--intro {
-        width: min(90ch, 100%);
-        justify-self: center;
-        justify-self: left;
-        /*padding: clamp(1rem, 2vw, 1.75rem) clamp(1.25rem, 6vw, 4rem);*/
-    }
-
+    /* Desktop-Spacing für Kartenhintergrund */
     .detailseite.seite-projekte .projekt--bg {
         --inner-pad: clamp(0.75rem, 1.2vw, 1.25rem);
         --card-inset: clamp(0.5rem, 1vw, 1rem);
 
         position: relative;
         isolation: isolate;
-        border-radius: var(--radius-xl);
     }
-
 
     /* Hintergrundbild des gesamten Projekt-Blocks */
     .detailseite.seite-projekte .projekt--bg::before {
@@ -575,49 +355,47 @@
         inset: 0;
         z-index: -2;
 
-        background-image: var(--projekt-bg-url);
-        background-size: cover;
+         background-image:
+            linear-gradient(
+                to bottom,
+                color-mix(in srgb, var(--clay-card) 85%, transparent) 0%,
+                color-mix(in srgb, var(--clay-card) 70%, transparent) 20%,
+                color-mix(in srgb, var(--clay-card) 50%, transparent) 40%,
+                color-mix(in srgb, var(--clay-card) 30%, transparent) 65%,
+                transparent 100%
+            ), var(--projekt-bg-url);
+
         background-position: center;
+        background-size: cover;
         background-repeat: no-repeat;
 
         border-radius: inherit;
     }
 
-
-    /* Overlay-Verlauf für Desktop */
+    /* Standard-Overlay: Bild bleibt klar sichtbar */
     .detailseite.seite-projekte .projekt--bg::after {
         content: "";
         position: absolute;
         inset: 0;
         z-index: -1;
 
-        background: color-mix(in srgb, var(--clay-blue) 100%, transparent);
-        border: 1px solid color-mix(in srgb, var(--clay-blue-border) 100%, transparent);
-        box-shadow: var(--clay-blue-shadow);
-        /*
-        background:
-            linear-gradient(
-                180deg,
-                color-mix(in srgb, var(--surface) 60%, transparent) 0%,
-                color-mix(in srgb, var(--surface) 74%, transparent) 8%,
-                color-mix(in srgb, var(--surface) 80%, transparent) 22%,
-                color-mix(in srgb, var(--surface) 64%, transparent) 36%,
-                color-mix(in srgb, var(--surface) 14%, transparent) 52%,
-                transparent 68%
-            ),
-            linear-gradient(
-                180deg,
-                transparent 0%,
-                transparent 34%,
-                color-mix(in srgb, var(--surface) 10%, transparent) 48%,
-                color-mix(in srgb, var(--surface) 42%, transparent) 72%,
-                color-mix(in srgb, var(--surface) 84%, transparent) 100%
-            );
-        */
+        background: color-mix(
+            in srgb,
+            var(--clay-card) calc(var(--projekt-overlay-opacity) * 100%),
+            transparent
+        );
+        border: 1px solid color-mix(
+            in srgb,
+            var(--clay-card-border) calc(var(--projekt-overlay-border-opacity) * 100%),
+            transparent
+        );
+        box-shadow: var(--clay-card-shadow);
 
         border-radius: inherit;
-
-        transition: opacity 280ms ease;
+        transition:
+            background-color 280ms ease,
+            border-color 280ms ease,
+            opacity 280ms ease;
     }
 
     /* Mobile-Teaser-Hintergrund auf Desktop deaktivieren */
@@ -637,40 +415,62 @@
         padding: 0;
         border-radius: 0;
         overflow: visible;
-        /*padding: calc(var(--inner-pad) + var(--card-inset));*/
     }
 
-    /* Überschrift im oberen Projektbereich */
-    .detailseite.seite-projekte .projekt__header {
-        padding: 0rem 1rem 0.5rem;
+    /* Intro-Text auf Desktop standardmäßig ausblenden */
+    .detailseite.seite-projekte .detail-card--intro {
+        opacity: 0;
+        transform: translateY(0.5rem);
+        pointer-events: none;
     }
 
-    /* --------- Summary-Interaktion --------- */
+    .detailseite.seite-projekte .detail-card--intro .detail-card__text {
+        opacity: 0;
+        transform: translateY(0.5rem);
+
+        padding: 0.5rem 0.5rem;
+    }
+
+    /* Titel und Button bleiben sichtbar */
+    .detailseite.seite-projekte .projekt__header,
+    .detailseite.seite-projekte .projekt__actions {
+        padding: 0;
+        opacity: 1;
+        transform: none;
+
+        justify-items: center;
+        text-align: center;
+
+        justify-content: center;
+    }
+
+    /* Hover- und Fokuszustand der Karte */
     @media (hover: hover) and (pointer: fine) {
-        .detailseite.seite-projekte .projekt--bg:hover {
-            /*box-shadow: 0 0 28px color-mix(in srgb, var(--accent-line) 24%, transparent);*/
+        .detailseite.seite-projekte .projekt--bg:hover::after,
+        .detailseite.seite-projekte .projekt--bg:focus-within::after {
+            background: color-mix(
+                in srgb,
+                var(--clay-card) calc(var(--projekt-overlay-hover-opacity) * 100%),
+                transparent
+            );
+            border-color: color-mix(
+                in srgb,
+                var(--clay-card-border) calc(var(--projekt-overlay-border-hover-opacity) * 100%),
+                transparent
+            );
         }
 
-        .detailseite.seite-projekte .projekt--bg:hover::after {
-            opacity: 0.92;
+        .detailseite.seite-projekte .projekt--bg:hover .detail-card--intro,
+        .detailseite.seite-projekte .projekt--bg:focus-within .detail-card--intro {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
         }
 
-        .detailseite.seite-projekte .projekt--bg:hover .detail-card--intro {
-            /*
-            border-color: color-mix(in srgb, var(--accent-line) 40%, var(--border));
-            background: color-mix(in srgb, var(--surface) 88%, transparent);
-            box-shadow: 0 12px 28px color-mix(in srgb, var(--shadow-soft) 16%, transparent);
-            */
-
-            /*
-            background: color-mix(in srgb, var(--clay-blue) 10%, #ffffff 90%);
-            border: 1px solid color-mix(in srgb, var(--clay-blue-border) 10%, #ffffff 90%);
-            box-shadow: var(--clay-card-shadow);
-            */
-        }
-
-        .detailseite.seite-projekte .projekt--bg:hover .projekt__title {
-            color: var(--accent-text);
+        .detailseite.seite-projekte .projekt--bg:hover .detail-card--intro .detail-card__text,
+        .detailseite.seite-projekte .projekt--bg:focus-within .detail-card--intro .detail-card__text {
+            opacity: 1;
+            transform: translateY(0);
         }
     }
 }
@@ -678,59 +478,59 @@
 
 
 
-/* --------- Mobile bis 767px --------- */
+
+
+/* --------------------------- Breakpoint ab 1200px --------------------------- */
+@media (min-width: 1200px) {
+    /* Drei Karten nebeneinander */
+    .detailseite.seite-projekte .projekt-liste {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+
+
+
+
+
+/* --------------------------- Mobile bis 767px --------------------------- */
 /*
    Auf kleinen Geräten:
    - kein Reveal
-   - keine Bewegungs-/Lift-Effekte
-   - Inhalte bleiben ruhig sichtbar
-   - Active-State bleibt nur farblich/visuell dezent
+   - keine Hover-Abhängigkeit
+   - Inhalte bleiben direkt sichtbar
 */
 @media (max-width: 767px) {
     .detailseite.seite-projekte .projekt,
     .detailseite.seite-projekte .projekt.reveal,
     .detailseite.seite-projekte .projekt.reveal .projekt__title,
     .detailseite.seite-projekte .projekt.reveal .detail-card--intro,
-    .detailseite.seite-projekte .projekt.reveal .projekt__summary,
-    .detailseite.seite-projekte .projekt__details-content .detail-card--split,
-    .detailseite.seite-projekte .projekt.is-active,
-    .detailseite.seite-projekte .projekt.is-active .projekt__title,
-    .detailseite.seite-projekte .projekt.is-active .detail-card--split .detail-card__media img {
+    .detailseite.seite-projekte .projekt.reveal .projekt__actions,
+    .detailseite.seite-projekte .projekt.is-active {
         opacity: 1;
         transform: none;
     }
 
-    /* Bilder auf Mobile ruhig halten */
-    .detailseite.seite-projekte .detail-card--split .detail-card__media img,
-    .detailseite.seite-projekte .projekt__details[open] .detail-card--split .detail-card__media img {
+    .detailseite.seite-projekte .detail-card--intro,
+    .detailseite.seite-projekte .detail-card--intro .detail-card__text {
+        opacity: 1;
         transform: none;
-        filter: saturate(1) contrast(1);
-    }
-
-    /* Active-State auf Mobile nur dezent halten */
-    .detailseite.seite-projekte .projekt.is-active .detail-card--intro {
-        /*
-        border-color: color-mix(in srgb, var(--accent-line) 20%, var(--border));
-        box-shadow: var(--shadow-soft);
-        */
-        /*
-        background: var(--clay-soft);
-        border: 1px solid var(--clay-soft-border);
-        box-shadow: var(--clay-soft-shadow);
-        */
+        pointer-events: auto;
     }
 }
 
 
 
 
-/* --------- Reduced Motion --------- */
+
+
+/* --------------------------- Reduced Motion --------------------------- */
+
 /* Deaktiviert Animationen und setzt Reveal-Zustände sofort sichtbar */
 html[data-motion="reduced"] .detailseite.seite-projekte .projekt,
 html[data-motion="reduced"] .detailseite.seite-projekte .projekt *,
 html[data-motion="reduced"] .detailseite.seite-projekte .projekt::before,
-html[data-motion="reduced"] .detailseite.seite-projekte .projekt::after,
-html[data-motion="reduced"] .detailseite.seite-projekte .projekt__details-content > * {
+html[data-motion="reduced"] .detailseite.seite-projekte .projekt::after {
     animation: none !important;
     transition: none !important;
     transform: none !important;
@@ -739,18 +539,9 @@ html[data-motion="reduced"] .detailseite.seite-projekte .projekt__details-conten
 html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal,
 html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt__title,
 html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .detail-card--intro,
-html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt__summary,
-html[data-motion="reduced"] .detailseite.seite-projekte .projekt__details-content .detail-card--split {
+html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt__actions {
     opacity: 1 !important;
 }
-
-html[data-motion="reduced"] .detailseite.seite-projekte .projekt__details-content,
-html[data-motion="reduced"] .detailseite.seite-projekte .projekt__details-content .detail-card--split {
-    max-height: none !important;
-    opacity: 1 !important;
-    filter: none !important;
-}
-
 
 
 /* Systemweite Fallback-Regel */
@@ -758,8 +549,7 @@ html[data-motion="reduced"] .detailseite.seite-projekte .projekt__details-conten
     html:not([data-motion]) .detailseite.seite-projekte .projekt,
     html:not([data-motion]) .detailseite.seite-projekte .projekt *,
     html:not([data-motion]) .detailseite.seite-projekte .projekt::before,
-    html:not([data-motion]) .detailseite.seite-projekte .projekt::after,
-    html:not([data-motion]) .detailseite.seite-projekte .projekt__details-content > * {
+    html:not([data-motion]) .detailseite.seite-projekte .projekt::after {
         animation: none !important;
         transition: none !important;
         transform: none !important;
@@ -768,23 +558,17 @@ html[data-motion="reduced"] .detailseite.seite-projekte .projekt__details-conten
     html:not([data-motion]) .detailseite.seite-projekte .projekt.reveal,
     html:not([data-motion]) .detailseite.seite-projekte .projekt.reveal .projekt__title,
     html:not([data-motion]) .detailseite.seite-projekte .projekt.reveal .detail-card--intro,
-    html:not([data-motion]) .detailseite.seite-projekte .projekt.reveal .projekt__summary,
-    html:not([data-motion]) .detailseite.seite-projekte .projekt__details-content .detail-card--split {
+    html:not([data-motion]) .detailseite.seite-projekte .projekt.reveal .projekt__actions {
         opacity: 1 !important;
-    }
-
-    html:not([data-motion]) .detailseite.seite-projekte .projekt__details-content,
-    html:not([data-motion]) .detailseite.seite-projekte .projekt__details-content .detail-card--split {
-        max-height: none !important;
-        opacity: 1 !important;
-        filter: none !important;
     }
 }
 
 
 
 
-/* --------- Projekt-spezifische Hintergrundbilder --------- */
+
+
+/* --------------------------- Projekt-spezifische Hintergrundbilder --------------------------- */
 .detailseite.seite-projekte .projekt--bg.thaddy {
     --projekt-bg-url: url("../images/content/projekte/fotodesign-thaddy-bg.webp");
 }
@@ -795,4 +579,243 @@ html[data-motion="reduced"] .detailseite.seite-projekte .projekt__details-conten
 
 .detailseite.seite-projekte .projekt--bg.ananas {
     --projekt-bg-url: url("../images/content/projekte/ananas-matheinsel-bg.webp");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --------------------------- Projekt-Detailseite: Hero-Bereich --------------------------- */
+/* Projektbezogene Hero-Hintergründe */
+.detailseite.seite-projekt-detail.seite-projekt-thaddy {
+    --projekt-hero-bg-url: url("../images/content/projekte/fotodesign-thaddy-bg.webp");
+    --projekt-hero-bg-position: 60% 32%;
+    --projekt-hero-bg-size: 120%;
+}
+
+.detailseite.seite-projekt-detail.seite-projekt-brutzel {
+    --projekt-hero-bg-url: url("../images/content/projekte/brutzel-bg.webp");
+    --projekt-hero-bg-position: 6% 0%;
+    --projekt-hero-bg-size: 120%;
+}
+
+.detailseite.seite-projekt-detail.seite-projekt-ananas {
+    --projekt-hero-bg-url: url("../images/content/projekte/ananas-matheinsel-bg.webp");
+    --projekt-hero-bg-position: 50% 46%;
+    --projekt-hero-bg-size: 120%;
+}
+
+
+
+
+/* --------- Detailseiten-Layout --------- */
+.detailseite.seite-projekt-detail {
+    row-gap: 0;
+}
+
+
+/* Sticky Breadcrumb oberhalb des Hero-Bereichs */
+.detailseite.seite-projekt-detail .breadcrumb {
+    position: sticky;
+    top: var(--header-height);
+    z-index: 9500;
+    margin: 0;
+}
+
+
+/* Hero-Bereich der Projektdetailseite */
+.detailseite.seite-projekt-detail .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+
+    margin-top: -20px;
+    margin-bottom: 0;
+    padding-block: clamp(2rem, 4vw, 4rem);
+}
+
+
+/* Hintergrundbild mit radialer Tönung */
+.detailseite.seite-projekt-detail .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    top: calc((-1 * var(--header-height)) - 20px);
+    z-index: 0;
+
+    background-image:
+        radial-gradient(
+            circle at 45% 50%,
+            color-mix(in srgb, var(--section-hero) 96%, transparent) 0%,
+            color-mix(in srgb, var(--section-hero) 96%, transparent) 24%,
+            color-mix(in srgb, var(--section-hero) 70%, transparent) 68%,
+            color-mix(in srgb, var(--section-hero) 30%, transparent) 100%
+        ),
+        var(--projekt-hero-bg-url);
+
+    background-position: var(--projekt-hero-bg-position);
+    background-size: var(--projekt-hero-bg-size);
+    background-repeat: no-repeat;
+
+    border-top: none;
+    border-bottom: none;
+}
+
+
+/* Hero-Inhalt oberhalb des Hintergrunds */
+.detailseite.seite-projekt-detail .hero > * {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* Abstand zwischen Hero und Content */
+.detailseite.seite-projekt-detail .content {
+    margin-top: var(--gap);
+}
+
+
+@media (min-width: 768px) {
+    .detailseite.seite-projekt-detail .hero {
+        grid-template-columns: minmax(0, 5fr) minmax(4rem, 1fr);
+    }
+
+    .detailseite.seite-projekt-detail .hero__lead {
+        max-width: 75ch;
+    }
+
+    .detailseite.seite-projekt-detail .content {
+        margin-top: 6rem;
+    }
+}
+
+
+
+
+/* --------------------------- Projekt-Detailseite: Content-Bereich --------------------------- */
+.detailseite.seite-projekt-detail {
+    --projekt-row-spacing-mobile: 2rem;
+    --projekt-row-spacing-tablet: 3rem;
+    --projekt-row-spacing-desktop: 4rem;
+
+    --projekt-gap-mobile: 1rem;
+    --projekt-gap-tablet: 1.5rem;
+    --projekt-gap-desktop: 2rem;
+
+    --projekt-padding-mobile: 1.25rem;
+    --projekt-padding-desktop: 1.75rem;
+}
+
+
+
+/* --------- Wrapper / Abschnittsabstand --------- */
+.detailseite.seite-projekt-detail .projekt-detail-row {
+    padding-block: var(--projekt-row-spacing-mobile);
+}
+
+@media (min-width: 768px) {
+    .detailseite.seite-projekt-detail .projekt-detail-row {
+        padding-block: var(--projekt-row-spacing-tablet);
+    }
+}
+
+@media (min-width: 1280px) {
+    .detailseite.seite-projekt-detail .projekt-detail-row {
+        padding-block: var(--projekt-row-spacing-desktop);
+    }
+}
+
+
+
+/* --------- Karten-Layout --------- */
+.detailseite.seite-projekt-detail .projekt-detail-block {
+    position: relative;
+    display: grid;
+    align-items: center;
+    gap: var(--projekt-gap-mobile);
+
+    grid-template-areas:
+        "heading"
+        "text"
+        "media";
+
+    margin: 0;
+    padding: var(--projekt-padding-mobile);
+}
+
+.detailseite.seite-projekt-detail .projekt-detail-block > * {
+    min-width: 0;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .detailseite.seite-projekt-detail .projekt-detail-block {
+        gap: var(--projekt-gap-tablet);
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            "heading media"
+            "text    media";
+    }
+
+    /* Alternierende Anordnung wie auf der Über-mich-Seite */
+    .detailseite.seite-projekt-detail .projekt-detail-row:nth-of-type(even) .projekt-detail-block {
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas:
+            "media heading"
+            "media text";
+    }
+
+    .detailseite.seite-projekt-detail .projekt-detail-row:nth-of-type(even) .projekt-detail-block__media {
+        justify-self: start;
+    }
+}
+
+@media (min-width: 1280px) {
+    .detailseite.seite-projekt-detail .projekt-detail-block {
+        gap: var(--projekt-gap-desktop);
+        padding: var(--projekt-padding-desktop);
+    }
+}
+
+
+
+/* --------- Inhaltselemente / Grid-Zuordnung --------- */
+.detailseite.seite-projekt-detail .projekt-detail-block__content {
+    display: contents;
+}
+
+.detailseite.seite-projekt-detail .projekt-detail-block__heading {
+    grid-area: heading;
+    margin: 0;
+}
+
+.detailseite.seite-projekt-detail .projekt-detail-block__text {
+    grid-area: text;
+    margin: 0;
+    max-width: 68ch;
+    color: var(--text);
+    line-height: 1.65;
+}
+
+.detailseite.seite-projekt-detail .projekt-detail-block__media {
+    grid-area: media;
+    align-self: center;
+}
+
+.detailseite.seite-projekt-detail .projekt-detail-block__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
