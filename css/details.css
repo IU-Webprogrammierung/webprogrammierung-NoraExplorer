@@ -1,51 +1,40 @@
-/* --------------------------- Basislayout für Detailseiten (Hero & Content) --------------------------- */
-
-
-
-/* --------- Detailseite: Grundabstände --------- */
+/* --------------------------- Basislayout für Detailseiten --------------------------- */
+/* --------- Detailseite: Grundlayout --------- */
 .detailseite {
     row-gap: 2rem;
+    padding-top: 0;
     padding-bottom: 2rem;
-    padding-top: 0rem;
 }
 
 
-/* --------- Content-Bereich (mobile first) --------- */
+/* --------------------------- Content-Komponente --------------------------- */
+/* --------- Content: Grundlayout --------- */
 .detailseite .content {
     gap: 1rem;
     margin-bottom: 4rem;
 }
 
 
-.detailseite .content__heading {
-    font-size: calc(var(--font-size-h2) * 0.6);
-    font-weight: var(--font-weight-semibold);
-    /*color: var(--muted);*/
-    color: var(--text);
-
-    margin-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 0.75rem;
-
-    padding: 0.95rem 1.15rem;
-
-    /*
-    background: var(--clay-header);
-    border: 1px solid var(--clay-header-border);
-    border-radius: 1.5rem;
-    box-shadow: var(--clay-header-shadow);*/
-
-}
-
-
-/* Robustheit für alle direkten Kinder */
+/* --------- Content: Robustheit für direkte Kinder --------- */
 .detailseite .content > * {
     min-width: 0;
 }
 
 
-/* --------- Breakpoints: Content --------- */
-/* Breakpoint ab 768px */
+/* --------- Content: Abschnittsüberschrift --------- */
+.detailseite .content__heading {
+    margin-bottom: 2rem;
+    padding: 0.95rem 1.15rem;
+
+    font-size: calc(var(--font-size-h2) * 0.6);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text);
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+/* --------- Content: Breakpoint ab 768px --------- */
 @media (min-width: 768px) {
     .detailseite .content {
         gap: 1.5rem;
@@ -53,13 +42,13 @@
     }
 
     .detailseite .content__heading {
-        /*margin-bottom: 4rem;*/
         margin-bottom: 2.5rem;
         padding: 1rem 1.25rem;
     }
 }
 
-/* Breakpoint ab 1280px */
+
+/* --------- Content: Breakpoint ab 1280px --------- */
 @media (min-width: 1280px) {
     .detailseite .content {
         gap: 2rem;
@@ -69,17 +58,18 @@
 }
 
 
+/* --------------------------- Snap-Scrolling --------------------------- */
 
-/* --------- Snap Scrolling --------- */
+/* --------- Snap-Scrolling ab 1024px --------- */
 @media (min-width: 1024px) {
-  html.snap-active {
-    scroll-snap-type: y mandatory;
-    scroll-behavior: auto;
-    scroll-padding-top: var(--header-height); 
-  }
+    html.snap-active {
+        scroll-snap-type: y mandatory;
+        scroll-behavior: auto;
+        scroll-padding-top: var(--header-height);
+    }
 
-  .detailseite .snap-section {
-    scroll-snap-align: start;
-    scroll-snap-stop: always; 
-  }
+    .detailseite .snap-section {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
 }
