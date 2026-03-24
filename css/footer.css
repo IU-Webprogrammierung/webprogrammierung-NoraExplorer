@@ -1,43 +1,48 @@
-/* --------------------------- Footer --------------------------- */
+/* --------------------------- Footer-Komponente --------------------------- */
 
-/* Footer */
+/* --------- Footer: Grundcontainer --------- */
 .footer {
     min-height: var(--footer-height);
-    border-top: 1px solid var(--clay-footer-border);
 
-    /*
-    background: var(--surface-raised);
-    /*background: var(--surface);*/
-    /*
     color: var(--text);
-    box-shadow: 0 -8px 24px color-mix(in srgb, var(--text) 4%, transparent);
-    */
     background: var(--clay-footer);
-    box-shadow:var(--clay-footer-shadow);
-    border-radius:var(--radius-xl) var(--radius-xl) 0 0;
-    color: var(--text);
+    border-top: 1px solid var(--clay-footer-border);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    box-shadow: var(--clay-footer-shadow);
 }
 
-.footer__inner {
-    width: 100%;
-    height: var(--footer-height);
-    padding: 0 var(--container-padding);
 
+/* --------- Footer: Inneres Layout --------- */
+.footer__inner {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    width: 100%;
+    min-height: var(--footer-height);
+    padding-inline: var(--container-padding);
 }
 
 
 
-/* --------------------------- Footer Navigation --------------------------- */
-.footer nav ul {
-    list-style: none;
+
+/* --------------------------- Footer-Navigation-Komponente --------------------------- */
+/* --------- Footer-Navigation: Liste --------- */
+.footer-nav__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1rem, 4vw, 4rem);
+
     margin: 0;
     padding: 0;
 
-    display: flex;
-    align-items: center;
+    list-style: none;
+}
+
+
+/* --------- Footer-Navigation: Link-Anpassungen --------- */
+.footer-nav__list .nav-link {
     justify-content: center;
-    gap: 4rem;
 }
