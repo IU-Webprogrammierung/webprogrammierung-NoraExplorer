@@ -66,11 +66,13 @@
         }
 
         // Basis-Pfade für Komponenten: können pro Seite via data-include-base angepasst werden
+        /*
         const headerBase = $header.attr("data-include-base") || ".";
         const footerBase = $footer.attr("data-include-base") || ".";
+        */
 
-        const headerPath = `${headerBase}/components/header.html.component`;
-        const footerPath = `${footerBase}/components/footer.html.component`;
+        const headerPath = "components/header.html.component";
+        const footerPath = "components/footer.html.component";
 
         /* --------------------------- Header laden --------------------------- */
         $header.load(headerPath, function (_response, status) {
