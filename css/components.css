@@ -1,32 +1,12 @@
 /* --------------------------- Wiederverwendbare UI-Komponenten --------------------------- */
 
-/* --------------------------- Buttons --------------------------- */
-.button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
 
-    line-height: 1;
-    /*padding: 0.7rem 1.25rem;*/
-    padding: 1.2rem 1.5rem;
-
-    /*border-radius: var(--radius-pill);*/
-    border-radius: var(--radius-xl);
-    border: 1px solid transparent;
-
-    /*font-weight: var(--font-weight-semibold);*/
-    text-decoration: none;
-    cursor: pointer;
-
-    font-weight: var(--font-weight-bold);
-    font-size: var(--font-size-base);
-    line-height: 1.1;
-
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
-
-    /* transition: transform 0.08s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; */
+/* --------------------------- Interaktive Basis-Komponenten --------------------------- */
+/* Gemeinsame Interaktionslogik für klickbare UI-Elemente */
+.button,
+.icon-button,
+.nav-link,
+.accordion {
     transition:
         transform 0.18s ease,
         background-color 0.2s ease,
@@ -35,79 +15,56 @@
         box-shadow 0.2s ease;
 }
 
-.button--primary {
-    color: #ffffff;
-    background: var(--clay-button-bg);
-    border: 1px solid var(--clay-button-border);
-    box-shadow: var(--clay-button-shadow);
-    /*
-    background: var(--accent-button);
-    color: #ffffff;
-    box-shadow: 0 4px 8px color-mix(in srgb, var(--accent-button) 25%, transparent);
-    border-color: var(--accent-button-hover);
-    border-width: 2px;
-    */
+
+
+
+/* --------------------------- Buttons --------------------------- */
+/* Basis für klassische Text-Buttons */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    padding: 1.2rem 1.5rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-xl);
+
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.1;
+    text-decoration: none;
+
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.button--primary:hover {
-    background: var(--clay-button-bg-hover);
-    border-color: var(--clay-button-border-hover);
-    box-shadow: var(--clay-button-shadow-hover);
-    transform: translateY(0px) scale(1.05);
-
-    /*
-    background: var(--accent-button-hover);
-    /*color: #ffffff;*/
-    /*
-    border-color: var(--accent-button-hover);
-    */
-}
-
-.button--primary:active {
-    background: var(--clay-button-bg-active);
-    border-color: var(--clay-button-border-active);
-    box-shadow: var(--clay-button-shadow-active);
-    transform: translateY(0px) scale(0.95);
-    /*
-    transform: translateY(2px);
-    background: var(--accent-button-active);
-    border-color: var(--accent-button-active);
-    box-shadow: var(--shadow-pressed);
-    */
-}
-
+/* --------- Button Varianten --------- */
+/* Beide Varianten nutzen aktuell dieselbe Clay-Optik */
+.button--primary,
 .button--ghost {
-    color: var(--text);
+    color: #ffffff;
     background: var(--clay-button-bg);
     border-color: var(--clay-button-border);
     box-shadow: var(--clay-button-shadow);
-    /* background: transparent; */
-    /*
-    background: var(--surface-raised);
-    color: var(--text);
-    border-color: var(--accent-button);
-    /* border-width: 2px; */
-    /*
-    box-shadow: var(--shadow-soft), var(--shadow-card-inset);*/
 }
 
+/* --------- Button Zustände --------- */
+.button--primary:hover,
 .button--ghost:hover {
     background: var(--clay-button-bg-hover);
     border-color: var(--clay-button-border-hover);
     box-shadow: var(--clay-button-shadow-hover);
-    transform: translateY(0px) scale(1.05);
-    /*
-    background: var(--accent-button);
-    border-color: var(--accent-button-hover);
-    color: #ffffff;
-    */
+    transform: scale(1.05);
 }
 
+.button--primary:active,
 .button--ghost:active {
     background: var(--clay-button-bg-active);
     border-color: var(--clay-button-border-active);
     box-shadow: var(--clay-button-shadow-active);
-    transform: translateY(0px) scale(0.95);
+    transform: scale(0.95);
 }
 
 .button:focus-visible {
@@ -116,98 +73,51 @@
 }
 
 
+
+
+
 /* --------------------------- Icon Buttons --------------------------- */
+/* Kompakte Buttons für Icons */
 .icon-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    min-width: 44px;
-    min-height: 44px;
     width: 56px;
     height: 56px;
+    min-width: 44px;
+    min-height: 44px;
     padding: 0.4rem;
 
+    border: 1px solid transparent;
     border-radius: var(--radius-pill);
-
-    border: 1px solid transparent;
     background: transparent;
-    box-shadow: transparent;
-    /* So wenn die wie klassische buttons aussehen sollen
-    border: 1px solid var(--clay-soft-border);
-    background: var(--clay-soft);
-    box-shadow: var(--clay-soft-shadow);
-    */
-    
+    box-shadow: none;
 
-
-    /*
-    border: 1px solid transparent;
-    background: transparent;
-    */
-    /*
-    background: var(--clay-button-bg);
-    border-color: var(--clay-button-border);
-    box-shadow: var(--clay-button-shadow);
-    color: #ffffff;
-    /*color: var(--icon-fg);*/
-    -webkit-tap-highlight-color: transparent;
     cursor: pointer;
-
-    /* transition: transform 0.08s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; */
-    /*box-shadow: var(--shadow-soft), var(--shadow-card-inset);*/
-    transition:
-        transform 0.18s ease,
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease,
-        box-shadow 0.2s ease;;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .icon-button svg {
+    display: block;
     width: 32px;
     height: 32px;
-    display: block;
 }
 
+/* --------- Icon Button Zustände --------- */
 .icon-button:hover {
-    /*
-    background: var(--clay-button-bg-hover);
-    border-color: var(--clay-button-border-hover);
-    box-shadow: var(--clay-button-shadow-hover);
-    transform: translateY(0px) scale(1.05);
-    */
-
     color: var(--text);
     background: var(--clay-soft-hover);
     border-color: var(--clay-soft-border-hover);
     box-shadow: var(--clay-soft-shadow-hover);
-    transform: translateY(0px) scale(1.05);
-    /*
-    background: var(--icon-bg-hover);
-    border-color: var(--accent-600);
-    color: #ffffff;
-    */
+    transform: scale(1.05);
 }
 
 .icon-button:active {
-    /*
-    background: var(--clay-button-bg-active);
-    border-color: var(--clay-button-border-active);
-    box-shadow: var(--clay-button-shadow-active);
-    transform: translateY(0px) scale(0.95);
-    */
-
     background: var(--clay-soft-active);
     border-color: var(--clay-soft-border-active);
     box-shadow: var(--clay-soft-shadow-active);
-    transform: translateY(0px) scale(0.95);
-    /*
-    transform: translateY(2px);
-    background: var(--icon-bg-active);
-    border-color: var(--accent-700);
-    color: #ffffff;
-    */
+    transform: scale(0.95);
 }
 
 .icon-button:focus-visible {
@@ -217,157 +127,104 @@
 
 
 
+
+
 /* --------------------------- Nav Links --------------------------- */
 /* Links im Header/Footer */
 .nav-link {
     position: relative;
-    /*padding: 0.5rem 0;*/
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    padding: 0.5rem 0.5rem;
+    padding: 0.5rem;
 
+    border-radius: var(--radius-l);
     text-decoration: none;
+
     color: var(--text);
     font-weight: var(--font-weight-semibold);
-    /*transition: color 0.2s ease;*/
-
-    /*border-radius: var(--radius-s);*/
-    border-radius: var(--radius-l);
-    /*
-    background: var(--clay-neutral);
-    border-radius: var(--radius-l);
-    border-color: var(--clay-neutral-border);
-    box-shadow: var(--clay-neutral-shadow);
-
-    /*transition: color 0.2s ease, transform 0.08s ease;*/
-    transition:
-        transform 0.18s ease,
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease,
-        box-shadow 0.2s ease;
 }
 
-.nav-link[aria-current="page"]:hover,
-.nav-link:hover {
+/* --------- Nav Link Zustände --------- */
+.nav-link:hover,
+.nav-link[aria-current="page"]:hover {
     color: var(--text);
     background: var(--clay-soft-hover);
     border-color: var(--clay-soft-border-hover);
     box-shadow: var(--clay-soft-shadow-hover);
-    transform: translateY(0px) scale(1.05);
+    transform: scale(1.05);
 }
 
 .nav-link:active {
-    /*
-    transform: scale(0.95);
-    color: var(--accent-text);
-    */
     background: var(--clay-soft-active);
     border-color: var(--clay-soft-border-active);
     box-shadow: var(--clay-soft-shadow-active);
-    transform: translateY(0px) scale(0.95);
+    transform: scale(0.95);
 }
 
+/* --------- Aktiver Nav Link --------- */
 .nav-link[aria-current="page"] {
     font-weight: var(--font-weight-bold);
-    
-    /*background: var(--clay-soft);*/
-    /*box-shadow: var(--clay-soft-shadow);*/
-    
 }
 
 .nav-link[aria-current="page"]::after {
     content: "";
     position: absolute;
-    
-    /*
-    left: 0.25rem;
-    right: 0.25rem;
-    bottom: 0.15rem;
-    */
-
     left: 0.8rem;
     right: 0.8rem;
     bottom: 0;
-    
+
     height: 2px;
-    /*height: 4px;*/
+    border-radius: var(--radius-pill);
     background: var(--text);
-    border-radius: var(--radius-pill);
-    /*
-    background: var(--clay-soft);
-    border-color: var(--clay-soft-border);
-    box-shadow: var(--clay-soft-shadow);
-    /*
-    background: linear-gradient(90deg, color-mix(in srgb, var(--accent-line) 85%, white 15%) 0%, var(--accent-line) 100%);
-    border-radius: var(--radius-pill);
-    box-shadow: 0 4px 12px color-mix(in srgb, var(--accent-line) 18%, transparent);
-    */
-    /*
-    background: var(--accent-line);
-    border-radius: var(--radius-pill);
-    */
 }
+
+
 
 
 
 /* --------------------------- Accordion --------------------------- */
+/* Aufklappbare Inhaltsblöcke */
 .accordion {
     margin: 0;
-    padding: 1rem 1rem;
+    padding: 1rem;
 
     background: var(--clay-soft);
-    border-radius: var(--radius-l);
     border: 1px solid var(--clay-soft-border);
-    box-shadow: var(--clay-soft-shadow);
-
-    transition:
-        transform 0.18s ease,
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease,
-        box-shadow 0.2s ease;
-    /*
-    background: var(--surface);
     border-radius: var(--radius-l);
-    border: 1px solid var(--border);
-    */
+    box-shadow: var(--clay-soft-shadow);
 }
 
+.accordion + .accordion {
+    margin-top: 1rem;
+}
+
+/* --------- Accordion Zustände --------- */
 .accordion:hover {
     background: var(--clay-soft-hover);
     border-color: var(--clay-soft-border-hover);
     box-shadow: var(--clay-soft-shadow-hover);
-    transform: translateY(0px) scale(1.01);
+    transform: scale(1.01);
 }
 
-.accordion + .accordion {
-    /*margin-top: 0.75rem;*/
-    margin-top: 1rem;
-}
-
+/* --------- Accordion Summary --------- */
 .accordion__summary {
-    list-style: none;
-    margin: 0;
-    padding: 0.5rem 0;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     min-height: 44px;
+    margin: 0;
+    padding: 0.5rem 0;
 
-    /*font-weight: var(--font-weight-regular);*/
-    font-weight: var(--font-weight-semibold);
+    list-style: none;
     color: var(--text);
+    font-weight: var(--font-weight-semibold);
 
     overflow-wrap: anywhere;
 }
 
 .accordion:hover .accordion__summary {
-    /*color: var(--accent-text-hover);*/
-    /*font-weight: var(--font-weight-semibold);*/
     cursor: pointer;
 }
 
@@ -378,28 +235,30 @@
 .accordion__summary::after {
     content: ">";
     display: inline-block;
-
     margin-left: 1rem;
+
+    color: currentColor;
+    font-size: var(--font-size-base);
+    line-height: 1;
 
     transform: rotate(90deg);
     transition: transform 0.2s ease;
-
-    color: currentColor;
-    line-height: 1;
-    font-size: var(--font-size-base);
 }
 
 .accordion[open] .accordion__summary::after {
     transform: rotate(-90deg);
 }
 
+/* --------- Accordion Inhalt --------- */
 .accordion__content {
     margin: 0.75rem 0 0;
     color: var(--text);
+
     overflow-wrap: anywhere;
     text-wrap: balance;
 }
 
+/* --------- Accordion Fokus --------- */
 .accordion:has(.accordion__summary:focus-visible) {
     outline: var(--focus-outline) solid var(--focus-ring);
     outline-offset: var(--focus-offset);
@@ -410,46 +269,21 @@
     outline: none;
 }
 
-/*
-.accordion__summary:focus-visible {
-    outline: none;  
-}
-
-.accordion:focus-within {
-    outline: var(--focus-outline) solid var(--focus-ring);
-    outline-offset: var(--focus-offset);
-    border-radius: var(--radius-l);
-}
-*/
-
-/* --------- Breakpoints --------- */
-/* Breakpoint ab 768px */
+/* --------- Breakpoint ab 768px --------- */
 @media (min-width: 768px) {
     .accordion {
-        /*margin: 0;*/
         padding: 1rem 2rem;
-
-        /*
-        background: var(--surface);
-        border-radius: var(--radius-l);
-        border: 1px solid var(--border);
-        */
     }
 }
 
 
+
+
 /* --------------------------- Media --------------------------- */
+/* Wrapper für Bilder und andere Medien */
 .media {
-    border-radius: var(--radius-l);
     overflow: hidden;
-    
-    /*background: var(--clay-surface);
-    border: 1px solid var(--clay-border);
-    box-shadow: var(--shadow-clay-card);
-    /*
-    box-shadow: var(--shadow-soft);
-    background: var(--surface);
-    */
+    border-radius: var(--radius-l);
 }
 
 .media img {
@@ -462,25 +296,24 @@
 
 
 
+
 /* --------------------------- Hero --------------------------- */
 /* Wiederverwendbare Hero-Komponente */
 .hero {
-    grid-column: var(--content-start) / var(--content-end);
-
     position: relative;
     isolation: isolate;
+
     display: grid;
+    grid-column: var(--content-start) / var(--content-end);
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "title"
+        "media"
+        "lead"
+        "actions";
     gap: 1.25rem;
 
-    min-height: calc(100dvh - var(--header-height));
-    align-content: center;
-
-    padding: clamp(2.5rem, 6vw, 5rem) 0;
-    /*
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-    */
+    padding: clamp(2rem, 6vw, 3.5rem) 0;
     background: transparent;
 }
 
@@ -488,101 +321,65 @@
     content: "";
     position: absolute;
     inset: 0;
-
     top: calc(-1 * var(--header-height));
-    bottom: 0;
 
     left: 50%;
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
 
-    /*background: var(--hero-band, var(--hero-bg));*/
-
     background: var(--section-hero);
-    z-index: -1;
-    /*border-top: 1px solid var(--border);*/
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-
     z-index: -1;
 }
-
-/*
-html[data-theme="dark"] .hero::before {
-    background: linear-gradient(90deg, var(--bg) 0%, var(--surface) 65%, var(--accent-contrast) 100%);
-}
-
-html[data-theme="light"] .hero::before {
-    background: linear-gradient(90deg, var(--accent-contrast) 0%, var(--bg) 65%, var(--surface) 100%);
-}
-*/
 
 .hero::after {
     content: "";
     position: absolute;
-
-    /*
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    */
-
+    left: 0;
+    right: 0;
     bottom: 0;
-    /*height: 60px;*/
+
     height: 1px;
-    /*background: linear-gradient(to bottom, #00000000 0%, var(--bg) 100%);*/
-    background: border;
+    background: var(--border);
 }
 
 
+/* --------- Hero Elemente --------- */
 .hero__title {
+    grid-area: title;
+    margin-bottom: 0;
     color: var(--text);
-    margin-bottom: 0rem;
 }
 
 .hero__lead {
+    grid-area: lead;
     margin: 0;
-    color: var(--text);
-
     max-width: 65ch;
 
-    font-size:  var(--font-size-hero-lead);
+    color: var(--text);
+    font-size: var(--font-size-hero-lead);
     line-height: 1.55;
+
+    text-wrap: balance;
 }
 
 .hero__actions {
+    grid-area: actions;
     margin: 0;
 }
 
 .hero__media {
+    grid-area: media;
+
     align-self: center;
-    justify-self: stretch;
+    justify-self: start;
+    width: min(100%, 18rem);
 
-    /*padding: clamp(1rem, 2vw, 1.5rem);*/
-    border-radius: var(--radius-xl);
     overflow: hidden;
-
-    /*
-    border: 1px solid var(--border);
-    background: var(--clay-soft);
-    box-shadow: var(--clay-soft-shadow);
-    /*
-    border: 1px solid var(--border);
-    background: #ffffff59;
-    */
-
-    width: min(100%, 26rem);
+    border-radius: var(--radius-xl);
 }
-
-/*
-html[data-theme="dark"] .hero__media {
-    background: color-mix(in srgb, var(--surface) 84%, transparent);
-    /*
-    background: #11182799;   
-}
-*/
 
 .hero__media img {
     display: block;
@@ -590,33 +387,47 @@ html[data-theme="dark"] .hero__media {
     height: auto;
 }
 
+
+/* --------- Breakpoint ab 768px --------- */
 @media (min-width: 768px) {
     .hero {
-        grid-template-columns: 2fr 1.2fr;
-        align-items: start;
+        min-height: calc(100dvh - var(--header-height));
+        align-content: center;
+        align-items: center;
+
+        grid-template-columns: minmax(0, 2fr) minmax(16rem, 1.2fr);
+        grid-template-areas:
+            "title media"
+            "lead media"
+            "actions media";
         gap: 1.75rem;
 
         padding: clamp(3rem, 7vw, 6rem) 0;
-
-        /*margin-top: 2rem;*/
         margin-bottom: 6rem;
-        
+    }
+
+    .hero__title,
+    .hero__lead,
+    .hero__actions {
+        justify-self: start;
     }
 
     .hero__media {
-        grid-column: 2;
-        grid-row: 1 / span 3;
         align-self: center;
+        justify-self: end;
+        width: min(100%, 26rem);
     }
 }
 
 
 
+
 /* --------------------------- Hintergrundfarben --------------------------- */
+/* Utilities für hinterlegte Sections */
 .section--bleed {
+    width: auto;
     margin-inline: calc(50% - 50vw);
     padding-inline: calc(50vw - 50%);
-    width: auto;
 }
 
 .section--bg {
@@ -637,47 +448,39 @@ html[data-theme="dark"] .hero__media {
 
 /* --------------------------- Tooltip --------------------------- */
 @media (hover: hover) and (pointer: fine) {
-    /* Tooltip trigger */
+    /* Tooltip Trigger */
     [data-tooltip] {
         position: relative;
     }
 
-    /* Tooltip box */
+    /* Tooltip Box */
     [data-tooltip]::after {
         content: attr(data-tooltip);
-
         position: absolute;
         left: 50%;
         top: calc(100% + 8px);
         transform: translateX(-50%) translateY(-4px);
 
-        /*padding: 4px 6px;*/
-        padding: 0.4rem 0.4rem;
-        font-size: var(--font-size-extra-small);
-        line-height: 1;
+        padding: 0.4rem;
         white-space: nowrap;
 
-        background: var(--clay-soft);
+        font-size: var(--font-size-extra-small);
+        line-height: 1;
+
         color: var(--text);
+        background: var(--clay-soft);
         border: 1px solid var(--clay-soft-border);
         border-radius: 0.5rem;
         box-shadow: var(--clay-soft-shadow);
-        /*
-        background: color-mix(in srgb, var(--surface) 90%, transparent);
-        color: var(--text);
-        border: 1px solid var(--border);
-        border-radius: 0.5rem;
-        box-shadow: var(--shadow-header);
-        */
 
         opacity: 0;
         pointer-events: none;
-        transition: opacity 180ms ease, transform 180ms ease;
-
         z-index: 10000;
+
+        transition: opacity 180ms ease, transform 180ms ease;
     }
 
-    /* Show */
+    /* Tooltip sichtbar */
     [data-tooltip]:hover::after,
     [data-tooltip]:focus-visible::after,
     [data-tooltip]:hover::before,
@@ -685,4 +488,83 @@ html[data-theme="dark"] .hero__media {
         opacity: 1;
         transform: translateX(-50%) translateY(0);
     }
+}
+
+
+
+
+
+
+/* --------------------------- Komponente: Breadcrumb --------------------------- */
+.breadcrumb {
+    height: var(--breadcrumb-height);
+    position: sticky;
+    top: var(--header-height);
+    z-index: 9000;
+
+    grid-column: 1 / -1;
+
+    margin: 0;
+    padding: 0;
+
+    font-size: var(--font-size-base);
+    line-height: 1.4;
+    color: var(--text-muted);
+
+    isolation: isolate;
+}
+
+.breadcrumb::before {
+    content: "";
+    position: absolute;
+    inset: -20px 0 0 0;
+    z-index: -1;
+
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+
+    background: color-mix(in srgb, var(--clay-header) 90%, var(--clay-soft) 10%);
+    box-shadow: var(--clay-soft-shadow);
+    border-radius: 0 0 var(--radius-l) var(--radius-l);
+}
+
+.breadcrumb__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.breadcrumb__item {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.breadcrumb__item + .breadcrumb__item::before {
+    content: "›";
+    margin-inline: 0.5rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.breadcrumb__link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.breadcrumb__link:hover,
+.breadcrumb__link:focus-visible {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.breadcrumb__link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
 }
