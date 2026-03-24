@@ -18,6 +18,17 @@
     const detailMain = document.querySelector("main.detailseite");
 
 
+    /* --------------------------- Initiale Scrollposition --------------------------- */
+    // Erzwingt auf Detailseiten einen Start ganz oben
+    function resetScrollToTop() {
+        if ("scrollRestoration" in history) {
+            history.scrollRestoration = "manual";
+        }
+
+        window.scrollTo(0, 0);
+    }
+
+
     /* --------------------------- State --------------------------- */  
     let isArmed = false; // Snap darf ausgelöst werden
     let isLocking = false; // Laufende Animation sperrt weitere Auslösung
@@ -38,7 +49,7 @@
     /* --------------------------- Guards --------------------------- */
     // Sucht den CTA-Link im Hero-Bereich der Detailseite
     function getHeroCta() {
-        return detailMain?.querySelector('.hero.snap-section a[href^="#"]') || null;
+        return detailMain?.querySelector(".hero.snap-section .hero__actions a") || null;
     }
 
     // Ermittelt das Zielelement aus dem href des CTA-Links
@@ -47,7 +58,19 @@
             return null;
         }
 
-        const targetSelector = cta.getAttribute("href");
+        const href = cta.getAttribute("href");
+
+        if (!href || href === "#") {
+            return null;
+        }
+
+        const hashIndex = href.indexOf("#");
+
+        if (hashIndex === -1) {
+            return null;
+        }
+
+        const targetSelector = href.slice(hashIndex);
 
         if (!targetSelector || targetSelector === "#") {
             return null;
@@ -207,6 +230,12 @@
             passive: true 
         });
 
+        window.addEventListener("pageshow", () => {
+            if (detailMain) {
+                resetScrollToTop();
+            }
+        });
+
         cta.addEventListener("click", (event) => {
             handleCtaClick(event, targetElement);
         });
@@ -220,6 +249,9 @@
         if (!detailMain) {
             return;
         }
+
+        // Seite beim Aufruf immer oben starten
+        resetScrollToTop();
 
         // nur auf Desktop-/Pointer-Geräten aktivieren
         if (!isSupportedInputDevice()) {
