@@ -13,12 +13,12 @@
 }
 
 .startseite .teaser-row {
-    padding-block: 2rem;
+    padding-block: 3rem;
 }
 
 @media (min-width: 768px) {
     .startseite .teaser-row {
-        padding-block: 3rem;
+        padding-block: 4rem;
     }
 }
 
@@ -34,20 +34,20 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
-    grid-column: 1 / -1 !important;
+    grid-column: 1 / -1;
 
     margin: calc(-1 * var(--header-height)) calc(var(--container-padding) * -1) 0;
     isolation: isolate;
     overflow: clip;
 
-    min-height: calc(100svh - var(--header-height)) !important;
-    padding: 0 !important;
+    min-height: calc(100svh - var(--header-height));
+    padding: 0;
     gap: 0;
 }
 
 .startseite .hero::before,
 .startseite .hero::after {
-    content: none !important;
+    content: none;
 }
 
 .startseite .hero__media {
@@ -56,13 +56,13 @@
 
     width: 100%;
     height: clamp(18rem, 65vh, 65rem);
-    margin: 0 !important;
+    margin: 0;
     padding: 0;
 
     background: var(--clay-soft);
-    border: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .startseite .hero__media img {
@@ -74,13 +74,13 @@
     filter: drop-shadow(40px -10px 15px var(--clay-soft-border-active));
 }
 
-.startseite .hero__heading,
+
 .startseite .hero__title {
     grid-column: 1 / -1;
     grid-row: 2;
 
     justify-self: center;
-    margin: 0 !important;
+    margin: 0;
     padding: 0 2rem;
 
     text-align: center;
@@ -95,7 +95,7 @@
     background: var(--section-bg-soft);
     border-top: 1px solid #68535a15;
     border-radius: var(--radius-overlay-card) var(--radius-overlay-card) 0 0;
-    box-shadow: transparent;
+    box-shadow: none;
 }
 
 html[data-theme="light"] .heading-overlay {
@@ -127,7 +127,7 @@ html[data-theme="dark"] .heading-overlay {
 .startseite .teaser {
     position: relative;
     display: grid;
-    gap: 1rem;
+    gap: 0.8rem;
 
     grid-template-areas:
         "heading"
@@ -155,61 +155,17 @@ html[data-theme="dark"] .heading-overlay {
 
 @media (min-width: 768px) {
     .startseite .teaser {
-        gap: 1.5rem;
+        gap: 1rem;
         padding: 1.5rem;
     }
 }
 
 @media (min-width: 1280px) {
     .startseite .teaser {
-        gap: 2rem;
+        gap: 1.6rem;
         padding: 1.75rem;
     }
 }
-
-
-
-
-
-/* --------------------------- Galerie / Preview --------------------------- */
-.startseite .teaser__galerie,
-.startseite .projekt-preview {
-    grid-area: media;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-    gap: 1rem;
-
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
-    max-inline-size: min(44rem, 100%);
-    justify-self: center;
-}
-
-.startseite .teaser__galerie > *,
-.startseite .projekt-preview > * {
-    min-width: 0;
-    margin: 0;
-}
-
-.startseite .teaser__galerie > li,
-.startseite .projekt-preview > li {
-    justify-self: center;
-    width: min(22rem, 100%);
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    border-radius: var(--radius-l);
-}
-
-.startseite .teaser__galerie > li img,
-.startseite .projekt-preview > li img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 
 
 
@@ -218,14 +174,15 @@ html[data-theme="dark"] .heading-overlay {
 .startseite .teaser__heading {
     grid-area: heading;
     position: relative;
-    justify-self: start;
+    justify-self: center;
+    align-self: end;
 
     padding-bottom: 0.75rem;
 
     font-size: calc(var(--font-size-h2) * 0.6);
     font-weight: var(--font-weight-semibold);
     color: var(--muted);
-    text-align: left;
+    text-align: start;
     overflow-wrap: anywhere;
 }
 
@@ -242,27 +199,28 @@ html[data-theme="dark"] .heading-overlay {
 
 .startseite .teaser__text {
     grid-area: text;
-    justify-self: start;
+    justify-self: center;
 
     max-width: 65ch;
 
     font-size: calc(var(--font-size-hero-lead) * 1.4);
     font-weight: var(--font-weight-semibold);
     line-height: 1.45;
-    text-align: left;
+    text-align: center;
     text-wrap: balance;
     overflow-wrap: anywhere;
 }
 
 .startseite .teaser__link {
     grid-area: link;
-    justify-self: start;
+    justify-self: center;
     width: fit-content;
 }
 
 .startseite .teaser__media {
     grid-area: media;
     align-self: center;
+    justify-self: center;
 
     width: 100%;
     max-width: 22rem;
@@ -327,15 +285,36 @@ html[data-theme="dark"] .heading-overlay {
 
 /* --------------------------- Teaser Varianten: Desktop --------------------------- */
 @media (min-width: 768px) {
+    .startseite .teaser__heading {
+        justify-self: start;
+        text-align: start;
+    }
+
+    .startseite .teaser__text {
+        justify-self: start;
+        text-align: start;
+    }
+
+    .startseite .teaser__link {
+        justify-self: start;
+    }
+
+    .startseite .teaser__media {
+        justify-self: start;
+    }
+
+
+
     .startseite .teaser--ueber,
-    .startseite .teaser--fotografie,
     .startseite .teaser--projekte {
         grid-template-columns: 2fr 1fr;
         grid-template-rows: auto auto auto;
         grid-template-areas:
+            ".       media"
             "heading media"
             "text    media"
-            "link    media";
+            "link    media"
+            ".       media";
     }
 
     .startseite .teaser--ueber .teaser__media,
@@ -347,10 +326,13 @@ html[data-theme="dark"] .heading-overlay {
     /* alternierende Anmutung wie auf der Über-Seite */
     .startseite .teaser--fotografie {
         grid-template-columns: 1fr 2fr;
+        grid-template-rows: auto auto auto;
         grid-template-areas:
+            "media  ."
             "media heading"
             "media text"
-            "media link";
+            "media link"
+            "media  .";
     }
 
     .startseite .teaser--fotografie .teaser__media {
@@ -532,6 +514,14 @@ html[data-theme="dark"] .heading-overlay {
 
 
 /* --------------------------- Reduced Motion --------------------------- */
+html[data-motion="reduced"] .startseite .hero__title--intro,
+html[data-motion="reduced"] .startseite .hero__title--intro.is-visible {
+    opacity: 1 !important;
+    letter-spacing: 0 !important;
+    transition: none !important;
+    transform: none !important;
+}
+
 html[data-motion="reduced"] .startseite .teaser,
 html[data-motion="reduced"] .startseite .teaser *,
 html[data-motion="reduced"] .startseite .teaser::before,
@@ -550,6 +540,14 @@ html[data-motion="reduced"] .startseite .teaser.reveal .teaser__media {
 
 /* System-Fallback */
 @media (prefers-reduced-motion: reduce) {
+    html:not([data-motion]) .startseite .hero__title--intro,
+    html:not([data-motion]) .startseite .hero__title--intro.is-visible {
+        opacity: 1 !important;
+        letter-spacing: 0 !important;
+        transition: none !important;
+        transform: none !important;
+    }
+    
     html:not([data-motion]) .startseite .teaser,
     html:not([data-motion]) .startseite .teaser *,
     html:not([data-motion]) .startseite .teaser::before,
