@@ -53,7 +53,6 @@
         type="button"
         aria-controls="mobileNav"
         aria-expanded="false"
-        aria-haspopup="dialog"
         aria-label="Menü öffnen"
     >
         <!-- SVG stammt von https://heroicons.com -->
@@ -139,12 +138,9 @@
 <div id="navOverlay" class="nav-overlay" hidden aria-hidden="true"></div>
 
 <!-- Mobile-Navigation -->
-<!-- Interaktiv als modaler Dialog, inhaltlich Navigation -->
 <aside
     id="mobileNav"
     class="mobile-nav"
-    role="dialog"
-    aria-modal="true"
     aria-labelledby="mobileNavTitle"
     aria-hidden="true"
     hidden
