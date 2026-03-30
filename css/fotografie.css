@@ -12,10 +12,11 @@
 .seite-fotografie .galerie {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: var(--gap-m);
 
     margin: 0;
     padding: 0;
+
     list-style: none;
 }
 
@@ -48,8 +49,10 @@
 
     border: 1px solid var(--border);
     border-radius: var(--radius-l);
-    background: var(--surface-raised);
-    box-shadow: var(--shadow-soft), var(--shadow-card-inset);
+    /*
+    background: var(--clay-card-neutral);
+    box-shadow: var(--clay-card-neutral-shadow);
+    */
 
     transition:
         transform 0.45s ease,
@@ -162,14 +165,14 @@
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     .seite-fotografie .galerie__item:hover .galerie__media,
     .seite-fotografie .galerie__item:focus-within .galerie__media {
-        transform: translateY(-0.25rem);
-        border-color: color-mix(in srgb, var(--accent-line) 24%, var(--border));
-        box-shadow: var(--shadow-soft-hover), var(--shadow-card-inset);
+        transform: translateY(-0.2rem);
+        border-color: color-mix(in srgb, var(--accent-line) 30%, var(--border));
+        box-shadow: var(--clay-card-neutral-shadow);
     }
 
     .seite-fotografie .galerie__item:hover .galerie__media img,
     .seite-fotografie .galerie__item:focus-within .galerie__media img {
-        transform: scale(1.04);
+        transform: scale(1.02);
     }
 }
 
@@ -204,35 +207,3 @@
 
 
 
-/* --------------------------- Reduced Motion --------------------------- */
-/* Nutzerpräferenz im Projekt */
-html[data-motion="reduced"] .seite-fotografie .galerie__item,
-html[data-motion="reduced"] .seite-fotografie .galerie__item *,
-html[data-motion="reduced"] .seite-fotografie .galerie__item::before,
-html[data-motion="reduced"] .seite-fotografie .galerie__item::after {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-}
-
-html[data-motion="reduced"] .seite-fotografie .galerie__item.reveal {
-    opacity: 1 !important;
-    filter: none !important;
-}
-
-/* System-Fallback */
-@media (prefers-reduced-motion: reduce) {
-    html:not([data-motion]) .seite-fotografie .galerie__item,
-    html:not([data-motion]) .seite-fotografie .galerie__item *,
-    html:not([data-motion]) .seite-fotografie .galerie__item::before,
-    html:not([data-motion]) .seite-fotografie .galerie__item::after {
-        animation: none !important;
-        transition: none !important;
-        transform: none !important;
-    }
-
-    html:not([data-motion]) .seite-fotografie .galerie__item.reveal {
-        opacity: 1 !important;
-        filter: none !important;
-    }
-}

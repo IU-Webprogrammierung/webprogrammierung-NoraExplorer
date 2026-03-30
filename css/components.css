@@ -6,17 +6,18 @@
 .button,
 .icon-button,
 .nav-link,
-.accordion {
-    transition:
-        transform 0.18s ease,
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease,
-        box-shadow 0.2s ease;
+.accordion,
+.tile,
+.switch {
+    transition: var(--transition-ui);
 }
 
 
-
+/* --------------------------- Arrow --------------------------- */
+.arrow {
+    width: 1em;
+    height: 1em;
+}
 
 /* --------------------------- Buttons --------------------------- */
 /* Basis für klassische Text-Buttons */
@@ -24,14 +25,15 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: var(--gap-s);
+    min-height: var(--touch-target);
 
-    padding: 1.2rem 1.5rem;
+    padding: var(--space-m) var(--space-m);
     border: 1px solid transparent;
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-pill);
 
     font-size: var(--font-size-base);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semibold);
     line-height: 1.1;
     text-decoration: none;
 
@@ -41,30 +43,39 @@
 }
 
 /* --------- Button Varianten --------- */
-/* Beide Varianten nutzen aktuell dieselbe Clay-Optik */
-.button--primary,
-.button--ghost {
+/* Primary Button */
+.button--primary {
     color: #ffffff;
     background: var(--clay-button-bg);
     border-color: var(--clay-button-border);
     box-shadow: var(--clay-button-shadow);
 }
 
+/* Ghost Button */
+.button--ghost {
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--muted);
+    
+}
+
 /* --------- Button Zustände --------- */
 .button--primary:hover,
 .button--ghost:hover {
+    color: #ffffff;
     background: var(--clay-button-bg-hover);
     border-color: var(--clay-button-border-hover);
     box-shadow: var(--clay-button-shadow-hover);
-    transform: scale(1.05);
+    transform: var(--scale-grow);
 }
 
 .button--primary:active,
 .button--ghost:active {
+    color: #ffffff;
     background: var(--clay-button-bg-active);
     border-color: var(--clay-button-border-active);
     box-shadow: var(--clay-button-shadow-active);
-    transform: scale(0.95);
+    transform: var(--scale-shrink);
 }
 
 .button:focus-visible {
@@ -83,11 +94,11 @@
     align-items: center;
     justify-content: center;
 
-    width: 56px;
-    height: 56px;
-    min-width: 44px;
-    min-height: 44px;
-    padding: 0.4rem;
+    width: var(--icon-button-size);
+    height: var(--icon-button-size);
+    min-width: var(--touch-target);
+    min-height: var(--touch-target);
+    padding: var(--space-xs);
 
     border: 1px solid transparent;
     border-radius: var(--radius-pill);
@@ -110,14 +121,14 @@
     background: var(--clay-soft-hover);
     border-color: var(--clay-soft-border-hover);
     box-shadow: var(--clay-soft-shadow-hover);
-    transform: scale(1.05);
+    transform: var(--scale-grow);
 }
 
 .icon-button:active {
     background: var(--clay-soft-active);
     border-color: var(--clay-soft-border-active);
     box-shadow: var(--clay-soft-shadow-active);
-    transform: scale(0.95);
+    transform: var(--scale-shrink);
 }
 
 .icon-button:focus-visible {
@@ -135,8 +146,9 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    min-height: 44px;
-    padding: 0.5rem;
+    justify-content: start;
+    min-height: var(--touch-target);
+    padding: var(--space-xs);
 
     border-radius: var(--radius-l);
     text-decoration: none;
@@ -152,14 +164,14 @@
     background: var(--clay-soft-hover);
     border-color: var(--clay-soft-border-hover);
     box-shadow: var(--clay-soft-shadow-hover);
-    transform: scale(1.05);
+    transform: var(--scale-grow);
 }
 
 .nav-link:active {
     background: var(--clay-soft-active);
     border-color: var(--clay-soft-border-active);
     box-shadow: var(--clay-soft-shadow-active);
-    transform: scale(0.95);
+    transform: var(--scale-shrink);
 }
 
 /* --------- Aktiver Nav Link --------- */
@@ -187,7 +199,7 @@
 /* Aufklappbare Inhaltsblöcke */
 .accordion {
     margin: 0;
-    padding: 1rem;
+    padding: var(--space-m);
 
     background: var(--clay-soft);
     border: 1px solid var(--clay-soft-border);
@@ -196,7 +208,7 @@
 }
 
 .accordion + .accordion {
-    margin-top: 1rem;
+    margin-top: var(--space-m);
 }
 
 /* --------- Accordion Zustände --------- */
@@ -213,15 +225,13 @@
     align-items: center;
     justify-content: space-between;
 
-    min-height: 44px;
+    min-height: var(--touch-target);
     margin: 0;
-    padding: 0.5rem 0;
+    padding: 0;
 
     list-style: none;
     color: var(--text);
     font-weight: var(--font-weight-semibold);
-
-    overflow-wrap: anywhere;
 }
 
 .accordion:hover .accordion__summary {
@@ -235,7 +245,7 @@
 .accordion__summary::after {
     content: ">";
     display: inline-block;
-    margin-left: 1rem;
+    margin-left: var(--space-m);
 
     color: currentColor;
     font-size: var(--font-size-base);
@@ -253,9 +263,6 @@
 .accordion__content {
     margin: 0.75rem 0 0;
     color: var(--text);
-
-    overflow-wrap: anywhere;
-    text-wrap: balance;
 }
 
 /* --------- Accordion Fokus --------- */
@@ -290,8 +297,6 @@
     display: block;
     width: 100%;
     height: auto;
-
-    filter: drop-shadow(0 18px 20px #0f172a24);
 }
 
 
@@ -311,9 +316,9 @@
         "media"
         "lead"
         "actions";
-    gap: 1.25rem;
+    gap: var(--gap-s);
 
-    padding: clamp(2rem, 6vw, 3.5rem) 0;
+    padding: clamp(2rem, 6vw, 3.5rem) 0 0;
     background: transparent;
 }
 
@@ -329,11 +334,12 @@
     margin-right: -50vw;
 
     background: var(--section-hero);
-    border-top: 1px solid var(--border);
+    /*border-top: 1px solid var(--border);*/
     border-bottom: 1px solid var(--border);
     z-index: -1;
 }
 
+/*
 .hero::after {
     content: "";
     position: absolute;
@@ -342,39 +348,42 @@
     bottom: 0;
 
     height: 1px;
-    background: var(--border);
+    background: red;
 }
-
+*/
 
 /* --------- Hero Elemente --------- */
 .hero__title {
     grid-area: title;
+    justify-self: center;
     margin-bottom: 0;
     color: var(--text);
 }
 
 .hero__lead {
     grid-area: lead;
+    justify-self: center;
     margin: 0;
-    max-width: 65ch;
+    max-width: var(--measure-text);
 
     color: var(--text);
     font-size: var(--font-size-hero-lead);
     line-height: 1.55;
-
-    text-wrap: balance;
 }
 
 .hero__actions {
     grid-area: actions;
     margin: 0;
+    justify-self: center;
+    align-self: end;
+    padding: var(--space-xl) 0;
 }
 
 .hero__media {
     grid-area: media;
 
     align-self: center;
-    justify-self: start;
+    justify-self: center;
     width: min(100%, 18rem);
 
     overflow: hidden;
@@ -392,24 +401,35 @@
 @media (min-width: 768px) {
     .hero {
         min-height: calc(100dvh - var(--header-height));
-        align-content: center;
+        /*align-content: center;*/
         align-items: center;
 
         grid-template-columns: minmax(0, 2fr) minmax(16rem, 1.2fr);
         grid-template-areas:
             "title media"
             "lead media"
-            "actions media";
-        gap: 1.75rem;
+            "actions actions";
+        gap: var(--gap-l);
 
-        padding: clamp(3rem, 7vw, 6rem) 0;
-        margin-bottom: 6rem;
+        padding: clamp(3rem, 7vw, 6rem) 0 0;
+        margin-bottom: var(--space-xxl);
     }
 
-    .hero__title,
-    .hero__lead,
-    .hero__actions {
+    .hero__title {
         justify-self: start;
+        align-self: end;
+    }
+
+    .hero__lead {
+        justify-self: start;
+        align-self: start;
+        padding-left: 0;
+    }
+
+    .hero__actions {
+        justify-self: center;
+        align-self: end;
+        padding: 2rem;
     }
 
     .hero__media {
@@ -508,7 +528,7 @@
     padding: 0;
 
     font-size: var(--font-size-base);
-    line-height: 1.4;
+    line-height: 1.5;
     color: var(--text-muted);
 
     isolation: isolate;
@@ -546,7 +566,7 @@
 
 .breadcrumb__item + .breadcrumb__item::before {
     content: "›";
-    margin-inline: 0.5rem;
+    margin-inline: var(--space-xs);
     color: var(--text-muted);
     opacity: 0.7;
 }

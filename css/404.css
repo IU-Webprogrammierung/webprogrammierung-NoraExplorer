@@ -1,8 +1,8 @@
 /* --------------------------- 404-Seite --------------------------- */
 .not-found {
-    row-gap: 1rem;
-    padding-block: 1rem;
-    margin-block: 1rem;
+    row-gap: var(--gap-m);
+    padding-block: var(--space-m);
+    margin-block: var(--space-m);
 }
 
 .not-found__text, 
@@ -23,13 +23,8 @@
 
     border-radius: var(--radius-l);
     overflow: hidden;
-    box-shadow: var(--shadow-soft-hover), var(--shadow-card-inset);
+    box-shadow: var(--clay-card-shadow);
     border: 2px solid var(--accent-line);
-    /*background: var(--surface-raised);*/
-    /*
-    box-shadow: var(--shadow-soft);
-    border: 2px solid var(--accent-500);
-    */
 }
 
 /* Bild innerhalb der Card (füllt den Container vollständig) */
@@ -59,28 +54,16 @@
 /* Überschrift */
 .not-found__heading {
     margin: 0;
-    font-size: calc(var(--font-size-h1) * 1.6);
+    font-size: var(--font-size-h1-big);
     color: var(--accent-text);
-    text-shadow: 0 6px 18px color-mix(in srgb, #0f172a 55%, transparent);
-
 }
 
 
 /* --------------------------- Erklärungstext unterhalb des Bildes --------------------------- */
 .not-found__text {
-    max-width: 60ch;
+    max-width: var(--measure-text-narrow);
     margin: 0;
-    font-size: calc(var(--font-size-base) * 1.6);
+    font-size: var(--font-size-hero-lead);
     font-weight: var(--font-weight-semibold);
     color: var(--accent-text);
 }
-
-/*
-html[data-theme="light"] .not-found__text {
-    color: #0f172a;
-}
-
-html[data-theme="dark"] .not-found__text {
-    color: #ffc116;
-}
-*/

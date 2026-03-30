@@ -278,7 +278,7 @@
     opacity: 0;
     transform: translateY(2.5rem);
     will-change: opacity, transform;
-    transition: opacity 700ms ease, transform 700ms ease;
+    transition: opacity var(--duration-slow) ease, transform var(--duration-slow) ease;
 }
 
 /* Nummer und Bild werden leicht verzögert eingeblendet */
@@ -286,7 +286,7 @@
 .detailseite.seite-prozess .prozess__item.reveal .prozessschritt__media {
     opacity: 0;
     transform: translateY(1rem);
-    transition: opacity 700ms ease 120ms, transform 700ms ease 120ms;
+    transition: opacity var(--duration-slow) ease 120ms, transform var(--duration-slow) ease 120ms;
 }
 
 /* Zielzustand nach Reveal */
@@ -309,12 +309,12 @@
 /* Ab Tablet: horizontales Layout, Timeline und stärkere Desktop-Zustände */
 @media (min-width: 768px) {
     .detailseite.seite-prozess .prozess {
-        gap: 8rem;
+        gap: calc(var(--gap-xl) * 4);
     }
 
     .detailseite.seite-prozess .prozessschritt {
-        gap: 1.5rem;
-        row-gap: 1rem;
+        gap: var(--gap-l);
+        row-gap: var(--gap-m);
 
         grid-template-columns: 1fr 8fr 3fr;
         grid-template-rows: auto 1fr;

@@ -16,7 +16,7 @@
 .detailseite.seite-projekte .projekt-liste {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: var(--gap-l);
 }
 
 
@@ -50,8 +50,8 @@
     --projekt-bg-url: none;
 
     /* Einheitliche Innenabstände */
-    --inner-pad: 0rem;
-    --card-inset: 0rem;
+    --inner-pad: 0;
+    --card-inset: 0;
 
     /* Overlay-Zustände */
     --projekt-overlay-opacity: 0.32;
@@ -96,10 +96,10 @@
     isolation: isolate;
 
     display: grid;
-    gap: 1.25rem;
+    gap: var(--gap-l);
     height: 100%;
 
-    padding: 1rem;
+    padding: var(--space-m);
     border-radius: var(--radius-xl);
     overflow: hidden;
 }
@@ -150,15 +150,16 @@
     isolation: isolate;
 
     display: grid;
-    justify-items: start;
-    text-align: left;
+    justify-items: center;
+    text-align: center;
+    justify-content: center;
 }
 
 
 /* Projekttitel */
 .detailseite.seite-projekte .projekt__title {
     margin: 0;
-    padding: 1rem 0.5rem 0 0.5rem;
+    padding: var(--space-m) var(--space-xs) 0 var(--space-xs);
     /*text-align: center;*/
     color: var(--text);
     font-size: var(--font-size-h3);
@@ -204,7 +205,11 @@
     margin: 0;
     color: var(--text);
     line-height: 1.65;
-    text-wrap: balance;
+    /*text-wrap: balance;*/
+
+    justify-items: center;
+    text-align: left;
+    justify-content: center;
 
     transition:
         opacity 280ms ease,
@@ -227,7 +232,7 @@
 .detailseite.seite-projekte .detail-card--intro .detail-card__text {
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-semibold);
-    padding: 0 0.5rem;
+    padding: 0 var(--space-xs);
 }
 
 .detailseite.seite-projekte .projekt--bg .detail-card--intro {
@@ -251,9 +256,11 @@
     margin-top: auto;
 
     display: flex;
-    justify-content: start;
+    /*justify-items: center;*/
+    /*text-align: center;*/
+    justify-content: center;
 
-    padding: 0 0.5rem 1rem 0.5rem;
+    padding: 0 var(--space-xs) var(--space-m) var(--space-xs);
 }
 
 
@@ -358,11 +365,9 @@
          background-image:
             linear-gradient(
                 to bottom,
-                color-mix(in srgb, var(--clay-card) 85%, transparent) 0%,
-                color-mix(in srgb, var(--clay-card) 70%, transparent) 20%,
-                color-mix(in srgb, var(--clay-card) 50%, transparent) 40%,
-                color-mix(in srgb, var(--clay-card) 30%, transparent) 65%,
-                transparent 100%
+                color-mix(in srgb, var(--clay-card) 90%, transparent) 20%,
+                color-mix(in srgb, var(--clay-card) 0%, transparent) 50%,
+                color-mix(in srgb, var(--clay-card) 90%, transparent) 85%
             ), var(--projekt-bg-url);
 
         background-position: center;
@@ -428,7 +433,7 @@
         opacity: 0;
         transform: translateY(0.5rem);
 
-        padding: 0.5rem 0.5rem;
+        padding: var(--space-xs);
     }
 
     /* Titel und Button bleiben sichtbar */
@@ -438,10 +443,11 @@
         opacity: 1;
         transform: none;
 
+        /*
         justify-items: center;
         text-align: center;
-
         justify-content: center;
+        */
     }
 
     /* Hover- und Fokuszustand der Karte */

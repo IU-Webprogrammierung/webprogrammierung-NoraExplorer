@@ -1,32 +1,39 @@
 /* --------------------------- Basislayout für Detailseiten --------------------------- */
 /* --------- Detailseite: Grundlayout --------- */
 .detailseite {
-    row-gap: 2rem;
+    row-gap: var(--gap-xl);
     padding-top: 0;
-    padding-bottom: 2rem;
+    padding-bottom: var(--space-xl);
 }
 
 
 /* --------------------------- Content-Komponente --------------------------- */
 /* --------- Content: Grundlayout --------- */
 .detailseite .content {
-    gap: 1rem;
-    margin-bottom: 4rem;
+    gap: var(--gap-m);
+    margin-bottom: var(--space-xxl);
 }
 
 
 /* --------- Content: Robustheit für direkte Kinder --------- */
 .detailseite .content > * {
     min-width: 0;
+
+    /* mss ausgeklammert werden, damit section--bleed funktioniert
+    padding: 0;
+    margin: 0;
+    */
 }
+
+
 
 
 /* --------- Content: Abschnittsüberschrift --------- */
 .detailseite .content__heading {
-    margin-bottom: 2rem;
-    padding: 0.95rem 1.15rem;
+    margin-bottom: var(--space-xl);
+    padding: 1rem 1.25rem;
 
-    font-size: calc(var(--font-size-h2) * 0.6);
+    font-size: var(--font-size-h2);
     font-weight: var(--font-weight-semibold);
     color: var(--text);
 
@@ -37,8 +44,8 @@
 /* --------- Content: Breakpoint ab 768px --------- */
 @media (min-width: 768px) {
     .detailseite .content {
-        gap: 1.5rem;
-        margin-bottom: 6rem;
+        gap: var(--gap-l);
+        margin-bottom: calc(var(--space-xxl) * 3);
     }
 
     .detailseite .content__heading {
@@ -51,15 +58,14 @@
 /* --------- Content: Breakpoint ab 1280px --------- */
 @media (min-width: 1280px) {
     .detailseite .content {
-        gap: 2rem;
-        margin-top: 6rem;
-        margin-bottom: 8rem;
+        gap: var(--gap-xl);
+        margin-top: calc(var(--space-xxl) + var(--space-xxl));
+        margin-bottom: calc(var(--space-xxl) * 4);
     }
 }
 
 
 /* --------------------------- Snap-Scrolling --------------------------- */
-
 /* --------- Snap-Scrolling ab 1024px --------- */
 @media (min-width: 1024px) {
     html.snap-active {

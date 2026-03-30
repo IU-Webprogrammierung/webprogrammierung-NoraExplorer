@@ -2,29 +2,29 @@
 
 /* Footer-Abstand */
 #site-footer {
-    margin-top: 4rem;
+    margin-top: var(--space-xxl);
 }
 
 /* --------- Startseite: Grundlayout --------- */
 .startseite {
     row-gap: 0;
-    padding-block: 0 2rem;
+    padding-block: 0 var(--space-xl);
     overflow-x: clip;
 }
 
 .startseite .teaser-row {
-    padding-block: 3rem;
+    padding-block: var(--space-xl);
 }
 
 @media (min-width: 768px) {
     .startseite .teaser-row {
-        padding-block: 4rem;
+        padding-block: calc(var(--space-xl) * 2);
     }
 }
 
 @media (min-width: 1280px) {
     .startseite .teaser-row {
-        padding-block: 8rem;
+        padding-block: calc(var(--space-xl) * 4);
     }
 }
 
@@ -35,6 +35,9 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     grid-column: 1 / -1;
+    grid-template-areas: 
+        "media"
+        "title";
 
     margin: calc(-1 * var(--header-height)) calc(var(--container-padding) * -1) 0;
     isolation: isolate;
@@ -42,17 +45,20 @@
 
     min-height: calc(100svh - var(--header-height));
     padding: 0;
-    gap: 0;
+    gap: 0 !important;
 }
 
+/*
 .startseite .hero::before,
 .startseite .hero::after {
     content: none;
 }
+*/
 
 .startseite .hero__media {
     grid-column: 1 / -1;
     grid-row: 1;
+    align-self: end;
 
     width: 100%;
     height: clamp(18rem, 65vh, 65rem);
@@ -81,7 +87,7 @@
 
     justify-self: center;
     margin: 0;
-    padding: 0 2rem;
+    padding: 0 var(--space-xl);
 
     text-align: center;
     font-size: calc(var(--font-size-h1) * 2.4);
@@ -90,7 +96,7 @@
 .heading-overlay {
     position: relative;
     margin: 0;
-    padding: 1rem 1rem 6rem;
+    padding: var(--space-m);
     height: 100%;
     background: var(--section-bg-soft);
     border-top: 1px solid #68535a15;
@@ -127,7 +133,7 @@ html[data-theme="dark"] .heading-overlay {
 .startseite .teaser {
     position: relative;
     display: grid;
-    gap: 0.8rem;
+    gap: var(--space-m);
 
     grid-template-areas:
         "heading"
@@ -138,14 +144,9 @@ html[data-theme="dark"] .heading-overlay {
     align-items: center;
 
     margin: 0;
-    padding: 1.25rem;
+    padding: var(--space-m) 0;
 
-    transition:
-        transform 0.18s ease,
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: var(--transition-ui);
 }
 
 .startseite .teaser > * {
@@ -155,14 +156,14 @@ html[data-theme="dark"] .heading-overlay {
 
 @media (min-width: 768px) {
     .startseite .teaser {
-        gap: 1rem;
-        padding: 1.5rem;
+        gap: var(--space-m);
+        padding: var(--space-l);
     }
 }
 
 @media (min-width: 1280px) {
     .startseite .teaser {
-        gap: 1.6rem;
+        gap: 1.75rem;
         padding: 1.75rem;
     }
 }
@@ -177,9 +178,9 @@ html[data-theme="dark"] .heading-overlay {
     justify-self: center;
     align-self: end;
 
-    padding-bottom: 0.75rem;
+    padding-bottom: var(--space-s);
 
-    font-size: calc(var(--font-size-h2) * 0.6);
+    font-size: var(--font-size-h2);
     font-weight: var(--font-weight-semibold);
     color: var(--muted);
     text-align: start;
@@ -201,7 +202,7 @@ html[data-theme="dark"] .heading-overlay {
     grid-area: text;
     justify-self: center;
 
-    max-width: 65ch;
+    max-width: var(--measure-text);
 
     font-size: calc(var(--font-size-hero-lead) * 1.4);
     font-weight: var(--font-weight-semibold);
@@ -229,9 +230,9 @@ html[data-theme="dark"] .heading-overlay {
     overflow: hidden;
     border-radius: var(--radius-l);
 
-    transition:
-        opacity 700ms ease,
-        transform 700ms ease;
+    transition: 
+        opacity var(--duration-slow) ease, 
+        transform var(--duration-slow) ease;
 }
 
 .startseite .teaser__media img {
@@ -243,10 +244,7 @@ html[data-theme="dark"] .heading-overlay {
     transform: scale(1.04);
     filter: saturate(0.98) contrast(1.01);
 
-    transition:
-        transform 700ms cubic-bezier(.2, .8, .2, 1),
-        filter 320ms ease,
-        opacity 320ms ease;
+    transition: var(--transition-media);
 }
 
 

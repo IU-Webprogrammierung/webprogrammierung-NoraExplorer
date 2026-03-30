@@ -11,15 +11,14 @@
 
 /* --------- Seiten-Kontext --------- */
 .detailseite.seite-ueber {
-    --interesse-row-spacing-mobile: 2rem;
+    --interesse-row-spacing-mobile: var(--space-xl);
     --interesse-row-spacing-tablet: 3rem;
-    --interesse-row-spacing-desktop: 4rem;
+    --interesse-row-spacing-desktop: var(--space-xxl);
 
-    --interesse-gap-mobile: 1rem;
-    --interesse-gap-tablet: 1.5rem;
-    --interesse-gap-desktop: 2rem;
+    --interesse-gap-mobile: var(--space-m);
+    --interesse-gap-tablet: var(--space-l);
+    --interesse-gap-desktop: var(--space-xl);
 
-    --interesse-padding-mobile: 1.25rem;
     --interesse-padding-desktop: 1.75rem;
 
     --interesse-reveal-distance: 2rem;
@@ -62,15 +61,8 @@
         "text"
         "media";
 
-    margin: 0;
-    padding: var(--interesse-padding-mobile);
 
-    transition:
-        transform 0.18s ease,
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: var(--transition-ui);
 }
 
 /* Robustheit: direkte Kinder dürfen im Grid nicht überlaufen */
@@ -116,15 +108,12 @@
 .detailseite.seite-ueber .interesse__heading {
     grid-area: heading;
 
-    transition:
-        color 260ms ease,
-        transform 260ms ease,
-        opacity 260ms ease;
+    transition: var(--transition-text);
 }
 
 .detailseite.seite-ueber .interesse__text {
     grid-area: text;
-    max-width: 68ch;
+    max-width: var(--measure-text);
     color: var(--text);
 
     transition:
@@ -136,9 +125,7 @@
     grid-area: media;
     align-self: center;
 
-    transition:
-        opacity 700ms ease,
-        transform 700ms ease;
+    transition: var(--transition-reveal);
 }
 
 .detailseite.seite-ueber .interesse__media img {
@@ -151,10 +138,7 @@
     transform: none;
     filter: saturate(1) contrast(1);
 
-    transition:
-        transform 700ms cubic-bezier(.2, .8, .2, 1),
-        filter 320ms ease,
-        opacity 320ms ease;
+    transition: var(--transition-media);
 }
 
 @media (min-width: 768px) {
@@ -186,11 +170,7 @@
         transform: translateY(var(--interesse-reveal-distance));
         will-change: opacity, transform;
 
-        transition:
-            opacity 700ms ease,
-            transform 700ms ease,
-            border-color 320ms ease,
-            box-shadow 320ms ease;
+        transition: var(--transition-surface);
     }
 
     .detailseite.seite-ueber .interesse.reveal .interesse__heading,
@@ -269,39 +249,3 @@
 
 
 
-/* --------------------------- Reduced Motion --------------------------- */
-/* Nutzerpräferenz über eigenes data-Attribut */
-html[data-motion="reduced"] .detailseite.seite-ueber .interesse,
-html[data-motion="reduced"] .detailseite.seite-ueber .interesse *,
-html[data-motion="reduced"] .detailseite.seite-ueber .interesse::before,
-html[data-motion="reduced"] .detailseite.seite-ueber .interesse::after {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-}
-
-html[data-motion="reduced"] .detailseite.seite-ueber .interesse.reveal,
-html[data-motion="reduced"] .detailseite.seite-ueber .interesse.reveal .interesse__heading,
-html[data-motion="reduced"] .detailseite.seite-ueber .interesse.reveal .interesse__text,
-html[data-motion="reduced"] .detailseite.seite-ueber .interesse.reveal .interesse__media {
-    opacity: 1 !important;
-}
-
-/* System-Fallback */
-@media (prefers-reduced-motion: reduce) {
-    html:not([data-motion]) .detailseite.seite-ueber .interesse,
-    html:not([data-motion]) .detailseite.seite-ueber .interesse *,
-    html:not([data-motion]) .detailseite.seite-ueber .interesse::before,
-    html:not([data-motion]) .detailseite.seite-ueber .interesse::after {
-        animation: none !important;
-        transition: none !important;
-        transform: none !important;
-    }
-
-    html:not([data-motion]) .detailseite.seite-ueber .interesse.reveal,
-    html:not([data-motion]) .detailseite.seite-ueber .interesse.reveal .interesse__heading,
-    html:not([data-motion]) .detailseite.seite-ueber .interesse.reveal .interesse__text,
-    html:not([data-motion]) .detailseite.seite-ueber .interesse.reveal .interesse__media {
-        opacity: 1 !important;
-    }
-}
