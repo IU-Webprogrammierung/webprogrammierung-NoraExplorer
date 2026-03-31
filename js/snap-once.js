@@ -45,6 +45,16 @@
         return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     }
 
+    // Prüft die benutzerdefinierte Bewegungspräferenz aus dem HTML
+    function hasReducedMotionPreference() {
+        return document.documentElement.getAttribute("data-motion") === "reduced";
+    }
+
+    // Fasst beide Reduced-Motion-Varianten zusammen
+    function shouldReduceMotion() {
+        return prefersReducedMotion() || hasReducedMotionPreference();
+    }
+
 
     /* --------------------------- Guards --------------------------- */
     // Sucht den CTA-Link im Hero-Bereich der Detailseite
@@ -227,7 +237,7 @@
         });
 
         window.addEventListener("scroll", handleScroll, { 
-            passive: true 
+            passive: true
         });
 
         window.addEventListener("pageshow", () => {
@@ -250,16 +260,16 @@
             return;
         }
 
+        // reduzierte Bewegung respektieren: dann kein Snap, keine Scroll-Hijacks, normales Seitenverhalten
+        if (shouldReduceMotion()) {
+            return;
+        }
+
         // Seite beim Aufruf immer oben starten
         resetScrollToTop();
 
         // nur auf Desktop-/Pointer-Geräten aktivieren
         if (!isSupportedInputDevice()) {
-            return;
-        }
-
-        // reduzierte Bewegung beachten
-        if (prefersReducedMotion()) {
             return;
         }
 
