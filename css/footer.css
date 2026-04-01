@@ -1,6 +1,7 @@
 /* --------------------------- Footer-Komponente --------------------------- */
 
 /* --------- Footer: Grundcontainer --------- */
+/* in header-footer.css übertragen (bzw header und footer dateien zu einer datei zusammengeführt
 .footer {
     min-height: var(--footer-height);
 
@@ -10,9 +11,10 @@
     border-radius: var(--radius-xl) var(--radius-xl) 0 0;
     box-shadow: var(--clay-footer-shadow);
 }
-
+*/
 
 /* --------- Footer: Inneres Layout --------- */
+/* in header-footer.css übertragen (bzw header und footer dateien zu einer datei zusammengeführt
 .footer__inner {
     display: flex;
     align-items: center;
@@ -22,12 +24,13 @@
     min-height: var(--footer-height);
     padding-inline: var(--container-padding);
 }
-
+*/
 
 
 
 /* --------------------------- Footer-Navigation-Komponente --------------------------- */
 /* --------- Footer-Navigation: Liste --------- */
+/* in header-footer.css übertragen (bzw header und footer dateien zu einer datei zusammengeführt
 .footer-nav__list {
     display: flex;
     flex-wrap: wrap;
@@ -40,9 +43,11 @@
 
     list-style: none;
 }
-
+*/
 
 /* --------- Footer-Navigation: Link-Anpassungen --------- */
+/* in header-footer.css übertragen (bzw header und footer dateien zu einer datei zusammengeführt
 .footer-nav__list .nav-link {
     justify-content: center;
 }
+*/

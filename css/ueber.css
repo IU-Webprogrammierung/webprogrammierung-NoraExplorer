@@ -11,71 +11,67 @@
 
 /* --------- Seiten-Kontext --------- */
 .detailseite.seite-ueber {
-    --interesse-row-spacing-mobile: var(--space-xl);
-    --interesse-row-spacing-tablet: 3rem;
-    --interesse-row-spacing-desktop: var(--space-xxl);
+    --row-space-mobile: var(--space-xl);
+    --row-space-tablet: 3rem;
+    --row-space-desktop: var(--space-2xl);
+    --item-gap-mobile: var(--space-m);
+    --item-gap-tablet: var(--space-l);
+    --item-gap-desktop: var(--space-xl);
 
-    --interesse-gap-mobile: var(--space-m);
-    --interesse-gap-tablet: var(--space-l);
-    --interesse-gap-desktop: var(--space-xl);
-
+    /*
     --interesse-padding-desktop: 1.75rem;
-
     --interesse-reveal-distance: 2rem;
     --interesse-inner-reveal-distance: 1rem;
+    */
 }
 
 
-
-
 /* --------------------------- Komponente "Interesse" --------------------------- */
+
 /* --------- Wrapper / Abschnittsabstand --------- */
 .detailseite.seite-ueber .interesse-row {
-    padding-block: var(--interesse-row-spacing-mobile);
+    padding-block: var(--row-space-mobile);
 }
 
 @media (min-width: 768px) {
     .detailseite.seite-ueber .interesse-row {
-        padding-block: var(--interesse-row-spacing-tablet);
+        padding-block: var(--row-space-tablet);
     }
 }
 
 @media (min-width: 1280px) {
     .detailseite.seite-ueber .interesse-row {
-        padding-block: var(--interesse-row-spacing-desktop);
+        padding-block: var(--row-space-desktop);
     }
 }
 
 
 
-
 /* --------- Karten-Layout --------- */
-.detailseite.seite-ueber .interesse {
-    position: relative;
-    display: grid;
-    align-items: center;
-    gap: var(--interesse-gap-mobile);
-
-    grid-template-areas:
-        "heading"
-        "text"
-        "media";
-
-
-    transition: var(--transition-ui);
-}
-
 /* Robustheit: direkte Kinder dürfen im Grid nicht überlaufen */
 .detailseite.seite-ueber .interesse > * {
     min-width: 0;
     margin: 0;
 }
 
+.detailseite.seite-ueber .interesse {
+    /*position: relative;*/
+    display: grid;
+    grid-template-areas:
+        "heading"
+        "text"
+        "media";
+
+    align-items: center;
+    gap: var(--item-gap-mobile);
+    transition: var(--transition-ui);
+}
+
 @media (min-width: 768px) {
     .detailseite.seite-ueber .interesse {
-        gap: var(--interesse-gap-tablet);
+        gap: var(--item-gap-tablet);
         grid-template-columns: 2fr 1fr;
-        grid-template-rows: auto auto;
+        /*grid-template-rows: auto auto;*/
         grid-template-areas:
             "heading media"
             "text    media";
@@ -88,16 +84,12 @@
             "media heading"
             "media text";
     }
-
-    .detailseite.seite-ueber .interesse-row:nth-of-type(even) .interesse__media {
-        justify-self: start;
-    }
 }
 
 @media (min-width: 1280px) {
     .detailseite.seite-ueber .interesse {
         gap: var(--interesse-gap-desktop);
-        padding: var(--interesse-padding-desktop);
+        padding: 1.75rem;
     }
 }
 
@@ -107,14 +99,13 @@
 /* --------- Inhaltselemente / Grid-Zuordnung --------- */
 .detailseite.seite-ueber .interesse__heading {
     grid-area: heading;
-
     transition: var(--transition-text);
 }
 
 .detailseite.seite-ueber .interesse__text {
     grid-area: text;
     max-width: var(--measure-text);
-    color: var(--text);
+    /*color: var(--text);*/
 
     transition:
         opacity 280ms ease,
@@ -125,18 +116,18 @@
     grid-area: media;
     align-self: center;
 
-    transition: var(--transition-reveal);
+    /*transition: var(--transition-reveal);*/
 }
 
 .detailseite.seite-ueber .interesse__media img {
-    display: block;
+    /*display: block;*/
     width: 100%;
     height: 100%;
     object-fit: cover;
 
     /* Mobile: Bild ruhig halten */
     transform: none;
-    filter: saturate(1) contrast(1);
+    /*filter: saturate(1) contrast(1);*/
 
     transition: var(--transition-media);
 }
@@ -145,6 +136,10 @@
     .detailseite.seite-ueber .interesse__media img {
         transform: scale(1.04);
         filter: saturate(0.98) contrast(1.01);
+    }
+
+    .detailseite.seite-ueber .interesse-row:nth-of-type(even) .interesse__media {
+        justify-self: start;
     }
 }
 
@@ -167,18 +162,14 @@
 @media (min-width: 768px) {
     .detailseite.seite-ueber .interesse.reveal {
         opacity: 0;
-        transform: translateY(var(--interesse-reveal-distance));
-        will-change: opacity, transform;
-
+        transform: translateY(2rem);
         transition: var(--transition-surface);
+        will-change: opacity, transform;
     }
 
-    .detailseite.seite-ueber .interesse.reveal .interesse__heading,
-    .detailseite.seite-ueber .interesse.reveal .interesse__text,
-    .detailseite.seite-ueber .interesse.reveal .interesse__media {
+    .detailseite.seite-ueber .interesse.reveal :is(.interesse__heading, .interesse__text, .interesse__media) {
         opacity: 0;
-        transform: translateY(var(--interesse-inner-reveal-distance));
-
+        transform: translateY(1rem);
         transition:
             opacity 700ms ease,
             transform 700ms ease;
@@ -198,16 +189,16 @@
 
     /* Zielzustand nach dem Reveal */
     .detailseite.seite-ueber .interesse.reveal.is-visible,
-    .detailseite.seite-ueber .interesse.reveal.is-visible .interesse__heading,
-    .detailseite.seite-ueber .interesse.reveal.is-visible .interesse__text,
-    .detailseite.seite-ueber .interesse.reveal.is-visible .interesse__media {
+    .detailseite.seite-ueber .interesse.reveal.is-visible :is(.interesse__heading, .interesse__text, .interesse__media) {
         opacity: 1;
         transform: translateY(0);
     }
 
+    /*
     .detailseite.seite-ueber .interesse.reveal.is-visible .interesse__media img {
         transform: scale(1);
     }
+    */
 }
 
 
@@ -216,19 +207,23 @@
 
 
 /* --------------------------- Aktiver Zustand --------------------------- */
+/*
 .detailseite.seite-ueber .interesse.is-active {
     transform: none;
 }
+*/
 
 .detailseite.seite-ueber .interesse.is-active .interesse__heading {
     color: var(--accent-text);
-    transform: none;
+    /*transform: none;*/
 }
 
+/*
 .detailseite.seite-ueber .interesse.is-active .interesse__media img {
     transform: none;
     filter: saturate(1) contrast(1);
 }
+*/
 
 @media (min-width: 768px) {
     .detailseite.seite-ueber .interesse.is-active {
@@ -240,7 +235,7 @@
     }
 
     .detailseite.seite-ueber .interesse.is-active .interesse__media img {
-        transform: scale(1.015);
+        transform: scale(1.2);
         filter: saturate(1.04) contrast(1.02);
     }
 }

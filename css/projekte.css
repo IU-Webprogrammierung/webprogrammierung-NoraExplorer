@@ -19,6 +19,21 @@
     gap: var(--gap-l);
 }
 
+@media (min-width: 768px) {
+    /* Zwei Karten nebeneinander */
+    .detailseite.seite-projekte .projekt-liste {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: stretch;
+    }
+}
+
+@media (min-width: 1280px) {
+    /* Drei Karten nebeneinander */
+    .detailseite.seite-projekte .projekt-liste {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
 
 
 /* --------------------------- Projekt-Komponente --------------------------- */
@@ -44,6 +59,19 @@
 
 
 /* --------- Projekt mit Hintergrund --------- */
+/* --------------------------- Projekt-spezifische Hintergrundbilder --------------------------- */
+.detailseite.seite-projekte .projekt--bg.thaddy {
+    --projekt-bg-url: url("../images/content/projekte/fotodesign-thaddy-bg.webp");
+}
+
+.detailseite.seite-projekte .projekt--bg.brutzel {
+    --projekt-bg-url: url("../images/content/projekte/brutzel-bg.webp");
+}
+
+.detailseite.seite-projekte .projekt--bg.ananas {
+    --projekt-bg-url: url("../images/content/projekte/ananas-matheinsel-bg.webp");
+}
+
 /* Äußerer Karten-Container mit projektbezogenem Background */
 .detailseite.seite-projekte .projekt--bg {
     /* Pro Projekt überschreiben (.brutzel, .thaddy, .ananas) */
@@ -59,7 +87,7 @@
     --projekt-overlay-border-opacity: 0.32;
     --projekt-overlay-border-hover-opacity: 0.92;
 
-    margin: 0;
+    /*margin: 0;*/
     border-radius: var(--radius-xl);
     overflow: hidden;
 
@@ -68,22 +96,83 @@
         border-color 280ms ease;
 }
 
+@media (min-width: 768px) {
+    /* Desktop-Spacing für Kartenhintergrund */
+    .detailseite.seite-projekte .projekt--bg {
+        --inner-pad: clamp(0.75rem, 1.2vw, 1.25rem);
+        --card-inset: clamp(0.5rem, 1vw, 1rem);
+
+        position: relative;
+        isolation: isolate;
+    }
+
+    /* Hintergrundbild des gesamten Projekt-Blocks */
+    .detailseite.seite-projekte .projekt--bg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        border-radius: inherit;
+
+        background:
+        linear-gradient(to bottom,
+            color-mix(in srgb, var(--clay-card) 90%, transparent) 20%,
+            color-mix(in srgb, var(--clay-card) 0%, transparent) 50%,
+            color-mix(in srgb, var(--clay-card) 90%, transparent) 85%),
+        var(--projekt-bg-url) center / cover no-repeat;
+    }
+
+    /* Standard-Overlay: Bild bleibt klar sichtbar */
+    .detailseite.seite-projekte .projekt--bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+
+        background: color-mix(
+            in srgb,
+            var(--clay-card) calc(var(--projekt-overlay-opacity) * 100%),
+            transparent
+        );
+        border: 1px solid color-mix(
+            in srgb,
+            var(--clay-card-border) calc(var(--projekt-overlay-border-opacity) * 100%),
+            transparent
+        );
+        box-shadow: var(--clay-card-shadow);
+
+        border-radius: inherit;
+        transition:
+            background-color 280ms ease,
+            border-color 280ms ease,
+            opacity 280ms ease;
+    }
+}
+
+
 
 
 /* --------- Innerer Wrapper --------- */
+/* Robustheit: verhindert Overflow in Grid-Zellen */
+.detailseite.seite-projekte .projekt__inner > * {
+    min-width: 0;
+}
+
 /* Steuert Layout und Abstand zum Kartenrand */
 .detailseite.seite-projekte .projekt__inner {
     display: grid;
     gap: 0.75rem;
     height: 100%;
     padding: calc(var(--inner-pad) + var(--card-inset));
-    justify-items: stretch;
+    /*justify-items: stretch;*/
 }
 
-
-/* Robustheit: verhindert Overflow in Grid-Zellen */
-.detailseite.seite-projekte .projekt__inner > * {
-    min-width: 0;
+@media (min-width: 768px) { 
+    /* Innenabstand des Projektinhalts */
+    .detailseite.seite-projekte .projekt__inner {
+        gap: 1.5rem;
+        /*padding: calc(var(--inner-pad) + var(--card-inset));*/
+    }
 }
 
 
@@ -94,11 +183,9 @@
 .detailseite.seite-projekte .projekt__teaser {
     position: relative;
     isolation: isolate;
-
     display: grid;
     gap: var(--gap-l);
     height: 100%;
-
     padding: var(--space-m);
     border-radius: var(--radius-xl);
     overflow: hidden;
@@ -111,13 +198,8 @@
     position: absolute;
     inset: 0;
     z-index: -2;
-
-    background-image: var(--projekt-bg-url);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-
     border-radius: inherit;
+    background: center / cover no-repeat var(--projekt-bg-url);
 }
 
 
@@ -135,36 +217,46 @@
     );
     border: 1px solid var(--clay-card-border);
     box-shadow: var(--clay-card-shadow);
-
     border-radius: inherit;
 }
 
+@media (min-width: 768px) {
+    /* Teaser auf Desktop ohne eigene Kanten */
+    .detailseite.seite-projekte .projekt__teaser {
+        padding: 0;
+        border-radius: 0;
+        overflow: visible;
+    }
 
-
+    /* Mobile-Teaser-Hintergrund auf Desktop deaktivieren */
+    .detailseite.seite-projekte .projekt__teaser::before,
+    .detailseite.seite-projekte .projekt__teaser::after {
+        content: none;
+    }
+}
 
 
 /* --------------------------- Projekt-Header --------------------------- */
 /* Überschrift im oberen Projektbereich */
 .detailseite.seite-projekte .projekt__header {
-    position: relative;
+    /*position: relative;
     isolation: isolate;
-
+    */
     display: grid;
     justify-items: center;
     text-align: center;
     justify-content: center;
 }
 
-
 /* Projekttitel */
 .detailseite.seite-projekte .projekt__title {
     margin: 0;
-    padding: var(--space-m) var(--space-xs) 0 var(--space-xs);
+    padding: var(--space-m) var(--space-xs) 0;
     /*text-align: center;*/
     color: var(--text);
     font-size: var(--font-size-h3);
     font-weight: var(--font-weight-bold);
-    line-height: 1.05;
+    /*line-height: 1.05;*/
 
     transition:
         color 260ms ease,
@@ -174,9 +266,28 @@
 
 
 /* Titel bleibt im Active-State ruhig */
+/*
 .detailseite.seite-projekte .projekt.is-active .projekt__title {
     transform: translateY(-1px);
 }
+*/
+
+@media (min-width: 768px) { 
+    /* Titel und Button bleiben sichtbar */
+    .detailseite.seite-projekte .projekt__header,
+    .detailseite.seite-projekte .projekt__actions {
+        padding: 0;
+        opacity: 1;
+        transform: none;
+
+        /*
+        justify-items: center;
+        text-align: center;
+        justify-content: center;
+        */
+    }
+}
+
 
 
 
@@ -188,7 +299,7 @@
 .detailseite.seite-projekte .detail-card {
     width: 100%;
     overflow: hidden;
-    justify-self: stretch;
+    /*justify-self: stretch;*/
 
     transition:
         opacity 280ms ease,
@@ -207,9 +318,11 @@
     line-height: 1.65;
     /*text-wrap: balance;*/
 
+    /*
     justify-items: center;
     text-align: left;
     justify-content: center;
+    */
 
     transition:
         opacity 280ms ease,
@@ -218,23 +331,51 @@
 
 
 
-
-
-
 /* --------- Intro-Card --------- */
 /* Projektbeschreibung innerhalb der Karte */
+/*
 .detailseite.seite-projekte .detail-card--intro {
     width: 100%;
     padding: 0;
     justify-self: stretch;
 }
+*/
 
 .detailseite.seite-projekte .detail-card--intro .detail-card__text {
-    font-size: var(--font-size-base);
+    /*font-size: var(--font-size-base);*/
+    padding-inline: var(--space-xs);
     font-weight: var(--font-weight-semibold);
-    padding: 0 var(--space-xs);
+    /*padding: 0 var(--space-xs);*/
 }
 
+/*
+@media (max-width: 767px) {
+    .detailseite.seite-projekte .detail-card--intro .detail-card__text {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+    }
+}
+*/
+
+@media (max-width: 767px) {
+    /* Intro-Text auf Desktop standardmäßig ausblenden */
+    .detailseite.seite-projekte .detail-card--intro {
+        opacity: 0;
+        transform: translateY(0.5rem);
+        pointer-events: none;
+    }
+}
+
+@media (min-width: 768px) { 
+    .detailseite.seite-projekte .detail-card--intro .detail-card__text {
+        opacity: 0;
+        transform: translateY(0.5rem);
+        /*padding: var(--space-xs);*/
+    }
+}
+
+/*
 .detailseite.seite-projekte .projekt--bg .detail-card--intro {
     transition:
         opacity 280ms ease,
@@ -243,7 +384,7 @@
         background-color 260ms ease,
         box-shadow 260ms ease;
 }
-
+*/
 
 
 
@@ -252,15 +393,14 @@
 /* --------------------------- Projekt-Actions --------------------------- */
 /* CTA-Bereich am unteren Kartenrand */
 .detailseite.seite-projekte .projekt__actions {
-    margin: 0;
-    margin-top: auto;
-
+    /*margin: 0;*/
     display: flex;
+    margin-top: auto;
     /*justify-items: center;*/
     /*text-align: center;*/
     justify-content: center;
 
-    padding: 0 var(--space-xs) var(--space-m) var(--space-xs);
+    padding: 0 var(--space-xs) var(--space-m);
 }
 
 
@@ -290,9 +430,7 @@
 
 
 /* Unterelemente folgen leicht gestaffelt */
-.detailseite.seite-projekte .projekt.reveal .projekt__title,
-.detailseite.seite-projekte .projekt.reveal .detail-card--intro,
-.detailseite.seite-projekte .projekt.reveal .projekt__actions {
+.detailseite.seite-projekte .projekt.reveal :is(.projekt__title, .detail-card--intro, .projekt__actions) {
     opacity: 0;
     transform: translateY(1rem);
 
@@ -300,7 +438,6 @@
         opacity 700ms ease,
         transform 700ms ease;
 }
-
 
 /* Titel verzögert einblenden */
 .detailseite.seite-projekte .projekt.reveal .projekt__title {
@@ -326,11 +463,33 @@
 
 
 /* Zielzustand der Unterelemente */
-.detailseite.seite-projekte .projekt.reveal.is-visible .projekt__title,
-.detailseite.seite-projekte .projekt.reveal.is-visible .detail-card--intro,
-.detailseite.seite-projekte .projekt.reveal.is-visible .projekt__actions {
+.detailseite.seite-projekte .projekt.reveal.is-visible,
+.detailseite.seite-projekte .projekt.reveal.is-visible :is(.projekt__title, .detail-card--intro, .projekt__actions) {
     opacity: 1;
     transform: translateY(0);
+}
+
+
+@media (max-width: 767px) {
+    .detailseite.seite-projekte .projekt,
+    .detailseite.seite-projekte .projekt.reveal,
+    .detailseite.seite-projekte .projekt.reveal :is(.projekt__title, .detail-card--intro, .projekt__actions),
+    .detailseite.seite-projekte .detail-card--intro .detail-card__text {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+    }
+    /*
+    .detailseite.seite-projekte .projekt,
+    .detailseite.seite-projekte .projekt.reveal,
+    .detailseite.seite-projekte .projekt.reveal .projekt__title,
+    .detailseite.seite-projekte .projekt.reveal .detail-card--intro,
+    .detailseite.seite-projekte .projekt.reveal .projekt__actions,
+    .detailseite.seite-projekte .projekt.is-active {
+        opacity: 1;
+        transform: none;
+    }
+    */
 }
 
 
@@ -340,115 +499,7 @@
 
 /* --------------------------- Breakpoint ab 768px --------------------------- */
 @media (min-width: 768px) {
-    /* Zwei Karten nebeneinander */
-    .detailseite.seite-projekte .projekt-liste {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        align-items: stretch;
-    }
 
-    /* Desktop-Spacing für Kartenhintergrund */
-    .detailseite.seite-projekte .projekt--bg {
-        --inner-pad: clamp(0.75rem, 1.2vw, 1.25rem);
-        --card-inset: clamp(0.5rem, 1vw, 1rem);
-
-        position: relative;
-        isolation: isolate;
-    }
-
-    /* Hintergrundbild des gesamten Projekt-Blocks */
-    .detailseite.seite-projekte .projekt--bg::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: -2;
-
-         background-image:
-            linear-gradient(
-                to bottom,
-                color-mix(in srgb, var(--clay-card) 90%, transparent) 20%,
-                color-mix(in srgb, var(--clay-card) 0%, transparent) 50%,
-                color-mix(in srgb, var(--clay-card) 90%, transparent) 85%
-            ), var(--projekt-bg-url);
-
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-
-        border-radius: inherit;
-    }
-
-    /* Standard-Overlay: Bild bleibt klar sichtbar */
-    .detailseite.seite-projekte .projekt--bg::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-
-        background: color-mix(
-            in srgb,
-            var(--clay-card) calc(var(--projekt-overlay-opacity) * 100%),
-            transparent
-        );
-        border: 1px solid color-mix(
-            in srgb,
-            var(--clay-card-border) calc(var(--projekt-overlay-border-opacity) * 100%),
-            transparent
-        );
-        box-shadow: var(--clay-card-shadow);
-
-        border-radius: inherit;
-        transition:
-            background-color 280ms ease,
-            border-color 280ms ease,
-            opacity 280ms ease;
-    }
-
-    /* Mobile-Teaser-Hintergrund auf Desktop deaktivieren */
-    .detailseite.seite-projekte .projekt__teaser::before,
-    .detailseite.seite-projekte .projekt__teaser::after {
-        content: none;
-    }
-
-    /* Innenabstand des Projektinhalts */
-    .detailseite.seite-projekte .projekt__inner {
-        gap: 1.5rem;
-        padding: calc(var(--inner-pad) + var(--card-inset));
-    }
-
-    /* Teaser auf Desktop ohne eigene Kanten */
-    .detailseite.seite-projekte .projekt__teaser {
-        padding: 0;
-        border-radius: 0;
-        overflow: visible;
-    }
-
-    /* Intro-Text auf Desktop standardmäßig ausblenden */
-    .detailseite.seite-projekte .detail-card--intro {
-        opacity: 0;
-        transform: translateY(0.5rem);
-        pointer-events: none;
-    }
-
-    .detailseite.seite-projekte .detail-card--intro .detail-card__text {
-        opacity: 0;
-        transform: translateY(0.5rem);
-
-        padding: var(--space-xs);
-    }
-
-    /* Titel und Button bleiben sichtbar */
-    .detailseite.seite-projekte .projekt__header,
-    .detailseite.seite-projekte .projekt__actions {
-        padding: 0;
-        opacity: 1;
-        transform: none;
-
-        /*
-        justify-items: center;
-        text-align: center;
-        justify-content: center;
-        */
-    }
 
     /* Hover- und Fokuszustand der Karte */
     @media (hover: hover) and (pointer: fine) {
@@ -466,38 +517,14 @@
             );
         }
 
-        .detailseite.seite-projekte .projekt--bg:hover .detail-card--intro,
-        .detailseite.seite-projekte .projekt--bg:focus-within .detail-card--intro {
+        .detailseite.seite-projekte .projekt--bg:hover :is(.detail-card--intro, .detail-card--intro .detail-card__text),
+        .detailseite.seite-projekte .projekt--bg:focus-within :is(.detail-card--intro, .detail-card--intro .detail-card__text) {
             opacity: 1;
             transform: translateY(0);
             pointer-events: auto;
         }
-
-        .detailseite.seite-projekte .projekt--bg:hover .detail-card--intro .detail-card__text,
-        .detailseite.seite-projekte .projekt--bg:focus-within .detail-card--intro .detail-card__text {
-            opacity: 1;
-            transform: translateY(0);
-        }
     }
 }
-
-
-
-
-
-
-/* --------------------------- Breakpoint ab 1200px --------------------------- */
-@media (min-width: 1200px) {
-    /* Drei Karten nebeneinander */
-    .detailseite.seite-projekte .projekt-liste {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-
-
-
-
 
 /* --------------------------- Mobile bis 767px --------------------------- */
 /*
@@ -507,6 +534,7 @@
    - Inhalte bleiben direkt sichtbar
 */
 @media (max-width: 767px) {
+    /*
     .detailseite.seite-projekte .projekt,
     .detailseite.seite-projekte .projekt.reveal,
     .detailseite.seite-projekte .projekt.reveal .projekt__title,
@@ -517,17 +545,15 @@
         transform: none;
     }
 
+    /*
     .detailseite.seite-projekte .detail-card--intro,
     .detailseite.seite-projekte .detail-card--intro .detail-card__text {
         opacity: 1;
         transform: none;
         pointer-events: auto;
     }
+    */
 }
-
-
-
-
 
 
 /* --------------------------- Reduced Motion --------------------------- */
@@ -574,18 +600,15 @@ html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt
 
 
 
-/* --------------------------- Projekt-spezifische Hintergrundbilder --------------------------- */
-.detailseite.seite-projekte .projekt--bg.thaddy {
-    --projekt-bg-url: url("../images/content/projekte/fotodesign-thaddy-bg.webp");
-}
 
-.detailseite.seite-projekte .projekt--bg.brutzel {
-    --projekt-bg-url: url("../images/content/projekte/brutzel-bg.webp");
-}
 
-.detailseite.seite-projekte .projekt--bg.ananas {
-    --projekt-bg-url: url("../images/content/projekte/ananas-matheinsel-bg.webp");
-}
+
+
+
+
+
+
+
 
 
 
@@ -602,6 +625,21 @@ html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt
 
 
 /* --------------------------- Projekt-Detailseite: Hero-Bereich --------------------------- */
+
+/* --------- Detailseiten-Layout --------- */
+.detailseite.seite-projekt-detail {
+    --projekt-row-spacing-mobile: 2rem;
+    --projekt-row-spacing-tablet: 3rem;
+    --projekt-row-spacing-desktop: 4rem;
+    --projekt-gap-mobile: 1rem;
+    --projekt-gap-tablet: 1.5rem;
+    --projekt-gap-desktop: 2rem;
+    --projekt-padding-mobile: 1.25rem;
+    --projekt-padding-desktop: 1.75rem;
+    row-gap: 0;
+}
+
+
 /* Projektbezogene Hero-Hintergründe */
 .detailseite.seite-projekt-detail.seite-projekt-thaddy {
     --projekt-hero-bg-url: url("../images/content/projekte/fotodesign-thaddy-bg.webp");
@@ -623,17 +661,10 @@ html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt
 
 
 
-
-/* --------- Detailseiten-Layout --------- */
-.detailseite.seite-projekt-detail {
-    row-gap: 0;
-}
-
-
 /* Sticky Breadcrumb oberhalb des Hero-Bereichs */
 .detailseite.seite-projekt-detail .breadcrumb {
-    position: sticky;
-    top: var(--header-height);
+    /*position: sticky;
+    top: var(--header-height);*/
     z-index: 9500;
     margin: 0;
 }
@@ -644,7 +675,6 @@ html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt
     position: relative;
     isolation: isolate;
     overflow: clip;
-
     margin-top: -20px;
     margin-bottom: 0;
     padding-block: clamp(2rem, 4vw, 4rem);
@@ -653,18 +683,19 @@ html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt
 
 /* Hintergrundbild mit radialer Tönung */
 .detailseite.seite-projekt-detail .hero::before {
-    content: "";
+    /*content: "";
     position: absolute;
     inset: 0;
     top: calc((-1 * var(--header-height)) - 20px);
     z-index: 0;
+    */
 
     background-image:
         radial-gradient(
-            circle at 45% 50%,
+            circle at 24% 50%,
             color-mix(in srgb, var(--section-hero) 96%, transparent) 0%,
             color-mix(in srgb, var(--section-hero) 96%, transparent) 24%,
-            color-mix(in srgb, var(--section-hero) 70%, transparent) 68%,
+            color-mix(in srgb, var(--section-hero) 80%, transparent) 68%,
             color-mix(in srgb, var(--section-hero) 30%, transparent) 100%
         ),
         var(--projekt-hero-bg-url);
@@ -672,9 +703,11 @@ html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt
     background-position: var(--projekt-hero-bg-position);
     background-size: var(--projekt-hero-bg-size);
     background-repeat: no-repeat;
-
+    border: 0;
+    /*
     border-top: none;
     border-bottom: none;
+    */
 }
 
 
@@ -682,12 +715,6 @@ html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt
 .detailseite.seite-projekt-detail .hero > * {
     position: relative;
     z-index: 1;
-}
-
-
-/* Abstand zwischen Hero und Content */
-.detailseite.seite-projekt-detail .content {
-    margin-top: var(--gap);
 }
 
 
@@ -699,16 +726,25 @@ html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt
     .detailseite.seite-projekt-detail .hero__lead {
         max-width: 75ch;
     }
+}
 
+
+
+
+/* Abstand zwischen Hero und Content */
+.detailseite.seite-projekt-detail .content {
+    margin-top: var(--gap);
+}
+
+@media (min-width: 768px) { 
     .detailseite.seite-projekt-detail .content {
         margin-top: 6rem;
     }
 }
 
 
-
-
 /* --------------------------- Projekt-Detailseite: Content-Bereich --------------------------- */
+/*
 .detailseite.seite-projekt-detail {
     --projekt-row-spacing-mobile: 2rem;
     --projekt-row-spacing-tablet: 3rem;
@@ -721,7 +757,7 @@ html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt
     --projekt-padding-mobile: 1.25rem;
     --projekt-padding-desktop: 1.75rem;
 }
-
+*/
 
 
 /* --------- Wrapper / Abschnittsabstand --------- */
@@ -745,18 +781,17 @@ html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt
 
 /* --------- Karten-Layout --------- */
 .detailseite.seite-projekt-detail .projekt-detail-block {
-    position: relative;
+    /*position: relative;*/
     display: grid;
-    align-items: center;
-    gap: var(--projekt-gap-mobile);
-
     grid-template-areas:
         "heading"
         "text"
         "media";
 
-    margin: 0;
-    padding: var(--projekt-padding-mobile);
+    align-items: center;
+    gap: var(--projekt-gap-mobile);
+    /*margin: 0;*/
+    padding: 0;
 }
 
 .detailseite.seite-projekt-detail .projekt-detail-block > * {
@@ -766,12 +801,12 @@ html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt
 
 @media (min-width: 768px) {
     .detailseite.seite-projekt-detail .projekt-detail-block {
-        gap: var(--projekt-gap-tablet);
         grid-template-columns: 2fr 1fr;
         grid-template-rows: auto auto;
         grid-template-areas:
             "heading media"
             "text    media";
+        gap: var(--projekt-gap-tablet);
     }
 
     /* Alternierende Anordnung wie auf der Über-mich-Seite */
@@ -790,7 +825,7 @@ html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt
 @media (min-width: 1280px) {
     .detailseite.seite-projekt-detail .projekt-detail-block {
         gap: var(--projekt-gap-desktop);
-        padding: var(--projekt-padding-desktop);
+        /*padding: var(--projekt-padding-desktop);*/
     }
 }
 
@@ -808,19 +843,19 @@ html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt
 
 .detailseite.seite-projekt-detail .projekt-detail-block__text {
     grid-area: text;
-    margin: 0;
-    max-width: 68ch;
-    color: var(--text);
-    line-height: 1.65;
+    /*margin: 0;*/
+    max-width: 70ch;
+    /*color: var(--text);*/
+    /*line-height: 1.65;*/
 }
 
 .detailseite.seite-projekt-detail .projekt-detail-block__media {
     grid-area: media;
-    align-self: center;
+    /*align-self: center;*/
 }
 
 .detailseite.seite-projekt-detail .projekt-detail-block__media img {
-    display: block;
+    /*display: block;*/
     width: 100%;
     height: 100%;
     object-fit: cover;

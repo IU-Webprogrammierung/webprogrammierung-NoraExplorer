@@ -12,20 +12,47 @@
     margin-block: var(--space-m);
 }
 
-.einstellungen .intro,
-.einstellungen .preference {
+@media (min-width: 768px) {
+    .einstellungen {
+        margin-block: var(--space-xl);
+    }
+}
+
+@media (min-width: 1280px) {
+    .einstellungen {
+        margin-block: calc(var(--space-xl) * 3);
+    }
+}
+
+
+
+
+.einstellungen :is(.intro, .preference) {
     margin: 0;
 }
 
 
 /* --------------------------- Section als Card --------------------------- */
 .einstellungen .preference {
+    padding: var(--space-m);
     background: var(--clay-card-neutral);
+    border-radius: var(--radius-l);
     border: 1px solid var(--clay-card-neutral-border);
     box-shadow: var(--clay-card-neutral-shadow);
-    border-radius: var(--radius-l);
-    padding: var(--space-m);
 }
+
+@media (min-width: 768px) {
+    .einstellungen .preference {
+        padding: var(--space-l);
+    }
+}
+
+@media (min-width: 1280px) {
+    .einstellungen .preference {
+        padding: var(--space-xl);
+    }
+}
+
 
 .einstellungen .preference h2 {
     margin-bottom: var(--space-s);
@@ -42,10 +69,10 @@
 }
 
 .einstellungen legend {
+    margin-bottom: var(--space-m);
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-small);
     color: var(--muted);
-    margin-bottom: var(--space-m);
 }
 
 
@@ -53,8 +80,8 @@
 /* Fieldset als Grid (Mobile 1 Palte, ab 768px 3 Spalten */
 .einstellungen fieldset.tiles {
     display: grid;
-    gap: var(--gap-m);
     grid-template-columns: 1fr;
+    gap: var(--gap-m);
 }
 
 /* Legend im Grid über alle Spalten */
@@ -70,7 +97,7 @@
 }
 
 /* Radio-Inputs bleiben im DOM (für Screenreader/Keyboard), aber ansonsten "unsichtbar" */
-.einstellungen fieldset.tiles input[type="radio"] {
+.einstellungen :is(input[type="radio"], .switch input[type="checkbox"]) {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -89,12 +116,12 @@
 .einstellungen fieldset.tiles .tile {
     display: flex;
     align-items: center;
-    justify-content: start;
+    /*justify-content: start;*/
     gap: var(--gap-m);
     padding: var(--space-m);
 
-    border-radius: var(--radius-l);
     background: var(--clay-soft);
+    border-radius: var(--radius-l);
     border: 1px solid var(--clay-soft-border);
     box-shadow: var(--clay-soft-shadow);
 
@@ -112,11 +139,11 @@
 @media (min-width: 768px) {
     .einstellungen fieldset.tiles .tile {
         flex-direction: column;
-        align-items: center;
+        /*align-items: center;*/
         justify-content: center;
         text-align: center;
 
-        padding: var(--space-m);
+        /* padding: var(--space-m);*/
         min-height: 150px;
     }
 }
@@ -124,15 +151,14 @@
 
 
 /* --------------------------- Icon Badge --------------------------- */
-.einstellungen fieldset.tiles .tile__icon {
-    width: 44px;
-    height: 44px;
-
-    border-radius: var(--radius-m);
+.einstellungen .tile__icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
+    width: var(--touch-target);
+    height: var(--touch-target);
+    border-radius: var(--radius-m);
     color: var(--text);
     background: color-mix(in srgb, var(--clay-button-bg) 50%, var(--clay-soft) 50%);
     border: 1px solid color-mix(in srgb, var(--clay-button-border) 50%, var(--clay-soft-border) 50%);
@@ -150,7 +176,7 @@
 }
 
 /* SVG Größe (überschreibt class="size-6) */
-.einstellungen fieldset.tiles .tile__icon svg {
+.einstellungen .tile__icon svg {
     width: calc(var(--icon-button-size) * 0.5);
     height: calc(var(--icon-button-size) * 0.5);
     display: block;
@@ -158,7 +184,7 @@
 
 /* Breakpoint ab 768px (SVG größer) */
 @media (min-width: 768px) {
-    .einstellungen fieldset.tiles .tile__icon svg {
+    .einstellungen .tile__icon svg {
         width: calc(var(--icon-button-size) * 0.75);
         height: calc(var(--icon-button-size) * 0.75);
     }
@@ -167,34 +193,36 @@
 
 
 /* --------------------------- Tile Text --------------------------- */
-.einstellungen fieldset.tiles .tile__text {
+.einstellungen .tile__text {
     font-weight: var(--font-weight-semibold);
-    color: var(--text);
-    line-height: 1.2;
+    /*color: var(--text);*/
+    /*line-height: 1.2;*/
 }
 
 
 
 /* --------------------------- Hover --------------------------- */
-.einstellungen fieldset.tiles .tile:hover {
-    background: var(--clay-soft-hover);
-    border: 1px solid var(--clay-soft-border-hover);
-    box-shadow: var(--clay-soft-shadow-hover);
-}
+@media (hover: hover) and (pointer: fine) {
+    .einstellungen fieldset.tiles .tile:hover {
+        background: var(--clay-soft-hover);
+        border: 1px solid var(--clay-soft-border-hover);
+        box-shadow: var(--clay-soft-shadow-hover);
+    }
 
 
-.einstellungen fieldset.tiles .tile:hover .tile__icon {
-    background: var(--clay-button-bg-hover);
-    border: 1px solid var(--clay-button-border-hover);
-    box-shadow: var(--clay-button-shadow-hover);
-    transform: translateY(0px) scale(1.1);
+    .einstellungen fieldset.tiles .tile:hover .tile__icon {
+        background: var(--clay-button-bg-hover);
+        border: 1px solid var(--clay-button-border-hover);
+        box-shadow: var(--clay-button-shadow-hover);
+        transform: scale(1.1);
+    }
 }
 
 .einstellungen fieldset.tiles .tile:active .tile__icon {
     background: var(--clay-button-bg-active);
     border: 1px solid var(--clay-button-border-active);
     box-shadow: var(--clay-button-shadow-active);
-    transform: translateY(0px) scale(0.95);
+    transform: scale(0.95);
 }
 
 
@@ -206,15 +234,14 @@
     box-shadow: var(--clay-soft-shadow-active);
 
     outline: 2px solid color-mix(in srgb, var(--clay-accent) 70%, transparent);
-    outline-offset: 0;
+    /*outline-offset: 0;*/
 }
 
 .einstellungen fieldset.tiles input[type="radio"]:checked + .tile .tile__icon {
+    color: #ffffff;
     background: var(--clay-accent);
     border: 1px solid var(--clay-accent-border);
     box-shadow: var(--clay-accent-shadow);
-    
-    color: #ffffff;
 }
 
 .einstellungen fieldset.tiles input[type="radio"]:checked + .tile .tile__text {
@@ -226,7 +253,6 @@
         outline: var(--focus-outline) solid var(--focus-ring);
         outline-offset: var(--focus-offset);
 }
-
 
 
 /* --------------------------- Typografie-Preview (Textgröße) --------------------------- */
@@ -257,15 +283,17 @@
     display: inline-flex;
     align-items: center;
     gap: 0.85rem;
-
     padding: 0.95rem 1rem;
+
     background: var(--clay-soft);
+    border-radius: var(--radius-l);
     border: 1px solid var(--clay-soft-border);
     box-shadow: var(--clay-soft-shadow);
-    border-radius: var(--radius-l);
 
+    /*
     outline: 2px solid color-mix(in srgb, var(--clay-soft-active) 55%, transparent);
     outline-offset: 0;
+    */
 
     cursor: pointer;
     user-select: none;
@@ -274,10 +302,12 @@
 }
 
 /* Hover */
-.einstellungen .switch:hover {
-    background: var(--clay-soft-hover);
-    border: 1px solid var(--clay-soft-border-hover);
-    box-shadow: var(--clay-soft-shadow-hover);
+@media (hover: hover) and (pointer: fine) {
+    .einstellungen .switch:hover {
+        background: var(--clay-soft-hover);
+        border: 1px solid var(--clay-soft-border-hover);
+        box-shadow: var(--clay-soft-shadow-hover);
+    }
 }
 
 .einstellungen .switch:active {
@@ -302,17 +332,16 @@
 /* Slider */
 .einstellungen .switch .slider {
     position: relative;
+    flex: 0 0 auto;
     width: calc(var(--touch-target) * 2);
     height: var(--touch-target);
 
-    border-radius: var(--radius-pill);
-
     background: var(--muted);
-    border: var(--muted);
+    border-radius: var(--radius-pill);
+    border:1px solid var(--muted);
     box-shadow:  
         inset 0px 0px 8px 2px #000000a8;
 
-    flex: 0 0 auto;
     transition: var(--transition-ui);
 }
 
@@ -322,12 +351,11 @@
     position: absolute;
     top: 50%;
     left: 3px;
-    transform: translateY(-50%);
 
     width: calc(var(--touch-target) * 0.8);
     height: calc(var(--touch-target) * 0.8);
-    border-radius: 50%;
 
+    border-radius: 50%;
     background: #ffffff;
     border: 1px solid #7e7e7e;
     box-shadow: var(--clay-button-shadow-hover);
@@ -336,12 +364,13 @@
         inset -8px -8px 16px 0 #00000040, 
         inset 8px 8px 16px 0 #ffffff;
 
+    transform: translateY(-50%);
     transition: transform 0.2s ease;
 }
 
 .einstellungen .switch .switch-label {
     font-weight: var(--font-weight-semibold);
-    color: var(--text);
+    /*color: var(--text);*/
 }
 
 /* Checked */
@@ -362,25 +391,3 @@
     outline-offset: var(--focus-offset);
 }
 
-
-/* Breakpoint ab 768px */
-@media (min-width: 768px) {
-    .einstellungen {
-        margin-block: var(--space-xl);
-    }
-
-    .einstellungen .preference {
-        padding: var(--space-l);
-    }
-}
-
-/* Breakpoint ab 1280px */
-@media (min-width: 1280px) {
-    .einstellungen {
-        margin-block: calc(var(--space-xl) * 3);
-    }
-
-    .einstellungen .preference {
-        padding: var(--space-xl);
-    }
-}

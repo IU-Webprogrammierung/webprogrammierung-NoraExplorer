@@ -1,8 +1,8 @@
 /* --------------------------- 404-Seite --------------------------- */
 .not-found {
     row-gap: var(--gap-m);
-    padding-block: var(--space-m);
-    margin-block: var(--space-m);
+    padding-block: var(--space-xl);
+    /*margin-block: var(--space-m);*/
 }
 
 .not-found__text, 
@@ -16,22 +16,22 @@
 /* --------------------------- Bild-Card --------------------------- */
 .not-found__pic {
     position: relative;
-    justify-self: center;
+    /*justify-self: center;*/
     
     width: min(80vw, 900px);
     height: clamp(320px, 60vw, 520px);
 
-    border-radius: var(--radius-l);
     overflow: hidden;
-    box-shadow: var(--clay-card-shadow);
+    border-radius: var(--radius-l);
     border: 2px solid var(--accent-line);
+    box-shadow: var(--clay-card-shadow);
 }
 
 /* Bild innerhalb der Card (füllt den Container vollständig) */
 .not-found__pic > img {
     width: 100%;
     height: 100%;
-    display: block;
+    /*display: block;*/
     object-fit: cover;
     object-position: center;
 }
@@ -39,12 +39,12 @@
 
 /* --------------------------- Overlay: h1("404") liegt über dem Bild --------------------------- */
 .not-found__overlay {
-    position: absolute;
-    inset: 0;
-    
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
+    
+    position: absolute;
+    inset: 0;
     
     padding: clamp(1rem, 3vw, 2.5rem);
     margin: 3rem;

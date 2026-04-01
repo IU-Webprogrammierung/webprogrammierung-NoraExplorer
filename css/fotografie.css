@@ -9,22 +9,31 @@
 
 
 /* --------- Galerie-Liste --------- */
-.seite-fotografie .galerie {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--gap-m);
-
-    margin: 0;
-    padding: 0;
-
-    list-style: none;
-}
-
 /* Robustheit: verhindert Overflow in Grid-Zellen */
 .seite-fotografie .galerie > * {
     min-width: 0;
 }
 
+.seite-fotografie .galerie {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap-m);
+    /*margin: 0;*/
+    padding: 0;
+    list-style: none;
+}
+
+@media (min-width: 768px) {
+    .seite-fotografie .galerie {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1280px) {
+    .seite-fotografie .galerie {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
 
 
 
@@ -36,6 +45,18 @@
 
 .seite-fotografie .galerie__item--landscape .galerie__media {
     aspect-ratio: 4 / 3;
+}
+
+@media (min-width: 768px) {
+    .seite-fotografie .galerie__item--landscape {
+        grid-column: span 2;
+    }
+}
+
+@media (min-width: 1280px) {
+    .seite-fotografie .galerie__item--landscape {
+        grid-column: span 2;
+    }
 }
 
 
@@ -61,7 +82,7 @@
 }
 
 .seite-fotografie .galerie__media img {
-    display: block;
+    /*display: block;*/
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -152,6 +173,7 @@
    - auf kleinen Geräten keine Bewegungs-/Hover-Effekte
    - Bilder bleiben ruhig sichtbar
 */
+/*
 .seite-fotografie .galerie__media,
 .seite-fotografie .galerie__media img,
 .seite-fotografie .galerie__item:hover .galerie__media,
@@ -160,6 +182,7 @@
 .seite-fotografie .galerie__item:focus-within .galerie__media img {
     transform: none;
 }
+*/
 
 /* Interaktion erst ab Tablet/Desktop auf Geräten mit echtem Hover & feinem Pointer */
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
@@ -180,28 +203,7 @@
 
 
 
-/* --------------------------- Breakpoints --------------------------- */
-/* Breakpoint ab 768px */
-@media (min-width: 768px) {
-    .seite-fotografie .galerie {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
 
-    .seite-fotografie .galerie__item--landscape {
-        grid-column: span 2;
-    }
-}
-
-/* Breakpoint ab 1280px */
-@media (min-width: 1280px) {
-    .seite-fotografie .galerie {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .seite-fotografie .galerie__item--landscape {
-        grid-column: span 2;
-    }
-}
 
 
 

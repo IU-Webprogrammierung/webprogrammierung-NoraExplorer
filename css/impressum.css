@@ -3,7 +3,7 @@
 
 
 .impressum {
-    row-gap: 2rem;
+    row-gap: var(--gap-xl);
     padding-block: 2rem;
     margin-block: 1rem;
 }
@@ -25,7 +25,7 @@
 
 /* Abstand zwischen inhaltlichen Blöcken */
 .impressum > .impressum-content + .impressum-content {
-    margin-block-start: 1rem;
+    margin-block-start: var(--space-m);
 }
 
 
@@ -33,11 +33,11 @@
 /* Breakpoint ab 768px */
 @media (min-width: 768px) {
     .impressum {
-        margin-block: 2rem;
+        margin-block: var(--space-xl);
     }
 
     .impressum > .impressum-content + .impressum-content {
-        margin-block-start: 2rem;
+        margin-block-start: var(--space-xl);
     }
 }
 
@@ -48,7 +48,7 @@
     }
 
     .impressum > .impressum-content + .impressum-content {
-        margin-block-start: 4rem;
+        margin-block-start: var(--space-2xl);
     }
 }
 

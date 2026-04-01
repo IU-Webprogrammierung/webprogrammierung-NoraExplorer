@@ -1,12 +1,13 @@
-/* --------------------------- Header-Komponente --------------------------- */
+/* --------------------------- Header und Footer - Komponenten --------------------------- */
+
+/* --------------------------- Header --------------------------- */
 /* --------- Header: Grundcontainer --------- */
 .header {
     position: sticky;
     top: 0;
     z-index: 9999;
-
     height: var(--header-height);
-    overflow: visible;
+    /*overflow: visible;*/
 
     color: var(--text);
     background: var(--clay-header);
@@ -21,7 +22,6 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--space-xs);
-
     height: 100%;
     min-width: 0;
     padding-inline: var(--container-padding);
@@ -45,16 +45,60 @@
 }
 
 
+/* --------------------------- Header-Logo --------------------------- */
+/* --------- Header-Mitte: zentriertes Logo --------- */
+.header__center {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+}
+
+/* --------- Header-Logo: Linkgrößen --------- */
+.header__logo,
+.main-nav__item--home .icon-button {
+    width: calc(var(--touch-target) * 2);
+    height: var(--touch-target);
+    padding: 6px 10px;
+}
+
+/* --------- Header-Logo: Mobile-Interaktion --------- */
+.header__logo {
+    line-height: 0;
+}
+
+/*
+.header__logo:active {
+    transform: translateY(1px);
+}
+*/
+
+/* --------- Header-Logo: Bildvarianten --------- */
+.header__logo-img,
+.main-nav__logo-img {
+    display: none;
+    width: auto;
+    height: 32px;
+}
+
+/* --------- Header-Logo: Theme-Varianten --------- */
+html[data-theme="light"] .header__logo-img--lightmode,
+html[data-theme="light"] .main-nav__logo-img--lightmode,
+html[data-theme="dark"] .header__logo-img--darkmode,
+html[data-theme="dark"] .main-nav__logo-img--darkmode {
+    display: block;
+}
 
 
-/* --------------------------- Overlay-Komponente --------------------------- */
+/* --------------------------- Overlay --------------------------- */
 /* --------- Overlay: Hintergrund bei offenem Mobile-Menü --------- */
 .nav-overlay {
     position: fixed;
     inset: 0;
     z-index: 4900;
 
-    background: rgb(0 0 0 / 45%);
+    background: #00000073;
     opacity: 0;
     pointer-events: none;
 
@@ -62,9 +106,7 @@
 }
 
 
-
-
-/* --------------------------- Mobile-Navigation-Komponente --------------------------- */
+/* --------------------------- Mobile-Navigation --------------------------- */
 /* --------- Mobile-Navigation: Panel --------- */
 .mobile-nav {
     position: fixed;
@@ -111,7 +153,7 @@ body.nav-open .mobile-nav {
 /* --------- Mobile-Navigation: Kopfbereich --------- */
 .mobile-nav__header {
     display: flex;
-    flex-shrink: 0;
+    /*flex-shrink: 0;*/
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
@@ -125,7 +167,7 @@ body.nav-open .mobile-nav {
 
 /* --------- Mobile-Navigation: Titel --------- */
 .mobile-nav__title {
-    margin: 0;
+    /*margin: 0;*/
     padding: var(--space-m);
 
     color: var(--muted);
@@ -145,10 +187,12 @@ body.nav-open .mobile-nav {
     box-shadow: var(--clay-soft-shadow);
 }
 
-.mobile-nav__close:hover {
-    background: color-mix(in srgb, #ff0000 40%, var(--clay-soft) 60%);
-    border-color: color-mix(in srgb, #ff0000 90%, var(--clay-soft-border) 10%);
-    box-shadow: var(--clay-soft-shadow);
+@media (hover: hover) and (pointer: fine) {
+    .mobile-nav__close:hover {
+        background: color-mix(in srgb, #ff0000 40%, var(--clay-soft) 60%);
+        border-color: color-mix(in srgb, #ff0000 90%, var(--clay-soft-border) 10%);
+        /*box-shadow: var(--clay-soft-shadow);*/
+    }
 }
 
 
@@ -156,7 +200,7 @@ body.nav-open .mobile-nav {
 .mobile-nav__list {
     display: grid;
     gap: var(--gap-xs);
-    margin: 0;
+    /*margin: 0;*/
     padding: 0;
     list-style: none;
 }
@@ -183,64 +227,8 @@ body.nav-open .mobile-nav {
 
 /* --------- Mobile-Navigation: Aktive Seite --------- */
 .mobile-nav__list .nav-link[aria-current="page"]::after {
-    left: var(--space-s);
-    right: var(--space-s);
+    inset-inline: var(--space-s);
 }
-
-
-
-
-/* --------------------------- Header-Logo-Komponente --------------------------- */
-/* --------- Header-Mitte: zentriertes Logo --------- */
-.header__center {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    min-width: 0;
-}
-
-
-/* --------- Header-Logo: Bildvarianten --------- */
-.header__logo-img,
-.main-nav__logo-img {
-    display: none;
-    width: auto;
-    height: 32px;
-}
-
-
-/* --------- Header-Logo: Linkgrößen --------- */
-.header__logo,
-.main-nav__item--home .icon-button {
-    width: calc(var(--touch-target) * 2);
-    height: var(--touch-target);
-    padding: 6px 10px;
-}
-
-
-/* --------- Header-Logo: Mobile-Interaktion --------- */
-.header__logo {
-    line-height: 0;
-}
-
-.header__logo:active {
-    transform: translateY(1px);
-}
-
-
-/* --------- Header-Logo: Theme-Varianten --------- */
-html[data-theme="light"] .header__logo-img--lightmode,
-html[data-theme="light"] .main-nav__logo-img--lightmode {
-    display: block;
-}
-
-html[data-theme="dark"] .header__logo-img--darkmode,
-html[data-theme="dark"] .main-nav__logo-img--darkmode {
-    display: block;
-}
-
-
 
 
 /* --------------------------- Mobile-Layout --------------------------- */
@@ -251,10 +239,7 @@ html[data-theme="dark"] .main-nav__logo-img--darkmode {
 }
 
 
-
-
-
-/* --------------------------- Desktop-Navigation-Komponente --------------------------- */
+/* --------------------------- Desktop-Navigation --------------------------- */
 @media (min-width: 1024px) {
     .header__toggle,
     .nav-overlay,
@@ -275,10 +260,8 @@ html[data-theme="dark"] .main-nav__logo-img--darkmode {
         align-items: center;
         justify-content: center;
         gap: 3rem;
-
-        margin: 0;
+        /*margin: 0;*/
         padding: 0;
-
         list-style: none;
     }
 
@@ -293,25 +276,21 @@ html[data-theme="dark"] .main-nav__logo-img--darkmode {
         position: absolute;
         top: 50%;
         left: 0;
-
         width: 1px;
         height: 22px;
-
         background: var(--border);
         transform: translateY(-50%);
     }
 }
 
 
-
-
-
 /* --------------------------- Interaktionszustände --------------------------- */
+/* habe ich schon in global.css allgemein
 .mobile-nav__close:focus-visible {
     outline: var(--focus-outline) solid var(--focus-ring);
     outline-offset: var(--focus-offset);
 }
-
+*/
 
 /* --------- Bewegungen reduzieren --------- */
 @media (prefers-reduced-motion: reduce) {
@@ -321,7 +300,62 @@ html[data-theme="dark"] .main-nav__logo-img--darkmode {
         transition: none;
     }
 
+    /*
     .header__logo:active {
         transform: none;
     }
+    */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --------------------------- Footer-Komponente --------------------------- */
+
+/* --------- Footer: Grundcontainer --------- */
+.footer {
+    min-height: var(--footer-height);
+
+    color: var(--text);
+    background: var(--clay-footer);
+    border-top: 1px solid var(--clay-footer-border);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    box-shadow: var(--clay-footer-shadow);
+}
+
+/* --------- Footer: Inneres Layout --------- */
+.footer__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: var(--footer-height);
+    padding-inline: var(--container-padding);
+}
+
+/* --------- Footer-Navigation: Liste --------- */
+.footer-nav__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1rem, 4vw, 4rem);
+    /*margin: 0;*/
+    padding: 0;
+    list-style: none;
+}
+
+/* --------- Footer-Navigation: Link-Anpassungen --------- */
+.footer-nav__list .nav-link {
+    justify-content: center;
 }

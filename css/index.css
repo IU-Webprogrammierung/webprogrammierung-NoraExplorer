@@ -2,7 +2,7 @@
 
 /* Footer-Abstand */
 #site-footer {
-    margin-top: var(--space-xxl);
+    margin-top: var(--space-2xl);
 }
 
 /* --------- Startseite: Grundlayout --------- */
@@ -40,12 +40,11 @@
         "title";
 
     margin: calc(-1 * var(--header-height)) calc(var(--container-padding) * -1) 0;
-    isolation: isolate;
-    overflow: clip;
-
     min-height: calc(100svh - var(--header-height));
     padding: 0;
-    gap: 0 !important;
+    gap: 0;
+    isolation: isolate;
+    overflow: clip;
 }
 
 /*
@@ -56,23 +55,23 @@
 */
 
 .startseite .hero__media {
-    grid-column: 1 / -1;
+    /*grid-column: 1 / -1;*/
     grid-row: 1;
     align-self: end;
 
     width: 100%;
     height: clamp(18rem, 65vh, 65rem);
-    margin: 0;
-    padding: 0;
+    /*margin: 0;*/
+    /*padding: 0;*/
 
     background: var(--clay-soft);
-    border: 0;
+    /*border: 0;*/
     border-radius: 0;
-    box-shadow: none;
+    /*box-shadow: none;*/
 }
 
 .startseite .hero__media img {
-    display: block;
+    /*display: block;*/
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -82,12 +81,14 @@
 
 
 .startseite .hero__title {
-    grid-column: 1 / -1;
+    /*grid-column: 1 / -1;*/
     grid-row: 2;
 
     justify-self: center;
-    margin: 0;
-    padding: 0 var(--space-xl);
+    padding-inline: var(--space-xl);
+    /*margin: 0;*/
+    padding: 0;
+    
 
     text-align: center;
     font-size: calc(var(--font-size-h1) * 2.4);
@@ -95,13 +96,13 @@
 
 .heading-overlay {
     position: relative;
-    margin: 0;
+    /*margin: 0;*/
     padding: var(--space-m);
     height: 100%;
     background: var(--section-bg-soft);
     border-top: 1px solid #68535a15;
     border-radius: var(--radius-overlay-card) var(--radius-overlay-card) 0 0;
-    box-shadow: none;
+    /*box-shadow: none;*/
 }
 
 html[data-theme="light"] .heading-overlay {
@@ -129,23 +130,24 @@ html[data-theme="dark"] .heading-overlay {
 
 
 
-/* --------------------------- Teaser: Basis --------------------------- */
-.startseite .teaser {
-    position: relative;
-    display: grid;
-    gap: var(--space-m);
 
+/* --------------------------- Teaser Basis: Mobile --------------------------- */
+.startseite .teaser {
+    /*position: relative;*/
+    display: grid;
     grid-template-areas:
         "heading"
         "text"
         "media"
         "link";
 
+    gap: var(--space-m);
     align-items: center;
-
+    padding-block: var(--space-m);
+    /*
     margin: 0;
     padding: var(--space-m) 0;
-
+    */
     transition: var(--transition-ui);
 }
 
@@ -154,36 +156,18 @@ html[data-theme="dark"] .heading-overlay {
     margin: 0;
 }
 
-@media (min-width: 768px) {
-    .startseite .teaser {
-        gap: var(--space-m);
-        padding: var(--space-l);
-    }
-}
 
-@media (min-width: 1280px) {
-    .startseite .teaser {
-        gap: 1.75rem;
-        padding: 1.75rem;
-    }
-}
-
-
-
-
-/* --------- Inhalte: Zuordnung --------- */
 .startseite .teaser__heading {
     grid-area: heading;
     position: relative;
     justify-self: center;
     align-self: end;
-
     padding-bottom: var(--space-s);
 
     font-size: var(--font-size-h2);
     font-weight: var(--font-weight-semibold);
     color: var(--muted);
-    text-align: start;
+    /*text-align: start;*/
     overflow-wrap: anywhere;
 }
 
@@ -194,6 +178,7 @@ html[data-theme="dark"] .heading-overlay {
     bottom: 0;
     width: min(32rem, 100%);
     height: 2px;
+
     background: var(--border);
     box-shadow: 0 6px 10px color-mix(in srgb, var(--text) 10%, transparent);
 }
@@ -201,7 +186,6 @@ html[data-theme="dark"] .heading-overlay {
 .startseite .teaser__text {
     grid-area: text;
     justify-self: center;
-
     max-width: var(--measure-text);
 
     font-size: calc(var(--font-size-hero-lead) * 1.4);
@@ -226,7 +210,6 @@ html[data-theme="dark"] .heading-overlay {
     width: 100%;
     max-width: 22rem;
     /*aspect-ratio: 4 / 3;*/
-
     overflow: hidden;
     border-radius: var(--radius-l);
 
@@ -236,7 +219,7 @@ html[data-theme="dark"] .heading-overlay {
 }
 
 .startseite .teaser__media img {
-    display: block;
+    /*display: block;*/
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -246,6 +229,32 @@ html[data-theme="dark"] .heading-overlay {
 
     transition: var(--transition-media);
 }
+
+
+/* ---- Teaser Basis: Desktop ---- */
+@media (min-width: 768px) {
+    .startseite .teaser {
+        gap: var(--space-m);
+        padding: var(--space-l);
+    }
+
+    .startseite .teaser__heading,
+    .startseite .teaser__text,
+    .startseite .teaser__link,
+    .startseite .teaser__media {
+        justify-self: start;
+        text-align: start;
+    }
+
+    @media (min-width: 1280px) {
+    .startseite .teaser {
+        gap: 1.75rem;
+        padding: 1.75rem;
+    }
+}
+}
+
+
 
 
 
@@ -262,10 +271,6 @@ html[data-theme="dark"] .heading-overlay {
         "link";
 }
 
-.startseite .teaser--ueber .teaser__text {
-    max-width: 43ch;
-}
-
 .startseite .teaser--prozess {
     grid-template-areas:
         "heading"
@@ -274,35 +279,13 @@ html[data-theme="dark"] .heading-overlay {
         "link";
 }
 
-.startseite .teaser--prozess .list-prozess-preview {
-    grid-area: preview;
+.startseite .teaser--ueber .teaser__text {
+    max-width: 43ch;
 }
-
-
 
 
 /* --------------------------- Teaser Varianten: Desktop --------------------------- */
 @media (min-width: 768px) {
-    .startseite .teaser__heading {
-        justify-self: start;
-        text-align: start;
-    }
-
-    .startseite .teaser__text {
-        justify-self: start;
-        text-align: start;
-    }
-
-    .startseite .teaser__link {
-        justify-self: start;
-    }
-
-    .startseite .teaser__media {
-        justify-self: start;
-    }
-
-
-
     .startseite .teaser--ueber,
     .startseite .teaser--projekte {
         grid-template-columns: 2fr 1fr;
@@ -313,12 +296,6 @@ html[data-theme="dark"] .heading-overlay {
             "text    media"
             "link    media"
             ".       media";
-    }
-
-    .startseite .teaser--ueber .teaser__media,
-    .startseite .teaser--fotografie .teaser__media,
-    .startseite .teaser--projekte .teaser__media {
-        justify-self: end;
     }
 
     /* alternierende Anmutung wie auf der Über-Seite */
@@ -333,10 +310,6 @@ html[data-theme="dark"] .heading-overlay {
             "media  .";
     }
 
-    .startseite .teaser--fotografie .teaser__media {
-        justify-self: start;
-    }
-
     .startseite .teaser--prozess {
         grid-template-columns: minmax(0, 1fr);
         grid-template-areas:
@@ -345,8 +318,19 @@ html[data-theme="dark"] .heading-overlay {
             "preview"
             "link";
     }
-}
 
+
+    .startseite .teaser--ueber .teaser__media,
+    .startseite .teaser--fotografie .teaser__media,
+    .startseite .teaser--projekte .teaser__media {
+        justify-self: end;
+    }
+
+
+    .startseite .teaser--fotografie .teaser__media {
+        justify-self: start;
+    }
+}
 
 
 
@@ -356,9 +340,11 @@ html[data-theme="dark"] .heading-overlay {
     counter-reset: schritt;
 }
 
+/*
 .startseite .teaser--prozess .accordion--numbered {
     display: block;
 }
+*/
 
 .startseite .teaser--prozess .accordion--numbered .accordion__summary {
     display: flex;
@@ -374,13 +360,19 @@ html[data-theme="dark"] .heading-overlay {
     flex: 0 0 2.75rem;
     width: 2.75rem;
 
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     font-variant-numeric: tabular-nums;
     font-size: calc(var(--font-size-base) * 1.6);
     line-height: 1;
-    color: currentColor;
+    /*color: currentColor;*/
 }
 
+.startseite .teaser--prozess .accordion--numbered .accordion__content {
+    margin: 0.75rem 0 1rem;
+    /*padding-inline: 0;*/
+}
+
+/*
 .startseite .teaser--prozess .accordion--numbered .accordion__summary::after {
     margin-left: auto;
 }
@@ -390,10 +382,6 @@ html[data-theme="dark"] .heading-overlay {
     cursor: pointer;
 }
 
-.startseite .teaser--prozess .accordion--numbered .accordion__content {
-    margin: 0.75rem 0 1rem;
-    padding-inline: 0;
-}
 
 @media (min-width: 768px) {
     .startseite .teaser--prozess .accordion--numbered .accordion__content {
@@ -401,6 +389,8 @@ html[data-theme="dark"] .heading-overlay {
         padding-right: 2rem;
     }
 }
+*/
+
 
 
 
