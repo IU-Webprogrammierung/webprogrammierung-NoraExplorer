@@ -1,7 +1,8 @@
-/* --------------------------- Detailseite "Über mich" --------------------------- */
+/* ===================================== Detailseite "Über mich" ===================================== */
 
 
-/* Anchor-Offset für Sprungmarke "Interessen" */
+
+/* --------------------------- Abschnitt --------------------------- */
 #interessen-heading {
     scroll-margin-top: calc(var(--header-height) + 4rem);
 }
@@ -9,86 +10,83 @@
 
 
 
-/* --------- Seiten-Kontext --------- */
-.detailseite.seite-ueber {
-    --row-space-mobile: var(--space-xl);
-    --row-space-tablet: 3rem;
-    --row-space-desktop: var(--space-2xl);
-    --item-gap-mobile: var(--space-m);
-    --item-gap-tablet: var(--space-l);
-    --item-gap-desktop: var(--space-xl);
 
-    /*
-    --interesse-padding-desktop: 1.75rem;
-    --interesse-reveal-distance: 2rem;
-    --interesse-inner-reveal-distance: 1rem;
-    */
-}
-
-
-/* --------------------------- Komponente "Interesse" --------------------------- */
-
-/* --------- Wrapper / Abschnittsabstand --------- */
+/* --------------------------- Interesse-Row --------------------------- */
 .detailseite.seite-ueber .interesse-row {
-    padding-block: var(--row-space-mobile);
+    padding-block: var(--space-xl);
 }
 
 @media (min-width: 768px) {
     .detailseite.seite-ueber .interesse-row {
-        padding-block: var(--row-space-tablet);
+        padding-block: calc(var(--space-xl) * 1.5);
     }
 }
 
 @media (min-width: 1280px) {
     .detailseite.seite-ueber .interesse-row {
-        padding-block: var(--row-space-desktop);
+        padding-block: calc(var(--space-xl) * 2);
     }
 }
 
 
 
-/* --------- Karten-Layout --------- */
-/* Robustheit: direkte Kinder dürfen im Grid nicht überlaufen */
-.detailseite.seite-ueber .interesse > * {
-    min-width: 0;
-    margin: 0;
-}
 
+
+/* --------------------------- Interesse --------------------------- */
 .detailseite.seite-ueber .interesse {
-    /*position: relative;*/
     display: grid;
+    align-items: center;
+    gap: var(--gap-m);
     grid-template-areas:
         "heading"
         "text"
         "media";
 
-    align-items: center;
-    gap: var(--item-gap-mobile);
     transition: var(--transition-ui);
 }
 
+.detailseite.seite-ueber .interesse > * {
+    min-width: 0;
+    margin: 0;
+}
+
+/* Reveal nur ab Tablet */
 @media (min-width: 768px) {
     .detailseite.seite-ueber .interesse {
-        gap: var(--item-gap-tablet);
+        gap: var(--gap-l);
         grid-template-columns: 2fr 1fr;
-        /*grid-template-rows: auto auto;*/
         grid-template-areas:
             "heading media"
             "text    media";
     }
 
-    /* Alternierende Anordnung */
     .detailseite.seite-ueber .interesse-row:nth-of-type(even) .interesse {
         grid-template-columns: 1fr 2fr;
         grid-template-areas:
             "media heading"
             "media text";
     }
+
+    .detailseite.seite-ueber .interesse.reveal {
+        opacity: 0;
+        transform: translateY(2rem);
+        will-change: opacity, transform;
+        transition: var(--transition-surface);
+    }
+
+    .detailseite.seite-ueber .interesse.reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .detailseite.seite-ueber .interesse.is-active {
+        transform: translateY(-2px);
+    }
 }
 
 @media (min-width: 1280px) {
     .detailseite.seite-ueber .interesse {
-        gap: var(--interesse-gap-desktop);
+        gap: var(--gap-xl);
         padding: 1.75rem;
     }
 }
@@ -96,46 +94,87 @@
 
 
 
-/* --------- Inhaltselemente / Grid-Zuordnung --------- */
+
+/* --------------------------- Heading --------------------------- */
 .detailseite.seite-ueber .interesse__heading {
     grid-area: heading;
     transition: var(--transition-text);
 }
 
+.detailseite.seite-ueber .interesse.is-active .interesse__heading {
+    color: var(--accent-text);
+}
+
+@media (min-width: 768px) {
+    .detailseite.seite-ueber .interesse.reveal .interesse__heading {
+        opacity: 0;
+        transform: translateY(1rem);
+        transition:
+            opacity 700ms ease 70ms,
+            transform 700ms ease 70ms;
+    }
+
+    .detailseite.seite-ueber .interesse.reveal.is-visible .interesse__heading {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .detailseite.seite-ueber .interesse.is-active .interesse__heading {
+        transform: translateY(-1px);
+    }
+}
+
+
+
+
+
+/* --------------------------- Text --------------------------- */
 .detailseite.seite-ueber .interesse__text {
     grid-area: text;
     max-width: var(--measure-text);
-    /*color: var(--text);*/
 
     transition:
         opacity 280ms ease,
         transform 280ms ease;
 }
 
+@media (min-width: 768px) {
+    .detailseite.seite-ueber .interesse.reveal .interesse__text {
+        opacity: 0;
+        transform: translateY(1rem);
+        transition:
+            opacity 700ms ease 140ms,
+            transform 700ms ease 140ms;
+    }
+
+    .detailseite.seite-ueber .interesse.reveal.is-visible .interesse__text {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+/* --------------------------- Media --------------------------- */
 .detailseite.seite-ueber .interesse__media {
     grid-area: media;
     align-self: center;
-
-    /*transition: var(--transition-reveal);*/
-}
-
-.detailseite.seite-ueber .interesse__media img {
-    /*display: block;*/
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-
-    /* Mobile: Bild ruhig halten */
-    transform: none;
-    /*filter: saturate(1) contrast(1);*/
-
-    transition: var(--transition-media);
 }
 
 @media (min-width: 768px) {
-    .detailseite.seite-ueber .interesse__media img {
-        transform: scale(1.04);
-        filter: saturate(0.98) contrast(1.01);
+    .detailseite.seite-ueber .interesse.reveal .interesse__media {
+        opacity: 0;
+        transform: translateY(1rem);
+        transition:
+            opacity 700ms ease 210ms,
+            transform 700ms ease 210ms;
+    }
+
+    .detailseite.seite-ueber .interesse.reveal.is-visible .interesse__media {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .detailseite.seite-ueber .interesse-row:nth-of-type(even) .interesse__media {
@@ -145,93 +184,18 @@
 
 
 
-
-
-
-/* --------------------------- Reveal Animation --------------------------- */
-/* Mobile: standardmäßig kein Reveal */
-.detailseite.seite-ueber .interesse,
-.detailseite.seite-ueber .interesse.reveal,
-.detailseite.seite-ueber .interesse.reveal .interesse__heading,
-.detailseite.seite-ueber .interesse.reveal .interesse__text,
-.detailseite.seite-ueber .interesse.reveal .interesse__media {
-    opacity: 1;
-    transform: none;
+/* --------------------------- Media-Image --------------------------- */
+.detailseite.seite-ueber .interesse__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-media);
 }
 
 @media (min-width: 768px) {
-    .detailseite.seite-ueber .interesse.reveal {
-        opacity: 0;
-        transform: translateY(2rem);
-        transition: var(--transition-surface);
-        will-change: opacity, transform;
-    }
-
-    .detailseite.seite-ueber .interesse.reveal :is(.interesse__heading, .interesse__text, .interesse__media) {
-        opacity: 0;
-        transform: translateY(1rem);
-        transition:
-            opacity 700ms ease,
-            transform 700ms ease;
-    }
-
-    .detailseite.seite-ueber .interesse.reveal .interesse__heading {
-        transition-delay: 70ms;
-    }
-
-    .detailseite.seite-ueber .interesse.reveal .interesse__text {
-        transition-delay: 140ms;
-    }
-
-    .detailseite.seite-ueber .interesse.reveal .interesse__media {
-        transition-delay: 210ms;
-    }
-
-    /* Zielzustand nach dem Reveal */
-    .detailseite.seite-ueber .interesse.reveal.is-visible,
-    .detailseite.seite-ueber .interesse.reveal.is-visible :is(.interesse__heading, .interesse__text, .interesse__media) {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    /*
-    .detailseite.seite-ueber .interesse.reveal.is-visible .interesse__media img {
-        transform: scale(1);
-    }
-    */
-}
-
-
-
-
-
-
-/* --------------------------- Aktiver Zustand --------------------------- */
-/*
-.detailseite.seite-ueber .interesse.is-active {
-    transform: none;
-}
-*/
-
-.detailseite.seite-ueber .interesse.is-active .interesse__heading {
-    color: var(--accent-text);
-    /*transform: none;*/
-}
-
-/*
-.detailseite.seite-ueber .interesse.is-active .interesse__media img {
-    transform: none;
-    filter: saturate(1) contrast(1);
-}
-*/
-
-@media (min-width: 768px) {
-    .detailseite.seite-ueber .interesse.is-active {
-        transform: translateY(-2px);
-    }
-
-    .detailseite.seite-ueber .interesse.is-active .interesse__heading {
-        transform: translateY(-1px);
+    .detailseite.seite-ueber .interesse__media img {
+        transform: scale(1.04);
+        filter: saturate(0.98) contrast(1.01);
     }
 
     .detailseite.seite-ueber .interesse.is-active .interesse__media img {
@@ -239,8 +203,3 @@
         filter: saturate(1.04) contrast(1.02);
     }
 }
-
-
-
-
-

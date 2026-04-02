@@ -1,70 +1,48 @@
-/* --------------------------- Basislayout & gemeinsame Styles für Detailseiten --------------------------- */
+/* ===================================== Detailseite ===================================== */
 
-/* --------- Detailseite: Grundlayout --------- */
+
+/* --------------------------- Layout --------------------------- */
 .detailseite {
     row-gap: var(--gap-xl);
-    padding-top: 0;
-    padding-bottom: var(--space-xl);
+    padding-block: 0 var(--space-xl);
 }
 
 
-/* --------------------------- Content-Komponente --------------------------- */
-/* --------- Content: Grundlayout --------- */
+/* --------------------------- Content --------------------------- */
 .detailseite .content {
     gap: var(--gap-m);
-    margin-bottom: var(--space-2xl);
-    margin-top: var(--space-2xl);
+    margin-block: var(--space-2xl);
 }
 
-
-/* --------- Content: Robustheit für direkte Kinder --------- */
 .detailseite .content > * {
     min-width: 0;
 }
 
-
-
-
-/* --------- Content: Abschnittsüberschrift --------- */
 .detailseite .content__heading {
     margin-bottom: var(--space-xl);
     padding: 1rem 1.25rem;
-
+    border-bottom: 1px solid var(--border);
     font-size: var(--font-size-h2);
     font-weight: var(--font-weight-semibold);
-    /*color: var(--text);*/
-    border-bottom: 1px solid var(--border);
 }
 
-
-/* --------- Content: Breakpoint ab 768px --------- */
 @media (min-width: 768px) {
     .detailseite .content {
         gap: var(--gap-l);
         margin-bottom: calc(var(--space-2xl) * 2);
     }
-
-    /*
-    .detailseite .content__heading {
-        margin-bottom: 2.5rem;
-        padding: 1rem 1.25rem;
-    }
-    */
 }
 
-
-/* --------- Content: Breakpoint ab 1280px --------- */
 @media (min-width: 1280px) {
     .detailseite .content {
         gap: var(--gap-xl);
-        /*margin-top: calc(var(--space-2xl) * 2);*/
         margin-bottom: calc(var(--space-2xl) * 3);
     }
 }
 
 
+
 /* --------------------------- Snap-Scrolling --------------------------- */
-/* --------- Snap-Scrolling ab 1024px --------- */
 @media (min-width: 1024px) {
     html.snap-active {
         scroll-snap-type: y mandatory;

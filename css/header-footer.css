@@ -1,34 +1,27 @@
-/* --------------------------- Header und Footer - Komponenten --------------------------- */
+/* ===================================== Header-Komponente ===================================== */
 
-/* --------------------------- Header --------------------------- */
-/* --------- Header: Grundcontainer --------- */
+/* --------------------------- Header-Container --------------------------- */
 .header {
     position: sticky;
     top: 0;
     z-index: 9999;
     height: var(--header-height);
-    /*overflow: visible;*/
-
     color: var(--text);
     background: var(--clay-header);
     border-radius: 0 0 var(--radius-xl) var(--radius-xl);
     box-shadow: var(--clay-header-shadow);
 }
 
-
-/* --------- Header: Inneres Layout --------- */
 .header__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: var(--space-xs);
-    height: 100%;
     min-width: 0;
+    height: 100%;
     padding-inline: var(--container-padding);
 }
 
-
-/* --------- Header: Actions --------- */
 .header__actions {
     display: flex;
     flex-shrink: 0;
@@ -36,8 +29,6 @@
     gap: var(--space-xs);
 }
 
-
-/* --------- Header: Steuerungselemente --------- */
 .header__toggle,
 .header__settings {
     flex-shrink: 0;
@@ -45,8 +36,7 @@
 }
 
 
-/* --------------------------- Header-Logo --------------------------- */
-/* --------- Header-Mitte: zentriertes Logo --------- */
+/* --------------------------- Logo-Bereich --------------------------- */
 .header__center {
     display: flex;
     flex: 1;
@@ -55,7 +45,7 @@
     min-width: 0;
 }
 
-/* --------- Header-Logo: Linkgrößen --------- */
+/* Beide Varianten sind vorhanden, sichtbar ist jeweils nur das passende Theme-Logo */
 .header__logo,
 .main-nav__item--home .icon-button {
     width: calc(var(--touch-target) * 2);
@@ -63,18 +53,10 @@
     padding: 6px 10px;
 }
 
-/* --------- Header-Logo: Mobile-Interaktion --------- */
 .header__logo {
     line-height: 0;
 }
 
-/*
-.header__logo:active {
-    transform: translateY(1px);
-}
-*/
-
-/* --------- Header-Logo: Bildvarianten --------- */
 .header__logo-img,
 .main-nav__logo-img {
     display: none;
@@ -82,7 +64,15 @@
     height: 32px;
 }
 
-/* --------- Header-Logo: Theme-Varianten --------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .header__logo {
+        transition: none;
+    }
+}
+
+/* --------------------------- Theme --------------------------- */
+/* Schaltet je nach Theme das passende Logo frei */
 html[data-theme="light"] .header__logo-img--lightmode,
 html[data-theme="light"] .main-nav__logo-img--lightmode,
 html[data-theme="dark"] .header__logo-img--darkmode,
@@ -91,23 +81,41 @@ html[data-theme="dark"] .main-nav__logo-img--darkmode {
 }
 
 
-/* --------------------------- Overlay --------------------------- */
-/* --------- Overlay: Hintergrund bei offenem Mobile-Menü --------- */
+
+
+
+
+
+/* --------------------------- Overlay-Komponente --------------------------- */
 .nav-overlay {
     position: fixed;
     inset: 0;
     z-index: 4900;
-
     background: #00000073;
     opacity: 0;
     pointer-events: none;
-
     transition: opacity var(--duration-medium) ease;
 }
 
+/* Overlay wird nur im offenen Zustand klickbar */
+body.nav-open .nav-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav-overlay {
+        transition: none;
+    }
+}
+
+
+
+
 
 /* --------------------------- Mobile-Navigation --------------------------- */
-/* --------- Mobile-Navigation: Panel --------- */
+
+/* --------- Panel --------- */
 .mobile-nav {
     position: fixed;
     inset: 0 auto 0 0;
@@ -134,116 +142,117 @@ html[data-theme="dark"] .main-nav__logo-img--darkmode {
     will-change: transform;
 }
 
-
-/* --------- Mobile-Navigation: Offener Zustand --------- */
+/* Sichtbarer Zustand des Mobile-Menüs */
 body.nav-open {
     overflow: hidden;
 }
 
-body.nav-open .nav-overlay {
-    opacity: 1;
-    pointer-events: auto;
-}
-
+/* Schiebt das Panel im offenen Zustand ins Bild */
 body.nav-open .mobile-nav {
     transform: translateX(0);
 }
 
 
-/* --------- Mobile-Navigation: Kopfbereich --------- */
+/* --------- Kopfbereich --------- */
 .mobile-nav__header {
     display: flex;
-    /*flex-shrink: 0;*/
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-
     margin-bottom: var(--space-m);
     padding-bottom: var(--space-s);
-
     border-bottom: 1px solid var(--border);
 }
 
-
-/* --------- Mobile-Navigation: Titel --------- */
 .mobile-nav__title {
-    /*margin: 0;*/
     padding: var(--space-m);
-
     color: var(--muted);
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-regular);
 }
 
-
-/* --------- Mobile-Navigation: Close-Button --------- */
+/* Schließen-Button bewusst visuell akzentuiert */
 .mobile-nav__close {
     width: var(--touch-target);
     height: var(--touch-target);
-
     color: var(--text);
     background: color-mix(in srgb, #ff0000 20%, var(--clay-soft) 80%);
     border-color: color-mix(in srgb, #ff0000 70%, var(--clay-soft-border) 30%);
     box-shadow: var(--clay-soft-shadow);
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .mobile-nav__close:hover {
-        background: color-mix(in srgb, #ff0000 40%, var(--clay-soft) 60%);
-        border-color: color-mix(in srgb, #ff0000 90%, var(--clay-soft-border) 10%);
-        /*box-shadow: var(--clay-soft-shadow);*/
-    }
-}
 
-
-/* --------- Mobile-Navigation: Listen --------- */
+/* --------- Listen & Links --------- */
 .mobile-nav__list {
     display: grid;
     gap: var(--gap-xs);
-    /*margin: 0;*/
     padding: 0;
     list-style: none;
 }
 
-
-/* --------- Mobile-Navigation: Navigationen --------- */
 .mobile-nav__primary {
     margin-top: 0.5rem;
 }
 
+
+/* Sekundäre Links werden an den unteren Rand gedrückt */
 .mobile-nav__secondary {
     margin-top: auto;
     padding-top: var(--space-m);
     border-top: 1px solid var(--border);
 }
 
-
-/* --------- Mobile-Navigation: Link-Anpassungen --------- */
 .mobile-nav__list .nav-link {
     display: flex;
     padding: 1rem;
 }
 
-
-/* --------- Mobile-Navigation: Aktive Seite --------- */
 .mobile-nav__list .nav-link[aria-current="page"]::after {
     inset-inline: var(--space-s);
 }
 
 
-/* --------------------------- Mobile-Layout --------------------------- */
+/* --- Hover --- */
+@media (hover: hover) and (pointer: fine) {
+    .mobile-nav__close:hover {
+        background: color-mix(in srgb, #ff0000 40%, var(--clay-soft) 60%);
+        border-color: color-mix(in srgb, #ff0000 90%, var(--clay-soft-border) 10%);
+    }
+}
+
+
+/* --- Breakpoints --- */
 @media (max-width: 1023px) {
     .main-nav {
         display: none;
     }
 }
 
+@media (min-width: 1024px) {
+    .mobile-nav {
+        display: none;
+    }
+}
+
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+    .mobile-nav {
+        transition: none;
+    }
+}
+
+
+
+
+
+
 
 /* --------------------------- Desktop-Navigation --------------------------- */
+/* --- Breakpoint --- */
 @media (min-width: 1024px) {
     .header__toggle,
     .nav-overlay,
-    .mobile-nav,
     .header__center {
         display: none;
     }
@@ -260,17 +269,18 @@ body.nav-open .mobile-nav {
         align-items: center;
         justify-content: center;
         gap: 3rem;
-        /*margin: 0;*/
         padding: 0;
         list-style: none;
     }
 
-    /* --------- Desktop-Navigation: Divider nach Home --------- */
+
+    /* Abstand */
     .main-nav__item--home + .main-nav__item {
         position: relative;
         padding-left: 3rem;
     }
 
+    /* Trenner */
     .main-nav__item--home + .main-nav__item::before {
         content: "";
         position: absolute;
@@ -284,28 +294,6 @@ body.nav-open .mobile-nav {
 }
 
 
-/* --------------------------- Interaktionszustände --------------------------- */
-/* habe ich schon in global.css allgemein
-.mobile-nav__close:focus-visible {
-    outline: var(--focus-outline) solid var(--focus-ring);
-    outline-offset: var(--focus-offset);
-}
-*/
-
-/* --------- Bewegungen reduzieren --------- */
-@media (prefers-reduced-motion: reduce) {
-    .nav-overlay,
-    .mobile-nav,
-    .header__logo {
-        transition: none;
-    }
-
-    /*
-    .header__logo:active {
-        transform: none;
-    }
-    */
-}
 
 
 
@@ -320,12 +308,12 @@ body.nav-open .mobile-nav {
 
 
 
-/* --------------------------- Footer-Komponente --------------------------- */
 
-/* --------- Footer: Grundcontainer --------- */
+/* ===================================== Footer-Komponente ===================================== */
+
+/* --------- Footer-Container --------- */
 .footer {
     min-height: var(--footer-height);
-
     color: var(--text);
     background: var(--clay-footer);
     border-top: 1px solid var(--clay-footer-border);
@@ -333,7 +321,6 @@ body.nav-open .mobile-nav {
     box-shadow: var(--clay-footer-shadow);
 }
 
-/* --------- Footer: Inneres Layout --------- */
 .footer__inner {
     display: flex;
     align-items: center;
@@ -343,19 +330,17 @@ body.nav-open .mobile-nav {
     padding-inline: var(--container-padding);
 }
 
-/* --------- Footer-Navigation: Liste --------- */
 .footer-nav__list {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: clamp(1rem, 4vw, 4rem);
-    /*margin: 0;*/
     padding: 0;
     list-style: none;
 }
 
-/* --------- Footer-Navigation: Link-Anpassungen --------- */
+/* Footer-Links bleiben trotz Flex-Wrapping mittig ausgerichtet */
 .footer-nav__list .nav-link {
     justify-content: center;
 }

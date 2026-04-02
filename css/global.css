@@ -1,13 +1,15 @@
-/* --------------------------- Globale Basis-Styles, Variablen & Barrierefreiheit-Zusätze --------------------------- */
+/* ===================================== Globale Basis-Styles, Variablen & Barrierefreiheit-Zusätze ===================================== */
 
 
 
-/* --------------------------- Box-Model Reset --------------------------- */
+/* --------------------------- Abschnitt: Reset --------------------------- */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
+
+
 
 
 
@@ -19,13 +21,10 @@
     --breadcrumb-height: 4rem;
     --container-padding: 2rem;
 
-    /* Grid (wird mit Breakpoints überschrieben) */
+    /* Grid */
     --columns: 4;
     --content-start: 1;
     --content-end: -1;
-    /*--margin-sides: 24px;*/
-
-    /*--gap: 1rem;*/
 
     /* Abstände */
     --gap-xs: 0.25rem;
@@ -52,18 +51,20 @@
     --radius-pill: 999px;
     --radius-overlay-card: clamp(1.5rem, 5vw, 5rem);
 
+
+
     /* Typografie */
     --font-family-base: system-ui, -apple-system, "Segoe UI", Arial, Helvetica, sans-serif;
     --font-weight-regular: 400;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
     
-    /* Typografie Abstände */
+    /* Typografie Abstände & Textängen */
     --line-height-base: 1.6;
-    /*--paragraph-spacing: 1em;*/
     --letter-spacing-body: 0.04em;
     --word-spacing: normal;
-
+    --measure-text: 68ch;
+    --measure-text-wide: 75ch;
 
     /* User Setting (Default): Schriftgröße */
     --user-font-scale: 1; 
@@ -79,24 +80,8 @@
     --font-size-hero-lead: calc(clamp(1rem, 0.92rem + 0.75vw, 1.55rem) * var(--user-font-scale));
     --font-size-h1-big: calc(var(--font-size-h1) * 1.6);
 
-    /* Textlängen  */
-    --measure-text: 68ch;
-    --measure-text-wide: 75ch;
 
-
-    /* Accentfarben Basis */
-    /*
-    --accent-100: #fdecef;
-    --accent-200: #f6c1cc;
-    --accent-300: #ff9fc0;
-    --accent-400: #f46ea0;
-    --accent-500: #d6336c;
-    --accent-600: #a61e4d;
-    --accent-700: #8a1841;
-    --accent-800: #711436;
-    */
-
-    /* --------- Interaktion ---------- */
+    
     /* Fokus */
     --focus-outline: 4px;
     --focus-offset: 3px;
@@ -105,22 +90,18 @@
     --touch-target: 44px;
     --icon-button-size: 56px;
     
-    /* Dauer */
+    /* Motion */
     --duration-fast: 0.18s;
     --duration-medium: 0.28s;
     --duration-slow: 0.7s;
-    /*--duration-reveal: 0.9s;*/
 
-    /* Easing */
     --ease-standard: ease;
     --ease-emphasized: cubic-bezier(.22, .61, .36, 1);
     --ease-media: cubic-bezier(.2, .8, .2, 1);
 
-    /* Scale -------------------------------------------------------------------------------------------------*/
     --scale-shrink: scale(0.95);
     --scale-grow: scale(1.05);
 
-    /* UI / Buttons / Links / Tiles / Switches */
     --transition-ui:
         transform var(--duration-fast) var(--ease-standard),
         background-color 0.2s ease,
@@ -129,34 +110,15 @@
         box-shadow 0.2s ease,
         opacity 0.2s ease;
 
-    /* Medien / Bilder */
     --transition-media:
         transform var(--duration-slow) var(--ease-media),
         filter var(--duration-medium) ease,
         opacity var(--duration-medium) ease;
-    
-    /* Text */    
+   
     --transition-text:
         color 0.26s ease,
         transform 0.26s ease,
         opacity 0.26s ease;
-
-    /*   
-    --transition-reveal:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-
-    --transition-reveal-surface:
-        opacity 0.7s ease,
-        transform 0.7s ease,
-        border-color 0.32s ease,
-        box-shadow 0.32s ease,
-        background-color 0.32s ease;
-
-    --transition-card-state:
-        transform 0.32s ease,
-        filter 0.32s ease;
-    */    
 
     --transition-surface:
         background-color 0.28s ease,
@@ -164,13 +126,27 @@
         box-shadow 0.28s ease,
         opacity 0.28s ease, 
         transform 0.28s ease; 
+}
 
 
-    /* Einzelne einfache Fälle */
-    /*
-    --transition-opacity: opacity 0.28s ease;
-    --transition-height: height 0.6s cubic-bezier(.22, .61, .36, 1);   
-    */ 
+
+/* --------------------------- Breakpoints --------------------------- */
+@media (min-width: 768px) {
+    :root {
+        --columns: 8;
+        --gap: 1.5rem;
+        --container-padding: 48px;
+    }
+}
+
+@media (min-width: 1280px) {
+    :root {
+        --columns: 12;
+        --gap: 2rem;
+        --container-padding: 96px;
+        --content-start: 2;
+        --content-end: -2;
+    }
 }
 
 
@@ -204,7 +180,6 @@ html[data-theme="light"] {
 
 
     /*----------- Clay Button ----------- */
-    /* Clay Button - Normalzustand */
     --clay-button-bg: #a11a4c;
     --clay-button-border: #5f0d2b;
     --clay-button-shadow:
@@ -212,7 +187,6 @@ html[data-theme="light"] {
         inset -8px -8px 16px 0 #42081f5b,
         inset 8px 8px 16px 0 #ffffff2e;
 
-    /* Clay Button - Hover */
     --clay-button-bg-hover: #c21c56;
     --clay-button-border-hover: #8f1640;
     --clay-button-shadow-hover:
@@ -220,7 +194,6 @@ html[data-theme="light"] {
         inset -8px -8px 16px 0 #740e3566,
         inset 8px 8px 16px 0 #ffffff2e;
 
-    /* Clay Button - Active */
     --clay-button-bg-active: #b93363;
     --clay-button-border-active: #842847;
     --clay-button-shadow-active:
@@ -237,8 +210,7 @@ html[data-theme="light"] {
         inset 8px 8px 16px 0 #ffffffb3;
 
 
-    /*----------- Clay Soft (Rosa) ----------- */
-    /*  Clay Soft - Normalzustand */
+    /*----------- Clay Soft ----------- */
     --clay-soft: #f0c4d1;
     --clay-soft-border: #d8a8b6;
     --clay-soft-shadow:
@@ -246,7 +218,6 @@ html[data-theme="light"] {
         inset -8px -8px 16px 0 #9a6a7850,
         inset 8px 8px 16px 0 #ffffffb3;
 
-    /*  Clay Soft - Hover*/
     --clay-soft-hover: #e696ae;
     --clay-soft-border-hover: #d1899c;
     --clay-soft-shadow-hover:
@@ -254,7 +225,6 @@ html[data-theme="light"] {
         inset -8px -8px 16px 0 #6d3f4d55,
         inset 8px 8px 16px 0 #ffffffb3;
 
-    /*  Clay Soft - Active */
     --clay-soft-active: #df7e9d;
     --clay-soft-border-active: #ca8396;
     --clay-soft-shadow-active:
@@ -271,7 +241,7 @@ html[data-theme="light"] {
         inset 8px 8px 16px 0 #ffffff2e;
 
 
-    /*----------- Header/Footer neutral ----------- */
+    /*----------- Header/Footer ----------- */
     --clay-header: #f8f9fb;
     --clay-header-border: #dde2e8;
     --clay-header-shadow:
@@ -306,11 +276,6 @@ html[data-theme="light"] {
     /*----------- Schatten ----------- */
     --shadow-soft: 0 8px 20px #00000014;
     --shadow-card: var(--clay-card-neutral-shadow);
-    /*
-    --clay-shadow-outset: 8px 8px 16px 0 #00000018;
-    --clay-shadow-inset-primary: -8px -8px 16px 0 #d5dbe266;
-    --clay-shadow-inset-secondary: 8px 8px 16px 0 #ffffff80;
-    */
 }
 
 html[data-theme="dark"] {
@@ -339,7 +304,6 @@ html[data-theme="dark"] {
 
 
     /*----------- Clay Button ----------- */
-    /* Clay Button - Normalzustand */
     --clay-button-bg: #a11a4c;
     --clay-button-border: #5f0d2b;
     --clay-button-shadow:
@@ -347,7 +311,6 @@ html[data-theme="dark"] {
         inset -8px -8px 16px 0 #42081f5b,
         inset 8px 8px 16px 0 #ffffff2e;
 
-    /* Clay Button - Hover */
     --clay-button-bg-hover: #ac0f48;
     --clay-button-border-hover: #6e052b;
     --clay-button-shadow-hover:
@@ -355,7 +318,6 @@ html[data-theme="dark"] {
         inset -8px -8px 16px 0 #42081f5b,
         inset 8px 8px 16px 0 #ffffff2e;
 
-    /* Clay Button - Active */
     --clay-button-bg-active: #bf3b69;
     --clay-button-border-active: #983052;
     --clay-button-shadow-active:
@@ -372,8 +334,7 @@ html[data-theme="dark"] {
         inset 8px 8px 16px 0 #ffffff0a;
 
 
-    /*----------- Clay Soft (Rosa) ----------- */
-    /*  Clay Soft - Normalzustand */
+    /*----------- Clay Soft ----------- */
     --clay-soft: #3f1e31;
     --clay-soft-border: #3f1427;
     --clay-soft-shadow:
@@ -381,7 +342,6 @@ html[data-theme="dark"] {
         inset -8px -8px 16px 0 #22031566,
         inset 8px 8px 16px 0 #ffffff10;
 
-    /*  Clay Soft - Hover*/
     --clay-soft-hover: #491731;
     --clay-soft-border-hover: #3a1424;
     --clay-soft-shadow-hover:
@@ -389,7 +349,6 @@ html[data-theme="dark"] {
         inset -8px -8px 16px 0 #2a061a70,
         inset 8px 8px 16px 0 #ffffff12;
         
-    /*  Clay Soft - Active */
     --clay-soft-active: #3b1529;
     --clay-soft-border-active: #351623;
     --clay-soft-shadow-active:
@@ -406,7 +365,7 @@ html[data-theme="dark"] {
         inset 8px 8px 16px 0 #ffffff12;
 
 
-    /*----------- Header/Footer neutral ----------- */
+    /*----------- Header/Footer ----------- */
     --clay-header: #1a1a20;
     --clay-header-border: #2a2b33;
     --clay-header-shadow:
@@ -441,15 +400,10 @@ html[data-theme="dark"] {
     /*----------- Schatten ----------- */
     --shadow-soft: 0 8px 20px #00000038;
     --shadow-card: var(--clay-card-neutral-shadow);
-    /*
-    --clay-shadow-outset: 8px 8px 16px 0 #00000040;
-    --clay-shadow-inset-primary: -8px -8px 16px 0 #11121899;
-    --clay-shadow-inset-secondary: 8px 8px 16px 0 #ffffff0d;
-    */
 }
 
 
-/* --------------------------- User Font Scale Einstellungen --------------------------- */
+/* --------------------------- User Font Scale Einstellungen/User Preferences  --------------------------- */
 html[data-font-size="small"] {
     --user-font-scale: 0.9;
 }
@@ -464,28 +418,6 @@ html[data-font-size="large"] {
 
 
 
-/* --------------------------- Breakpoints --------------------------- */
-/* Breakpoint ab 768px */
-@media (min-width: 768px) {
-    :root {
-        --columns: 8;
-        --gap: 1.5rem;
-        --container-padding: 48px;
-    }
-}
-
-/* Breakpoint ab 1280px */
-@media (min-width: 1280px) {
-    :root {
-        --columns: 12;
-        --gap: 2rem;
-        --container-padding: 96px;
-        --content-start: 2;
-        --content-end: -2;
-    }
-}
-
-
 
 /* --------------------------- Basis-Styles --------------------------- */
 html {
@@ -495,18 +427,17 @@ html {
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-
     /* Layout: Header / Main / Footer */
     display: grid;
     grid-template-rows: auto 1fr auto; /* Body in 3 Zeilen aufgeteilt (Hader Main Footer) */
-    
+
+    min-height: 100vh;
+    margin: 0;
+
     font-family: var(--font-family-base);
     font-size: var(--font-size-base);
     line-height: var(--line-height-base);
     font-weight: var(--font-weight-regular);
-
     line-height: var(--line-height-base);
     letter-spacing: var(--letter-spacing-body);
     word-spacing: var(--word-spacing);
@@ -515,13 +446,13 @@ body {
     background: var(--bg);
 }
 
-main,
-figure { 
-    margin: 0; 
+main { 
+    margin: 0;
+    min-height: 0; 
 }
 
-main { 
-    min-height: 0; 
+figure { 
+    margin: 0; 
 }
 
 img {
@@ -552,7 +483,6 @@ dl {
 h1,
 h2,
 h3 {
-    /*margin: 0 0 0.5em;*/
     text-wrap: balance;
 }
 
@@ -576,7 +506,6 @@ h3 {
 
 p {
     max-width: var(--measure-text-wide);
-    /*margin: 0 0 1em;*/
 }
 
 a {
@@ -588,14 +517,6 @@ a {
 
 
 
-/* Einheitlicher sichtbarer Fokus (Keyboard) */
-:focus-visible {
-    outline: var(--focus-outline) solid var(--focus-ring);
-    outline-offset: var(--focus-offset);
-}
-
-
-
 /* --------------------------- Grid --------------------------- */
 .grid {
     display: grid;
@@ -604,7 +525,6 @@ a {
     padding-inline: var(--container-padding);
 }
 
-/* Default: alle direkten Kinder belegen die volle Breite */
 .grid > * {
     grid-column: var(--content-start) / var(--content-end);
     min-width: 0;
@@ -612,15 +532,22 @@ a {
 
 
 
-/* Zeilenumbruch (für gezielte Zeilenumbrüche in Texten) */
-.break {
-    display: block;
-}
+
+
+
 
 
 
 /* --------------------------- Hilfen für Barrierefreiheit --------------------------- */
-/* Skip-Links: nur sichtbar, wenn fokussiert (Keyboard-Navigation) */
+
+/* --------------------------- Fokus --------------------------- */
+:focus-visible {
+    outline: var(--focus-outline) solid var(--focus-ring);
+    outline-offset: var(--focus-offset);
+}
+
+
+/* --------------------------- Skip-Link --------------------------- */
 .skip-link {
     position: fixed;
     top: 0.5rem;
@@ -628,12 +555,12 @@ a {
     transform: translateY(-200%);
     padding: 0.75rem 1rem;
 
-    background: var(--surface);
     color: var(--text);
-    text-decoration: underline;
+    background: var(--surface);
     border-radius: var(--radius-m);
     border: 1px solid var(--border-strong);
     box-shadow: var(--shadow-card);
+    text-decoration: underline;
 
     z-index: 10000;
 }
@@ -670,15 +597,6 @@ a {
 }
 
 
-
-
-
-
-
-
-
-
-
 /* --------------------------- Reduced Motion (USer & System) --------------------------- */
 html[data-motion="reduced"] *,
 html[data-motion="reduced"] *::before,
@@ -699,4 +617,12 @@ html[data-motion="reduced"] *::after {
         transition-duration: 0.001ms !important;
         scroll-behavior: auto !important;
     }
+}
+
+
+
+/* --------------------------- Komponente: Break --------------------------- */
+/* für gezielte Zeilenumbrüche in Texten */
+.break {
+    display: block;
 }

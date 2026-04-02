@@ -1,8 +1,10 @@
-/* --------------------------- 404-Seite --------------------------- */
+/* ===================================== 404 Page ===================================== */
+
+
+/* --------------------------- Layout --------------------------- */
 .not-found {
     row-gap: var(--gap-m);
     padding-block: var(--space-xl);
-    /*margin-block: var(--space-m);*/
 }
 
 .not-found__text, 
@@ -13,45 +15,41 @@
 }
 
 
-/* --------------------------- Bild-Card --------------------------- */
+
+
+/* --------------------------- Image card --------------------------- */
 .not-found__pic {
     position: relative;
-    /*justify-self: center;*/
-    
+    overflow: hidden;
     width: min(80vw, 900px);
     height: clamp(320px, 60vw, 520px);
-
-    overflow: hidden;
     border-radius: var(--radius-l);
     border: 2px solid var(--accent-line);
     box-shadow: var(--clay-card-shadow);
 }
 
-/* Bild innerhalb der Card (füllt den Container vollständig) */
 .not-found__pic > img {
     width: 100%;
     height: 100%;
-    /*display: block;*/
     object-fit: cover;
     object-position: center;
 }
 
 
-/* --------------------------- Overlay: h1("404") liegt über dem Bild --------------------------- */
+
+
+/* --------------------------- Overlay --------------------------- */
+/* Positioniert die 404 sichtbar über dem Bild */
 .not-found__overlay {
+    position: absolute;
+    inset: 0;
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
-    
-    position: absolute;
-    inset: 0;
-    
     padding: clamp(1rem, 3vw, 2.5rem);
     margin: 3rem;
 }
 
-
-/* Überschrift */
 .not-found__heading {
     margin: 0;
     font-size: var(--font-size-h1-big);
@@ -59,7 +57,10 @@
 }
 
 
-/* --------------------------- Erklärungstext unterhalb des Bildes --------------------------- */
+
+
+/* --------------------------- Description --------------------------- */
+/* Begrenzt die Textbreite für bessere Lesbarkeit */
 .not-found__text {
     max-width: var(--measure-text-narrow);
     margin: 0;

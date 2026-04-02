@@ -1,56 +1,48 @@
-/* --------------------------- Seite "Impressum" --------------------------- */
+/* ===================================== Impressum-Seite ===================================== */
 
-
-
+/* --------------------------- Seitenlayout --------------------------- */
 .impressum {
     row-gap: var(--gap-xl);
     padding-block: 2rem;
     margin-block: 1rem;
 }
 
+@media (min-width: 768px) {
+    .impressum {
+        margin-block: var(--space-xl);
+    }
+}
 
-/* Grundlayout */
-.impressum .impressum__heading {
-    margin: 0;
+@media (min-width: 1280px) {
+    .impressum {
+        margin-block: 6rem;
+    }
 }
 
 
 
-/* Robustheit: verhindert Overflow in Grid-Zellen und entfernt Default margins */
+/* --------------------------- Content-Blöcke --------------------------- */
+.impressum .impressum__heading {
+    margin: 0;
+}
+
 .impressum .impressum-content > * {
     min-width: 0;
     margin: 0;
 }
 
-
-/* Abstand zwischen inhaltlichen Blöcken */
 .impressum > .impressum-content + .impressum-content {
     margin-block-start: var(--space-m);
 }
 
-
-/* --------- Breakpoints: Content --------- */
-/* Breakpoint ab 768px */
 @media (min-width: 768px) {
-    .impressum {
-        margin-block: var(--space-xl);
-    }
-
     .impressum > .impressum-content + .impressum-content {
         margin-block-start: var(--space-xl);
     }
 }
 
-/* Breakpoint ab 1280px */
 @media (min-width: 1280px) {
-    .impressum {
-        margin-block: 6rem;
-    }
-
     .impressum > .impressum-content + .impressum-content {
         margin-block-start: var(--space-2xl);
     }
 }
-
-
-

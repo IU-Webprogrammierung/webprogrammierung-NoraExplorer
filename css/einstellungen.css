@@ -1,15 +1,16 @@
-/* --------------------------- Einstellungen --------------------------- */
-/* 
-    - Tile-Radios für Theme & Textgröße
-    - Switch für Reduced Motion 
- */
+/* ===================================== Einstellungen-Seite ===================================== */
 
 
-/* --------------------------- Einstellungen-Seite: Grundabstände --------------------------- */
+
+/* --------------------------- Layout --------------------------- */
 .einstellungen {
     row-gap: var(--gap-xl);
     padding-block: var(--space-xl);
     margin-block: var(--space-m);
+}
+
+.einstellungen :is(.intro, .preference) {
+    margin: 0;
 }
 
 @media (min-width: 768px) {
@@ -27,18 +28,20 @@
 
 
 
-.einstellungen :is(.intro, .preference) {
-    margin: 0;
-}
 
-
-/* --------------------------- Section als Card --------------------------- */
+/* --------------------------- Preference-Card --------------------------- */
 .einstellungen .preference {
     padding: var(--space-m);
     background: var(--clay-card-neutral);
     border-radius: var(--radius-l);
     border: 1px solid var(--clay-card-neutral-border);
     box-shadow: var(--clay-card-neutral-shadow);
+}
+
+/* Überschrift innerhalb der Card bewusst größer skaliert */
+.einstellungen .preference h2 {
+    margin-bottom: var(--space-s);
+    font-size: calc(var(--font-size-h2) * 1.6);
 }
 
 @media (min-width: 768px) {
@@ -54,13 +57,10 @@
 }
 
 
-.einstellungen .preference h2 {
-    margin-bottom: var(--space-s);
-    font-size: calc(var(--font-size-h2) * 1.6);
-}
 
 
-/* --------------------------- Fieldset / Legend reset --------------------------- */
+
+/* --------------------------- Form-Grundlagen --------------------------- */
 .einstellungen fieldset {
     margin: 0;
     padding: 0;
@@ -75,28 +75,7 @@
     color: var(--muted);
 }
 
-
-/* --------------------------- Tile Radios (Theme & Textgröße) --------------------------- */
-/* Fieldset als Grid (Mobile 1 Palte, ab 768px 3 Spalten */
-.einstellungen fieldset.tiles {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--gap-m);
-}
-
-/* Legend im Grid über alle Spalten */
-.einstellungen fieldset.tiles > legend {
-    grid-column: 1 / -1;
-}
-
-/* Breakpoint ab 768px (3 Tiles nebeneinander) */
-@media (min-width: 768px) {
-    .einstellungen fieldset.tiles {
-        grid-template-columns: repeat(3, minmax(0, 1fr)); /* Desktop: nebeneinander */
-    }
-}
-
-/* Radio-Inputs bleiben im DOM (für Screenreader/Keyboard), aber ansonsten "unsichtbar" */
+/* Visuell versteckt, aber zugänglich */
 .einstellungen :is(input[type="radio"], .switch input[type="checkbox"]) {
     position: absolute;
     width: 1px;
@@ -104,19 +83,39 @@
     padding: 0;
     margin: -1px;
     overflow: hidden;
-    clip-path: inset(50%);
     white-space: nowrap;
+    clip-path: inset(50%);
     border: 0;
 }
 
 
 
-/* --------------------------- Tile (Label) Base --------------------------- */
-/* Tile */
+
+/* --------------------------- Tile-Grid --------------------------- */
+.einstellungen fieldset.tiles {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap-m);
+}
+
+.einstellungen fieldset.tiles > legend {
+    grid-column: 1 / -1;
+}
+
+@media (min-width: 768px) {
+    .einstellungen fieldset.tiles {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+
+
+
+
+/* --------------------------- Tile-Komponente --------------------------- */
 .einstellungen fieldset.tiles .tile {
     display: flex;
     align-items: center;
-    /*justify-content: start;*/
     gap: var(--gap-m);
     padding: var(--space-m);
 
@@ -127,30 +126,14 @@
 
     cursor: pointer;
     user-select: none;
-
     transition: var(--transition-ui);
 }
 
+/* Leichter "Hineindrücken"-Effekt beim Antippen */
 .einstellungen fieldset.tiles .tile:active {
     transform: translateY(1px);
 }
 
-/* Breakpoint ab 768px (Icon oben, Text darunter) */
-@media (min-width: 768px) {
-    .einstellungen fieldset.tiles .tile {
-        flex-direction: column;
-        /*align-items: center;*/
-        justify-content: center;
-        text-align: center;
-
-        /* padding: var(--space-m);*/
-        min-height: 150px;
-    }
-}
-
-
-
-/* --------------------------- Icon Badge --------------------------- */
 .einstellungen .tile__icon {
     display: inline-flex;
     align-items: center;
@@ -158,57 +141,31 @@
 
     width: var(--touch-target);
     height: var(--touch-target);
-    border-radius: var(--radius-m);
     color: var(--text);
     background: color-mix(in srgb, var(--clay-button-bg) 50%, var(--clay-soft) 50%);
+    border-radius: var(--radius-m);
     border: 1px solid color-mix(in srgb, var(--clay-button-border) 50%, var(--clay-soft-border) 50%);
     box-shadow: var(--clay-button-shadow);
 
     transition: var(--transition-ui);
 }
 
-/* Breakpoint ab 768px (Icon-Badge größer) */
-@media (min-width: 768px) {
-    .einstellungen fieldset.tiles .tile__icon {
-        width: var(--icon-button-size);
-        height: var(--icon-button-size);
-    }
-}
-
-/* SVG Größe (überschreibt class="size-6) */
 .einstellungen .tile__icon svg {
     width: calc(var(--icon-button-size) * 0.5);
     height: calc(var(--icon-button-size) * 0.5);
     display: block;
 }
 
-/* Breakpoint ab 768px (SVG größer) */
-@media (min-width: 768px) {
-    .einstellungen .tile__icon svg {
-        width: calc(var(--icon-button-size) * 0.75);
-        height: calc(var(--icon-button-size) * 0.75);
-    }
-}
-
-
-
-/* --------------------------- Tile Text --------------------------- */
 .einstellungen .tile__text {
     font-weight: var(--font-weight-semibold);
-    /*color: var(--text);*/
-    /*line-height: 1.2;*/
 }
 
-
-
-/* --------------------------- Hover --------------------------- */
 @media (hover: hover) and (pointer: fine) {
     .einstellungen fieldset.tiles .tile:hover {
         background: var(--clay-soft-hover);
         border: 1px solid var(--clay-soft-border-hover);
         box-shadow: var(--clay-soft-shadow-hover);
     }
-
 
     .einstellungen fieldset.tiles .tile:hover .tile__icon {
         background: var(--clay-button-bg-hover);
@@ -218,23 +175,13 @@
     }
 }
 
-.einstellungen fieldset.tiles .tile:active .tile__icon {
-    background: var(--clay-button-bg-active);
-    border: 1px solid var(--clay-button-border-active);
-    box-shadow: var(--clay-button-shadow-active);
-    transform: scale(0.95);
-}
 
-
-
-/* --------------------------- Selected (checked) --------------------------- */
+/* checked-State */
 .einstellungen fieldset.tiles input[type="radio"]:checked + .tile {
     background: var(--clay-soft-active);
     border: 1px solid var(--clay-soft-border-active);
     box-shadow: var(--clay-soft-shadow-active);
-
     outline: 2px solid color-mix(in srgb, var(--clay-accent) 70%, transparent);
-    /*outline-offset: 0;*/
 }
 
 .einstellungen fieldset.tiles input[type="radio"]:checked + .tile .tile__icon {
@@ -248,21 +195,51 @@
     font-weight: var(--font-weight-bold);
 }
 
-/* Keyboard-Focus */
 .einstellungen fieldset.tiles input[type="radio"]:focus-visible + .tile {
         outline: var(--focus-outline) solid var(--focus-ring);
         outline-offset: var(--focus-offset);
 }
 
+.einstellungen fieldset.tiles .tile:active .tile__icon {
+    background: var(--clay-button-bg-active);
+    border: 1px solid var(--clay-button-border-active);
+    box-shadow: var(--clay-button-shadow-active);
+    transform: scale(0.95);
+}
 
-/* --------------------------- Typografie-Preview (Textgröße) --------------------------- */
+@media (min-width: 768px) {
+    /* Ab Tablet werden Tiles vertikal und gleich hoch aufgebaut */
+    .einstellungen fieldset.tiles .tile {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        min-height: 150px;
+    }
+
+    .einstellungen fieldset.tiles .tile__icon {
+        width: var(--icon-button-size);
+        height: var(--icon-button-size);
+    }
+
+    .einstellungen .tile__icon svg {
+        width: calc(var(--icon-button-size) * 0.75);
+        height: calc(var(--icon-button-size) * 0.75);
+    }
+}
+
+
+
+
+
+/* --------------------------- Typografie-Preview --------------------------- */
 .einstellungen .type-preview {
     font-weight: var(--font-weight-bold);
     line-height: 1;
     color: currentColor;
 }
 
-/* Größenstufen */
+
+/* Größenvarianten */
 .einstellungen .type-preview--s { 
     font-size: 0.9rem; 
 }
@@ -278,7 +255,8 @@
 
 
 
-/* --------------------------- Switch (Checkbox) --------------------------- */
+
+/* --------------------------- Switch-Komponente --------------------------- */
 .einstellungen .switch {
     display: inline-flex;
     align-items: center;
@@ -290,18 +268,12 @@
     border: 1px solid var(--clay-soft-border);
     box-shadow: var(--clay-soft-shadow);
 
-    /*
-    outline: 2px solid color-mix(in srgb, var(--clay-soft-active) 55%, transparent);
-    outline-offset: 0;
-    */
-
     cursor: pointer;
     user-select: none;
 
     transition: var(--transition-ui);
 }
 
-/* Hover */
 @media (hover: hover) and (pointer: fine) {
     .einstellungen .switch:hover {
         background: var(--clay-soft-hover);
@@ -316,7 +288,7 @@
     box-shadow: var(--clay-soft-shadow-active);
 }
 
-/* Checkbox zugänglich lassen, aber visuell "unsichtbar" */
+/* Visuell versteckt, aber zugänglich */
 .einstellungen .switch input[type="checkbox"] {
     position: absolute;
     width: 1px;
@@ -329,7 +301,9 @@
     border: 0;
 }
 
-/* Slider */
+
+/* --- Slider ---*/
+/* Feste Breite, damit der Schalterweg konstant bleibt */
 .einstellungen .switch .slider {
     position: relative;
     flex: 0 0 auto;
@@ -345,7 +319,9 @@
     transition: var(--transition-ui);
 }
 
-/* Knopf */
+
+/* --- Schalterknopf --- */
+/* Pseudo-Element bildet den beweglichen Knopf */
 .einstellungen .switch .slider::before {
     content: "";
     position: absolute;
@@ -370,10 +346,10 @@
 
 .einstellungen .switch .switch-label {
     font-weight: var(--font-weight-semibold);
-    /*color: var(--text);*/
 }
 
-/* Checked */
+
+/* --- Checked --- */
 .einstellungen .switch input[type="checkbox"]:checked + .slider {
     background: var(--clay-button-bg);
     border: 1px solid var(--clay-button-border);
@@ -385,7 +361,6 @@
     transform: translateY(-50%) translateX(44px);
 }
 
-/* Fokus (Keyboard) */
 .einstellungen .switch input[type="checkbox"]:focus-visible + .slider {
     outline: var(--focus-outline) solid var(--focus-ring);
     outline-offset: var(--focus-offset);

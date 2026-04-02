@@ -1,28 +1,28 @@
-/* --------------------------- Detailseite "Prozess" --------------------------- */
+/* ===================================== Detailseite "Prozess" ===================================== */
 
-/* Anchor-Offset für Sprungmarke "Prozessschritte" */
+
+
+/* --------------------------- Abschnitt --------------------------- */
 #schritte-heading {
     scroll-margin-top: calc(var(--header-height) + 4rem);
 }
 
 
 
+
+
 /* --------------------------- Prozess-Liste --------------------------- */
-/* Grid-Container, Counter und Timeline-Basiswerte */
 .detailseite.seite-prozess .prozess {
     --timeline-start: 0px;
     --timeline-length: 0px;
     --timeline-progress: 0px;
-
     --prozess-step-circle-size: 3.5rem;
     --prozess-timeline-x: calc(var(--prozess-step-circle-size) / 2 + 1rem);
 
     position: relative;
     display: grid;
     gap: 3rem;
-    /*margin: 0;*/
     padding: 0;
-
     list-style: none;
     counter-reset: schritt;
     isolation: isolate;
@@ -32,46 +32,24 @@
     .detailseite.seite-prozess .prozess {
         gap: calc(var(--gap-xl) * 4);
     }
-}
 
-@media (min-width: 1280px) {
-    .detailseite.seite-prozess .prozess {
-        gap: calc(var(--gap-xl) * 5);
-    }
-}
-
-/* Mobile first: Timeline auf kleinen Screens deaktiviert */
-/*
-.detailseite.seite-prozess .prozess::before,
-.detailseite.seite-prozess .prozess::after {
-    content: none;
-}
-*/
-
-/* Ab Tablet: horizontales Layout, Timeline und stärkere Desktop-Zustände */
-@media (min-width: 768px) {
-    /* Timeline-Grundlinie und aktive Fortschrittslinie */
     .detailseite.seite-prozess .prozess::before,
     .detailseite.seite-prozess .prozess::after {
         content: "";
         position: absolute;
         left: var(--prozess-timeline-x);
-        transform: translateX(-50%);
-        /*z-index: 0;*/
-
         width: 8px;
         border-radius: var(--radius-pill);
         pointer-events: none;
+        transform: translateX(-50%);
     }
 
-    /* Graue Basislinie */
     .detailseite.seite-prozess .prozess::before {
         top: var(--timeline-start);
         height: var(--timeline-length);
         background: color-mix(in srgb, var(--muted) 14%, transparent);
     }
 
-    /* Aktive Fortschrittslinie */
     .detailseite.seite-prozess .prozess::after {
         top: var(--timeline-start);
         height: var(--timeline-progress);
@@ -83,41 +61,51 @@
     }
 }
 
+@media (min-width: 1280px) {
+    .detailseite.seite-prozess .prozess {
+        gap: calc(var(--gap-xl) * 5);
+    }
+}
+
+
+
 
 
 /* --------------------------- Prozess-Item --------------------------- */
-/* Relativer Kontext für Zustände, Ebenen und Reveal */
 .detailseite.seite-prozess .prozess__item {
     position: relative;
     z-index: 1;
-    /*
-    margin: 0;
-    padding: 0;
-    */
+}
+
+.detailseite.seite-prozess .prozess__item.reveal {
+    opacity: 0;
+    transform: translateY(2.5rem);
+    will-change: opacity, transform;
+    transition:
+        opacity var(--duration-slow) ease,
+        transform var(--duration-slow) ease;
+}
+
+.detailseite.seite-prozess .prozess__item.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
 
 
-/* --------------------------- Komponente: Prozessschritt --------------------------- */
-/* Verhindert Overflow in Grid-Zellen und entfernt Default-Margins */
-.detailseite.seite-prozess .prozessschritt > * {
-    min-width: 0;
-    margin: 0;
-}
 
-/* Mobile first: vertikale Reihenfolge mit Grid Areas */
+/* --------------------------- Prozessschritt --------------------------- */
 .detailseite.seite-prozess .prozessschritt {
-    /*position: relative;*/
     display: grid;
+    align-items: start;
+    gap: 1rem;
     grid-template-areas:
         "number"
         "heading"
         "text"
         "media";
 
-    gap: 1rem;
-    align-items: start;
     padding: 1rem;
     border: 1px solid var(--clay-blue-border);
     border-radius: var(--radius-xl);
@@ -135,12 +123,22 @@
     counter-increment: schritt;
 }
 
-/* Desktop-Akzent-Layer standardmäßig deaktiviert */
-/*
-.detailseite.seite-prozess .prozessschritt::after {
-    content: none;
+.detailseite.seite-prozess .prozessschritt > * {
+    min-width: 0;
+    margin: 0;
 }
-*/
+
+.detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt {
+    opacity: 0.9;
+    filter: none;
+    transform: none;
+}
+
+.detailseite.seite-prozess .prozess__item.is-active .prozessschritt {
+    background: color-mix(in srgb, var(--clay-soft) 10%, var(--clay-blue) 90%);
+    border-color: var(--clay-soft-border);
+    box-shadow: var(--clay-soft-shadow);
+}
 
 @media (min-width: 768px) {
     .detailseite.seite-prozess .prozessschritt {
@@ -151,20 +149,10 @@
             "number text    media";
 
         gap: var(--gap-l);
-        row-gap: var(--gap-m);    
+        row-gap: var(--gap-m);
         transform-origin: left top;
-        /*
-        transition:
-            transform 560ms cubic-bezier(.2, .8, .2, 1),
-            opacity 420ms ease,
-            filter 420ms ease,
-            background-color 280ms ease,
-            border-color 280ms ease,
-            box-shadow 280ms ease;
-        */
     }
 
-    /* Desktop: Akzent wieder über separaten Layer statt über Card-Farbe */
     .detailseite.seite-prozess .prozessschritt::after {
         content: "";
         position: absolute;
@@ -173,31 +161,44 @@
         pointer-events: none;
 
         opacity: 0;
-        transition: opacity 280ms ease;
-
-        background: color-mix(in srgb, var(--clay-soft) 10%, var(--clay-blue) 90%);
         border: 1px solid var(--clay-soft-border);
         border-radius: var(--radius-xl);
+        background: color-mix(in srgb, var(--clay-soft) 10%, var(--clay-blue) 90%);
         box-shadow: var(--clay-soft-shadow);
+        transition: opacity 280ms ease;
+    }
+
+    .detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt {
+        opacity: 1;
+        transform: scale(0.98);
+        filter: saturate(0.92);
+    }
+
+    .detailseite.seite-prozess .prozess__item.is-active .prozessschritt {
+        background: var(--clay-blue);
+        border-color: var(--clay-blue-border);
+        box-shadow: var(--clay-blue-shadow);
+        filter: saturate(1.03);
+        transform: scale(1.02);
+    }
+
+    .detailseite.seite-prozess .prozess__item.is-active .prozessschritt::after {
+        opacity: 1;
     }
 }
 
 
+
+
+
 /* --------------------------- Nummernkreis --------------------------- */
-/* Nummer wird per CSS Counter erzeugt */
 .detailseite.seite-prozess .prozessschritt__nr {
     grid-area: number;
-
     position: relative;
     z-index: 1;
-
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    /*
-    justify-self: start;
-    align-self: start;
-    */
 
     width: var(--prozess-step-circle-size);
     aspect-ratio: 1;
@@ -214,97 +215,38 @@
     border: 1px solid var(--clay-soft-border);
     border-radius: 50%;
     box-shadow: var(--clay-soft-shadow);
-
-    /*
-    transition:
-        color 240ms ease,
-        background-color 240ms ease,
-        border-color 240ms ease,
-        box-shadow 280ms ease,
-        transform 280ms ease;
-    */
 }
 
-/* Ausgabe: 01, 02, 03 etc. */
 .detailseite.seite-prozess .prozessschritt__nr::before {
     content: counter(schritt, decimal-leading-zero);
 }
 
-/* Zusätzlicher Layer hinter dem Kreis für Puls-Effekt auf Mobile */
 .detailseite.seite-prozess .prozessschritt__nr::after {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
-    pointer-events: none;
-
     opacity: 0;
-    transform: scale(1);
+    pointer-events: none;
 
     background: var(--accent-line);
     border-radius: 50%;
+    transform: scale(1);
 }
 
-
-
-
-/* --------------------------- Inhaltselemente --------------------------- */
-/* Überschrift */
-.detailseite.seite-prozess .prozessschritt__heading {
-    grid-area: heading;
-    /*color: var(--text);*/
+.detailseite.seite-prozess .prozess__item.reveal .prozessschritt__nr {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition:
+        opacity var(--duration-slow) ease 120ms,
+        transform var(--duration-slow) ease 120ms;
 }
 
-/* Beschreibungstext */
-.detailseite.seite-prozess .prozessschritt__text {
-    grid-area: text;
-    max-width: 70ch;
-    /*color: var(--text);*/
+.detailseite.seite-prozess .prozess__item.reveal.is-visible .prozessschritt__nr {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* Bildbereich */
-.detailseite.seite-prozess .prozessschritt__media {
-    grid-area: media;
-    /*align-self: center;*/
-    width: 100%;
-    max-width: 22rem;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    border-radius: var(--radius-l);
-}
-
-/* Bild */
-.detailseite.seite-prozess .prozessschritt__media img {
-    /*display: block;*/
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-@media (min-width: 768px) {
-
-    /* Bild darf auf größeren Screens breiter werden */
-    .detailseite.seite-prozess .prozessschritt__media {
-        max-width: 30rem;
-    }
-
-    /* Bildanimationen werden aktiviert */
-    .detailseite.seite-prozess .prozessschritt__media img {
-        transition: var(--transition-media);
-        /*
-        transition:
-            transform 700ms cubic-bezier(.2, .8, .2, 1),
-            filter 420ms ease,
-            opacity 420ms ease;
-        */
-    }
-}
-
-
-
-
-/* --------------------------- Zustände --------------------------- */
-/* Bereits erreichte und aktive Schritte teilen dieselbe Grundfarbe */
 .detailseite.seite-prozess .prozess__item:is(.is-passed, .is-active) .prozessschritt__nr {
     color: #ffffff;
     background: var(--clay-accent);
@@ -312,109 +254,122 @@
     box-shadow: var(--clay-accent-shadow);
 }
 
-/* Aktiver Schritt erhält zusätzlich eine minimale Skalierung */
 .detailseite.seite-prozess .prozess__item.is-active .prozessschritt__nr {
     transform: scale(1.05);
 }
 
-/* Pulsanimation nur beim aktiven Schritt */
 .detailseite.seite-prozess .prozess__item.is-active .prozessschritt__nr::after {
     animation: prozess-mobile-circle-pulse 1.2s ease-out infinite;
 }
 
 @media (min-width: 768px) {
-    /* Mobile Puls-Effekt ab Tablet deaktivieren */
     .detailseite.seite-prozess .prozess__item.is-active .prozessschritt__nr::after {
         animation: none;
     }
 }
 
-/* Aktive Überschrift wird minimal angehoben */
-.detailseite.seite-prozess .prozess__item.is-active .prozessschritt__heading {
-    color: var(--text);
-    opacity: 1;
-    transform: translateY(-1px);
-    transition: transform 280ms ease, color 280ms ease, opacity 280ms ease;
+
+
+
+
+/* --------------------------- Heading --------------------------- */
+.detailseite.seite-prozess .prozessschritt__heading {
+    grid-area: heading;
 }
 
-/* Inaktive Schritte bleiben ruhig und kompakt */
-.detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt {
-    opacity: 0.9;
-    transform: none;
-    filter: none;
-}
-
-@media (min-width: 768px) { 
-    /* Inaktive Desktop-Schritte wirken etwas kompakter */
-    .detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt {
-        opacity: 1;
-        transform: scale(0.98);
-        filter: saturate(0.92);
-
-        background: var(--clay-blue);
-        border-color: var(--clay-blue-border);
-        box-shadow: var(--clay-blue-shadow);
-    }
-}
-
-
-/* Aktiver Schritt erhält auf Mobile direkt den Akzent-Stil */
-.detailseite.seite-prozess .prozess__item.is-active .prozessschritt {
-    /*
-    transform: none;
-    filter: none;
-    */
-
-    background: color-mix(in srgb, var(--clay-soft) 10%, var(--clay-blue) 90%);
-    border-color: var(--clay-soft-border);
-    box-shadow: var(--clay-soft-shadow);
-}
-
-@media (min-width: 768px) {
-    .detailseite.seite-prozess .prozess__item.is-active .prozessschritt::after {
-        opacity: 1;
-    }
-
-    /* Aktiver Schritt wächst leicht und behält die blaue Card */
-    .detailseite.seite-prozess .prozess__item.is-active .prozessschritt {
-        opacity: 1;
-        transform: scale(1.02);
-        filter: saturate(1.03);
-
-        background: var(--clay-blue);
-        border-color: var(--clay-blue-border);
-        box-shadow: var(--clay-blue-shadow);
-    }
-}
-
-/* Inaktive Texte dezenter */
-.detailseite.seite-prozess .prozess__item:not(.is-active) :is(.prozessschritt__heading, .prozessschritt__text) {
+.detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt__heading {
     opacity: 0.78;
 }
 
-/* Aktive Texte voll sichtbar */
-.detailseite.seite-prozess .prozess__item.is-active .prozessschritt__heading,
+.detailseite.seite-prozess .prozess__item.is-active .prozessschritt__heading {
+    opacity: 1;
+    color: var(--text);
+    transform: translateY(-1px);
+    transition:
+        transform 280ms ease,
+        color 280ms ease,
+        opacity 280ms ease;
+}
+
+
+
+
+
+/* --------------------------- Text --------------------------- */
+.detailseite.seite-prozess .prozessschritt__text {
+    grid-area: text;
+    max-width: 70ch;
+}
+
+.detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt__text {
+    opacity: 0.78;
+}
+
 .detailseite.seite-prozess .prozess__item.is-active .prozessschritt__text {
     opacity: 1;
 }
 
-/* Inaktive Bilder etwas ruhiger */
+
+
+
+
+/* --------------------------- Media --------------------------- */
+.detailseite.seite-prozess .prozessschritt__media {
+    grid-area: media;
+    width: 100%;
+    max-width: 22rem;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius-l);
+}
+
+.detailseite.seite-prozess .prozess__item.reveal .prozessschritt__media {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition:
+        opacity var(--duration-slow) ease 120ms,
+        transform var(--duration-slow) ease 120ms;
+}
+
+.detailseite.seite-prozess .prozess__item.reveal.is-visible .prozessschritt__media {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+    .detailseite.seite-prozess .prozessschritt__media {
+        max-width: 30rem;
+    }
+}
+
+
+
+/* --------------------------- Media-Image --------------------------- */
+.detailseite.seite-prozess .prozessschritt__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt__media img {
     opacity: 0.82;
-    transform: none;
     filter: saturate(0.94) contrast(0.99);
+    transform: none;
     animation: none;
 }
 
-/* Aktives Bild leicht präsenter */
 .detailseite.seite-prozess .prozess__item.is-active .prozessschritt__media img {
     opacity: 1;
-    transform: none;
     filter: saturate(1.02) contrast(1.01);
+    transform: none;
     animation: none;
 }
 
 @media (min-width: 768px) {
+    .detailseite.seite-prozess .prozessschritt__media img {
+        transition: var(--transition-media);
+    }
+
     .detailseite.seite-prozess .prozess__item:not(.is-active) .prozessschritt__media img {
         transform: scale(0.985);
         filter: saturate(0.88) contrast(0.98);
@@ -425,36 +380,6 @@
         filter: saturate(1.04) contrast(1.01);
         animation: prozess-image-breathe 6.5s ease-in-out infinite;
     }
-}
-
-
-
-
-/* --------------------------- Reveal-Animation --------------------------- */
-/* Der gesamte Schritt fährt beim ersten Sichtbarwerden weich ein */
-.detailseite.seite-prozess .prozess__item.reveal {
-    opacity: 0;
-    transform: translateY(2.5rem);
-    will-change: opacity, transform;
-    transition: opacity var(--duration-slow) ease, transform var(--duration-slow) ease;
-}
-
-/* Nummer und Bild werden leicht verzögert eingeblendet */
-.detailseite.seite-prozess .prozess__item.reveal :is(.prozessschritt__nr, .prozessschritt__media) {
-    opacity: 0;
-    transform: translateY(1rem);
-    transition: opacity var(--duration-slow) ease 120ms, transform var(--duration-slow) ease 120ms;
-}
-
-/* Zielzustand nach Reveal */
-.detailseite.seite-prozess .prozess__item.reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.detailseite.seite-prozess .prozess__item.reveal.is-visible :is(.prozessschritt__nr, .prozessschritt__media) {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 
@@ -494,7 +419,6 @@
 
 
 /* --------------------------- Reduced Motion --------------------------- */
-/* Deaktiviert Animationen und Bewegungen, wenn der Nutzer reduzierte Bewegung eingestellt hat */
 html[data-motion="reduced"] .detailseite.seite-prozess .prozess::after,
 html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item,
 html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item *,
@@ -505,12 +429,10 @@ html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item::after {
     transform: none !important;
 }
 
-/* Reveal-Zustände sofort sichtbar setzen */
 html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item.reveal {
     opacity: 1 !important;
 }
 
-/* Systemweite Fallback-Regel bei prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
     html:not([data-motion]) .detailseite.seite-prozess .prozess::after,
     html:not([data-motion]) .detailseite.seite-prozess .prozess__item,

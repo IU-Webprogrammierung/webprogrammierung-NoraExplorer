@@ -1,26 +1,24 @@
-/* --------------------------- Detailseite "Fotografie" --------------------------- */
+/* ===================================== Detailseite "Fotografie" ===================================== */
 
 
-/* Anchor-Offset für Sprungmarke "Galerie" */
+/* --------------------------- Abschnitt --------------------------- */
 #galerie-heading {
     scroll-margin-top: calc(var(--header-height) + 4rem);
 }
 
 
 
-/* --------- Galerie-Liste --------- */
-/* Robustheit: verhindert Overflow in Grid-Zellen */
-.seite-fotografie .galerie > * {
-    min-width: 0;
-}
-
+/* --------------------------- Galerie --------------------------- */
 .seite-fotografie .galerie {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--gap-m);
-    /*margin: 0;*/
     padding: 0;
     list-style: none;
+}
+
+.seite-fotografie .galerie > * {
+    min-width: 0;
 }
 
 @media (min-width: 768px) {
@@ -37,70 +35,13 @@
 
 
 
-/* --------- Galerie-Item --------- */
-/* Varianten */
-.seite-fotografie .galerie__item--portrait .galerie__media {
-    aspect-ratio: 3 / 4;
-}
-
-.seite-fotografie .galerie__item--landscape .galerie__media {
-    aspect-ratio: 4 / 3;
-}
-
+/* --------------------------- Galerie-Item --------------------------- */
 @media (min-width: 768px) {
     .seite-fotografie .galerie__item--landscape {
         grid-column: span 2;
     }
 }
 
-@media (min-width: 1280px) {
-    .seite-fotografie .galerie__item--landscape {
-        grid-column: span 2;
-    }
-}
-
-
-
-/* --------- Galerie-Media --------- */
-.seite-fotografie .galerie__media {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius-l);
-    /*
-    background: var(--clay-card-neutral);
-    box-shadow: var(--clay-card-neutral-shadow);
-    */
-
-    transition:
-        transform 0.45s ease,
-        border-color 0.45s ease,
-        box-shadow 0.45s ease;
-}
-
-.seite-fotografie .galerie__media img {
-    /*display: block;*/
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-
-    transform: scale(1);
-    transition: transform 0.8s ease;
-}
-
-
-
-
-
-/* --------------------------- Reveal Animation --------------------------- */
-/*
-   Mobile first:
-   - auf kleinen Geräten kein Reveal
-   - Galerie-Items bleiben direkt sichtbar
-*/
 .seite-fotografie .galerie__item.reveal {
     opacity: 1;
     transform: none;
@@ -108,28 +49,24 @@
 }
 
 /* Reveal erst ab Tablet/Desktop mit Motion aktivieren */
-@media (min-width: 768px) {
+@media (min-width: 48rem) {
     html.motion-enhanced .seite-fotografie .galerie__item.reveal {
         opacity: 0;
-        transform: translateY(2rem) scale(0.985);
         filter: blur(8px);
-
+        transform: translateY(2rem) scale(0.985);
+        will-change: opacity, transform, filter;
         transition:
             opacity 0.7s ease,
             transform 0.7s ease,
             filter 0.7s ease;
-
-        will-change: opacity, transform, filter;
     }
 
-    /* Zielzustand nach dem Reveal */
     html.motion-enhanced .seite-fotografie .galerie__item.reveal.is-visible {
         opacity: 1;
-        transform: translateY(0) scale(1);
         filter: blur(0);
+        transform: translateY(0) scale(1);
     }
 
-    /* leichte Staffelung für eine hochwertigere Bildwirkung */
     html.motion-enhanced .seite-fotografie .galerie__item.reveal:nth-child(2) {
         transition-delay: 0.05s;
     }
@@ -167,24 +104,30 @@
 
 
 
-/* --------------------------- Interaktion --------------------------- */
-/*
-   Mobile first:
-   - auf kleinen Geräten keine Bewegungs-/Hover-Effekte
-   - Bilder bleiben ruhig sichtbar
-*/
-/*
-.seite-fotografie .galerie__media,
-.seite-fotografie .galerie__media img,
-.seite-fotografie .galerie__item:hover .galerie__media,
-.seite-fotografie .galerie__item:focus-within .galerie__media,
-.seite-fotografie .galerie__item:hover .galerie__media img,
-.seite-fotografie .galerie__item:focus-within .galerie__media img {
-    transform: none;
-}
-*/
+/* --------------------------- Media --------------------------- */
+.seite-fotografie .galerie__media {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
 
-/* Interaktion erst ab Tablet/Desktop auf Geräten mit echtem Hover & feinem Pointer */
+    border: 1px solid var(--border);
+    border-radius: var(--radius-l);
+
+    transition:
+        transform 0.45s ease,
+        border-color 0.45s ease,
+        box-shadow 0.45s ease;
+}
+
+.seite-fotografie .galerie__item--portrait .galerie__media {
+    aspect-ratio: 3 / 4;
+}
+
+.seite-fotografie .galerie__item--landscape .galerie__media {
+    aspect-ratio: 4 / 3;
+}
+
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     .seite-fotografie .galerie__item:hover .galerie__media,
     .seite-fotografie .galerie__item:focus-within .galerie__media {
@@ -192,7 +135,20 @@
         border-color: color-mix(in srgb, var(--accent-line) 30%, var(--border));
         box-shadow: var(--clay-card-neutral-shadow);
     }
+}
 
+
+/* --------------------------- Media-Image --------------------------- */
+.seite-fotografie .galerie__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    transform: scale(1);
+    transition: transform 0.8s ease;
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     .seite-fotografie .galerie__item:hover .galerie__media img,
     .seite-fotografie .galerie__item:focus-within .galerie__media img {
         transform: scale(1.02);
