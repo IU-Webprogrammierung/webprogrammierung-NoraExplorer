@@ -107,6 +107,7 @@
 
 @media (min-width: 768px) {
     .detailseite.seite-ueber .interesse.reveal .interesse__heading {
+        align-self: end;
         opacity: 0;
         transform: translateY(1rem);
         transition:
@@ -140,6 +141,7 @@
 
 @media (min-width: 768px) {
     .detailseite.seite-ueber .interesse.reveal .interesse__text {
+        align-self: start;
         opacity: 0;
         transform: translateY(1rem);
         transition:
