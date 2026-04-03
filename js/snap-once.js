@@ -1,16 +1,19 @@
 /* 
     Einmaliges Snap-Scrolling für Detailseiten:
-        - Springt vom Hero sanft zur nächten Sektion
-        - wird am Seitenanfang eerneut aktiviert
+        - springt vom Hero sanft zur nächsten Sektion
+        - wird am Seitenanfang erneut aktiviert
 */
 
 (() => {
     "use strict";
 
     /* --------------------------- Konfiguration --------------------------- */
-    const TOP_THRESHOLD = 8; 
+    const MIN_WIDTH_QUERY = "(min-width: 1280px)"; // Mindestbreite, ab der Snap aktiviert wird
+    const DESKTOP_INPUT_QUERY = "(hover: hover) and (pointer: fine)"; // Geräte mit präzisem Pointer
+    const TOP_THRESHOLD = 8; // Bereich, in dem die Seite noch als "ganz oben" gilt
     const ANIMATION_DURATION = 1100; // Dauer der Scroll-Animation in ms
     const LOCK_DURATION = 1200; // Sperrzeit gegen Mehrfachauslösung in ms
+    const WHEEL_THRESHOLD = 6; // Kleine Trackpad-Impulse ignorieren
 
 
     /* --------------------------- DOM Referenzen --------------------------- */ 
@@ -35,9 +38,14 @@
 
 
     /* --------------------------- Feature Detection --------------------------- */
-    // Prüft, ob das Gerät einen feinen Pointer wie Maus oder Trackpad besitzt
+    // Prüft, ob der Viewport groß genug ist
+    function isLargeViewport() {
+        return window.matchMedia(MIN_WIDTH_QUERY).matches;
+    }
+
+    // Prüft, ob das Gerät einen präzisen Pointer besitzt
     function isSupportedInputDevice() {
-        return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+        return window.matchMedia(DESKTOP_INPUT_QUERY).matches;
     }
 
     // Prüft, ob reduzierte Bewegung im System aktiviert ist
@@ -45,12 +53,10 @@
         return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     }
 
-    // Prüft die benutzerdefinierte Bewegungspräferenz aus dem HTML
     function hasReducedMotionPreference() {
         return document.documentElement.getAttribute("data-motion") === "reduced";
     }
 
-    // Fasst beide Reduced-Motion-Varianten zusammen
     function shouldReduceMotion() {
         return prefersReducedMotion() || hasReducedMotionPreference();
     }
@@ -95,11 +101,15 @@
     }
 
 
-    /* --------------------------- State Utilities --------------------------- */
-    // Setzt den Armed-State und synchronisiert die CSS-Klasse
-    function setArmedState(nextState) {
-        isArmed = nextState;
-        root.classList.toggle("snap-active", isArmed);
+    /* --------------------------- DOM Utilities --------------------------- */
+    // Begrenzt einen Wert auf einen bestimmten Bereich
+    function clamp(value, min, max) {
+        return Math.max(min, Math.min(value, max));
+    }
+
+    // Prüft, ob ein Event in einem erlaubten Scrollbereich ausgelöst wurde
+    function isInsideAllowedScrollArea(target) {
+        return !!target.closest("[data-allow-scroll], .accordion__content");
     }
 
 
@@ -116,8 +126,10 @@
     function getTargetYLikeAnchor(element) {
         const rectTop = element.getBoundingClientRect().top;
         const marginTop = getScrollMarginTop(element);
+        const rawTargetY = window.scrollY + rectTop - marginTop;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
-        return window.scrollY + rectTop - marginTop;
+        return clamp(Math.round(rawTargetY), 0, maxScroll);
     }
 
     // Easing-Funktion für eine weichere Animation
@@ -163,7 +175,7 @@
         }
 
         isLocking = true;
-        setArmedState(false);
+        isArmed = false;
 
         const targetY = getTargetYLikeAnchor(targetElement);
         smoothScrollTo(targetY);
@@ -177,6 +189,16 @@
     /* --------------------------- Event Handler --------------------------- */
     // Reagiert auf Scrollrad-Input und löst ggf. den Snap aus
     function handleWheel(event, targetElement) {
+        // Interaktive / scrollbare Innenbereiche nicht hijacken
+        if (isInsideAllowedScrollArea(event.target)) {
+            return;
+        }
+
+        // Kleine Trackpad-Bewegungen ignorieren
+        if (Math.abs(event.deltaY) < WHEEL_THRESHOLD) {
+            return;
+        }
+
         const scrollingDown = event.deltaY > 0;
 
         if (!isAtTop() || !scrollingDown) {
@@ -188,7 +210,15 @@
     }
 
     // Reagiert auf Tastatur-Navigation
+    function isInteractiveElement(target) {
+        return target.closest("a, button, input, textarea, select, summary, details");
+    }
+
     function handleKeydown(event, targetElement) {
+        if (isInteractiveElement(event.target)) {
+            return;
+        }
+
         if (!isAtTop()) {
             return;
         }
@@ -212,15 +242,13 @@
 
     // Aktiviert den Snap erneut, wenn die Seite wieder ganz oben ist
     function handleScroll() {
-        const atTop = isAtTop();
-
-        if (atTop && !isArmed && !isLocking) {
-            setArmedState(true);
+        if (isAtTop() && !isLocking) {
+            isArmed = true;
             return;
         }
 
-        if (!atTop && isArmed) {
-            setArmedState(false);
+        if (!isAtTop() && isArmed) {
+            isArmed = false;
         }
     }
 
@@ -240,12 +268,6 @@
             passive: true
         });
 
-        window.addEventListener("pageshow", () => {
-            if (detailMain) {
-                resetScrollToTop();
-            }
-        });
-
         cta.addEventListener("click", (event) => {
             handleCtaClick(event, targetElement);
         });
@@ -260,18 +282,18 @@
             return;
         }
 
-        // reduzierte Bewegung respektieren: dann kein Snap, keine Scroll-Hijacks, normales Seitenverhalten
+        // nur auf großen Desktop-Viewports aktivieren
+        if (!isLargeViewport() || !isSupportedInputDevice()) {
+            return;
+        }
+
+        // reduzierte Bewegung respektieren
         if (shouldReduceMotion()) {
             return;
         }
 
         // Seite beim Aufruf immer oben starten
         resetScrollToTop();
-
-        // nur auf Desktop-/Pointer-Geräten aktivieren
-        if (!isSupportedInputDevice()) {
-            return;
-        }
 
         const cta = getHeroCta();
         const targetElement = getAnchorTarget(cta);
@@ -281,8 +303,8 @@
             return;
         }
 
-        // Snap initial aktivieren, wenn Seite oben is
-        setArmedState(isAtTop());
+        // Snap initial aktivieren, wenn Seite oben ist
+        isArmed = isAtTop();
 
         // Listener registrieren
         registerListeners(targetElement, cta);
