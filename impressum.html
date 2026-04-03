@@ -31,46 +31,41 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/header-footer.css">
     <link rel="stylesheet" href="css/impressum.css">
 
     <!-- Favicon -->
     <link id="favicon" rel="icon" href="favicon.ico" type="image/x-icon" sizes="any">
     <script src="js/favicon.js" defer></script>
 
-    <!-- Header-Komponente wird per jQuery nachgeladen -->
+    <!-- Externe jQuery-Bibliothek für layout-include.js zum Nachladen von Header und Footer -->
     <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
 
     <!-- lädt components/header.html.component in <header>  & components/footer.html.component in <footer> -->
     <script src="js/layout-include.js" defer></script>
 
-    <!-- Navigationsverhalten (offnet/schließt Offcanvas, Overlay, Fokus)-->
+    <!-- Navigation und User Preferences -->
     <script src="js/nav.js" defer></script>
-
-    <!-- User Preferences: Theme, Font, Motion -->
     <script src="js/preferences.js" defer></script>
 </head>
 
 
 <body>
-    <!-- Skip-Link, um direkt zum Inhalt oder Footer zu springen -->
+    <!-- Skip-Links für Tastaturnavigation -->
     <a href="impressum.html#main" class="skip-link">Zum Hauptinhalt springen</a>
     <a href="impressum.html#site-footer" class="skip-link">Zum Seitenende springen</a>
 
 
-    <!-- Header: enthält die Hauptnavigation, wird nachgeladen -->
+    <!-- Nachgeladener Header mit Hauptnavigation -->
     <header class="header" id="site-header"></header>
 
 
-    <!-- Main: Hauptinhalt der Seite -->
+    <!-- Hauptinhalt der Seite -->
     <main id="main" class="grid impressum">
         <h1 class="impressum__heading">Impressum</h1>
 
-       
-        <!-- Verantwortliche Person -->
+        <!-- Angaben zur verantwortlichen Person -->
         <section class="impressum-content" aria-labelledby="verantwortliche-heading">
             <h2 id="verantwortliche-heading">Verantwortliche Person</h2>
             
@@ -87,8 +82,7 @@
             </address>
         </section>
 
-
-        <!-- Urheber- und Bildrechte -->
+        <!-- Hinweise zu Urheber- und Bildrechten -->
         <section class="impressum-content" aria-labelledby="urheber-heading">
             <h2 id="urheber-heading">Urheber- und Bildrechte</h2>
             <p>
@@ -97,40 +91,41 @@
                 Die Bildrechte liegen (sofern nicht anders gekennzeichnet) bei der Betreiberin der Website. 
                 Eine Verwendung oder Vervielfältigung der Inhalte ist ohne ausdrückliche Zustimmung nicht gestattet.
                 </span>
-                <span class="break">
-                    Weitere Bildquellen:
-                </span>
+                <span class="break">Weitere Bildquellen:</span>
             </p>
             <ul>
                 <li> 
                     <a  href="https://www.freepik.com/free-photo/male-passenger-wearing-inflated-travel-pillow-neck-cute-eye-mask_13084962.htm" 
-                        target="_blank" rel="noreferrer">
+                        target="_blank" 
+                        rel="noreferrer">
                         404-Seite: Bild von wayhomestudio (Freepik)
                     </a>
                 </li>
                 <li>   
                     <a  href="https://pixabay.com/de/photos/analogkamera-alt-objektive-2838901/" 
-                        target="_blank" rel="noreferrer">
+                        target="_blank" 
+                        rel="noreferrer">
                         Projekte-Seite (Fotodesign Thaddy): Hintergrundbild von lukasbieri
                     </a>
                 </li>
                 <li>   
                     <a  href="https://pixabay.com/de/photos/mediterrane-k%c3%bcche-essen-lebensmittel-2378758/" 
-                        target="_blank" rel="noreferrer">
+                        target="_blank" 
+                        rel="noreferrer">
                         Projekte-Seite (Brutzel): Hintergrundbild von lukasbieri
                     </a>
                 </li>
                 <li>   
                     <a  href="https://pixabay.com/de/photos/schule-lernen-back-to-school-paket-3592120/" 
-                        target="_blank" rel="noreferrer">
+                        target="_blank" 
+                        rel="noreferrer">
                         Projekte-Seite (Ananas Matheinsel): Hintergrundbild von adonyig (Pixabay)
                     </a>
                 </li>
             </ul>
         </section>
 
-
-        <!-- Kontext -->
+        <!-- Projektkontext der Website -->
         <section class="impressum-content" aria-labelledby="kontext-heading">
             <h2 id="kontext-heading">Kontext</h2>
             <p>
@@ -141,7 +136,7 @@
     </main>
 
 
-    <!-- Footer: sekundäre Navigation, wird nachgeladen -->
+    <!-- Nachgeladener Footer -->
     <footer id="site-footer" class="footer"></footer>
 
 </body>

@@ -31,73 +31,61 @@
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/details.css">
     <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/header-footer.css">
     <link rel="stylesheet" href="css/fotografie.css">
 
     <!-- Favicon -->
     <link id="favicon" rel="icon" href="favicon.ico" type="image/x-icon" sizes="any">
     <script src="js/favicon.js" defer></script>
 
-    <!-- Header-Komponente wird per jQuery nachgeladen -->
+    <!-- Externe jQuery-Bibliothek für layout-include.js zum Nachladen von Header und Footer -->
     <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
 
     <!-- lädt components/header.html.component in <header>  & components/footer.html.component in <footer> -->
     <script src="js/layout-include.js" defer></script>
 
-    <!-- Navigationsverhalten (offnet/schließt Offcanvas, Overlay, Fokus)-->
+    <!-- Navigation, User Preferences und seitenbezogenes Verhalten -->
     <script src="js/nav.js" defer></script>
-
-    <!-- User Preferences: Theme, Font, Motion -->
     <script src="js/preferences.js" defer></script>
-
     <script src="js/snap-once.js" defer></script>
-
+    <script src="js/motion.js" defer></script>
     <script src="js/fotografie-reveal.js" defer></script>
 </head>
 
 
 <body>
-    <!-- Skip-Link, um direkt zum Inhalt oder Footer zu springen -->
+    <!-- Skip-Links für Tastaturnavigation -->
     <a href="fotografie.html#main" class="skip-link">Zum Hauptinhalt springen</a>
     <a href="fotografie.html#site-footer" class="skip-link">Zum Seitenende springen</a>
 
 
-    <!-- Header: enthält die Hauptnavigation, wird nachgeladen -->
+    <!-- Nachgeladener Header mit Hauptnavigation -->
     <header class="header" id="site-header"></header>
 
 
-    <!-- Main: Hauptinhalt der Seite -->
+    <!-- Hauptinhalt der Seite -->
     <main id="main" class="grid detailseite seite-fotografie">
 
-       <!-- Hero: Seitenüberschrift + Einleitung + Bild -->
+       <!-- Hero-Bereich mit Seitentitel, Einleitung und CTA -->
         <section class="snap-section hero" aria-labelledby="fotografie-heading">
             <h1 id="fotografie-heading" class="hero__title">Fotografie</h1>
-
             <div class="hero__media">
-                <img class="hero__image" src="images/content/fotografie/camera-hero.webp" alt="">
-                <!-- bei Bedarf im weiteren Projektverlauf figcaption ergänzen-->
+                <img src="images/content/fotografie/camera-hero.webp" alt="">
             </div>
-
             <p class="hero__lead">
-                <span class="break">
-                Fotografie bedeutet für mich, bewusst hinzusehen.
-                </span>
+                <span class="break">Fotografie bedeutet für mich, bewusst hinzusehen.</span>
                 <span class="break">
                 Ich beschäftige mich gerne mit Licht, Perspektiven und Details und versuche, Momente so festzuhalten, wie ich sie wahrnehme und fühle. 
                 Dabei steht weniger die perfekte Inszenierung im Vordergrund, sondern eher das Gefühl des Augenblicks.
                 </span>
             </p>
-
-            <!-- CTA: Sprung zur nächsten Sektion-->
+            <!-- CTA zur Galerie-Sektion -->
             <div class="hero__actions">
                 <a class="button button--ghost" href="fotografie.html#galerie-heading">
-
-                    <!-- SVG stammt von https://heroicons.com -->
                     Weiter zur Galerie
+                    <!-- SVG stammt von https://heroicons.com -->
                     <svg
                         class="arrow" 
                         aria-hidden="true"
@@ -107,7 +95,6 @@
                         stroke-width="2" 
                         stroke="currentColor" 
                     >
-
                         <path 
                             stroke-linecap="round" 
                             stroke-linejoin="round" 
@@ -119,62 +106,62 @@
         </section>
 
 
-        <!-- Foto-Galerie: Liste von Bildern -->
+        <!-- Galerie-Sektion -->
         <section class="snap-section content" aria-labelledby="galerie-heading">
             <h2 id="galerie-heading" class="content__heading">Galerie</h2>
 
             <ul class="galerie" aria-label="Fotogalerie">
                 <li class="galerie__item galerie__item--portrait reveal">
                     <div class="galerie__media">
-                        <img class="galerie__image" src="images/content/fotografie/taube-weiß.webp" alt="Weiße Taube auf einem Holzpfosten vor dunklem Hintergrund">
+                        <img src="images/content/fotografie/taube-weiß.webp" alt="Weiße Taube auf einem Holzpfosten vor dunklem Hintergrund">
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--portrait reveal">
                     <div class="galerie__media">
-                        <img class="galerie__image" src="images/content/fotografie/doldenbluete-vereist.webp" alt="Nahaufnahme einer vereisten Doldenblüte">
+                        <img src="images/content/fotografie/doldenbluete-vereist.webp" alt="Nahaufnahme einer vereisten Doldenblüte">
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--landscape reveal">
                     <div class="galerie__media">
-                        <img class="galerie__image" src="images/content/fotografie/weissdorn-winter.webp" alt="Nahaufnahme von vereisten roten Beeren an einem Zweig">
+                        <img src="images/content/fotografie/weissdorn-winter.webp" alt="Nahaufnahme von vereisten roten Beeren an einem Zweig">
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--landscape reveal">
                     <div class="galerie__media">
-                        <img class="galerie__image" src="images/content/fotografie/tor-orientalisch.webp" alt="Detailansicht eines verzierten orientalischen Tors">
+                        <img src="images/content/fotografie/tor-orientalisch.webp" alt="Detailansicht eines verzierten orientalischen Tors">
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--portrait reveal">
                     <div class="galerie__media">
-                        <img class="galerie__image" src="images/content/fotografie/tuer-windrad.webp" alt="Metalltür mit Gitter, Warnschild und Graffiti">
+                        <img src="images/content/fotografie/tuer-windrad.webp" alt="Metalltür mit Gitter, Warnschild und Graffiti">
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--portrait reveal">
                     <div class="galerie__media">
-                        <img class="galerie__image" src="images/content/fotografie/kasten-graffiti.webp" alt="Mit Graffiti bemalter Stromkasten">
+                        <img src="images/content/fotografie/kasten-graffiti.webp" alt="Mit Graffiti bemalter Stromkasten">
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--portrait reveal">
                     <div class="galerie__media">
-                        <img class="galerie__image" src="images/content/fotografie/spinnennetz.webp" alt="Detailaufnahme eines beschädigten Kastens mit Spinnennetz">
+                        <img src="images/content/fotografie/spinnennetz.webp" alt="Detailaufnahme eines beschädigten Kastens mit Spinnennetz">
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--portrait reveal">
                     <div class="galerie__media">
-                        <img class="galerie__image" src="images/content/fotografie/haus-einsam.webp" alt="Winterliche Landschaft mit vereisten Ästen und einem Haus im Hintergrund">
+                        <img src="images/content/fotografie/haus-einsam.webp" alt="Winterliche Landschaft mit vereisten Ästen und einem Haus im Hintergrund">
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--landscape reveal">
                     <div class="galerie__media">
-                        <img class="galerie__image" src="images/content/fotografie/boot-narzissen.webp" alt="Boot mit gelben Blumen in Töpfen vor einer urbanen Hafenkulisse">
+                        <img src="images/content/fotografie/boot-narzissen.webp" alt="Boot mit gelben Blumen in Töpfen vor einer urbanen Hafenkulisse">
                     </div>
                 </li>
             </ul>
@@ -182,7 +169,7 @@
     </main>
 
 
-    <!-- Footer: sekundäre Navigation, wird nachgeladen -->
+    <!-- Nachgeladener Footer -->
     <footer id="site-footer" class="footer"></footer>
 
 </body>

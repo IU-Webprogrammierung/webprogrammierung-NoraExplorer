@@ -31,74 +31,62 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/details.css">
     <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/header-footer.css">
     <link rel="stylesheet" href="css/ueber.css">
 
     <!-- Favicon -->
     <link id="favicon" rel="icon" href="favicon.ico" type="image/x-icon" sizes="any">
     <script src="js/favicon.js" defer></script>
     
-
-    <!-- Header-Komponente wird per jQuery nachgeladen -->
+    <!-- Externe jQuery-Bibliothek für layout-include.js zum Nachladen von Header und Footer -->
     <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
 
     <!-- lädt components/header.html.component in <header>  & components/footer.html.component in <footer> -->
     <script src="js/layout-include.js" defer></script>
 
-    <!-- Navigationsverhalten (offnet/schließt Offcanvas, Overlay, Fokus)-->
+    <!-- Navigation, User Preferences und seitenbezogenes Verhalten -->
     <script src="js/nav.js" defer></script>
-
-    <!-- User Preferences: Theme, Font, Motion -->
     <script src="js/preferences.js" defer></script>
-
     <script src="js/snap-once.js" defer></script>
-
+    <script src="js/motion.js" defer></script>
     <script src="js/ueber-reveal.js" defer></script>
 </head>
 
 
 <body>
-    <!-- Skip-Link, um direkt zum Inhalt oder Footer zu springen -->
+    <!-- Skip-Links für Tastaturnavigation -->
     <a href="ueber.html#main" class="skip-link">Zum Hauptinhalt springen</a>
     <a href="ueber.html#site-footer" class="skip-link">Zum Seitenende springen</a>
 
 
-    <!-- Header: enthält die Hauptnavigation, wird nachgeladen -->
+    <!-- Nachgeladener Header mit Hauptnavigation -->
     <header class="header" id="site-header"></header>
 
 
-    <!-- Main: Hauptinhalt der Seite -->
+    <!-- Hauptinhalt der Seite -->
     <main id="main" class="grid detailseite seite-ueber">
 
-        <!-- Hero: Seitenüberschrift + Einleitung + Bild -->
+        <!-- Hero-Bereich mit Seitentitel, Einleitung und CTA -->
         <section class="snap-section hero" aria-labelledby="ueber-heading">
             <h1 id="ueber-heading" class="hero__title">Über mich</h1>
-
             <div class="hero__media">
-                <img class="hero__image" src="images/content/ueber/hero-portrait.webp" alt="Illustration von Nora">
+                <img src="images/content/ueber/hero-portrait.webp" alt="Illustration von Nora">
             </div>
-
             <p class="hero__lead">
-                <span class="break">
-                    Hi, ich bin Nora!
-                </span>
+                <span class="break">Hi, ich bin Nora!</span>
                 <span class="break">
                     Ich bin 22 Jahre alt, komme aus NRW und studiere aktuell Medieninformatik an der IU. 
                     Ich liebe es, kreativ zu arbeiten, neue Dinge auszuprobieren und mich mit ganz unterschiedlichen Themen auseinanderzusetzen, 
                     besonders dort, wo Gestaltung und Technik zusammenkommen.
                 </span>
             </p>
-
-            <!-- CTA: Sprung zur nächsten Sektion-->
+            <!-- CTA zur Interessen-Sektion -->
             <div class="hero__actions">
                 <a class="button button--ghost" href="ueber.html#interessen-heading">
                     Weiter zu meinen Interessen
-
-                    <!-- SVG stammt von https://heroicons.com -->
+                    <!-- SVG-Icon stammt von https://heroicons.com -->
                     <svg
                         class="arrow" 
                         aria-hidden="true"
@@ -108,7 +96,6 @@
                         stroke-width="2" 
                         stroke="currentColor" 
                     >
-
                         <path 
                             stroke-linecap="round" 
                             stroke-linejoin="round" 
@@ -119,16 +106,14 @@
             </div>
         </section>
 
-
-        <!-- Sektion mit meinen Interessen -->
+        <!-- Interessen-Sektion -->
         <section class="snap-section content" aria-labelledby="interessen-heading">
             <h2 id="interessen-heading" class="content__heading">Interessen</h2>
 
-            <!-- Interessen Abschnitt Musik -->
+            <!-- Interesse: Musik -->
             <div class="interesse-row section--bleed section--bg">
                 <article class="interesse reveal" aria-labelledby="musik-heading">
                     <h3 id="musik-heading" class="interesse__heading">Musik</h3>
-
                     <p class="interesse__text">
                         <span class="break">
                             Musik begleitet mich schon lange und spielt in meinem Alltag eine große Rolle. 
@@ -140,18 +125,16 @@
                             Ich spiele Gitarre, Geige und Ukulele und nutze Musik als kreativen Ausgleich, um neue Ideen entstehen zu lassen und abzuschalten.
                         </span>
                     </p>
-
                     <div class="interesse__media media">
-                        <img class="media__inner" src="images/content/ueber/musik.webp" alt="">
+                        <img src="images/content/ueber/musik.webp" alt="">
                     </div>
                 </article>
             </div>
 
-                <!-- Interessen Abschnitt Sport -->
+            <!-- Interesse: Sport -->
             <div class="interesse-row section--bleed section--bg-soft">     
                 <article class="interesse reveal" aria-labelledby="sport-heading">
                     <h3 id="sport-heading" class="interesse__heading">Sport</h3>
-
                     <p class="interesse__text">
                         <span class="break">
                             Sport ist für mich ein wichtiger Ausgleich im Alltag und hilft mir dabei, einen klaren Kopf zu bekommen. 
@@ -163,18 +146,16 @@
                             und unterstützt mich dabei, fokussiert und ausgeglichen zu bleiben.
                         </span>
                     </p>
-
                     <div class="interesse__media media">
-                        <img class="media__inner" src="images/content/ueber/sport.webp" alt="">
+                        <img src="images/content/ueber/sport.webp" alt="">
                     </div>
                 </article>
             </div>
 
-            <!-- Interessen Abschnitt Lesen -->
+            <!-- Interesse: Lesen -->
             <div class="interesse-row section--bleed section--bg">
                 <article class="interesse reveal" aria-labelledby="lesen-heading">
                     <h3 id="lesen-heading" class="interesse__heading">Lesen</h3>
-
                     <p class="interesse__text">
                         <span class="break">
                             Lesen ist für mich eine Möglichkeit, abzuschalten und in andere Welten einzutauchen. 
@@ -185,18 +166,16 @@
                             Aktuell zählt Ikigai von Ken Mogi zu meinen Favoriten. Lesen begleitet mich im Alltag, gibt mir neue Denkanstöße und hilft mir dabei, zur Ruhe zu kommen.
                         </span>
                     </p>
-
                     <div class="interesse__media media">
-                        <img class="media__inner" src="images/content/ueber/lesen.webp" alt="">
+                        <img src="images/content/ueber/lesen.webp" alt="">
                     </div>
                 </article>
             </div> 
 
-            <!-- Interessen Abschnitt Kunst -->
+            <!-- Interesse: Kunst -->
             <div class="interesse-row section--bleed section--bg-soft">
                 <article class="interesse reveal" aria-labelledby="kunst-heading">
                     <h3 id="kunst-heading" class="interesse__heading">Kunst</h3>
-
                     <p class="interesse__text">
                         <span class="break">
                             Kunst hat mich schon als Kind begleitet und früh begeistert. 
@@ -208,9 +187,8 @@
                             Gleichzeitig werde ich auch selbst gern kreativ. Ob Fotografie, Zeichnen, Malen oder Töpfern, Kunst ist für mich eine Möglichkeit, mich auszudrücken und Ideen sichtbar zu machen.
                         </span>
                     </p>
-
                     <div class="interesse__media media">
-                        <img class="media__inner" src="images/content/ueber/kunst.webp" alt="">
+                        <img src="images/content/ueber/kunst.webp" alt="">
                     </div>
                 </article>
             </div>
@@ -218,7 +196,7 @@
     </main>
 
 
-    <!-- Footer: sekundäre Navigation, wird nachgeladen -->
+    <!-- Nachgeladener Footer -->
     <footer id="site-footer" class="footer"></footer>
 
 </body>

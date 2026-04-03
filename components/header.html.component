@@ -4,13 +4,13 @@
     Enthält Desktop-Navigation sowie Mobile-Navigation mit Overlay und Offcanvas-Panel.
 -->
 
-<div class="header__inner header__inner--mobilebar">
+<div class="header__inner">
     <!-- Desktop-Navigation -->
     <nav id="main-nav" class="main-nav" aria-label="Hauptnavigation">
         <ul class="main-nav__list">
             <li class="main-nav__item main-nav__item--home">
                 <a
-                    class="main-nav__home-link icon-button"
+                    class="icon-button"
                     href="index.html"
                     aria-label="Startseite"
                     data-page="index"
@@ -73,7 +73,7 @@
         </svg>
     </button>
 
-    <!-- Mobile-Navigation: zentriertes Header-Logo -->
+    <!-- Mobile-Navigation: zentriertes Logo -->
     <div class="header__center">
         <a
             class="header__logo icon-button"
@@ -173,34 +173,34 @@
         </button>
     </div>
 
-    <!-- Mobile-Navigation: primäre Links -->
+    <!-- Primäre Navigation -->
     <nav class="mobile-nav__primary" aria-label="Hauptnavigation">
-        <ul class="mobile-nav__list mobile-nav__list--primary">
-            <li class="mobile-nav__item">
+        <ul class="mobile-nav__list">
+            <li>
                 <a class="nav-link" href="index.html" data-page="index">Startseite</a>
             </li>
-            <li class="mobile-nav__item">
+            <li>
                 <a class="nav-link" href="ueber.html" data-page="ueber">Über mich</a>
             </li>
-            <li class="mobile-nav__item">
+            <li>
                 <a class="nav-link" href="fotografie.html" data-page="fotografie">Fotografie</a>
             </li>
-            <li class="mobile-nav__item">
+            <li>
                 <a class="nav-link" href="projekte.html" data-page="projekte">Projekte</a>
             </li>
-            <li class="mobile-nav__item">
+            <li>
                 <a class="nav-link" href="prozess.html" data-page="prozess">Prozess</a>
             </li>
         </ul>
     </nav>
 
-    <!-- Mobile-Navigation: sekundäre Links -->
+    <!-- Sekundäre Navigation -->
     <nav class="mobile-nav__secondary" aria-label="Sekundäre Navigation">
-        <ul class="mobile-nav__list mobile-nav__list--secondary">
-            <li class="mobile-nav__item">
+        <ul class="mobile-nav__list">
+            <li>
                 <a class="nav-link" href="einstellungen.html" data-page="einstellungen">Einstellungen</a>
             </li>
-            <li class="mobile-nav__item">
+            <li>
                 <a class="nav-link" href="impressum.html" data-page="impressum">Impressum</a>
             </li>
         </ul>

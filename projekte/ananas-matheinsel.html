@@ -31,49 +31,44 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/details.css">
     <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/header-footer.css">
     <link rel="stylesheet" href="css/projekte.css">
 
     <!-- Favicon -->
     <link id="favicon" rel="icon" href="favicon.ico" type="image/x-icon" sizes="any">
     <script src="js/favicon.js" defer></script>
 
-    <!-- Header-/Footer-Includes -->
-    <script src="https://code.jquery.com/jquery-4.0.0.js"
-        integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
-        crossorigin="anonymous"></script>
+    <!-- Externe jQuery-Bibliothek für layout-include.js zum Nachladen von Header und Footer -->
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+
+    <!-- lädt components/header.html.component in <header>  & components/footer.html.component in <footer> -->
     <script src="js/layout-include.js" defer></script>
 
-    <!-- Navigation & User Preferences -->
+    <!-- Navigation, User Preferences und seitenbezogenes Verhalten -->
     <script src="js/nav.js" defer></script>
     <script src="js/preferences.js" defer></script>
-
-    <!-- Einmaliges Snap-Scrolling -->
     <script src="js/snap-once.js" defer></script>
 </head>
 
 <body>
-    <!-- Skip-Links -->
+    <!-- Skip-Links für Tastaturnavigation -->
     <a href="projekte/ananas-matheinsel.html#main" class="skip-link">Zum Hauptinhalt springen</a>
     <a href="projekte/ananas-matheinsel.html#site-footer" class="skip-link">Zum Seitenende springen</a>
 
-    <!-- Header -->
+    <!-- Nachgeladener Header mit Hauptnavigation -->
     <header class="header" id="site-header"></header>
 
-    <!-- Main -->
+
+    <!-- Hauptinhalt der Seite -->
     <main id="main" class="grid detailseite seite-projekt-detail seite-projekt-ananas">
 
-        <!-- Breadcrumb -->
+        <!-- Breadcrumb-Navigation -->
         <nav class="breadcrumb" aria-label="Seitenpfad">
             <ol class="breadcrumb__list">
                 <li class="breadcrumb__item">
-                    <a href="projekte.html" class="breadcrumb__link">
-                        Projekte
-                    </a>
+                    <a href="projekte.html" class="breadcrumb__link">Projekte</a>
                 </li>
                 <li class="breadcrumb__item" aria-current="page">
                     Ananas Matheinsel
@@ -81,10 +76,9 @@
             </ol>
         </nav>
 
-        <!-- Hero -->
+        <!-- Hero-Bereich mit Seitentitel, Einleitung und CTA -->
         <section class="snap-section hero section--bleed" aria-labelledby="projekt-heading">
             <h1 id="projekt-heading" class="hero__title">Ananas Matheinsel</h1>
-
             <p class="hero__lead">
                 Ananas Matheinsel ist ein Studienprojekt aus dem Kurs Gestaltung interaktiver Medien. 
                 Dabei habe ich das Konzept für eine kindgerechte E-Learning Anwendung entwickelt, 
@@ -92,11 +86,10 @@
                 Im Mittelpunkt steht eine narrative Lernwelt rund um den Drachen Ananas, 
                 die Lernen motivierender und zugänglicher machen soll.
             </p>
-
+            <!-- CTA zur Detailsektion -->
             <div class="hero__actions">
                 <a class="button button--ghost" href="projekte/ananas-matheinsel.html#projekt-details-heading">
                     Zu den Details
-
                     <!-- SVG stammt von https://heroicons.com -->
                     <svg
                         class="arrow" 
@@ -107,7 +100,6 @@
                         stroke-width="2" 
                         stroke="currentColor" 
                     >
-
                         <path 
                             stroke-linecap="round" 
                             stroke-linejoin="round" 
@@ -116,27 +108,17 @@
                     </svg>
                 </a>
             </div>
-
-            <!--
-            <div class="hero__media">
-                <img
-                    class="hero__image"
-                    src="../images/content/projekte/ananas-matheinsel-aufgabe.webp"
-                    alt="Interaktive E-Learning Oberfläche mit einer Rechenmauer und Spielfiguren">
-            </div>
-            -->
         </section>
 
-        <!-- Content -->
-        <section class="snap-section content projekt-content" aria-labelledby="projekt-details-heading">
+        <!-- Sektion mit den Projektdetails -->
+        <section class="snap-section content" aria-labelledby="projekt-details-heading">
             <h2 id="projekt-details-heading" class="content__heading">Projekt-Details</h2>
 
+            <!-- Detailblock: Konzept und Zielsetzung -->
             <div class="projekt-detail-row section--bleed section--bg">
                 <section class="projekt-detail-block" aria-labelledby="ananas-konzept-heading">
                     <div class="projekt-detail-block__content">
-                        <h3 id="ananas-konzept-heading" class="projekt-detail-block__heading">
-                            Konzept &amp; Zielsetzung
-                        </h3>
+                        <h3 id="ananas-konzept-heading" class="projekt-detail-block__heading">Konzept ud Zielsetzung</h3>
                         <p class="projekt-detail-block__text">
                             Die Idee hinter Ananas Matheinsel ist eine Lernapp, 
                             die Mathematik als Erlebnis vermittelt. 
@@ -147,22 +129,20 @@
                             und weder Unterforderung noch Überforderung entsteht.
                         </p>
                     </div>
-
                     <div class="projekt-detail-block__media media">
                         <img
-                            class="media__inner"
                             src="images/content/projekte/ananas-matheinsel-aufgabe.webp"
-                            alt="Interaktive E-Learning Oberfläche mit einer Rechenmauer und Spielfiguren">
+                            alt="Interaktive E-Learning Oberfläche mit einer Rechenmauer und Spielfiguren"
+                        >
                     </div>
                 </section>
             </div>
 
+            <!-- Detailblock: Nutzungskontext und Zugänglichkeit -->
             <div class="projekt-detail-row section--bleed section--bg-soft">
                 <section class="projekt-detail-block" aria-labelledby="ananas-zugang-heading">
                     <div class="projekt-detail-block__content">
-                        <h3 id="ananas-zugang-heading" class="projekt-detail-block__heading">
-                            Nutzungskontext &amp; Zugänglichkeit
-                        </h3>
+                        <h3 id="ananas-zugang-heading" class="projekt-detail-block__heading">Nutzungskontext und Zugänglichkeit</h3>
                         <p class="projekt-detail-block__text">
                             Wichtig war mir außerdem, dass die App für verschiedene Alltagssituationen funktioniert, 
                             in der Schule, zu Hause und unterwegs. 
@@ -173,10 +153,8 @@
                             damit Lernen auch gemeinsam funktionieren kann.
                         </p>
                     </div>
-
                     <div class="projekt-detail-block__media media">
                         <img
-                            class="media__inner"
                             src="images/content/projekte/ananas-matheinsel-chat.webp"
                             alt="Spielszene mit mehreren Spielfiguren in einem Audiochat-Raum">
                     </div>
@@ -185,8 +163,9 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer id="site-footer" class="footer"></footer>
-</body>
 
+    <!-- Nachgeladener Footer -->
+    <footer id="site-footer" class="footer"></footer>
+    
+</body>
 </html>

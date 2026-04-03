@@ -31,51 +31,44 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/details.css">
     <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/header-footer.css">
     <link rel="stylesheet" href="css/projekte.css">
 
     <!-- Favicon -->
     <link id="favicon" rel="icon" href="favicon.ico" type="image/x-icon" sizes="any">
     <script src="js/favicon.js" defer></script>
 
-    <!-- Header-/Footer-Includes -->
-    <script src="https://code.jquery.com/jquery-4.0.0.js"
-        integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
-        crossorigin="anonymous"></script>
+    <!-- Externe jQuery-Bibliothek für layout-include.js zum Nachladen von Header und Footer -->
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+
+    <!-- lädt components/header.html.component in <header>  & components/footer.html.component in <footer> -->
     <script src="js/layout-include.js" defer></script>
 
-    <!-- Navigation & User Preferences -->
+    <!-- Navigation, User Preferences und seitenbezogenes Verhalten -->
     <script src="js/nav.js" defer></script>
     <script src="js/preferences.js" defer></script>
-
-    <!-- Einmaliges Snap-Scrolling -->
     <script src="js/snap-once.js" defer></script>
 </head>
 
 <body>
-    <!-- Skip-Links -->
+    <!-- Skip-Links für Tastaturnavigation -->
     <a href="projekte/fotodesign-thaddy.html#main" class="skip-link">Zum Hauptinhalt springen</a>
     <a href="projekte/fotodesign-thaddy.html#site-footer" class="skip-link">Zum Seitenende springen</a>
 
-    <!-- Header -->
+    <!-- Nachgeladener Header mit Hauptnavigation -->
     <header class="header" id="site-header"></header>
 
-    <!-- Main -->
+    <!-- Hauptinhalt der Seite -->
     <main id="main" class="grid detailseite seite-projekt-detail seite-projekt-thaddy">
 
 
-
-            <!-- Breadcrumb -->
+            <!-- Breadcrumb-Navigation -->
             <nav class="breadcrumb" aria-label="Seitenpfad">
                 <ol class="breadcrumb__list">
                     <li class="breadcrumb__item">
-                        <a href="projekte.html" class="breadcrumb__link">
-                            Projekte
-                        </a>
+                        <a href="projekte.html" class="breadcrumb__link">Projekte</a>
                     </li>
                     <li class="breadcrumb__item" aria-current="page">
                         Fotodesign Thaddy
@@ -83,10 +76,9 @@
                 </ol>
             </nav>
 
-            <!-- Hero -->
+            <!-- Hero-Bereich mit Seitentitel, Einleitung und CTA -->
             <section class="snap-section hero section--bleed" aria-labelledby="projekt-heading">
                 <h1 id="projekt-heading" class="hero__title">Fotodesign Thaddy</h1>
-
                 <p class="hero__lead">
                     <span class="break">
                         Fotodesign Thaddy ist ein Studienprojekt, 
@@ -98,11 +90,9 @@
                         Im Mittelpunkt stand dabei die visuelle Präsentation der Fotografien sowie eine klare, nutzerfreundliche Struktur.
                     </span>
                 </p>
-
                 <div class="hero__actions">
                     <a class="button button--ghost" href="projekte/fotodesign-thaddy.html#projekt-details-heading">
                         Zu den Details
-
                     <!-- SVG stammt von https://heroicons.com --> 
                     <svg
                         class="arrow" 
@@ -113,7 +103,6 @@
                         stroke-width="2" 
                         stroke="currentColor" 
                     >
-
                         <path 
                             stroke-linecap="round" 
                             stroke-linejoin="round" 
@@ -124,11 +113,11 @@
                 </div>
             </section>
         
-
-        <!-- Content -->
-        <section class="snap-section content projekt-content" aria-labelledby="projekt-details-heading">
+        <!-- Sektion mit den Projektdetails -->
+        <section class="snap-section content" aria-labelledby="projekt-details-heading">
             <h2 id="projekt-details-heading" class="content__heading">Projekt-Details</h2>
 
+            <!-- Detailblock: Konzept und Zielsetzung -->
             <div class="projekt-detail-row section--bleed section--bg-soft">
                 <section class="projekt-detail-block" aria-labelledby="konzept-heading">
                     <div class="projekt-detail-block__content">
@@ -140,16 +129,15 @@
                             Dafür wurden zwei Designvarianten ausgearbeitet, die sich in ihrer visuellen Sprache deutlich unterscheiden.
                         </p>
                     </div>
-
                     <div class="projekt-detail-block__media media">
                         <img
-                            class="media__inner"
                             src="images/content/projekte/fotodesign-thaddy-hell.webp"
                             alt="Startseite einer hellen Fotografie-Website mit großem Hero-Bereich">
                     </div>
                 </section>
             </div>
 
+            <!-- Detailblock: Designvarianten -->
             <div class="projekt-detail-row section--bleed section--bg">
                 <section class="projekt-detail-block" aria-labelledby="designvarianten-heading">
                     <div class="projekt-detail-block__content">
@@ -162,10 +150,8 @@
                             Die gezeigten Mockups geben Einblick in diese beiden gestalterischen Richtungen.
                         </p>
                     </div>
-
                     <div class="projekt-detail-block__media media">
                         <img
-                            class="media__inner"
                             src="images/content/projekte/fotodesign-thaddy-dunkel.webp"
                             alt="Startseite einer dunklen Fotografie-Website mit großem Hero-Bereich">
                     </div>
@@ -174,8 +160,9 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer id="site-footer" class="footer"></footer>
-</body>
 
+    <!-- Nachgeladener Footer -->
+    <footer id="site-footer" class="footer"></footer>
+    
+</body>
 </html>

@@ -1,13 +1,3 @@
-<!-- 
-    Hinweis zur Projektstruktur:
-    Die 404-Seite dient aktuell als Platzhalter.
-    Erweiterungen erfolgen bewusst erst in der Projektphase 2 & 3. 
-
-    Geplante Funktionen:
-    * Klare Fehlermeldungen
-    * Link zurück zu den Hauptseiten 
--->
-
 <!DOCTYPE html>
 <html lang="de" data-theme="light" data-font-size="medium">
 
@@ -41,48 +31,42 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/header-footer.css">
     <link rel="stylesheet" href="css/404.css">
 
     <!-- Favicon -->
     <link id="favicon" rel="icon" href="favicon.ico" type="image/x-icon" sizes="any">
     <script src="js/favicon.js" defer></script>
 
-    <!-- Header-Komponente wird per jQuery nachgeladen -->
+    <!-- Externe jQuery-Bibliothek für layout-include.js zum Nachladen von Header und Footer -->
     <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
 
     <!-- lädt components/header.html.component in <header>  & components/footer.html.component in <footer> -->
     <script src="js/layout-include.js" defer></script>
 
-    <!-- Navigationsverhalten (offnet/schließt Offcanvas, Overlay, Fokus)-->
+    <!-- Navigation und User Preferences -->
     <script src="js/nav.js" defer></script>
-
-    <!-- User Preferences: Theme, Font, Motion -->
     <script src="js/preferences.js" defer></script>
 </head>
 
 
 <body>
-    <!-- Header: enthält die Hauptnavigation, wird nachgeladen -->
+    <!-- Nachgeladener Header mit Hauptnavigation -->
     <header class="header" id="site-header"></header>
 
-
-
+    <!-- Hauptinhalt der Seite -->
     <main id="main" class="grid not-found" aria-labelledby="not-found-title">
 
-        <!-- Bild-Card mit "404" Overlay -->
+        <!-- Bildbereich mit visueller 404-Kennzeichnung -->
         <div class="not-found__pic">
-            <img src="images/content/404.webp" alt="Illustration zur 404 Fehlermeldung">
-
+            <img src="images/content/404.webp" alt="">
             <div class="not-found__overlay">
                 <h1 class="not-found__heading" id="not-found-title">404</h1>
             </div>
         </div>
 
-        <!-- Kurze Erklärung -->
+        <!-- Kurze Erklärung zum Fehler -->
         <p class="not-found__text">Ups, diese Seite konnte leider nicht gefunden werden.</p>
 
         <!-- Link zurück zur Startseite -->
@@ -92,9 +76,7 @@
 
     </main>
 
-
-
-    <!-- Footer: sekundäre Navigation, wird nachgeladen -->
+    <!-- Nachgeladener Footer -->
     <footer id="site-footer" class="footer"></footer>
 
 </body>
