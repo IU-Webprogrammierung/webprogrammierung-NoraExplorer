@@ -137,6 +137,18 @@
     }
 }
 
+html[data-motion="reduced"] .seite-fotografie .galerie__media {
+    transition: border-color 0.2s ease;
+}
+
+html[data-motion="reduced"] .seite-fotografie .galerie__item:hover .galerie__media,
+html[data-motion="reduced"] .seite-fotografie .galerie__item:focus-within .galerie__media {
+    transform: none !important;
+    box-shadow: none !important;
+    border-color: color-mix(in srgb, var(--accent-line) 30%, var(--border));
+}
+
+
 
 /* --------------------------- Media-Image --------------------------- */
 .seite-fotografie .galerie__media img {
@@ -154,14 +166,3 @@
         transform: scale(1.02);
     }
 }
-
-
-
-
-
-
-
-
-
-
-

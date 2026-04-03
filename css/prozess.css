@@ -321,6 +321,7 @@
     aspect-ratio: 4 / 3;
     overflow: hidden;
     border-radius: var(--radius-l);
+    align-self: center;
 }
 
 .detailseite.seite-prozess .prozess__item.reveal .prozessschritt__media {
@@ -419,32 +420,24 @@
 
 
 /* --------------------------- Reduced Motion --------------------------- */
+/* --------------------------- Reduced Motion --------------------------- */
 html[data-motion="reduced"] .detailseite.seite-prozess .prozess::after,
-html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item,
-html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item *,
-html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item::before,
-html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item::after {
+html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item.reveal,
+html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item.reveal .prozessschritt__nr,
+html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item.reveal .prozessschritt__media,
+html[data-motion="reduced"] .detailseite.seite-prozess .prozessschritt,
+html[data-motion="reduced"] .detailseite.seite-prozess .prozessschritt::after,
+html[data-motion="reduced"] .detailseite.seite-prozess .prozessschritt__nr,
+html[data-motion="reduced"] .detailseite.seite-prozess .prozessschritt__heading,
+html[data-motion="reduced"] .detailseite.seite-prozess .prozessschritt__media img,
+html[data-motion="reduced"] .detailseite.seite-prozess .prozessschritt__nr::after {
     animation: none !important;
     transition: none !important;
     transform: none !important;
 }
 
-html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item.reveal {
+html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item.reveal,
+html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item.reveal .prozessschritt__nr,
+html[data-motion="reduced"] .detailseite.seite-prozess .prozess__item.reveal .prozessschritt__media {
     opacity: 1 !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    html:not([data-motion]) .detailseite.seite-prozess .prozess::after,
-    html:not([data-motion]) .detailseite.seite-prozess .prozess__item,
-    html:not([data-motion]) .detailseite.seite-prozess .prozess__item *,
-    html:not([data-motion]) .detailseite.seite-prozess .prozess__item::before,
-    html:not([data-motion]) .detailseite.seite-prozess .prozess__item::after {
-        animation: none !important;
-        transition: none !important;
-        transform: none !important;
-    }
-
-    html:not([data-motion]) .detailseite.seite-prozess .prozess__item.reveal {
-        opacity: 1 !important;
-    }
 }

@@ -445,50 +445,6 @@
 
 
 
-/* --------------------------- Reduced Motion --------------------------- */
-html[data-motion="reduced"] .detailseite.seite-projekte .projekt,
-html[data-motion="reduced"] .detailseite.seite-projekte .projekt *,
-html[data-motion="reduced"] .detailseite.seite-projekte .projekt::before,
-html[data-motion="reduced"] .detailseite.seite-projekte .projekt::after {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-}
-
-html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal,
-html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt__title,
-html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .detail-card--intro,
-html[data-motion="reduced"] .detailseite.seite-projekte .projekt.reveal .projekt__actions {
-    opacity: 1 !important;
-}
-
-
-@media (prefers-reduced-motion: reduce) {
-    html:not([data-motion]) .detailseite.seite-projekte .projekt,
-    html:not([data-motion]) .detailseite.seite-projekte .projekt *,
-    html:not([data-motion]) .detailseite.seite-projekte .projekt::before,
-    html:not([data-motion]) .detailseite.seite-projekte .projekt::after {
-        animation: none !important;
-        transition: none !important;
-        transform: none !important;
-    }
-
-    html:not([data-motion]) .detailseite.seite-projekte .projekt.reveal,
-    html:not([data-motion]) .detailseite.seite-projekte .projekt.reveal .projekt__title,
-    html:not([data-motion]) .detailseite.seite-projekte .projekt.reveal .detail-card--intro,
-    html:not([data-motion]) .detailseite.seite-projekte .projekt.reveal .projekt__actions {
-        opacity: 1 !important;
-    }
-}
-
-
-
-
-
-
-
-
-
 
 
 

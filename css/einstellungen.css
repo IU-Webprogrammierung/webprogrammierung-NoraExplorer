@@ -175,6 +175,12 @@
     }
 }
 
+html[data-motion="reduced"] .einstellungen .tile__icon,
+html[data-motion="reduced"] .einstellungen fieldset.tiles .tile:hover .tile__icon,
+html[data-motion="reduced"] .einstellungen fieldset.tiles .tile:active .tile__icon {
+    transform: none !important;
+}
+
 
 /* checked-State */
 .einstellungen fieldset.tiles input[type="radio"]:checked + .tile {
