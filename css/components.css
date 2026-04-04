@@ -387,7 +387,6 @@ html[data-motion="reduced"] .media img {
         min-height: calc(100dvh - var(--header-height));
         align-items: center;
         margin-bottom: var(--space-2xl);
-        padding-top: clamp(3rem, 7vw, 6rem);
         grid-template-columns: minmax(0, 2fr) minmax(16rem, 1.2fr);
         grid-template-areas:
             "title media"

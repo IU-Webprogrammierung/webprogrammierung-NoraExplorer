@@ -19,7 +19,7 @@
     --header-height: 5.5rem;
     --footer-height: 5.5rem;
     --breadcrumb-height: 4rem;
-    --container-padding: 2rem;
+    --container-padding: clamp(1.5rem, 4vw, 3rem);
 
     /* Grid */
     --columns: 4;
@@ -135,7 +135,7 @@
     :root {
         --columns: 8;
         --gap: 1.5rem;
-        --container-padding: 48px;
+        --container-padding: clamp(2rem, 5vw, 6rem);
     }
 }
 
@@ -143,7 +143,7 @@
     :root {
         --columns: 12;
         --gap: 2rem;
-        --container-padding: 96px;
+        --container-padding: clamp(4rem, 10vw, 20rem);
         --content-start: 2;
         --content-end: -2;
     }

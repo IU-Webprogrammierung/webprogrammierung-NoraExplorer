@@ -15,13 +15,13 @@
 
 @media (min-width: 768px) {
     .einstellungen {
-        margin-block: var(--space-xl);
+        margin-block: var(--space-l);
     }
 }
 
 @media (min-width: 1280px) {
     .einstellungen {
-        margin-block: calc(var(--space-xl) * 3);
+        margin-block: var(--space-xl);
     }
 }
 

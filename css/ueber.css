@@ -53,7 +53,7 @@
 /* Reveal nur ab Tablet */
 @media (min-width: 768px) {
     .detailseite.seite-ueber .interesse {
-        gap: var(--gap-l);
+        column-gap: var(--gap-xl);
         grid-template-columns: 2fr 1fr;
         grid-template-areas:
             "heading media"
@@ -86,7 +86,6 @@
 
 @media (min-width: 1280px) {
     .detailseite.seite-ueber .interesse {
-        gap: var(--gap-xl);
         padding: 1.75rem;
     }
 }

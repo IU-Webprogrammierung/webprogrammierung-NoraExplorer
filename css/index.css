@@ -26,11 +26,19 @@
     .startseite .teaser-row {
         padding-block: calc(var(--space-xl) * 2);
     }
+
+    .startseite .hero + .teaser-row {
+        padding-top: 0;
+    }
 }
 
 @media (min-width: 1280px) {
     .startseite .teaser-row {
         padding-block: calc(var(--space-xl) * 4);
+    }
+
+    .startseite .hero + .teaser-row {
+        padding-top: 0;
     }
 }
 
@@ -85,12 +93,10 @@
 
 /* --------------------------- Hero-Title --------------------------- */
 .startseite .hero__title {
-    grid-row: 2;
-    justify-self: center;
     padding: 0 var(--space-xl);
-
     text-align: center;
     font-size: calc(var(--font-size-h1) * 2.4);
+    line-height: 1em;
 }
 
 
