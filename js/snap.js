@@ -9,6 +9,7 @@
 
     /* --------------------------- Konfiguration --------------------------- */
     const MIN_WIDTH_QUERY = "(min-width: 1280px)"; // Mindestbreite, ab der das panelartige Scrollen aktiv wird
+    const MIN_HEIGHT_QUERY = "(min-height: 800px)"; // Mindesthöhe, ab der Snap aktiviert wird
     const DESKTOP_INPUT_QUERY = "(hover: hover) and (pointer: fine)"; // Media Query für Geräte mit präzisem Pointer
     const ANIMATION_DURATION = 1100;  // Dauer der Scroll-Animation in ms
     const LOCK_DURATION = 1200; // Sperrzeit gegen Mehrfachauslösung in ms
@@ -26,9 +27,14 @@
 
 
     /* --------------------------- Feature Detection --------------------------- */
-    // Prüft, ob der Viewport groß genug ist
+    // Prüft, ob der Viewport breit genug ist
     function isLargeViewport() {
         return window.matchMedia(MIN_WIDTH_QUERY).matches;
+    }
+
+    // Prüft, ob der Viewport hoch genug ist
+    function isTallEnoughViewport() {
+        return window.matchMedia(MIN_HEIGHT_QUERY).matches;
     }
 
     // Prüft, ob das Gerät einen präzisen Pointer besitzt
@@ -48,6 +54,11 @@
 
     function shouldReduceMotion() {
         return prefersReducedMotion() || hasReducedMotionPreference();
+    }
+
+    // Prüft, ob die benutzerdefinierte Schriftgröße auf "large" gesetzt ist
+    function hasLargeTextPreference() {
+        return document.documentElement.getAttribute("data-font-size") === "large";
     }
 
 
@@ -158,51 +169,51 @@
 
     // Wechselt relativ zum aktuellen Panel
     function goToPanel(delta, panels) {
-    if (isLocking || panels.length < 2) {
-        return;
-    }
-
-    isLocking = true;
-
-    const currentIndex = getCurrentPanelIndex(panels);
-    const nextIndex = clamp(currentIndex + delta, 0, panels.length - 1);
-
-    if (nextIndex === currentIndex) {
-        isLocking = false;
-        return;
-    }
-
-    let targetY;
-
-    // Sonderfall: wenn man ganz oben im Hero ist und nach unten scrollt, dann zuerst zum oberen Rand des Hero-Overlays springen
-    const firstPanel = panels[0];
-    const isHeroFirstPanel = firstPanel?.classList.contains("hero");
-    const isFirstScrollDownFromHero = delta > 0 && currentIndex === 0 && nextIndex === 1;
-
-    if (isHeroFirstPanel && isFirstScrollDownFromHero) {
-        const overlay = firstPanel.querySelector(".heading-overlay");
-
-        if (overlay) {
-            const overlayRect = overlay.getBoundingClientRect();
-            const overlayTopInDocument = window.scrollY + overlayRect.top;
-            const headerHeight = getHeaderHeight();
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-
-            targetY = clamp(overlayTopInDocument - headerHeight, 0, maxScroll);
+        if (isLocking || panels.length < 2) {
+            return;
         }
+
+        isLocking = true;
+
+        const currentIndex = getCurrentPanelIndex(panels);
+        const nextIndex = clamp(currentIndex + delta, 0, panels.length - 1);
+
+        if (nextIndex === currentIndex) {
+            isLocking = false;
+            return;
+        }
+
+        let targetY;
+
+        // Sonderfall: wenn man ganz oben im Hero ist und nach unten scrollt, dann zuerst zum oberen Rand des Hero-Overlays springen
+        const firstPanel = panels[0];
+        const isHeroFirstPanel = firstPanel?.classList.contains("hero");
+        const isFirstScrollDownFromHero = delta > 0 && currentIndex === 0 && nextIndex === 1;
+
+        if (isHeroFirstPanel && isFirstScrollDownFromHero) {
+            const overlay = firstPanel.querySelector(".heading-overlay");
+
+            if (overlay) {
+                const overlayRect = overlay.getBoundingClientRect();
+                const overlayTopInDocument = window.scrollY + overlayRect.top;
+                const headerHeight = getHeaderHeight();
+                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+                targetY = clamp(overlayTopInDocument - headerHeight, 0, maxScroll);
+            }
+        }
+
+        // Standardverhalten für alle anderen Sprünge
+        if (targetY === undefined) {
+            targetY = getTargetYForPanel(panels[nextIndex]);
+        }
+
+        smoothScrollTo(targetY);
+
+        window.setTimeout(() => {
+            isLocking = false;
+        }, LOCK_DURATION);
     }
-
-    // Standardverhalten für alle anderen Sprünge
-    if (targetY === undefined) {
-        targetY = getTargetYForPanel(panels[nextIndex]);
-    }
-
-    smoothScrollTo(targetY);
-
-    window.setTimeout(() => {
-        isLocking = false;
-    }, LOCK_DURATION);
-}
 
 
     /* --------------------------- Event Handler --------------------------- */
@@ -271,13 +282,18 @@
             return;
         }
 
-        // nur auf großen Desktop-Viewports aktivieren
-        if (!isLargeViewport() || !isSupportedInputDevice()) {
+        // nur auf großen Desktop-Viewports mit ausreichender Höhe aktivieren
+        if (!isLargeViewport() || !isTallEnoughViewport() || !isSupportedInputDevice()) {
             return;
         }
 
         // reduzierte Bewegung respektieren
         if (shouldReduceMotion()) {
+            return;
+        }
+
+        // bei großer Schriftgröße deaktivieren
+        if (hasLargeTextPreference()) {
             return;
         }
 

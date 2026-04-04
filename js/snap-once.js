@@ -9,6 +9,7 @@
 
     /* --------------------------- Konfiguration --------------------------- */
     const MIN_WIDTH_QUERY = "(min-width: 1280px)"; // Mindestbreite, ab der Snap aktiviert wird
+    const MIN_HEIGHT_QUERY = "(min-height: 800px)"; // Mindesthöhe, ab der Snap aktiviert wird
     const DESKTOP_INPUT_QUERY = "(hover: hover) and (pointer: fine)"; // Geräte mit präzisem Pointer
     const TOP_THRESHOLD = 8; // Bereich, in dem die Seite noch als "ganz oben" gilt
     const ANIMATION_DURATION = 1100; // Dauer der Scroll-Animation in ms
@@ -38,9 +39,14 @@
 
 
     /* --------------------------- Feature Detection --------------------------- */
-    // Prüft, ob der Viewport groß genug ist
+    // Prüft, ob der Viewport breit genug ist
     function isLargeViewport() {
         return window.matchMedia(MIN_WIDTH_QUERY).matches;
+    }
+
+    // Prüft, ob der Viewport hoch genug ist
+    function isTallEnoughViewport() {
+        return window.matchMedia(MIN_HEIGHT_QUERY).matches;
     }
 
     // Prüft, ob das Gerät einen präzisen Pointer besitzt
@@ -59,6 +65,11 @@
 
     function shouldReduceMotion() {
         return prefersReducedMotion() || hasReducedMotionPreference();
+    }
+
+    // Prüft, ob die benutzerdefinierte Schriftgröße auf "large" gesetzt ist
+    function hasLargeTextPreference() {
+        return document.documentElement.getAttribute("data-font-size") === "large";
     }
 
 
@@ -282,13 +293,18 @@
             return;
         }
 
-        // nur auf großen Desktop-Viewports aktivieren
-        if (!isLargeViewport() || !isSupportedInputDevice()) {
+        // nur auf großen Desktop-Viewports mit ausreichender Höhe aktivieren
+        if (!isLargeViewport() || !isTallEnoughViewport() || !isSupportedInputDevice()) {
             return;
         }
 
         // reduzierte Bewegung respektieren
         if (shouldReduceMotion()) {
+            return;
+        }
+
+        // bei großer Schriftgröße deaktivieren
+        if (hasLargeTextPreference()) {
             return;
         }
 
