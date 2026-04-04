@@ -408,24 +408,52 @@ html[data-theme="dark"] .heading-overlay {
     max-width: 22rem;
     overflow: hidden;
     border-radius: var(--radius-l);
+    filter: drop-shadow(var(--hero-shadow));
 
     transition: 
         opacity var(--duration-slow) ease, 
-        transform var(--duration-slow) ease;
+        transform var(--duration-slow) ease,
+        filter var(--duration-slow) ease;
 }
 
 .startseite .teaser.reveal .teaser__media {
     opacity: 0;
-    transform: translateY(0.75rem);
-    transition:
-        opacity 900ms ease 210ms,
-        transform 900ms cubic-bezier(.22, .61, .36, 1) 210ms;
+    transform: scale(0.82);
+    transform-origin: center;
+    will-change: transform, opacity;
+}
+
+.motion-enhanced .startseite .teaser.reveal.is-visible .teaser__media {
+    opacity: 1;
+    animation: teaser-pop-bounce 760ms cubic-bezier(.22, .61, .36, 1) both;
 }
 
 .startseite .teaser.reveal.is-visible .teaser__media {
     opacity: 1;
     transform: translateY(0);
 }
+
+@keyframes teaser-pop-bounce {
+    0% {
+        opacity: 0;
+        transform: scale(0.78);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+    68% {
+        transform: scale(0.96);
+    }
+    82% {
+        transform: scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 
 @media (min-width: 768px) {
     .startseite .teaser__media {
@@ -445,9 +473,11 @@ html[data-theme="dark"] .heading-overlay {
 }
 
 @media (max-width: 767px) {
-    .startseite .teaser.reveal .teaser__media {
+    .startseite .teaser.reveal .teaser__media,
+    .motion-enhanced .startseite .teaser.reveal.is-visible .teaser__media {
         opacity: 1;
         transform: none;
+        animation: none;
     }
 }
 

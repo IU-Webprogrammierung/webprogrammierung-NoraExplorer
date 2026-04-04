@@ -276,6 +276,7 @@ html[data-theme="light"] {
     /*----------- Schatten ----------- */
     --shadow-soft: 0 8px 20px #00000014;
     --shadow-card: var(--clay-card-neutral-shadow);
+    --hero-shadow: 0 12px 28px #70243f63;
 }
 
 html[data-theme="dark"] {
@@ -400,6 +401,7 @@ html[data-theme="dark"] {
     /*----------- Schatten ----------- */
     --shadow-soft: 0 8px 20px #00000038;
     --shadow-card: var(--clay-card-neutral-shadow);
+    --hero-shadow: 0 12px 28px #be396863;
 }
 
 

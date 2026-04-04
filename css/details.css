@@ -8,6 +8,97 @@
 }
 
 
+
+
+
+/* --------------------------- Hero --------------------------- */
+/* Media */
+.detailseite .hero__media {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: center;
+    will-change: transform, opacity;
+    filter: drop-shadow(var(--hero-shadow));
+}
+
+.motion-enhanced .detailseite .hero__media {
+    opacity: 0;
+    transform: scale(0.82);
+}
+
+.motion-enhanced .detailseite .hero__media.is-visible {
+    opacity: 1;
+    animation: hero-pop-bounce 760ms cubic-bezier(.22, .61, .36, 1) both;
+}
+
+@keyframes hero-pop-bounce {
+    0% {
+        opacity: 0;
+        transform: scale(0.78);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    68% {
+        transform: scale(0.95);
+    }
+    82% {
+        transform: scale(1.03);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Title und lead */
+.detailseite .hero__title,
+.detailseite .hero__lead {
+    opacity: 1;
+    transform: translateY(0);
+    will-change: transform, opacity;
+}
+
+.motion-enhanced .detailseite .hero__title,
+.motion-enhanced .detailseite .hero__lead {
+    opacity: 0;
+    transform: translateY(1rem);
+}
+
+.motion-enhanced .detailseite .hero__title.is-visible {
+    opacity: 1;
+    animation: hero-text-reveal 700ms cubic-bezier(.22, .61, .36, 1) both;
+}
+
+.motion-enhanced .detailseite .hero__lead.is-visible {
+    opacity: 1;
+    animation: hero-text-reveal 760ms cubic-bezier(.22, .61, .36, 1) both;
+}
+
+/* Fallback ohne motion-enhanced */
+.detailseite .hero__title.is-visible,
+.detailseite .hero__lead.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes hero-text-reveal {
+    0% {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
 /* --------------------------- Content --------------------------- */
 .detailseite .content {
     gap: var(--gap-m);
@@ -39,6 +130,7 @@
         margin-bottom: calc(var(--space-2xl) * 3);
     }
 }
+
 
 
 
