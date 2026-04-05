@@ -52,6 +52,7 @@
     <script src="js/snap-once.js" defer></script>
     <script src="js/motion.js" defer></script>
     <script src="js/fotografie-reveal.js" defer></script>
+    <script src="js/lightbox.js" defer></script>
 </head>
 
 
@@ -113,55 +114,109 @@
             <ul class="galerie" aria-label="Fotogalerie">
                 <li class="galerie__item galerie__item--portrait reveal">
                     <div class="galerie__media media">
-                        <img src="images/content/fotografie/taube-weiß.webp" alt="Weiße Taube auf einem Holzpfosten vor dunklem Hintergrund">
+                        <img 
+                            src="images/content/fotografie/taube-weiß.webp" 
+                            alt="Weiße Taube auf einem Holzpfosten vor dunklem Hintergrund"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Bild vergrößern: Weiße Taube auf einem Holzpfosten vor dunklem Hintergrund"
+                        >
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--portrait reveal">
                     <div class="galerie__media media">
-                        <img src="images/content/fotografie/doldenbluete-vereist.webp" alt="Nahaufnahme einer vereisten Doldenblüte">
+                        <img 
+                            src="images/content/fotografie/doldenbluete-vereist.webp" 
+                            alt="Nahaufnahme einer vereisten Doldenblüte"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Bild vergrößern: Nahaufnahme einer vereisten Doldenblüte"
+                        >
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--landscape reveal">
                     <div class="galerie__media media">
-                        <img src="images/content/fotografie/weissdorn-winter.webp" alt="Nahaufnahme von vereisten roten Beeren an einem Zweig">
+                        <img 
+                            src="images/content/fotografie/weissdorn-winter.webp" 
+                            alt="Nahaufnahme von vereisten roten Beeren an einem Zweig"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Bild vergrößern: Nahaufnahme von vereisten roten Beeren an einem Zweig"
+                        >
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--landscape reveal">
                     <div class="galerie__media media">
-                        <img src="images/content/fotografie/tor-orientalisch.webp" alt="Detailansicht eines verzierten orientalischen Tors">
+                        <img 
+                            src="images/content/fotografie/tor-orientalisch.webp" 
+                            alt="Detailansicht eines verzierten orientalischen Tors"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Bild vergrößern: Detailansicht eines verzierten orientalischen Tors"
+                        >
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--portrait reveal">
                     <div class="galerie__media media">
-                        <img src="images/content/fotografie/tuer-windrad.webp" alt="Metalltür mit Gitter, Warnschild und Graffiti">
+                        <img 
+                            src="images/content/fotografie/tuer-windrad.webp" 
+                            alt="Metalltür mit Gitter, Warnschild und Graffiti"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Bild vergrößern: Metalltür mit Gitter, Warnschild und Graffiti"
+                        >
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--portrait reveal">
                     <div class="galerie__media media">
-                        <img src="images/content/fotografie/kasten-graffiti.webp" alt="Mit Graffiti bemalter Stromkasten">
+                        <img 
+                            src="images/content/fotografie/kasten-graffiti.webp" 
+                            alt="Mit Graffiti bemalter Stromkasten"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Bild vergrößern: Mit Graffiti bemalter Stromkasten"
+                        >
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--portrait reveal">
                     <div class="galerie__media media">
-                        <img src="images/content/fotografie/spinnennetz.webp" alt="Detailaufnahme eines beschädigten Kastens mit Spinnennetz">
+                        <img 
+                            src="images/content/fotografie/spinnennetz.webp" 
+                            alt="Detailaufnahme eines beschädigten Kastens mit Spinnennetz"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Bild vergrößern: Detailaufnahme eines beschädigten Kastens mit Spinnennetz"
+                        >
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--portrait reveal">
                     <div class="galerie__media media">
-                        <img src="images/content/fotografie/haus-einsam.webp" alt="Winterliche Landschaft mit vereisten Ästen und einem Haus im Hintergrund">
+                        <img 
+                            src="images/content/fotografie/haus-einsam.webp" 
+                            alt="Winterliche Landschaft mit vereisten Ästen und einem Haus im Hintergrund"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Bild vergrößern: Winterliche Landschaft mit vereisten Ästen und einem Haus im Hintergrund"
+                        >
                     </div>
                 </li>
 
                 <li class="galerie__item galerie__item--landscape reveal">
                     <div class="galerie__media media">
-                        <img src="images/content/fotografie/boot-narzissen.webp" alt="Boot mit gelben Blumen in Töpfen vor einer urbanen Hafenkulisse">
+                        <img 
+                            src="images/content/fotografie/boot-narzissen.webp" 
+                            alt="Boot mit gelben Blumen in Töpfen vor einer urbanen Hafenkulisse"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Bild vergrößern: Boot mit gelben Blumen in Töpfen vor einer urbanen Hafenkulisse"
+                        >
                     </div>
                 </li>
             </ul>
@@ -171,6 +226,33 @@
 
     <!-- Nachgeladener Footer -->
     <footer id="site-footer" class="footer"></footer>
+
+    <!-- Lightbox für vergrößerte Bildansicht -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <button 
+            type="button" 
+            class="lightbox__close icon-button" 
+            aria-label="Bild schließen"
+        >
+            <!-- SVG stammt von https://heroicons.com -->
+            <svg
+                aria-hidden="true"
+                focusable="false"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18 18 6M6 6l12 12"
+                />
+            </svg>
+        </button>
+        <img class="lightbox__img" src="" alt="">
+    </div>
 
 </body>
 </html>

@@ -134,7 +134,13 @@
         transform: translateY(-0.2rem);
         border-color: color-mix(in srgb, var(--accent-line) 30%, var(--border));
         box-shadow: var(--clay-card-neutral-shadow);
+        cursor: pointer;
     }
+}
+
+.seite-fotografie .galerie__media:has(img:focus-visible) {
+    outline: var(--focus-outline) solid var(--focus-ring);
+    outline-offset: var(--focus-offset);
 }
 
 html[data-motion="reduced"] .seite-fotografie .galerie__media {
