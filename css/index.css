@@ -95,6 +95,7 @@
 .startseite .hero__title {
     padding: 0 var(--space-xl);
     text-align: center;
+    justify-self: center;
     font-size: calc(var(--font-size-h1) * 2.4);
     line-height: 1em;
 }
