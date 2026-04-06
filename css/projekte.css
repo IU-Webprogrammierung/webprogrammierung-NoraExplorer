@@ -479,20 +479,37 @@
 /* --------------------------- Hero-Hintergründe Varianten --------------------------- */
 .detailseite.seite-projekt-detail.seite-projekt-thaddy {
     --projekt-hero-bg-url: url("../images/content/projekte/fotodesign-thaddy-bg.webp");
-    --projekt-hero-bg-position: 60% 32%;
-    --projekt-hero-bg-size: 120%;
+    --projekt-hero-bg-position: 68% 32%;
+    --projekt-hero-bg-size: cover;
 }
 
 .detailseite.seite-projekt-detail.seite-projekt-brutzel {
     --projekt-hero-bg-url: url("../images/content/projekte/brutzel-bg.webp");
-    --projekt-hero-bg-position: 6% 0%;
-    --projekt-hero-bg-size: 120%;
+    --projekt-hero-bg-position: 18% 0%;
+    --projekt-hero-bg-size: cover;
 }
 
 .detailseite.seite-projekt-detail.seite-projekt-ananas {
     --projekt-hero-bg-url: url("../images/content/projekte/ananas-matheinsel-bg.webp");
-    --projekt-hero-bg-position: 50% 46%;
-    --projekt-hero-bg-size: 120%;
+    --projekt-hero-bg-position: 56% 46%;
+    --projekt-hero-bg-size: cover;
+}
+
+@media (min-width: 768px) {
+    .detailseite.seite-projekt-detail.seite-projekt-thaddy {
+        --projekt-hero-bg-position: 60% 32%;
+        --projekt-hero-bg-size: 120%;
+    }
+
+    .detailseite.seite-projekt-detail.seite-projekt-brutzel {
+        --projekt-hero-bg-position: 6% 0%;
+        --projekt-hero-bg-size: 120%;
+    }
+
+    .detailseite.seite-projekt-detail.seite-projekt-ananas {
+        --projekt-hero-bg-position: 50% 46%;
+        --projekt-hero-bg-size: 120%;
+    }
 }
 
 
